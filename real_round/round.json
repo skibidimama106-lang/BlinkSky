@@ -1,0 +1,114 @@
+{
+ "source": "NASA SPHEREx Quick Release images via NASA/IPAC IRSA; known objects from NASA JPL sb_ident",
+ "collection": "spherex_qr3",
+ "center": {
+  "ra": 237.82,
+  "dec": -20.15
+ },
+ "size_deg": 0.2,
+ "pixel_arcsec": 6.15,
+ "width": 702,
+ "height": 702,
+ "frames": [
+  {
+   "src": "frame_1.png",
+   "time_utc": "2026-07-21 07:12 UTC",
+   "detector": "SPHEREx-D5",
+   "wavelength_um": [
+    3.811,
+    4.43
+   ],
+   "obs_id": "2026W30_1B_0237_4"
+  },
+  {
+   "src": "frame_2.png",
+   "time_utc": "2026-07-21 10:22 UTC",
+   "detector": "SPHEREx-D5",
+   "wavelength_um": [
+    3.811,
+    4.43
+   ],
+   "obs_id": "2026W30_1B_0264_1"
+  }
+ ],
+ "objects": [
+  {
+   "name": "57742 (2001 UA163)",
+   "v_mag": 19.0,
+   "positions": [
+    [
+     1.5,
+     501.9
+    ],
+    [
+     76.2,
+     491.2
+    ]
+   ]
+  },
+  {
+   "name": "62571 (2000 SY274)",
+   "v_mag": 19.6,
+   "positions": [
+    [
+     402.5,
+     270.2
+    ],
+    [
+     420.0,
+     265.5
+    ]
+   ]
+  },
+  {
+   "name": "84659 (2002 VO78)",
+   "v_mag": 20.2,
+   "positions": [
+    null,
+    null
+   ]
+  },
+  {
+   "name": "(2022 UR130)",
+   "v_mag": 23.8,
+   "positions": [
+    [
+     76.7,
+     498.6
+    ],
+    [
+     80.2,
+     504.1
+    ]
+   ]
+  },
+  {
+   "name": "(2022 QJ66)",
+   "v_mag": 24.3,
+   "positions": [
+    [
+     224.7,
+     56.9
+    ],
+    [
+     215.1,
+     65.9
+    ]
+   ]
+  },
+  {
+   "name": "(2023 WB22)",
+   "v_mag": 24.5,
+   "positions": [
+    [
+     320.6,
+     321.3
+    ],
+    [
+     329.1,
+     329.6
+    ]
+   ]
+  }
+ ]
+}
