@@ -22,7 +22,7 @@ This repository is the prototype the Space Apps Bangladesh organisers asked for 
 a prototype showing how BlinkSky gets NASA data and how that data is used in the code.
 The full game will be built during the hackathon (13–14 November 2026).
 
-- **Real NASA data:** `data_access/blinksky_data.py` fetches real SPHEREx images from NASA/IPAC IRSA and asks NASA JPL which known objects are in the photo. Its output is in `real_round/`, and the game's **Play a real NASA sky** mode plays it.
+- **Real NASA data:** `data_access/blinksky_data.py` fetches real SPHEREx images from NASA/IPAC IRSA and asks NASA JPL which known objects are in the photo. Its output is in `real_round/`, and the game's **Real NASA sky** mode plays it.
 - **Sample data:** the game's other rounds use **generated sample** sky photos and **sample** object facts, and every such card is labelled "Sample data · Prototype".
 
 Prescreening video: https://youtu.be/enedMO1WhUw
@@ -37,11 +37,12 @@ Prescreening video: https://youtu.be/enedMO1WhUw
 python -m http.server 8000
 ```
 
-(Double-clicking `index.html` also opens the game, but browsers block it from loading the real-data round, so **Play a real NASA sky** only works when the folder is served or opened online.)
+(Double-clicking `index.html` also opens the game, but browsers block it from loading the real-data round, so **Real NASA sky** only works when the folder is served or opened online.)
 
-1. Press **Start looking**.
-2. Watch the photos flip. Tap the dot that moves.
-3. See what you caught, then open **Collection**.
+1. Press **Start hunt**.
+2. Watch the photos flip. Drag to look around, pinch or scroll to zoom, and tap the dot that moves.
+3. Your catch arrives as a face-down card. Tap to turn it over, tap again to read its field notes.
+4. Open **Deck** to look through your cards: swipe the top card away to see the next one.
 
 The first few rounds show each kind of object once. After that, rarer objects show up less often.
 
@@ -112,10 +113,19 @@ python blinksky_data.py --ra 237.82 --dec -20.15 --size 0.2 --gap-hours 3 --jpl-
 
 This writes `real_round/round.json` (photo times, detector, wavelength band, and every known object's position in picture pixels for each photo) plus `frame_1.png` and `frame_2.png`.
 
-In the game, **Play a real NASA sky** loads that round:
+In the game, **Real NASA sky** loads that round:
 - the two real SPHEREx photos blink full-screen, labelled with their real observation times,
 - **Show known objects** circles where NASA JPL says each known asteroid is,
-- tapping one opens a card built from the real data (JPL name, brightness, which photos it is in, the SPHEREx band).
+- tapping one opens a card built from the real data (JPL name, brightness, which photos it is in, the SPHEREx band), marked **Real NASA data** in your deck.
+
+### How the real photos are shown
+
+A SPHEREx pixel covers 6.15 arcseconds of sky, so the 0.2° patch in this repository is only 117 × 117 real pixels.
+Enlarged to fill a phone screen as hard squares, it looks blocky. The game draws it the way survey images are usually displayed:
+the empty sky is set to near-black, brightness is mapped to a colour scale, the image is enlarged smoothly, and bright stars get a soft glow.
+No detail is added: every star stays exactly where SPHEREx recorded it.
+
+The game first looks for a wider round in `real_round_wide/` (made with `--size 0.6`, so less zoom is needed) and falls back to `real_round/`.
 
 The round included in this repository is the 0.2° ecliptic patch above. Its known asteroids are fainter than magnitude 19, so they are hard to see without the circles; the full game will use larger fields with brighter movers.
 
@@ -123,7 +133,7 @@ Data credit: SPHEREx/JPL/Caltech/NASA, via NASA/IPAC IRSA. Small-body data: NASA
 
 ## Built with
 
-Plain HTML, CSS and JavaScript. No libraries. All illustrations are drawn as vector shapes in code.
+Plain HTML, CSS and JavaScript. No libraries. All illustrations and cards are drawn with vector shapes and CSS in code.
 
 ## Use of AI
 
