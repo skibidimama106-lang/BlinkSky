@@ -44,12 +44,13 @@ python -m http.server 8000
    The mover looks exactly like the stars around it: nothing glows or points at it. Stuck? **Hint** circles an area that contains it (never the dot itself), and the card then says "with a hint".
 3. Your catch arrives face up, with a piece of your own photo on it and a ring where you tapped. Tap the card for its details.
 4. Open **Your deck** to look through your cards: swipe the top card away to see the next one. Kinds you have not found yet show the card back.
+5. **Search objects** lists every known object NASA JPL found in the real SPHEREx photos. Type a name or number and tap it: the real photos open with that object circled, blinking between the two times. Real cards have the same **See it in the photo** button. Looking never adds a card; cards only come from catching.
 
 The first few rounds show each kind of object once. After that, rarer objects show up less often.
 
 ## The game in short
 
-Five kinds of object to find. Each has its own colour on the cards; there are no rarity gems or levels, just how common the real thing is.
+Five kinds of object to find. Each has its own colour, and every card shows its rarity as a plain word (Common, Uncommon, Rare, Very rare, Unique) plus the real number behind it. No gems, foil or levels.
 
 | Kind | How often (rough share of known objects) |
 |---|---|
@@ -136,6 +137,8 @@ the empty sky is set to near-black, brightness is shown in grey, the image is en
 No detail is added: every star stays exactly where SPHEREx recorded it.
 
 The game first looks for a wider round in `real_round_wide/` (made with `--size 0.6`, so less zoom is needed) and falls back to `real_round/`.
+
+**Wider round (`real_round_wide/`, added October 2026):** a 0.6° patch (9× the area) around the same spot, from the same morning (2026-07-21, 07:12 and 10:24 UTC, detector D5). IRSA's cutout service was down, so it was cut locally from the two full SPHEREx images. NASA JPL lists 61 known objects in it (brightest magnitude 18.6). The game loads this one first, so the real sky looks like a real star field.
 
 The round included in this repository is the 0.2° ecliptic patch above. Its known asteroids are fainter than magnitude 19, so they are hard to see without the circles; the full game will use larger fields with brighter movers.
 

@@ -14,6 +14,7 @@
     --back: #1c1242; --lav: #c9bdf0;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
+  [hidden] { display: none !important; }
   html, body { height: 100%; }
   body { background: #0a0a0c; color: var(--wh); font-family: "Hanken Grotesk", "Helvetica Neue", Arial, sans-serif; font-weight: 400;
     display: flex; justify-content: center; align-items: center; }
@@ -21,7 +22,7 @@
   button:focus-visible { outline: 2px solid var(--wh); outline-offset: 2px; }
   .app { width: 100%; max-width: 430px; height: 100%; max-height: 900px; position: relative; overflow: hidden; overflow: clip; background: var(--bk); }
   @media (min-width: 600px) { .app { border-radius: 40px; border: 10px solid #1a1a1c; height: 92vh; } }
-  .screen { display: none; position: absolute; inset: 0; flex-direction: column; }
+  .screen { display: none; position: absolute; inset: 0; flex-direction: column; z-index: 0; isolation: isolate; }
   .screen.on { display: flex; }
 
   /* shared bits */
@@ -52,12 +53,13 @@
   .hud.top { top: 14px; } .hud.bottom { bottom: 18px; }
   .pill { background: rgba(10,10,12,.82); backdrop-filter: blur(6px); border: 1px solid #2c2c2c; border-radius: 999px; padding: 10px 18px; font-size: 13px; font-weight: 500; display: flex; align-items: center; gap: 8px; }
   .pill.icon { width: 42px; height: 42px; padding: 0; justify-content: center; font-size: 16px; }
-  .frames { display: flex; gap: 4px; }
-  .frames span { padding: 4px 9px; border-radius: 999px; font-size: 11px; color: var(--g1); }
-  .frames span.on { background: var(--wh); color: var(--bk); }
+  .frames { display: flex; align-items: center; gap: 7px; padding: 6px 12px; font-size: 12px; font-variant-numeric: tabular-nums; }
+  .frames i { width: 7px; height: 7px; border-radius: 50%; background: var(--wh); }
+  .frames i.tick { animation: tick .35s ease-out; }
+  @keyframes tick { from { transform: scale(1.8); opacity: .4; } }
   #mini { position: absolute; right: 14px; bottom: 74px; width: 76px; height: 76px; border-radius: 10px; background: rgba(10,10,12,.82); border: 1px solid #2c2c2c; pointer-events: none; }
   .realtag { position: absolute; left: 14px; right: 14px; top: 66px; text-align: center; pointer-events: none; font-size: 11px; color: var(--g1); text-shadow: 0 1px 4px #000; }
-  .toast { position: absolute; left: 50%; bottom: 76px; transform: translateX(-50%); width: max-content; max-width: calc(100% - 120px); text-align: center; pointer-events: none;
+  .toast { position: absolute; left: 50%; bottom: 164px; transform: translateX(-50%); width: max-content; max-width: calc(100% - 120px); text-align: center; pointer-events: none;
     background: rgba(10,10,12,.9); border: 1px solid #2c2c2c; border-radius: 16px; padding: 9px 16px; font-size: 13px; transition: opacity .3s; }
   .lock { position: absolute; width: 64px; height: 64px; margin: -32px 0 0 -32px; border-radius: 50%; pointer-events: none; border: 2px solid var(--wh); animation: lock .45s ease-out forwards; }
   @keyframes lock { from { transform: scale(2); opacity: 0; } to { transform: scale(1); opacity: 1; } }
@@ -113,6 +115,23 @@
   .stackctl { display: flex; align-items: center; justify-content: center; gap: 18px; padding: 8px 0 20px; }
   .arrow { width: 42px; height: 42px; border-radius: 50%; border: 1px solid #3a3a3a; font-size: 18px; }
   .stackctl .pos { font-size: 13px; color: var(--g1); min-width: 48px; text-align: center; font-variant-numeric: tabular-nums; }
+
+  /* rarity + search */
+  .tier { color: var(--c); font-weight: 600; letter-spacing: .08em; text-transform: uppercase; }
+  .searchbtn { display: flex; gap: 8px; align-items: center; margin: 10px 20px 0; width: calc(100% - 40px); padding: 12px 18px; border-radius: 999px; background: #111113; border: 1px solid #2c2c2c; color: var(--g1); font-size: 14px; text-align: left; }
+  .searchbox { padding: 14px 20px 0; }
+  .searchbox input { width: 100%; background: #111113; border: 1px solid #3a3a3a; border-radius: 999px; padding: 13px 18px; color: var(--wh); font: inherit; font-size: 15px; }
+  .searchbox input:focus-visible { outline: 2px solid var(--wh); outline-offset: 2px; }
+  .searchnote { padding: 10px 20px 0; font-size: 12px; color: var(--g1); line-height: 1.45; }
+  .searchnote a { color: var(--wh); }
+  .results { flex: 1; min-height: 0; overflow-y: auto; padding: 6px 20px 20px; }
+  .res { display: flex; justify-content: space-between; align-items: center; gap: 10px; width: 100%; text-align: left; padding: 12px 0; border-bottom: 1px solid var(--hl); }
+  .res b { font-weight: 500; font-size: 14px; display: block; }
+  .res small { color: var(--g1); font-size: 12px; }
+  .res .own { font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: var(--wh); border: 1px solid #3a3a3a; border-radius: 999px; padding: 3px 8px; white-space: nowrap; }
+  .res .go { color: var(--g1); font-size: 16px; }
+  .res:disabled { opacity: .45; cursor: default; }
+  .sh-see { margin: 16px 0 0; width: 100%; }
 
   /* details sheet */
   .scrim { position: absolute; inset: 0; background: rgba(0,0,0,.6); opacity: 0; pointer-events: none; transition: opacity .3s; z-index: 20; }
@@ -185,6 +204,7 @@
       <h1 class="h1">Tonight's sky</h1>
       <button class="startbtn" data-go="hunt">Start hunting</button>
       <button class="ghostbtn" id="realBtn">Real NASA sky <small id="realSub">SPHEREx photos</small></button>
+      <button class="searchbtn" data-go="search">&#8981;&nbsp; Search objects</button>
       <button class="decklink" data-go="collection">Your deck <span id="deckCount">0/5</span> →</button>
       <p class="note">Prototype. Practice skies are generated samples. "Real NASA sky" uses real SPHEREx photos (NASA/IPAC IRSA), checked against NASA JPL's list of known objects.</p>
     </div>
@@ -196,7 +216,7 @@
     <canvas id="mini" width="152" height="152"></canvas>
     <div class="hud top">
       <button class="pill icon" id="exit" aria-label="Leave">✕</button>
-      <div class="pill" style="padding:4px"><div class="frames" id="frames"></div></div>
+      <div class="pill" style="padding:0"><div class="frames"><i id="frameDot"></i><span id="frameNow"></span></div></div>
     </div>
     <div class="realtag" id="realTag" hidden></div>
     <div class="toast" id="toast">Tap what moves</div>
@@ -222,6 +242,14 @@
     <div class="stackctl"><button class="arrow" id="prevCard" aria-label="Previous card">‹</button><span class="pos" id="stackPos"></span><button class="arrow" id="nextCard" aria-label="Next card">›</button></div>
   </section>
 
+  <section class="screen" id="search">
+    <div class="loc"><button class="x" data-go="home" aria-label="Back">←</button></div>
+    <div class="deckhead"><h1 class="h1">Search the sky</h1></div>
+    <div class="searchbox"><input id="q" type="search" placeholder="Name or number, e.g. 57742 or Douglin" autocomplete="off" aria-label="Search objects"></div>
+    <p class="searchnote" id="searchNote"></p>
+    <div class="results" id="results"></div>
+  </section>
+
   <div class="scrim" id="scrim"></div>
   <div class="sheet" id="sheet" role="dialog" aria-label="Card details"></div>
 </div>
@@ -230,16 +258,16 @@
 /* ---------- data ---------- */
 // Sample facts, labelled as sample data in the UI. "How often" figures are rough shares of known objects.
 const KINDS = {
-  common:    { name: 'Main-belt asteroid', short: 'Main belt', color: '#c9b79c',
-               facts: [['Size', 'about 2 km across'], ['How often', 'most movers you will see'], ['Lives', 'between Mars and Jupiter']] },
-  uncommon:  { name: 'Near-Earth asteroid', short: 'Near-Earth', color: '#ff8a4c',
-               facts: [['Size', 'about 3 football fields'], ['How often', 'about 1 in 40 known asteroids'], ['Orbit', "crosses Earth's path"]] },
-  rare:      { name: 'Comet', short: 'Comet', color: '#6fd3d6',
-               facts: [['Made of', 'ice and dust'], ['How often', 'about 1 in 350 known objects'], ['Tail', 'grows near the Sun']] },
-  legendary: { name: 'Interstellar visitor', short: 'Interstellar', color: '#a990ff',
-               facts: [['From', 'another star'], ['How often', '3 ever seen'], ['Speed', 'too fast for the Sun to hold']] },
-  unique:    { name: 'Not on any list', short: 'Unlisted', color: '#f4f4f2',
-               facts: [['Status', 'no match in NASA JPL list'], ['How often', 'very rare'], ['Next', 'sent to experts to check']] },
+  common:    { name: 'Main-belt asteroid', short: 'Main belt', color: '#c9b79c', tier: 'Common', often: 'most movers you will see',
+               facts: [['Size', 'about 2 km across'], ['Lives', 'between Mars and Jupiter']] },
+  uncommon:  { name: 'Near-Earth asteroid', short: 'Near-Earth', color: '#ff8a4c', tier: 'Uncommon', often: 'about 1 in 40 known asteroids',
+               facts: [['Size', 'about 3 football fields'], ['Orbit', "crosses Earth's path"]] },
+  rare:      { name: 'Comet', short: 'Comet', color: '#6fd3d6', tier: 'Rare', often: 'about 1 in 350 known objects',
+               facts: [['Made of', 'ice and dust'], ['Tail', 'grows near the Sun']] },
+  legendary: { name: 'Interstellar visitor', short: 'Interstellar', color: '#a990ff', tier: 'Very rare', often: '3 ever seen',
+               facts: [['From', 'another star'], ['Speed', 'too fast for the Sun to hold']] },
+  unique:    { name: 'Not on any list', short: 'Unlisted', color: '#f4f4f2', tier: 'Unique', often: 'no match on any list',
+               facts: [['Status', 'no match in NASA JPL list'], ['Next', 'sent to experts to check']] },
 };
 const ORDER = ['common', 'uncommon', 'rare', 'legendary', 'unique'];
 const SCRIPT = ['common', 'uncommon', 'common', 'rare', 'legendary', 'unique'];
@@ -281,7 +309,7 @@ function cardFront(c, w) {
   const k = KINDS[c.kind];
   const win = c.photo ? `<img src="${c.photo}" alt="Your photo"><span class="ring"></span>` : `<svg viewBox="0 0 100 100"><use href="#k-${c.kind}"/></svg>`;
   return `<div class="tc" style="--w:${w}px;--c:${k.color}">
-    <div class="tc-top"><span>${c.no}</span><span class="kd"><i></i>${k.short}</span></div>
+    <div class="tc-top"><span>${c.no}</span><span class="tier">${k.tier}</span></div>
     <div class="tc-win">${win}</div>
     <div class="tc-name">${c.name}</div>
     <div class="tc-type">${c.type}</div>
@@ -293,15 +321,16 @@ const cardBack = w => `<div class="tc back" style="--w:${w}px">${BACK_SVG}</div>
 
 function sampleCard(k) {
   const i = KINDS[k], p = photos[k];
-  return { kind: k, name: i.name, type: 'Sample data', no: `No. ${String(ORDER.indexOf(k) + 1).padStart(3, '0')}`,
-    rows: i.facts.slice(0, 3), facts: [...i.facts, ['Caught over', 'Dhaka'], ['Times caught', col[k] || 0]],
-    photo: p && p.img, foot: p ? `${p.date}${p.hint ? ' · with a hint' : ''}` : '', check: 'Sample',
+  return { kind: k, name: i.name, type: i.short, no: `No. ${String(ORDER.indexOf(k) + 1).padStart(3, '0')}`,
+    rows: [['Rarity', i.often], ...i.facts], facts: [['Rarity', `${i.tier} · ${i.often}`], ...i.facts, ['Caught over', 'Dhaka'], ['Times caught', col[k] || 0]],
+    photo: p && p.img, foot: p ? `${p.date}${p.hint ? ' · with a hint' : ''}` : '', check: 'Sample data',
     src: 'Sample data for the prototype. The photo is a generated practice sky.', locked: !col[k] };
 }
 function realCard(r, i) {
-  return { kind: r.comet ? 'rare' : 'common', name: r.name, type: `Real ${r.comet ? 'comet' : 'asteroid'}`, no: `Real ${String(i + 1).padStart(2, '0')}`,
-    rows: [['Brightness', `magnitude ${r.v_mag ?? '?'}`], ['Seen in', `${r.seen} of ${r.total} photos`], ['Band', `${r.band.split(', ')[1] || ''}`]],
-    facts: [['Brightness', `magnitude ${r.v_mag ?? '?'}`], ['SPHEREx band', r.band], ['Photos', r.times], ['Checked by', 'NASA JPL small-body list']],
+  const k = KINDS[r.comet ? 'rare' : 'common'];
+  return { kind: r.comet ? 'rare' : 'common', name: r.name, type: `Real ${r.comet ? 'comet' : 'asteroid'}`, no: `Real ${String(i + 1).padStart(2, '0')}`, realName: r.name,
+    rows: [['Rarity', k.often], ['Brightness', `magnitude ${r.v_mag ?? '?'}`], ['Seen in', `${r.seen} of ${r.total} photos`]],
+    facts: [['Rarity', `${k.tier} · ${k.often}`], ['Brightness', `magnitude ${r.v_mag ?? '?'}`], ['SPHEREx band', r.band], ['Photos', r.times], ['Checked by', 'NASA JPL small-body list']],
     photo: r.photo, foot: `${r.date || ''}${r.list ? " · with NASA's list" : r.hint ? ' · with a hint' : ''}`, check: '✓ NASA JPL',
     src: 'Real data. Photos: NASA SPHEREx via NASA/IPAC IRSA. Known-object check: NASA JPL Solar System Dynamics.' };
 }
@@ -312,11 +341,13 @@ function openSheet(c) {
   $('sheet').style.setProperty('--c', k.color);
   $('sheet').innerHTML = `<div class="grab"></div>
     <div class="sh-head"><div class="sh-art"><svg viewBox="0 0 100 100"><use href="#k-${c.kind}"/></svg></div>
-      <div><h2>${c.name}</h2><small>${c.type === 'Sample data' ? k.name : c.type}</small></div></div>
-    ${c.photo ? `<figure class="sh-photo"><img src="${c.photo}" alt="Your photo"><figcaption>Your photo, where you tapped${c.check === 'Sample' ? ' (practice sky)' : ''}</figcaption></figure>` : ''}
+      <div><h2>${c.name}</h2><small>${c.realName ? c.type : k.name} · ${k.tier}</small></div></div>
+    ${c.realName ? `<button class="ghostbtn sh-see" id="seeIn">See it in the photo</button>` : ''}
+    ${c.photo ? `<figure class="sh-photo"><img src="${c.photo}" alt="Your photo"><figcaption>Your photo, where you tapped${c.check === 'Sample data' ? ' (practice sky)' : ''}</figcaption></figure>` : ''}
     ${c.closeup ? `<figure class="sh-photo"><img src="${c.closeup.src}" alt="Close-up"><figcaption>${c.closeup.credit}</figcaption></figure>` : ''}
     <div class="sh-rows">${c.facts.map(([a, b]) => `<div><span>${a}</span><b>${b}</b></div>`).join('')}</div>
     <p class="sh-src">${c.src}</p>`;
+  if (c.realName) $('seeIn').onclick = () => explore(c.realName, document.querySelector('.screen.on').id);
   $('app').classList.add('sheet-open');
 }
 const closeSheet = () => $('app').classList.remove('sheet-open');
@@ -335,7 +366,7 @@ function renderHome() {
   $('today').textContent = `${d.getDate()} ${MONTHS[d.getMonth()]}`;
   $('deckCount').textContent = `${ORDER.filter(k => col[k]).length}/5`;
 }
-function go(where) { if (where === 'hunt') newRound(); else if (where === 'collection') renderCollection(); else show('home'); }
+function go(where) { if (where === 'hunt') newRound(); else if (where === 'collection') renderCollection(); else if (where === 'search') renderSearch(); else show('home'); }
 document.querySelectorAll('[data-go]').forEach(b => b.onclick = () => go(b.dataset.go));
 
 /* ---------- home sky: still stars, nothing pointed out ---------- */
@@ -453,17 +484,37 @@ function render() {
     for (const o of round.objects) {
       const pos = o.positions[frame]; if (!pos) continue;
       ctx.strokeStyle = '#f4f4f2'; ctx.beginPath(); ctx.arc(pos[0], pos[1], 16, 0, 7); ctx.stroke();
-      ctx.fillStyle = '#c9c9c4'; ctx.fillText(`${o.name} · mag ${o.v_mag ?? '?'}`, pos[0] + 20, pos[1] + 4);
+      // Names only for the brighter ones until you zoom in, so a wide photo doesn't drown in labels.
+      if (view.s >= 1.2 || (o.v_mag ?? 99) <= 20) { ctx.fillStyle = '#c9c9c4'; ctx.fillText(`${o.name} · mag ${o.v_mag ?? '?'}`, pos[0] + 20, pos[1] + 4); }
+    }
+  }
+  if (round.focus) {
+    // Explore view: circle the object the player searched for or opened from a card.
+    const o = round.objects.find(o => o.name === round.focus), pos = o && o.positions[frame];
+    if (pos) {
+      const r = 20 / Math.min(1, view.s);
+      ctx.lineWidth = 3 / view.s; ctx.strokeStyle = '#ff8a4c'; ctx.beginPath(); ctx.arc(pos[0], pos[1], r, 0, 7); ctx.stroke();
+      ctx.font = `600 ${13 / view.s}px "Hanken Grotesk", sans-serif`; ctx.fillStyle = '#f4f4f2';
+      // Name sits centred under the circle so it never runs off the screen edge.
+      ctx.textAlign = 'center';
+      ctx.fillText(o.name, pos[0], pos[1] + r + 18 / view.s);
+      ctx.fillStyle = '#9a9a96'; ctx.fillText(`magnitude ${o.v_mag ?? '?'}`, pos[0], pos[1] + r + 34 / view.s);
+      ctx.textAlign = 'left';
     }
   }
   drawMini();
-  [...$('frames').children].forEach((d, i) => d.classList.toggle('on', i === frame));
+  $('frameNow').textContent = round.real ? `${'AB'[frame] || frame + 1} · ${round.meta.frames[frame].time_utc.slice(11, 16)}` : `${frame + 1}/${round.frames.length}`;
+  const dot = $('frameDot'); if (dot.dataset.f !== String(frame)) { dot.dataset.f = frame; dot.classList.remove('tick'); void dot.offsetWidth; dot.classList.add('tick'); }
 }
 function drawMini() {
   const m = $('mini').getContext('2d');
   m.clearRect(0, 0, 152, 152);
   const k = 136 / Math.max(round.w, round.h);
   if (hintOn && round.hintArea) { m.fillStyle = 'rgba(244,244,242,.15)'; m.beginPath(); m.arc(8 + round.hintArea[0] * k, 8 + round.hintArea[1] * k, round.hintArea[2] * k, 0, 7); m.fill(); }
+  if (round.real && showKnown) {
+    m.fillStyle = '#f4f4f2';
+    for (const o of round.objects) { const p = o.positions[frame]; if (p) { m.beginPath(); m.arc(8 + p[0] * k, 8 + p[1] * k, 4, 0, 7); m.fill(); } }
+  }
   m.strokeStyle = '#f4f4f2'; m.lineWidth = 3;
   m.strokeRect(8 + view.ox * k, 8 + view.oy * k, view.w / view.s * k, view.h / view.s * k);
 }
@@ -531,6 +582,7 @@ function snapshot(wx, wy) {
 }
 function tap(wx, wy, sx, sy) {
   const tol = Math.max(24, 34 / view.s);
+  if (round.explore) { toast('Just looking. Catch it in a hunt to add a card.'); return; }
   if (round.real) {
     const hit = round.objects.find(o => o.positions.some(p => p && Math.hypot(p[0] - wx, p[1] - wy) < tol));
     if (hit) { const shot = snapshot(wx, wy); lockOn(sx, sy, () => realCaught(hit, shot)); return; }
@@ -554,18 +606,21 @@ function makeHintArea() {
 
 /* ---------- flow ---------- */
 function newRound() { startRound(makeRound(pickKind())); toast('Tap what moves'); }
-function startRound(r) {
-  round = r; frame = 0; paused = false; tries = 0; hintOn = false; showKnown = false; listUsed = false; round.hintArea = makeHintArea();
-  $('known').hidden = !round.real; $('known').textContent = "Show NASA's list";
+function startRound(r, opts = {}) {
+  round = r; frame = 0; paused = false; tries = 0; hintOn = false; showKnown = false; listUsed = false;
+  round.explore = !!opts.explore; round.focus = opts.focus || null; round.returnTo = opts.returnTo || null;
+  round.hintArea = round.explore ? null : makeHintArea();
+  $('known').hidden = !round.real || round.explore; $('known').textContent = "Show NASA's list";
+  $('hint').hidden = round.explore;
   $('pause').textContent = '❚❚ Pause'; $('hint').disabled = !round.hintArea; $('hint').style.opacity = round.hintArea ? 1 : .4;
-  $('frames').innerHTML = round.real ? round.meta.frames.map((f, i) => `<span>${'AB'[i] || i + 1} · ${f.time_utc.slice(11, 16)}</span>`).join('')
-                                     : round.frames.map((_, i) => `<span>${i + 1}</span>`).join('');
   $('realTag').hidden = !round.real;
-  if (round.real) $('realTag').textContent = `Real SPHEREx photos · NASA/IPAC IRSA · ${round.meta.frames[0].time_utc.slice(0, 10)}`;
+  if (round.real) $('realTag').textContent = `${round.explore ? 'Exploring · ' : ''}Real SPHEREx photos · NASA/IPAC IRSA · ${round.meta.frames[0].time_utc.slice(0, 10)}`;
   show('play'); fit();
   view.s = Math.max(view.w / round.w, view.h / round.h);
-  view.ox = (round.w - view.w / view.s) / 2; view.oy = (round.h - view.h / view.s) / 2; clampView();
-  render(); startBlink();
+  view.ox = (round.w - view.w / view.s) / 2; view.oy = (round.h - view.h / view.s) / 2;
+  const fo = round.focus && round.objects.find(o => o.name === round.focus), fp = fo && fo.positions.find(Boolean);
+  if (fp) { view.s = Math.max(view.s, 1.6); view.ox = fp[0] - view.w / 2 / view.s; view.oy = fp[1] - view.h / 2 / view.s; }
+  clampView(); render(); startBlink();
 }
 const REAL_DIRS = ['real_round_wide/', 'real_round/'];
 async function fetchRound(dir) {
@@ -574,22 +629,60 @@ async function fetchRound(dir) {
     const im = new Image(); im.onload = () => ok(im); im.onerror = bad; im.src = dir + f.src; })));
   return { meta, imgs, dir };
 }
-async function loadReal() {
-  $('realSub').textContent = 'Loading...';
+let realRound = null;
+async function getRealRound() {
+  if (realRound) return realRound;
   for (const dir of REAL_DIRS) {
     try {
       const { meta, imgs } = await fetchRound(dir);
       const frames = imgs.map(prepReal), k = UP / EXPORT_SCALE;
       const objects = meta.objects.map(o => ({ ...o, positions: o.positions.map(p => p && [p[0] * k, p[1] * k]) }));
-      startRound({ real: true, meta, frames, objects, w: frames[0].width, h: frames[0].height });
-      toast('Real NASA photos, hours apart. Tap what moves.');
-      $('realSub').textContent = 'SPHEREx photos';
-      return;
+      return realRound = { real: true, meta, frames, objects, w: frames[0].width, h: frames[0].height };
     } catch (e) { /* try the next folder */ }
   }
-  show('home');
-  $('realSub').textContent = 'needs a web server';
+  return null;
 }
+async function loadReal() {
+  $('realSub').textContent = 'Loading...';
+  const r = await getRealRound();
+  $('realSub').textContent = r ? 'SPHEREx photos' : 'needs a web server';
+  if (!r) { show('home'); return; }
+  startRound(r); toast('Real NASA photos, hours apart. Tap what moves.');
+}
+// Looking is not catching: explore opens the real photos with one object circled. It never adds a card.
+async function explore(name, returnTo) {
+  const r = await getRealRound(); if (!r) return;
+  startRound(r, { explore: true, focus: name, returnTo });
+  toast(`Circled: ${name}. Watch it shift between photo A and B.`);
+}
+
+/* ---------- search: every object NASA JPL lists in BlinkSky's real photos ---------- */
+let searchMeta = null;
+async function renderSearch() {
+  show('search');
+  if (!searchMeta) {
+    $('searchNote').textContent = "Loading NASA JPL's list...";
+    for (const dir of REAL_DIRS) {
+      try { searchMeta = await fetch(dir + 'round.json').then(r => { if (!r.ok) throw 0; return r.json(); }); break; } catch (e) { /* next */ }
+    }
+  }
+  listResults();
+}
+function listResults() {
+  if (!searchMeta) { $('searchNote').textContent = 'Search needs the game to be opened online or through a web server.'; $('results').innerHTML = ''; return; }
+  const raw = $('q').value.trim(), q = raw.toLowerCase(), all = searchMeta.objects;
+  const hits = all.filter(o => !q || o.name.toLowerCase().includes(q));
+  const when = searchMeta.frames[0].time_utc.slice(0, 10);
+  $('searchNote').innerHTML = q && !hits.length
+    ? `Not in BlinkSky's SPHEREx photos yet. <a href="https://ssd.jpl.nasa.gov/tools/sbdb_lookup.html#/?sstr=${encodeURIComponent(raw)}" target="_blank" rel="noopener">Look it up on NASA JPL ↗</a>`
+    : `${all.length} known objects NASA JPL lists in our real SPHEREx photos (${when}), brightest first. Looking doesn't add cards; catch them in a hunt.`;
+  $('results').innerHTML = hits.map(o => {
+    const n = o.positions.filter(Boolean).length, own = reals.some(r => r.name === o.name);
+    return `<button class="res" data-i="${all.indexOf(o)}" ${n ? '' : 'disabled'}><span><b>${o.name}</b><small>mag ${o.v_mag ?? '?'} · ${n ? `in ${n} of ${o.positions.length} photos` : 'just outside the photos'}</small></span>${own ? '<span class="own">In your deck</span>' : n ? '<span class="go">→</span>' : ''}</button>`;
+  }).join('');
+  [...$('results').querySelectorAll('.res:not(:disabled)')].forEach(b => b.onclick = () => explore(all[+b.dataset.i].name, 'search'));
+}
+$('q').addEventListener('input', listResults);
 function presentCard(c, title) {
   $('stage').style.setProperty('--c', KINDS[c.kind].color);
   $('caughtTitle').textContent = title;
@@ -685,9 +778,17 @@ $('nextCard').onclick = () => nextCard(1);
 $('prevCard').onclick = prevCard;
 addEventListener('keydown', e => { if (!$('collection').classList.contains('on')) return; if (e.key === 'ArrowRight') nextCard(1); if (e.key === 'ArrowLeft') prevCard(); });
 
-$('exit').onclick = () => show('home');
+$('exit').onclick = () => (round && round.returnTo ? go(round.returnTo) : show('home'));
 $('realBtn').onclick = loadReal;
-$('known').onclick = () => { showKnown = !showKnown; if (showKnown) listUsed = true; $('known').textContent = showKnown ? "Hide NASA's list" : "Show NASA's list"; render(); };
+$('known').onclick = () => {
+  showKnown = !showKnown; if (showKnown) listUsed = true;
+  $('known').textContent = showKnown ? "Hide NASA's list" : "Show NASA's list"; render();
+  if (showKnown) {
+    const vx1 = view.ox + view.w / view.s, vy1 = view.oy + view.h / view.s, n = round.objects.filter(o => o.positions[frame]).length;
+    const seen = round.objects.filter(o => { const p = o.positions[frame]; return p && p[0] > view.ox && p[0] < vx1 && p[1] > view.oy && p[1] < vy1; }).length;
+    toast(seen < n ? `NASA lists ${n} objects here. ${seen} on screen; drag to see the rest (dots on the map).` : `NASA lists ${n} objects here, circled.`);
+  } else toast("NASA's list hidden");
+};
 $('hint').onclick = () => { if (!round.hintArea) return; hintOn = true; render(); toast('Look inside the circle'); };
 $('pause').onclick = () => { paused = !paused; $('pause').textContent = paused ? '▶ Play' : '❚❚ Pause'; paused ? clearInterval(timer) : startBlink(); };
 addEventListener('resize', () => { if ($('play').classList.contains('on')) { fit(); clampView(); render(); } });
@@ -700,6 +801,7 @@ show('home');
   if (h === 'full') ORDER.forEach(k => col[k] = col[k] || 1);
   if (h === 'play') newRound();
   else if (h === 'real') loadReal();
+  else if (h === 'search') renderSearch();
   else if (h.startsWith('caught=') && KINDS[h.slice(7)]) { round = makeRound(h.slice(7)); frame = 0; caught(snapshot(...round.path[0])); }
   else if (h === 'collection' || h === 'full') renderCollection();
 })();
