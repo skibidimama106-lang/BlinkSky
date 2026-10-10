@@ -35,6 +35,8 @@
   .startbtn:active, .ghostbtn:active { transform: scale(.98); }
   .ghostbtn { display: flex; justify-content: center; align-items: baseline; gap: 8px; margin: 10px 20px 0; border: 1px solid #3a3a3a; text-align: center; padding: 13px; border-radius: 999px; font-size: 14px; font-weight: 500; width: calc(100% - 40px); }
   .ghostbtn small { color: var(--g1); font-size: 12px; font-weight: 400; }
+  .codelink { display: block; margin: 14px 20px 0; padding: 11px 14px; border: 1px solid #2c2c2c; border-radius: 12px; font-size: 12.5px; color: var(--wh); text-decoration: none; text-align: center; }
+  .codelink:focus-visible { outline: 2px solid var(--wh); outline-offset: 2px; }
   .note { font-size: 11px; line-height: 1.45; color: #6f6f6f; padding: 14px 20px 18px; }
 
   /* home */
@@ -206,6 +208,7 @@
       <button class="ghostbtn" id="realBtn">Real NASA sky <small id="realSub">SPHEREx photos</small></button>
       <button class="searchbtn" data-go="search">&#8981;&nbsp; Search objects</button>
       <button class="decklink" data-go="collection">Your deck <span id="deckCount">0/5</span> →</button>
+      <a class="codelink" href="https://github.com/skibidimama106-lang/BlinkSky" target="_blank" rel="noopener">How we use NASA's data · GitHub ↗</a>
       <p class="note">Prototype. Practice skies are generated samples. "Real NASA sky" uses real SPHEREx photos (NASA/IPAC IRSA), checked against NASA JPL's list of known objects.</p>
     </div>
   </section>
