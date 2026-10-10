@@ -23,7 +23,7 @@ a prototype showing how BlinkSky gets NASA data and how that data is used in the
 The full game will be built during the hackathon (13–14 November 2026).
 
 - **Real NASA data:** `data_access/blinksky_data.py` fetches real SPHEREx images from NASA/IPAC IRSA and asks NASA JPL which known objects are in the photo. Its output is in `real_round/`, and the game's **Real NASA sky** mode plays it.
-- **Sample data:** the game's other rounds use **generated sample** sky photos and **sample** object facts, and every such card is labelled "Sample data · Prototype".
+- **Sample data:** the game's other rounds use **generated sample** sky photos and **sample** object facts, and every such card is labelled "Sample data".
 
 Prescreening video: https://youtu.be/enedMO1WhUw
 
@@ -39,22 +39,31 @@ python -m http.server 8000
 
 (Double-clicking `index.html` also opens the game, but browsers block it from loading the real-data round, so **Real NASA sky** only works when the folder is served or opened online.)
 
-1. Press **Start hunt**.
+1. Press **Start hunting**.
 2. Watch the photos flip. Drag to look around, pinch or scroll to zoom, and tap the dot that moves.
-3. Your catch arrives as a face-down card. Tap to turn it over, tap again to read its field notes.
-4. Open **Deck** to look through your cards: swipe the top card away to see the next one.
+   The mover looks exactly like the stars around it: nothing glows or points at it. Stuck? **Hint** circles an area that contains it (never the dot itself), and the card then says "with a hint".
+3. Your catch arrives face up, with a piece of your own photo on it and a ring where you tapped. Tap the card for its details.
+4. Open **Your deck** to look through your cards: swipe the top card away to see the next one. Kinds you have not found yet show the card back.
 
 The first few rounds show each kind of object once. After that, rarer objects show up less often.
 
 ## The game in short
 
-| Rarity | Object |
+Five kinds of object to find. Each has its own colour on the cards; there are no rarity gems or levels, just how common the real thing is.
+
+| Kind | How often (rough share of known objects) |
 |---|---|
-| Common | Asteroid (main belt) |
-| Uncommon | Near-Earth asteroid |
-| Rare | Comet |
-| Legendary | Interstellar visitor |
-| One of a kind | A mover that isn't on any list, passed on for experts to check |
+| Main-belt asteroid | most movers you will see |
+| Near-Earth asteroid | about 1 in 40 known asteroids |
+| Comet | about 1 in 350 known objects |
+| Interstellar visitor | 3 ever seen |
+| Not on any list | very rare; passed on for experts to check |
+
+### Look and feel (October 2026 update)
+
+- Black screens, thin type (Hanken Grotesk), one colour per kind of object. The only bright thing on screen is the object.
+- Cards: black metal fronts with your own photo, name, kind and three facts. One uniform card back for every card: flat purple with line drawings of things you can catch, the name top and bottom like a playing card.
+- Removed from the earlier version: face-down "reveal" cards, rarity gems, rainbow foil, XP and levels, and the glowing mover. They made the game feel like a gambling app, and the glow gave the answer away. Practice rounds never show the answer; only **Real NASA sky** has "Show NASA's list", because its real asteroids are too faint to see by eye.
 
 ## How BlinkSky gets its NASA data
 
@@ -115,14 +124,15 @@ This writes `real_round/round.json` (photo times, detector, wavelength band, and
 
 In the game, **Real NASA sky** loads that round:
 - the two real SPHEREx photos blink full-screen, labelled with their real observation times,
-- **Show known objects** circles where NASA JPL says each known asteroid is,
-- tapping one opens a card built from the real data (JPL name, brightness, which photos it is in, the SPHEREx band), marked **Real NASA data** in your deck.
+- **Show NASA's list** circles and names every known asteroid NASA JPL says is in the photos (a data view, only in this mode; a catch made with it is marked "with NASA's list"),
+- **Hint** circles an area that contains a known asteroid, without marking it,
+- tapping one opens a card built from the real data (JPL name, brightness, which photos it is in, the SPHEREx band) with a crop of the real photo, marked **✓ NASA JPL** in your deck.
 
 ### How the real photos are shown
 
 A SPHEREx pixel covers 6.15 arcseconds of sky, so the 0.2° patch in this repository is only 117 × 117 real pixels.
 Enlarged to fill a phone screen as hard squares, it looks blocky. The game draws it the way survey images are usually displayed:
-the empty sky is set to near-black, brightness is mapped to a colour scale, the image is enlarged smoothly, and bright stars get a soft glow.
+the empty sky is set to near-black, brightness is shown in grey, the image is enlarged smoothly, and bright stars get a soft glow.
 No detail is added: every star stays exactly where SPHEREx recorded it.
 
 The game first looks for a wider round in `real_round_wide/` (made with `--size 0.6`, so less zoom is needed) and falls back to `real_round/`.

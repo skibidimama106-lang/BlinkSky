@@ -5,474 +5,361 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <title>BlinkSky prototype</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
+  /* Black screens, thin type, one colour per kind of object. The only bright thing is the object. */
   :root {
-    --night: #121540; --night2: #1c1d5c; --deep: #0b0d2b; --panel: #24236a; --violet: #6a4fd6; --violet2: #4a37a8;
-    --ink: #fff7ea; --soft: #b9b8e8; --orange: #ff8a3d; --accent: #6f4cff; --accent-hi: #8d6dff; --accent-soft: #c3b3ff; --pink: #ff5c8a; --teal: #33e0c0; --yellow: #ffd23f;
+    --bk: #000; --wh: #f4f4f2; --g1: #8a8a8a; --g2: #4a4a4a; --hl: #262626; --panel: #0d0d0f;
+    --belt: #c9b79c; --nea: #ff8a4c; --comet: #6fd3d6; --inter: #a990ff; --unl: #f4f4f2;
+    --back: #1c1242; --lav: #c9bdf0;
   }
-  @property --ang { syntax: '<angle>'; inherits: true; initial-value: 0deg; }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html, body { height: 100%; }
-  body { background: radial-gradient(900px 700px at 70% 10%, var(--night2), var(--night) 60%, var(--deep));
-    color: var(--ink); font-family: "Nunito", "Segoe UI", sans-serif; display: flex; justify-content: center; align-items: center; }
-  button { font-family: inherit; }
-  .app { width: 100%; max-width: 430px; height: 100%; max-height: 900px; position: relative; overflow: hidden;
-    background: var(--deep); display: flex; flex-direction: column; }
-  @media (min-width: 600px) { .app { border-radius: 40px; border: 14px solid #2a2a78; height: 92vh; } }
-  #bg { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+  body { background: #0a0a0c; color: var(--wh); font-family: "Hanken Grotesk", "Helvetica Neue", Arial, sans-serif; font-weight: 400;
+    display: flex; justify-content: center; align-items: center; }
+  button { font-family: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+  button:focus-visible { outline: 2px solid var(--wh); outline-offset: 2px; }
+  .app { width: 100%; max-width: 430px; height: 100%; max-height: 900px; position: relative; overflow: hidden; overflow: clip; background: var(--bk); }
+  @media (min-width: 600px) { .app { border-radius: 40px; border: 10px solid #1a1a1c; height: 92vh; } }
+  .screen { display: none; position: absolute; inset: 0; flex-direction: column; }
+  .screen.on { display: flex; }
 
-  main { flex: 1; position: relative; overflow-y: auto; overflow-x: hidden; }
-  .screen { display: none; padding: 14px 18px 22px; min-height: 100%; }
-  .screen.on { display: flex; flex-direction: column; }
+  /* shared bits */
+  .loc { display: flex; justify-content: space-between; align-items: flex-start; padding: 18px 20px 0; font-size: 12px; line-height: 1.35; position: relative; z-index: 1; }
+  .loc b { display: block; font-weight: 600; }
+  .loc span { color: var(--g1); }
+  .x { font-size: 18px; width: 36px; height: 36px; margin: -8px 0 0 -8px; }
+  .h1 { font-weight: 300; font-size: 40px; line-height: 1.02; letter-spacing: -.03em; padding: 0 20px; }
+  .startbtn { display: block; margin: 16px 20px 0; background: var(--wh); color: var(--bk); text-align: center; padding: 15px; border-radius: 999px; font-size: 16px; font-weight: 600; width: calc(100% - 40px); }
+  .startbtn:active, .ghostbtn:active { transform: scale(.98); }
+  .ghostbtn { display: flex; justify-content: center; align-items: baseline; gap: 8px; margin: 10px 20px 0; border: 1px solid #3a3a3a; text-align: center; padding: 13px; border-radius: 999px; font-size: 14px; font-weight: 500; width: calc(100% - 40px); }
+  .ghostbtn small { color: var(--g1); font-size: 12px; font-weight: 400; }
+  .note { font-size: 11px; line-height: 1.45; color: #6f6f6f; padding: 14px 20px 18px; }
 
-  /* bottom navigation */
-  nav { position: relative; display: flex; background: rgba(9,10,36,.92); backdrop-filter: blur(8px); border-top: 1px solid #26266a; z-index: 2; }
-  nav button { flex: 1; background: none; border: 0; color: #7f7eb8; padding: 10px 0 14px; display: flex; flex-direction: column;
-    align-items: center; gap: 4px; font-weight: 800; font-size: 12px; cursor: pointer; }
-  nav button svg { width: 26px; height: 26px; }
-  nav button.on { color: var(--ink); } nav button.on svg { color: var(--accent-soft); }
-  nav .hunt span { background: linear-gradient(135deg, var(--accent-hi), var(--accent)); color: #fff; border-radius: 999px; padding: 6px 18px; font-size: 13px; }
-  nav .hunt svg { display: none; }
+  /* home */
+  #bg { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .homefade { position: absolute; inset: 0; background: linear-gradient(transparent 35%, rgba(0,0,0,.9) 62%, #000 75%); pointer-events: none; }
+  .homebody { margin-top: auto; position: relative; z-index: 1; }
+  .decklink { display: block; margin: 14px auto 0; font-size: 13px; color: var(--wh); }
+  .decklink span { color: var(--g1); }
 
-  /* ---------- home: a title screen, not a poster ---------- */
-  .topbar { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
-  .chip { display: flex; align-items: center; gap: 10px; background: rgba(20,20,70,.75); backdrop-filter: blur(6px);
-    border: 1px solid #34338a; border-radius: 999px; padding: 6px 14px 6px 6px; font-weight: 800; font-size: 13px; cursor: pointer; color: var(--ink); }
-  .avatar { width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, var(--accent-hi), var(--pink));
-    display: grid; place-items: center; font-weight: 900; font-size: 15px; box-shadow: 0 0 14px rgba(141,109,255,.6); }
-  .xp { width: 92px; height: 7px; border-radius: 9px; background: #2c2b75; margin-top: 4px; overflow: hidden; }
-  .xp i { display: block; height: 100%; background: linear-gradient(90deg, var(--teal), var(--accent-soft)); border-radius: 9px; transition: width .8s; }
-  .chip small { display: block; font-size: 11px; color: var(--soft); font-weight: 700; }
-  .chip.deckchip { padding: 8px 14px; } .deckchip b { color: var(--yellow); }
-
-  .title { text-align: center; margin-top: 26px; position: relative; }
-  .logo-big { font-weight: 900; font-size: 54px; letter-spacing: -1px; line-height: 1; display: inline-block;
-    text-shadow: 0 0 24px rgba(141,109,255,.75), 0 4px 0 #3a2a9a; animation: float 4s ease-in-out infinite; }
-  .logo-big span { color: var(--accent-soft); }
-  @keyframes float { 50% { transform: translateY(-6px) rotate(-1deg); } }
-  .tagline { font-weight: 800; font-size: 14px; color: var(--soft); margin-top: 10px; letter-spacing: .5px; }
-
-  .playwrap { display: grid; place-items: center; margin: 34px 0 6px; gap: 12px; }
-  .playbtn { position: relative; display: flex; align-items: center; justify-content: center; gap: 14px; width: 248px; height: 72px;
-    border-radius: 999px; cursor: pointer; color: var(--ink); font-weight: 800; font-size: 19px; letter-spacing: 4px; text-transform: uppercase;
-    background: linear-gradient(180deg, rgba(141,109,255,.38), rgba(60,40,170,.30)); backdrop-filter: blur(10px);
-    border: 1px solid rgba(195,179,255,.55);
-    box-shadow: inset 0 1px 0 rgba(255,255,255,.35), 0 0 0 6px rgba(141,109,255,.07), 0 12px 40px rgba(111,76,255,.35);
-    transition: transform .2s, box-shadow .3s, border-color .3s; animation: glow 4s ease-in-out infinite; }
-  .playbtn:hover { border-color: rgba(220,210,255,.9); box-shadow: inset 0 1px 0 rgba(255,255,255,.4), 0 0 0 8px rgba(141,109,255,.1), 0 14px 48px rgba(111,76,255,.5); }
-  .playbtn:active { transform: scale(.97); }
-  .playbtn .tri { width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; flex: none;
-    background: var(--ink); box-shadow: 0 0 18px rgba(255,247,234,.45); }
-  .playbtn .tri svg { width: 13px; height: 13px; margin-left: 3px; }
-  .playsub { font-weight: 700; font-size: 12px; color: #8d8cc4; letter-spacing: 2px; text-transform: uppercase; }
-  @keyframes glow { 50% { box-shadow: inset 0 1px 0 rgba(255,255,255,.35), 0 0 0 10px rgba(141,109,255,.05), 0 12px 56px rgba(111,76,255,.5); } }
-  .mode { display: flex; align-items: center; gap: 12px; margin-top: 16px; width: 100%; border: 0; cursor: pointer; text-align: left;
-    background: linear-gradient(135deg, rgba(51,224,192,.16), rgba(36,35,106,.85)); border: 1.5px solid rgba(51,224,192,.55);
-    border-radius: 20px; padding: 10px; color: var(--ink); position: relative; overflow: hidden; }
-  .mode:active { transform: scale(.98); }
-  .mode .thumb { width: 62px; height: 62px; border-radius: 14px; flex: none; background: #05071a center/cover; box-shadow: inset 0 0 0 2px rgba(51,224,192,.6); }
-  .mode b { display: block; font-weight: 900; font-size: 17px; }
-  .mode small { display: block; font-weight: 700; font-size: 12px; color: var(--soft); margin-top: 2px; }
-  .badge { position: absolute; top: 9px; right: 10px; font-weight: 900; font-size: 10px; letter-spacing: 1.5px; padding: 3px 8px; border-radius: 999px;
-    background: rgba(51,224,192,.14); color: var(--teal); border: 1px solid rgba(51,224,192,.5); }
-  @keyframes blinkb { 50% { opacity: .55; } }
-
-  .deckpeek { display: flex; align-items: flex-end; justify-content: space-between; margin-top: auto; padding-top: 18px; cursor: pointer; position: relative; z-index: 1; }
-  .fan { position: relative; width: 170px; height: 104px; }
-  .fan .tcard { position: absolute; bottom: 0; left: 56px; transform-origin: 50% 120%; transition: transform .3s; }
-  .fan .tcard:nth-child(1) { transform: rotate(-16deg) translateX(-34px); }
-  .fan .tcard:nth-child(2) { transform: rotate(0deg); z-index: 1; }
-  .fan .tcard:nth-child(3) { transform: rotate(16deg) translateX(34px); }
-  .deckpeek:hover .fan .tcard:nth-child(1) { transform: rotate(-22deg) translateX(-44px) translateY(-6px); }
-  .deckpeek:hover .fan .tcard:nth-child(3) { transform: rotate(22deg) translateX(44px) translateY(-6px); }
-  .deckpeek .label { text-align: right; } .deckpeek .label b { display: block; font-weight: 900; font-size: 18px; }
-  .deckpeek .label small { font-weight: 700; font-size: 12px; color: var(--soft); }
-  .note { margin-top: 12px; font-weight: 700; font-size: 11px; color: #a3a2d6; line-height: 1.45; position: relative; z-index: 1;
-    background: rgba(9,10,36,.78); border-radius: 12px; padding: 8px 10px; }
-  .skyline { position: absolute; left: 0; right: 0; bottom: 70px; height: 130px; pointer-events: none; opacity: .9; }
-  #home > * { position: relative; z-index: 1; }
-
-  /* ---------- play ---------- */
-  .app.playing nav, .app.playing .skyline, .app.playing #bg { display: none; }
-  .app.playing main { overflow: hidden; }
-  #play { position: absolute; inset: 0; padding: 0; background: #05071a; }
+  /* play */
   #sky { position: absolute; inset: 0; width: 100%; height: 100%; touch-action: none; cursor: crosshair; }
   #sky.dragging { cursor: grabbing; }
-  .vf { position: absolute; inset: 0; pointer-events: none;
-    background: radial-gradient(ellipse at center, transparent 55%, rgba(3,4,18,.75) 100%); }
-  .vf i { position: absolute; width: 34px; height: 34px; border: 3px solid rgba(195,179,255,.55); }
-  .vf i:nth-child(1) { top: 64px; left: 14px; border-right: 0; border-bottom: 0; border-top-left-radius: 10px; }
-  .vf i:nth-child(2) { top: 64px; right: 14px; border-left: 0; border-bottom: 0; border-top-right-radius: 10px; }
-  .vf i:nth-child(3) { bottom: 70px; left: 118px; border-right: 0; border-top: 0; border-bottom-left-radius: 10px; }
-  .vf i:nth-child(4) { bottom: 70px; right: 14px; border-left: 0; border-top: 0; border-bottom-right-radius: 10px; }
-  .hud { position: absolute; left: 14px; right: 14px; display: flex; align-items: center; justify-content: space-between; gap: 10px; pointer-events: none; }
+  .vf { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(ellipse at center, transparent 60%, rgba(0,0,0,.7) 100%); }
+  .hud { position: absolute; left: 14px; right: 14px; display: flex; align-items: center; justify-content: space-between; gap: 8px; pointer-events: none; }
   .hud > * { pointer-events: auto; }
-  .hud.top { top: 14px; } .hud.bottom { bottom: 16px; }
-  .pill { background: rgba(14,16,53,.82); backdrop-filter: blur(6px); border: 0; color: var(--ink); border-radius: 999px;
-    padding: 10px 16px; font-weight: 800; font-size: 14px; cursor: pointer; display: flex; align-items: center; gap: 8px; }
-  .pill.icon { width: 42px; height: 42px; padding: 0; justify-content: center; font-size: 20px; }
-  .dots { display: flex; gap: 6px; } .dots i { width: 9px; height: 9px; border-radius: 50%; background: #3b3a7a; }
-  .dots i.on { background: var(--teal); box-shadow: 0 0 8px var(--teal); }
-  #mini { position: absolute; left: 14px; bottom: 74px; width: 92px; height: 92px; border-radius: 14px;
-    background: rgba(14,16,53,.82); pointer-events: none; }
-  .realtag { position: absolute; left: 14px; right: 14px; top: 66px; text-align: center; pointer-events: none;
-    font-weight: 800; font-size: 12px; color: var(--teal); text-shadow: 0 1px 6px #000; line-height: 1.4; }
-  .toast { position: absolute; left: 50%; top: 70px; transform: translateX(-50%); width: max-content; max-width: calc(100% - 40px); text-align: center; pointer-events: none;
-    background: rgba(14,16,53,.88); border-radius: 18px; padding: 9px 18px; font-weight: 800; font-size: 14px; transition: opacity .3s; }
-  .realtag:not([hidden]) ~ .toast { top: 108px; }
-  .lock { position: absolute; width: 90px; height: 90px; margin: -45px 0 0 -45px; border-radius: 50%; pointer-events: none;
-    border: 3px solid var(--yellow); box-shadow: 0 0 20px var(--yellow), inset 0 0 20px var(--yellow); animation: lock .55s ease-out forwards; }
-  @keyframes lock { from { transform: scale(2.4) rotate(90deg); opacity: 0; } 60% { transform: scale(.8); opacity: 1; } to { transform: scale(1); opacity: 1; } }
+  .hud.top { top: 14px; } .hud.bottom { bottom: 18px; }
+  .pill { background: rgba(10,10,12,.82); backdrop-filter: blur(6px); border: 1px solid #2c2c2c; border-radius: 999px; padding: 10px 18px; font-size: 13px; font-weight: 500; display: flex; align-items: center; gap: 8px; }
+  .pill.icon { width: 42px; height: 42px; padding: 0; justify-content: center; font-size: 16px; }
+  .frames { display: flex; gap: 4px; }
+  .frames span { padding: 4px 9px; border-radius: 999px; font-size: 11px; color: var(--g1); }
+  .frames span.on { background: var(--wh); color: var(--bk); }
+  #mini { position: absolute; right: 14px; bottom: 74px; width: 76px; height: 76px; border-radius: 10px; background: rgba(10,10,12,.82); border: 1px solid #2c2c2c; pointer-events: none; }
+  .realtag { position: absolute; left: 14px; right: 14px; top: 66px; text-align: center; pointer-events: none; font-size: 11px; color: var(--g1); text-shadow: 0 1px 4px #000; }
+  .toast { position: absolute; left: 50%; bottom: 76px; transform: translateX(-50%); width: max-content; max-width: calc(100% - 120px); text-align: center; pointer-events: none;
+    background: rgba(10,10,12,.9); border: 1px solid #2c2c2c; border-radius: 16px; padding: 9px 16px; font-size: 13px; transition: opacity .3s; }
+  .lock { position: absolute; width: 64px; height: 64px; margin: -32px 0 0 -32px; border-radius: 50%; pointer-events: none; border: 2px solid var(--wh); animation: lock .45s ease-out forwards; }
+  @keyframes lock { from { transform: scale(2); opacity: 0; } to { transform: scale(1); opacity: 1; } }
 
-  /* ---------- trading cards ---------- */
-  .tcard { --w: 260px; --rx: 0deg; --ry: 0deg; --mx: 50%; --my: 50%; --c1: #8b8fb8; --c2: #4b4e86; --holo: 0; --glare: .3;
-    width: var(--w); aspect-ratio: 63 / 88; perspective: 900px; font-size: calc(var(--w) * .058); flex: none; position: relative; user-select: none; -webkit-user-select: none; }
-  .tcard .tilt { position: absolute; inset: 0; transform-style: preserve-3d; transform: rotateX(var(--ry)) rotateY(var(--rx)); transition: transform .12s; }
-  .tcard .flip { position: absolute; inset: 0; transform-style: preserve-3d; transition: transform .7s cubic-bezier(.3,1.4,.5,1); }
-  .tcard.flipped .flip { transform: rotateY(180deg); }
-  .face { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; border-radius: .9em; overflow: hidden;
-    box-shadow: 0 1.2em 2.4em rgba(0,0,0,.55), 0 0 1.6em color-mix(in srgb, var(--c1) 35%, transparent); }
-  .face.back { transform: rotateY(180deg); }
-  .frame { position: absolute; inset: 0; padding: .45em; background: linear-gradient(145deg, var(--c1), var(--c2) 60%, var(--c1)); }
-  .front .in { text-align: left; position: absolute; inset: .45em; border-radius: .6em; background: linear-gradient(180deg, #1d1c5e, #11123f); display: flex; flex-direction: column; padding: .55em; }
-  .front .top { display: flex; justify-content: space-between; align-items: center; gap: .4em; }
-  .front .nm { font-weight: 900; font-size: 1.05em; line-height: 1.1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .gems { color: var(--c1); font-size: .75em; letter-spacing: .05em; white-space: nowrap; text-shadow: 0 0 .4em var(--c1); }
-  .win { margin-top: .45em; flex: 1; border-radius: .45em; position: relative; overflow: hidden; display: grid; place-items: center;
-    background: radial-gradient(circle at 30% 20%, rgba(255,255,255,.9) 0 1px, transparent 1.5px) 0 0/37px 41px,
-                radial-gradient(circle at 70% 60%, rgba(255,255,255,.6) 0 1px, transparent 1.5px) 0 0/53px 47px,
-                radial-gradient(ellipse at 50% 120%, color-mix(in srgb, var(--c1) 45%, #0b0d2b), #070820 70%);
-    box-shadow: inset 0 0 0 .14em color-mix(in srgb, var(--c1) 70%, #000); }
-  .win svg { width: 88%; height: 88%; filter: drop-shadow(0 .4em .6em rgba(0,0,0,.5)); }
-  .tcard.idle .win svg { animation: bob 3.2s ease-in-out infinite; }
-  @keyframes bob { 50% { transform: translateY(-3%) rotate(2deg); } }
-  .type { margin-top: .45em; font-weight: 900; font-size: .62em; letter-spacing: .14em; text-transform: uppercase; color: var(--c1); }
-  .txt { margin-top: .2em; font-weight: 700; font-size: .7em; line-height: 1.35; color: #d6d4f7; min-height: 2.7em; }
-  .foot { margin-top: .35em; display: flex; justify-content: space-between; font-weight: 800; font-size: .55em; color: #8d8cc4; letter-spacing: .08em; }
-  .stamp { position: absolute; top: 3.2em; right: .2em; transform: rotate(12deg); font-weight: 900; font-size: .55em; letter-spacing: .12em; z-index: 3;
-    padding: .35em .7em; border-radius: .3em; background: var(--teal); color: #0b0d2b; box-shadow: 0 0 1em var(--teal); }
-  .holo { position: absolute; inset: 0; pointer-events: none; mix-blend-mode: overlay; opacity: var(--holo); z-index: 2;
-    background: repeating-linear-gradient(115deg, transparent 0%, rgba(255,92,138,.75) 5%, rgba(255,210,63,.75) 8%, rgba(51,224,192,.75) 11%, rgba(111,76,255,.75) 14%, transparent 19%, transparent 34%);
-    background-size: 300% 300%; background-position: var(--mx) var(--my); }
-  .glare { position: absolute; inset: 0; pointer-events: none; z-index: 2; opacity: var(--glare); mix-blend-mode: overlay;
-    background: radial-gradient(circle at var(--mx) var(--my), rgba(255,255,255,.95), rgba(255,255,255,0) 50%); }
-  .sparks { position: absolute; inset: 0; pointer-events: none; z-index: 2; mix-blend-mode: screen; opacity: 0;
-    background: radial-gradient(circle, #fff 0 1px, transparent 1.6px) 13px 29px/71px 53px, radial-gradient(circle, #ffe9a0 0 1.2px, transparent 2px) 41px 7px/97px 83px;
-    animation: twinkle 2.2s ease-in-out infinite; }
-  @keyframes twinkle { 50% { opacity: .7; } }
+  /* cards: black metal front, flat purple back */
+  .tc { --w: 220px; --c: var(--belt); width: var(--w); aspect-ratio: 63 / 88; font-size: calc(var(--w) * .05); border-radius: .75em; padding: .5em; display: flex; flex-direction: column; position: relative; flex: none;
+    background: linear-gradient(160deg, #1b1b1b, #0a0a0a 45%, #050505); border: 1px solid #3c3c3c; border-top-color: #6a6a6a;
+    box-shadow: 0 1.2em 2em rgba(0,0,0,.9), inset 0 1px 0 rgba(255,255,255,.08); user-select: none; -webkit-user-select: none; }
+  .tc-top { display: flex; justify-content: space-between; align-items: center; font-size: .72em; color: var(--g1); letter-spacing: .06em; padding: 0 .2em .45em; }
+  .kd { display: flex; align-items: center; gap: .35em; color: var(--wh); }
+  .kd i { width: .55em; height: .55em; border-radius: 50%; background: var(--c); }
+  .tc-win { position: relative; border-radius: .45em; overflow: hidden; border: 1px solid #2c2c2c; aspect-ratio: 38 / 26; flex: none; background: #050505; display: grid; place-items: center; }
+  .tc-win img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .tc-win > svg { width: 62%; height: 80%; }
+  .ring { position: absolute; left: 50%; top: 50%; width: 1.6em; height: 1.6em; border: 2px solid var(--c); border-radius: 50%; transform: translate(-50%, -50%); box-shadow: 0 0 0 3px rgba(0,0,0,.45); }
+  .tc-name { font-size: 1.55em; font-weight: 300; letter-spacing: -.03em; line-height: 1.05; margin: .45em .1em 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .tc-type { font-size: .62em; letter-spacing: .1em; text-transform: uppercase; color: var(--c); margin: .35em .15em 0; font-weight: 600; }
+  .tc-rows { margin: .5em .15em 0; border-top: 1px solid var(--hl); font-size: .68em; line-height: 1.25; }
+  .tc-rows div { display: flex; justify-content: space-between; gap: .5em; padding: .3em 0; border-bottom: 1px solid var(--hl); }
+  .tc-rows span { color: var(--g1); white-space: nowrap; }
+  .tc-rows b { font-weight: 400; text-align: right; }
+  .tc-foot { margin-top: auto; padding-top: .4em; display: flex; justify-content: space-between; font-size: .56em; color: var(--g1); padding-inline: .15em; }
+  .tc.back { padding: 0; background: var(--back); border-color: #2c2350; overflow: hidden; box-shadow: 0 1.2em 2em rgba(0,0,0,.9); }
+  .tc.back svg { width: 100%; height: 100%; display: block; }
 
-  .r-common    { --c1: #a9adcf; --c2: #555a92; --holo: 0;   --glare: .35; }
-  .r-uncommon  { --c1: #33e0c0; --c2: #16737e; --holo: .2;  --glare: .4; }
-  .r-rare      { --c1: #ff5c8a; --c2: #8a2f9a; --holo: .35; --glare: .45; }
-  .r-legendary { --c1: #ffd23f; --c2: #d2621c; --holo: .42; --glare: .5; }
-  .r-legendary .sparks { display: block; }
-  .r-unique    { --c1: #fff7ea; --c2: #6f4cff; --holo: .5;  --glare: .5; }
-  .r-unique .frame { background: conic-gradient(from var(--ang), #ff5c8a, #ffd23f, #33e0c0, #6f4cff, #ff5c8a); animation: sweep 4s linear infinite; }
-  .r-real      { --c1: #33e0c0; --c2: #1c3f8a; --holo: .28; --glare: .45; }
-  .tcard:not(.r-legendary) .sparks { display: none; }
+  /* caught */
+  .stage { flex: 1; display: grid; place-items: center; min-height: 0; background: radial-gradient(60% 40% at 50% 48%, color-mix(in srgb, var(--c) 16%, transparent), transparent 70%); }
+  #caughtCard .tc { transform: rotate(-2deg); animation: drop .5s cubic-bezier(.2,.9,.3,1.1); cursor: pointer; }
+  @keyframes drop { from { transform: translateY(-30px) rotate(-6deg); opacity: 0; } }
+  .caughtmsg { text-align: center; font-size: 13px; padding: 0 20px; }
+  .caughtmsg b { display: block; font-weight: 500; font-size: 15px; }
+  .caughtmsg span { color: var(--g1); font-size: 12px; }
+  .btnrow { display: flex; gap: 10px; padding: 0 20px 22px; }
+  .btnrow .startbtn, .btnrow .ghostbtn { margin: 14px 0 0; width: auto; flex: 1; padding: 15px; font-size: 15px; align-items: center; }
 
-  /* back: sealed cover (card back) or field notes */
-  .back .frame { background: linear-gradient(145deg, #3a2a9a, #1a1460); }
-  .cover, .sheet { position: absolute; inset: .45em; border-radius: .6em; overflow: hidden; }
-  .cover { display: grid; place-items: center;
-    background: repeating-conic-gradient(from 0deg at 50% 50%, #2a1f86 0 10deg, #221a72 10deg 20deg); }
-  .cover::before { content: ''; position: absolute; inset: 12%; border-radius: 50%; border: .18em solid rgba(195,179,255,.45);
-    box-shadow: 0 0 2em var(--c1), inset 0 0 2em color-mix(in srgb, var(--c1) 50%, transparent); }
-  .cover b { position: relative; font-weight: 900; font-size: 1.5em; text-shadow: 0 0 .6em var(--accent-hi); }
-  .cover b span { color: var(--accent-soft); }
-  .cover small { position: absolute; bottom: 9%; left: 0; right: 0; text-align: center; font-weight: 900; font-size: .6em; letter-spacing: .2em; color: var(--accent-soft); }
-  .sheet { display: none; text-align: left; background: linear-gradient(180deg, #1d1c5e, #11123f); padding: .8em; flex-direction: column; }
-  .tcard.open .cover { display: none; } .tcard.open .sheet { display: flex; }
-  .sheet h3 { font-weight: 900; font-size: .95em; color: var(--c1); }
-  .sheet dl { margin-top: .5em; font-size: .7em; line-height: 1.3; }
-  .sheet dt { font-weight: 800; color: #8d8cc4; font-size: .85em; text-transform: uppercase; letter-spacing: .1em; margin-top: .55em; }
-  .sheet dd { font-weight: 800; color: var(--ink); }
-  .sheet .src { margin-top: auto; font-weight: 900; font-size: .5em; letter-spacing: .14em; color: #9d9bd6; }
-  .tcard.locked .cover::after { content: '?'; position: absolute; font-weight: 900; font-size: 3.4em; color: rgba(195,179,255,.25); }
-  .tcard.locked .cover b { display: none; }
-  .tcard.shake { animation: shake .4s; }
-  @keyframes shake { 25% { transform: translateX(-6px) rotate(-2deg); } 75% { transform: translateX(6px) rotate(2deg); } }
+  /* deck */
+  .deckhead { padding: 0 20px; }
+  .deckhead .h1 { padding: 0; font-size: 32px; margin-top: 10px; }
+  .stack { position: relative; flex: 1; min-height: 0; touch-action: pan-y; }
+  .slot { position: absolute; left: 50%; top: 50%; transition: transform .35s cubic-bezier(.2,.9,.3,1.1), opacity .3s; will-change: transform; }
+  .slot .tc { position: absolute; left: 0; top: 0; transform: translate(-50%, -50%); }
+  .slot.top { cursor: grab; } .slot.drag { transition: none; cursor: grabbing; }
+  .slot:not(.top) .fr, .slot.locked .fr { display: none; }
+  .slot.top:not(.locked) .bk { display: none; }
+  .slot:not(.top) .tc { filter: brightness(.6); }
+  .kinds5 { display: flex; align-items: center; justify-content: center; gap: 7px; padding: 6px 20px 0; }
+  .kinds5 button { width: 11px; height: 11px; border-radius: 50%; border: 1px dashed #5a5a5a; padding: 0; }
+  .kinds5 button.got { background: var(--c); border: 0; }
+  .kinds5 button.cur { outline: 1px solid var(--wh); outline-offset: 3px; }
+  .kinds5 span { margin-left: 6px; font-size: 12px; color: var(--g1); }
+  .caption { text-align: center; padding: 6px 20px 0; font-size: 12px; color: var(--g1); min-height: 22px; }
+  .caption b { color: var(--wh); font-weight: 500; }
+  .stackctl { display: flex; align-items: center; justify-content: center; gap: 18px; padding: 8px 0 20px; }
+  .arrow { width: 42px; height: 42px; border-radius: 50%; border: 1px solid #3a3a3a; font-size: 18px; }
+  .stackctl .pos { font-size: 13px; color: var(--g1); min-width: 48px; text-align: center; font-variant-numeric: tabular-nums; }
 
-  /* ---------- caught: pack reveal ---------- */
-  #caught { align-items: center; text-align: center; position: relative; overflow: hidden; }
-  .rays { position: absolute; left: 50%; top: 44%; width: 560px; height: 560px; margin: -280px 0 0 -280px; pointer-events: none; opacity: .32;
-    background: radial-gradient(circle, var(--ray, #6f4cff), transparent 62%); animation: halo 5s ease-in-out infinite; }
-  @keyframes halo { 50% { opacity: .2; transform: scale(1.08); } }
-  #caught h1 { position: relative; font-weight: 900; font-size: 28px; margin-top: 8px; font-weight: 800; letter-spacing: .5px; text-shadow: 0 0 24px color-mix(in srgb, var(--ray, #6f4cff) 60%, transparent); }
-  #caught .hint { position: relative; font-weight: 800; font-size: 13px; color: var(--soft); margin: 6px 0 14px; min-height: 18px; }
-  #caughtCard { position: relative; }
-  #caughtCard .tcard.sealed { animation: hover 3s ease-in-out infinite; cursor: pointer; }
-  @keyframes hover { 50% { transform: translateY(-8px); } }
-  .after { display: flex; gap: 10px; width: 100%; margin-top: 18px; opacity: 0; transform: translateY(14px); transition: .4s .3s; position: relative; }
-  .after.on { opacity: 1; transform: none; }
-  .btn { flex: 1; border-radius: 999px; padding: 15px; font-weight: 800; font-size: 15px; letter-spacing: 1px; cursor: pointer;
-    color: #14154a; background: var(--ink); border: 1px solid var(--ink); box-shadow: 0 10px 30px rgba(0,0,0,.35), 0 0 24px rgba(255,247,234,.12);
-    transition: transform .2s, background .2s; }
-  .btn:active { transform: scale(.97); }
-  .btn.ghost { color: var(--ink); background: rgba(141,109,255,.14); border: 1px solid rgba(195,179,255,.45); backdrop-filter: blur(8px); box-shadow: none; }
-  .burst { position: absolute; left: 50%; top: 50%; width: 4px; height: 4px; border-radius: 50%; pointer-events: none; z-index: 5; }
-  .flash { position: absolute; inset: 0; background: #fff; pointer-events: none; animation: flash .5s forwards; z-index: 6; }
-  @keyframes flash { from { opacity: .25; } to { opacity: 0; } }
-
-  /* ---------- collection: a pile of cards ---------- */
-  #collection { padding-left: 0; padding-right: 0; }
-  #collection .head { padding: 4px 18px 0; position: relative; }
-  #collection h1 { font-weight: 900; font-size: 28px; }
-  #collection .count { font-weight: 800; font-size: 14px; color: var(--soft); margin-top: 4px; }
-  .bar { height: 8px; border-radius: 9px; background: #2c2b75; margin-top: 10px; overflow: hidden; }
-  .bar i { display: block; height: 100%; background: linear-gradient(90deg, var(--teal), var(--yellow)); border-radius: 9px; transition: width .8s; }
-  .stack { position: relative; height: 420px; margin-top: 18px; touch-action: pan-y; }
-  .stack .slot { position: absolute; left: 50%; top: 14px; margin-left: -124px; transition: transform .35s cubic-bezier(.2,.9,.3,1.1), opacity .3s; will-change: transform; }
-  .stack .slot.top { cursor: grab; } .stack .slot.drag { transition: none; cursor: grabbing; }
-  .stack .slot:not(.top) .tcard { pointer-events: none; }
-  .stack .slot:not(.top) .face { filter: brightness(.75); }
-  .stack .tcard { --w: 248px; }
-  .stackctl { display: flex; align-items: center; justify-content: center; gap: 18px; margin-top: 4px; }
-  .arrow { width: 46px; height: 46px; border-radius: 50%; cursor: pointer; color: var(--ink); font-size: 20px; font-weight: 700;
-    background: rgba(141,109,255,.12); border: 1px solid rgba(195,179,255,.4); backdrop-filter: blur(8px); transition: transform .2s, background .2s; }
-  .arrow:hover { background: rgba(141,109,255,.24); } .arrow:active { transform: scale(.94); }
-  .stackctl .pos { font-weight: 900; font-size: 15px; color: var(--soft); min-width: 52px; text-align: center; }
-  .caption { text-align: center; padding: 0 18px; position: relative; }
-  .caption b { display: block; font-weight: 900; font-size: 20px; }
-  .caption small { display: block; font-weight: 700; font-size: 13px; color: var(--soft); margin-top: 3px; }
-  .pips { display: flex; justify-content: center; gap: 8px; margin-top: 14px; flex-wrap: wrap; padding: 0 18px; }
-  .pips button { width: 14px; height: 14px; border-radius: 4px; border: 2px solid var(--c, #555); background: transparent; cursor: pointer; transform: rotate(45deg); transition: .2s; padding: 0; }
-  .pips button.got { background: var(--c); box-shadow: 0 0 8px var(--c); }
-  .pips button.cur { transform: rotate(45deg) scale(1.35); }
+  /* details sheet */
+  .scrim { position: absolute; inset: 0; background: rgba(0,0,0,.6); opacity: 0; pointer-events: none; transition: opacity .3s; z-index: 20; }
+  .sheet { position: absolute; left: 0; right: 0; bottom: 0; max-height: 78%; overflow-y: auto; background: var(--panel); border-top: 1px solid #2c2c2c; border-radius: 22px 22px 0 0;
+    padding: 10px 22px 26px; transform: translateY(105%); visibility: hidden; transition: transform .35s cubic-bezier(.2,.9,.3,1), visibility 0s .35s; z-index: 21; }
+  .sheet-open .scrim { opacity: 1; pointer-events: auto; }
+  .sheet-open .sheet { transform: none; visibility: visible; transition: transform .35s cubic-bezier(.2,.9,.3,1); }
+  .grab { width: 40px; height: 4px; border-radius: 4px; background: #3a3a3a; margin: 0 auto 14px; }
+  .sh-head { display: flex; gap: 14px; align-items: center; }
+  .sh-art { width: 72px; height: 72px; border-radius: 14px; background: #050505; border: 1px solid #2c2c2c; display: grid; place-items: center; flex: none; }
+  .sh-art svg { width: 80%; height: 80%; }
+  .sh-head h2 { font-weight: 300; font-size: 28px; letter-spacing: -.03em; line-height: 1.05; }
+  .sh-head small { display: block; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--c); font-weight: 600; margin-top: 4px; }
+  .sh-photo { margin-top: 16px; border-radius: 14px; overflow: hidden; border: 1px solid #2c2c2c; }
+  .sh-photo img { width: 100%; display: block; }
+  .sh-photo figcaption { font-size: 11px; color: var(--g1); padding: 8px 10px; }
+  .sh-rows { margin-top: 16px; border-top: 1px solid var(--hl); font-size: 14px; }
+  .sh-rows div { display: flex; justify-content: space-between; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--hl); }
+  .sh-rows span { color: var(--g1); }
+  .sh-rows b { font-weight: 400; text-align: right; }
+  .sh-src { margin-top: 14px; font-size: 11px; color: var(--g1); line-height: 1.5; }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
 </style>
 </head>
 <body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <radialGradient id="glow"><stop offset="0" stop-color="#fff" stop-opacity=".18"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+    <linearGradient id="tail" x1="1" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6fd3d6" stop-opacity=".9"/><stop offset="1" stop-color="#6fd3d6" stop-opacity="0"/></linearGradient>
+    <linearGradient id="tail2" x1="1" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#a990ff" stop-opacity=".6"/><stop offset="1" stop-color="#a990ff" stop-opacity="0"/></linearGradient>
+  </defs>
+  <symbol id="k-common" viewBox="0 0 100 100">
+    <circle cx="50" cy="50" r="48" fill="url(#glow)"/>
+    <path d="M22 46C20 30 36 20 52 22C70 20 82 34 79 50C82 66 68 80 50 78C32 80 20 64 22 46Z" fill="#c9b79c"/>
+    <path d="M50 78C68 80 82 66 79 50C76 62 62 72 46 70C36 70 28 66 24 60C30 72 40 79 50 78Z" fill="#8e7b62"/>
+    <path d="M30 36C36 28 46 25 54 26C44 28 36 33 32 42Z" fill="#efe2cb"/>
+    <circle cx="57" cy="41" r="5.5" fill="#a8957a"/><circle cx="37.5" cy="55.5" r="4" fill="#a8957a"/><circle cx="64" cy="61" r="3" fill="#8e7b62"/>
+  </symbol>
+  <symbol id="k-uncommon" viewBox="0 0 100 100">
+    <circle cx="50" cy="50" r="48" fill="url(#glow)"/>
+    <ellipse cx="50" cy="50" rx="46" ry="16" fill="none" stroke="#ff8a4c" stroke-opacity=".45" stroke-width="1.2" stroke-dasharray="3 4" transform="rotate(-18 50 50)"/>
+    <path d="M24 52C22 40 32 33 42 37C47 39 52 39 57 35C68 28 82 36 79 50C77 62 64 66 56 62C51 60 47 60 42 64C33 70 25 62 24 52Z" fill="#ff8a4c"/>
+    <path d="M42 64C33 70 25 62 24 52C30 60 38 60 44 56C50 53 56 58 64 58C72 58 77 54 79 50C77 62 64 66 56 62C51 60 47 60 42 64Z" fill="#b8552a"/>
+    <path d="M30 42C34 36 40 35 44 38C38 38 34 41 31 46Z" fill="#ffc29c"/>
+    <circle cx="66" cy="45" r="4.5" fill="#d96a35"/><circle cx="36" cy="50" r="3.2" fill="#d96a35"/>
+  </symbol>
+  <symbol id="k-rare" viewBox="0 0 100 100">
+    <path d="M66 30L8 92L14 96Z" fill="url(#tail)" opacity=".6"/><path d="M62 28L4 80L20 94L70 38Z" fill="url(#tail)" opacity=".35"/>
+    <circle cx="68" cy="32" r="22" fill="url(#glow)"/><circle cx="68" cy="32" r="12" fill="#6fd3d6" opacity=".45"/>
+    <circle cx="68" cy="32" r="7" fill="#c9f3f4"/><circle cx="66" cy="30" r="3" fill="#fff"/>
+  </symbol>
+  <symbol id="k-legendary" viewBox="0 0 100 100">
+    <circle cx="50" cy="50" r="48" fill="url(#glow)"/><path d="M70 34L10 86L22 92Z" fill="url(#tail2)" opacity=".5"/>
+    <ellipse cx="62" cy="40" rx="20" ry="6.5" fill="#a990ff" transform="rotate(-38 62 40)"/>
+    <ellipse cx="64" cy="42" rx="18" ry="3.2" fill="#6f55c9" transform="rotate(-38 64 42)"/>
+    <ellipse cx="58" cy="37" rx="9" ry="2" fill="#d9ceff" transform="rotate(-38 58 37)"/>
+  </symbol>
+  <symbol id="k-unique" viewBox="0 0 100 100">
+    <circle cx="50" cy="50" r="26" fill="none" stroke="#f4f4f2" stroke-opacity=".6" stroke-width="1.4" stroke-dasharray="4 5"/>
+    <path d="M50 16V28M50 72V84M16 50H28M72 50H84" stroke="#f4f4f2" stroke-width="1.4"/><circle cx="50" cy="50" r="4" fill="#f4f4f2"/>
+  </symbol>
+</svg>
+
 <div class="app" id="app">
-  <canvas id="bg"></canvas>
-  <main>
-    <section class="screen on" id="home">
-      <div class="topbar">
-        <div class="chip" id="levelChip"><div class="avatar" id="lvl">1</div><div><span id="rank">Stargazer</span><div class="xp"><i id="xpbar" style="width:0"></i></div></div></div>
-        <button class="chip deckchip" data-go="collection">🂠 <b id="deckCount">0/5</b></button>
-      </div>
-      <div class="title">
-        <div class="logo-big">Blink<span>Sky</span></div>
-        <div class="tagline">Something is moving over Dhaka tonight</div>
-      </div>
-      <div class="playwrap">
-        <button class="playbtn" data-go="hunt"><span class="tri"><svg viewBox="0 0 20 20"><path d="M3 1.5 L18 10 L3 18.5 Z" fill="#1c1d5c" stroke="#1c1d5c" stroke-width="2" stroke-linejoin="round"/></svg></span>Start hunt</button>
-        <div class="playsub">Practice sky</div>
-      </div>
-      <button class="mode" id="realBtn">
-        <div class="thumb" id="realThumb"></div>
-        <div><b>Real NASA sky</b><small id="realSub">Two SPHEREx photos, 3 hours apart.<br>Find a real asteroid.</small></div>
-        <span class="badge">REAL DATA</span>
-      </button>
-      <div class="deckpeek" data-go="collection">
-        <div class="fan" id="fan"></div>
-        <div class="label"><b>Your deck</b><small id="deckSub">Tap to open</small></div>
-      </div>
-      <p class="note">Prototype: practice skies are generated samples. "Real NASA sky" uses real SPHEREx photos (NASA/IPAC IRSA) checked against NASA JPL's list of known objects.</p>
-    </section>
+  <section class="screen on" id="home">
+    <canvas id="bg"></canvas>
+    <div class="homefade"></div>
+    <div class="loc"><div><b id="today">TONIGHT</b><span>Dhaka, Bangladesh</span></div></div>
+    <div class="homebody">
+      <h1 class="h1">Tonight's sky</h1>
+      <button class="startbtn" data-go="hunt">Start hunting</button>
+      <button class="ghostbtn" id="realBtn">Real NASA sky <small id="realSub">SPHEREx photos</small></button>
+      <button class="decklink" data-go="collection">Your deck <span id="deckCount">0/5</span> →</button>
+      <p class="note">Prototype. Practice skies are generated samples. "Real NASA sky" uses real SPHEREx photos (NASA/IPAC IRSA), checked against NASA JPL's list of known objects.</p>
+    </div>
+  </section>
 
-    <section class="screen" id="play">
-      <canvas id="sky"></canvas>
-      <div class="vf"><i></i><i></i><i></i><i></i></div>
-      <canvas id="mini" width="184" height="184"></canvas>
-      <div class="hud top">
-        <button class="pill icon" id="exit" aria-label="Leave">✕</button>
-        <div class="pill"><div class="dots" id="dots"></div><span id="frameLabel">1/4</span></div>
-      </div>
-      <div class="realtag" id="realTag" hidden></div>
-      <div class="toast" id="toast">Drag to look around. Tap what moved.</div>
-      <div class="hud bottom">
-        <span></span>
-        <div style="display:flex;gap:8px">
-          <button class="pill" id="known" hidden>Show known objects</button>
-          <button class="pill" id="pause">Pause</button>
-        </div>
-      </div>
-    </section>
+  <section class="screen" id="play">
+    <canvas id="sky"></canvas>
+    <div class="vf"></div>
+    <canvas id="mini" width="152" height="152"></canvas>
+    <div class="hud top">
+      <button class="pill icon" id="exit" aria-label="Leave">✕</button>
+      <div class="pill" style="padding:4px"><div class="frames" id="frames"></div></div>
+    </div>
+    <div class="realtag" id="realTag" hidden></div>
+    <div class="toast" id="toast">Tap what moves</div>
+    <div class="hud bottom">
+      <button class="pill" id="pause">❚❚ Pause</button>
+      <div style="display:flex;gap:8px"><button class="pill" id="known" hidden>Show NASA's list</button><button class="pill" id="hint">Hint</button></div>
+    </div>
+  </section>
 
-    <section class="screen" id="caught">
-      <div class="rays"></div>
-      <h1 id="caughtTitle">Caught!</h1>
-      <div class="hint" id="hint">Tap the card to reveal it</div>
-      <div id="caughtCard"></div>
-      <div class="after" id="after"><button class="btn" id="again">Hunt again</button><button class="btn ghost" data-go="collection">My deck</button></div>
-    </section>
+  <section class="screen" id="caught">
+    <div class="loc"><button class="x" data-go="home" aria-label="Close">✕</button></div>
+    <div class="stage" id="stage"><div id="caughtCard"></div></div>
+    <div class="caughtmsg"><b id="caughtTitle">Caught</b><span>Tap the card for details</span></div>
+    <div class="btnrow"><button class="startbtn" id="again">Hunt again</button><button class="ghostbtn" data-go="collection">Your deck</button></div>
+  </section>
 
-    <section class="screen" id="collection">
-      <div class="head">
-        <h1>Your deck</h1>
-        <div class="count" id="colCount"></div>
-        <div class="bar"><i id="colBar" style="width:0"></i></div>
-      </div>
-      <div class="stack" id="deck"></div>
-      <div class="caption"><b id="capName"></b><small id="capSub"></small></div>
-      <div class="stackctl"><button class="arrow" id="prevCard" aria-label="Previous card">‹</button><span class="pos" id="stackPos"></span><button class="arrow" id="nextCard" aria-label="Next card">›</button></div>
-      <div class="pips" id="pips"></div>
-    </section>
-  </main>
-  <svg class="skyline" id="skyline" viewBox="0 0 430 150" preserveAspectRatio="none"></svg>
-  <nav>
-    <button data-go="home" id="navHome"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg>Home</button>
-    <button data-go="hunt" class="hunt"><svg></svg><span>Hunt</span></button>
-    <button data-go="collection" id="navCol"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="12" height="17" rx="2"/><path d="M8 6.5l11 2.5-3 13-5-1"/></svg><span id="colLabel">Deck</span></button>
-  </nav>
+  <section class="screen" id="collection">
+    <div class="loc"><button class="x" data-go="home" aria-label="Back">←</button></div>
+    <div class="deckhead"><h1 class="h1">Your deck</h1></div>
+    <div class="stack" id="deck"></div>
+    <div class="kinds5" id="kinds5"></div>
+    <div class="caption" id="caption"></div>
+    <div class="stackctl"><button class="arrow" id="prevCard" aria-label="Previous card">‹</button><span class="pos" id="stackPos"></span><button class="arrow" id="nextCard" aria-label="Next card">›</button></div>
+  </section>
+
+  <div class="scrim" id="scrim"></div>
+  <div class="sheet" id="sheet" role="dialog" aria-label="Card details"></div>
 </div>
 
 <script>
 /* ---------- data ---------- */
-const ART = {
-  common: `<svg viewBox="-150 -130 300 260"><path d="M-110 -40 Q-90 -120 0 -118 Q90 -126 120 -50 Q150 30 80 90 Q0 130 -80 92 Q-150 40 -110 -40 Z" fill="#9b8f86"/><path d="M0 -118 Q90 -126 120 -50 Q150 30 80 90 Q30 112 0 110 Q40 40 0 -118 Z" fill="#776b63"/><circle cx="-40" cy="-30" r="22" fill="#776b63"/><circle cx="50" cy="40" r="14" fill="#5f5550"/></svg>`,
-  uncommon: `<svg viewBox="-150 -130 300 260"><circle cx="95" cy="-70" r="34" fill="#3d8bfd"/><path d="M95 -104 A34 34 0 0 1 95 -36 A20 34 0 0 0 95 -104 Z" fill="#2a6ad6"/><path d="M-90 -10 Q-70 -80 0 -78 Q70 -84 90 -30 Q110 30 50 70 Q0 96 -60 70 Q-112 30 -90 -10 Z" fill="#a7826a"/><path d="M0 -78 Q70 -84 90 -30 Q110 30 50 70 Q20 86 0 84 Q30 20 0 -78 Z" fill="#86664f"/><circle cx="-30" cy="-10" r="16" fill="#86664f"/></svg>`,
-  rare: `<svg viewBox="-150 -130 300 260"><defs><linearGradient id="ct" x1="1" x2="0"><stop offset="0" stop-color="#bff3ff" stop-opacity=".85"/><stop offset="1" stop-color="#bff3ff" stop-opacity="0"/></linearGradient></defs><path d="M40 -38 L-150 10 L-150 70 L40 38 Z" fill="url(#ct)"/><circle cx="50" cy="0" r="44" fill="#bff3ff"/><path d="M50 -44 A44 44 0 0 1 50 44 A28 44 0 0 0 50 -44 Z" fill="#8fd9ea"/></svg>`,
-  legendary: `<svg viewBox="-150 -130 300 260"><path d="M-140 90 Q0 -40 140 -110" fill="none" stroke="#ffd23f" stroke-width="5" stroke-dasharray="4 14" stroke-linecap="round"/><ellipse cx="0" cy="-10" rx="70" ry="26" transform="rotate(-25)" fill="#c98a5a"/><ellipse cx="10" cy="-14" rx="40" ry="14" transform="rotate(-25)" fill="#a96c42"/></svg>`,
-  unique: `<svg viewBox="-150 -130 300 260"><text x="0" y="55" text-anchor="middle" font-family="Nunito" font-weight="900" font-size="180" fill="#ffd23f">?</text></svg>`,
-};
+// Sample facts, labelled as sample data in the UI. "How often" figures are rough shares of known objects.
 const KINDS = {
-  common:    { tier: 'Common', gems: 1, color: '#a9adcf', name: 'Asteroid', type: 'Main belt', blurb: 'Between Mars and Jupiter. You will catch lots of these.' },
-  uncommon:  { tier: 'Uncommon', gems: 2, color: '#33e0c0', name: 'Near-Earth asteroid', type: 'Earth crosser', blurb: 'Its path brings it close to Earth.' },
-  rare:      { tier: 'Rare', gems: 3, color: '#ff5c8a', name: 'Comet', type: 'Icy wanderer', blurb: 'A ball of ice with a glowing tail.' },
-  legendary: { tier: 'Legendary', gems: 4, color: '#ffd23f', name: 'Interstellar visitor', type: 'From another star', blurb: 'Came from another star. Only a few ever seen.' },
-  unique:    { tier: 'One of a kind', gems: 5, color: '#fff7ea', name: 'Not on any list', type: 'Unknown mover', blurb: 'Sent to experts for a closer look.' },
+  common:    { name: 'Main-belt asteroid', short: 'Main belt', color: '#c9b79c',
+               facts: [['Size', 'about 2 km across'], ['How often', 'most movers you will see'], ['Lives', 'between Mars and Jupiter']] },
+  uncommon:  { name: 'Near-Earth asteroid', short: 'Near-Earth', color: '#ff8a4c',
+               facts: [['Size', 'about 3 football fields'], ['How often', 'about 1 in 40 known asteroids'], ['Orbit', "crosses Earth's path"]] },
+  rare:      { name: 'Comet', short: 'Comet', color: '#6fd3d6',
+               facts: [['Made of', 'ice and dust'], ['How often', 'about 1 in 350 known objects'], ['Tail', 'grows near the Sun']] },
+  legendary: { name: 'Interstellar visitor', short: 'Interstellar', color: '#a990ff',
+               facts: [['From', 'another star'], ['How often', '3 ever seen'], ['Speed', 'too fast for the Sun to hold']] },
+  unique:    { name: 'Not on any list', short: 'Unlisted', color: '#f4f4f2',
+               facts: [['Status', 'no match in NASA JPL list'], ['How often', 'very rare'], ['Next', 'sent to experts to check']] },
 };
 const ORDER = ['common', 'uncommon', 'rare', 'legendary', 'unique'];
-// Sample facts only, clearly marked as samples in the UI.
-const FACTS = {
-  common:    [['Size', 'about 2 km across'], ['Distance', '310 million km'], ['Orbit', 'once every 4.1 years']],
-  uncommon:  [['Size', 'about 3 football fields'], ['Next pass by Earth', '2031'], ['Orbit', 'once every 1.6 years']],
-  rare:      [['Made of', 'ice and dust'], ['Tail', 'grows near the Sun'], ['Orbit', 'once every 7 years']],
-  legendary: [['From', 'outside our Solar System'], ['Speed', 'too fast to be caught by the Sun'], ['Seen', 'once, then gone']],
-  unique:    [['Status', 'no match found'], ['Next', 'flagged for expert review'], ['You', 'were first to spot it']],
-};
 const SCRIPT = ['common', 'uncommon', 'common', 'rare', 'legendary', 'unique'];
 const WEIGHTS = [['common', 55], ['uncommon', 25], ['rare', 12], ['legendary', 5], ['unique', 3]];
-const RANKS = ['Stargazer', 'Sky Watcher', 'Rock Spotter', 'Comet Chaser', 'Orbit Hunter', 'Deep-Sky Legend'];
+const MONTHS = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
+
+// Uniform card back: flat purple, line doodles of things you can catch, the name top and bottom like a playing card.
+const BACK_SVG = `<svg viewBox="0 0 630 880"><rect width="630" height="880" fill="#1c1242"/>
+  <g fill="#e6dcff" fill-opacity=".55">${(() => { const r = rng(3); let s = ''; for (let i = 0; i < 110; i++) { const m = Math.pow(r(), 4); s += `<circle cx="${(30 + r() * 570).toFixed(0)}" cy="${(30 + r() * 820).toFixed(0)}" r="${(1 + m * 3).toFixed(1)}"/>`; } return s; })()}</g>
+  <rect x="22" y="22" width="586" height="836" rx="22" fill="none" stroke="#e6dcff" stroke-opacity=".3" stroke-width="2"/>
+  <g fill="none" stroke="#c9bdf0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity=".75">
+    <path d="M120 150c-8-30 22-48 46-40 28-8 50 14 42 40 8 26-20 46-44 38-26 8-52-12-44-38z"/><circle cx="150" cy="140" r="8"/><circle cx="178" cy="168" r="5"/>
+    <circle cx="470" cy="190" r="12"/><path d="M462 199L380 268M470 203L398 280M455 193L372 252"/>
+    <path d="M450 590c-6-22 16-36 34-30 20-6 38 10 32 30 6 20-14 34-32 28-20 6-38-8-34-28z"/><circle cx="472" cy="584" r="6"/>
+    <path d="M130 640c-6-18 12-30 28-26 18-4 32 10 26 26 4 16-12 28-28 24-16 4-30-8-26-24z"/><circle cx="148" cy="636" r="4"/>
+    <path d="M300 250l8-22 8 22 22 8-22 8-8 22-8-22-22-8z"/><path d="M520 420l5-14 5 14 14 5-14 5-5 14-5-14-14-5z"/><path d="M95 400l5-14 5 14 14 5-14 5-5 14-5-14-14-5z"/>
+    <path d="M300 720h22M311 709v22M220 330h16M228 322v16M560 300h14M567 293v14M70 780h14M77 773v14"/>
+    <rect x="282" y="560" width="30" height="20" rx="3" transform="rotate(-25 297 570)"/><path d="M250 590l30-14M314 556l30-14" transform="rotate(-25 297 570)"/>
+  </g>
+  <text x="315" y="92" text-anchor="middle" fill="#ddd4f5" font-family="Hanken Grotesk, Helvetica, Arial, sans-serif" font-weight="700" font-size="44" letter-spacing="-1">BlinkSky</text>
+  <text x="315" y="92" text-anchor="middle" fill="#ddd4f5" font-family="Hanken Grotesk, Helvetica, Arial, sans-serif" font-weight="700" font-size="44" letter-spacing="-1" transform="rotate(180 315 440)">BlinkSky</text></svg>`;
 
 /* ---------- state ---------- */
-let col = {}, reals = [];
-try { col = JSON.parse(localStorage.getItem('blinksky.col') || '{}'); } catch (e) { col = {}; }
-try { reals = JSON.parse(localStorage.getItem('blinksky.real') || '[]'); } catch (e) { reals = []; }
-const save = () => { try { localStorage.setItem('blinksky.col', JSON.stringify(col)); localStorage.setItem('blinksky.real', JSON.stringify(reals)); } catch (e) {} };
-let roundNo = 0, round = null, frame = 0, timer = null, paused = false, tries = 0, showKnown = false;
+const load = (k, d) => { try { return JSON.parse(localStorage.getItem(k) || '') ?? d; } catch (e) { return d; } };
+let col = load('blinksky2.col', {}), photos = load('blinksky2.photos', {}), reals = load('blinksky2.real', []);
+const save = () => { try {
+  localStorage.setItem('blinksky2.col', JSON.stringify(col)); localStorage.setItem('blinksky2.photos', JSON.stringify(photos)); localStorage.setItem('blinksky2.real', JSON.stringify(reals));
+} catch (e) {} };
+let roundNo = 0, round = null, frame = 0, timer = null, paused = false, tries = 0, hintOn = false, showKnown = false, listUsed = false;
 const view = { s: 1, ox: 0, oy: 0, w: 0, h: 0 };
 
 const $ = id => document.getElementById(id);
 function rng(seed) { return () => { seed = (seed * 16807) % 2147483647; return (seed - 1) / 2147483646; }; }
+const today = () => { const d = new Date(); return `${d.getDate()} ${MONTHS[d.getMonth()]} ${d.getFullYear()}`; };
 
-/* ---------- trading cards ---------- */
-function cardHTML(c, w) {
-  // c: { rarity, name, type, blurb, gems, art, no, count, facts:[[k,v]], src, stamp, locked }
-  const gems = '◆'.repeat(c.gems) + '◇'.repeat(5 - c.gems);
-  return `<div class="tcard r-${c.rarity}${c.locked ? ' locked flipped' : ' open'}" style="--w:${w}px">
-    <div class="tilt"><div class="flip">
-      <div class="face front"><div class="frame"></div><div class="in">
-        <div class="top"><span class="nm">${c.name}</span><span class="gems">${gems}</span></div>
-        <div class="win">${c.art}</div>
-        <div class="type">${c.type}</div>
-        <div class="txt">${c.blurb}</div>
-        <div class="foot"><span>${c.no}</span><span>${c.count ? '×' + c.count : ''}</span></div>
-      </div>${c.stamp ? `<div class="stamp">${c.stamp}</div>` : ''}<div class="holo"></div><div class="sparks"></div><div class="glare"></div></div>
-      <div class="face back"><div class="frame"></div>
-        <div class="cover"><b>Blink<span>Sky</span></b><small>${c.locked ? 'NOT FOUND YET' : 'SKY CARD'}</small></div>
-        <div class="sheet"><h3>Field notes</h3><dl>${(c.facts || []).map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join('')}</dl><div class="src">${c.src || ''}</div></div>
-      </div>
-    </div></div></div>`;
+/* ---------- cards ---------- */
+// c: { kind, name, type, rows:[[k,v]], photo, no, foot, check, facts, src, closeup }
+function cardFront(c, w) {
+  const k = KINDS[c.kind];
+  const win = c.photo ? `<img src="${c.photo}" alt="Your photo"><span class="ring"></span>` : `<svg viewBox="0 0 100 100"><use href="#k-${c.kind}"/></svg>`;
+  return `<div class="tc" style="--w:${w}px;--c:${k.color}">
+    <div class="tc-top"><span>${c.no}</span><span class="kd"><i></i>${k.short}</span></div>
+    <div class="tc-win">${win}</div>
+    <div class="tc-name">${c.name}</div>
+    <div class="tc-type">${c.type}</div>
+    <div class="tc-rows">${c.rows.map(([a, b]) => `<div><span>${a}</span><b>${b}</b></div>`).join('')}</div>
+    <div class="tc-foot"><span>${c.foot}</span><span>${c.check}</span></div>
+  </div>`;
 }
+const cardBack = w => `<div class="tc back" style="--w:${w}px">${BACK_SVG}</div>`;
+
 function sampleCard(k) {
-  const i = KINDS[k], n = col[k] || 0;
-  return { rarity: k, name: i.name, type: `${i.tier} · ${i.type}`, blurb: i.blurb, gems: i.gems, art: ART[k],
-    no: `No. ${String(ORDER.indexOf(k) + 1).padStart(3, '0')}/005`, count: n,
-    facts: [...FACTS[k], ['Caught over', 'Dhaka'], ['You have', n || 'none yet']], src: 'SAMPLE DATA · PROTOTYPE', locked: !n };
+  const i = KINDS[k], p = photos[k];
+  return { kind: k, name: i.name, type: 'Sample data', no: `No. ${String(ORDER.indexOf(k) + 1).padStart(3, '0')}`,
+    rows: i.facts.slice(0, 3), facts: [...i.facts, ['Caught over', 'Dhaka'], ['Times caught', col[k] || 0]],
+    photo: p && p.img, foot: p ? `${p.date}${p.hint ? ' · with a hint' : ''}` : '', check: 'Sample',
+    src: 'Sample data for the prototype. The photo is a generated practice sky.', locked: !col[k] };
 }
 function realCard(r, i) {
-  return { rarity: 'real', name: r.name, type: `Real · ${r.comet ? 'Comet' : 'Asteroid'}`, gems: r.comet ? 3 : 2, art: ART[r.comet ? 'rare' : 'common'],
-    blurb: `Already known to NASA JPL. Seen in ${r.seen} of ${r.total} SPHEREx photos.`, no: `REAL ${String(i + 1).padStart(2, '0')}`, stamp: 'REAL NASA DATA',
+  return { kind: r.comet ? 'rare' : 'common', name: r.name, type: `Real ${r.comet ? 'comet' : 'asteroid'}`, no: `Real ${String(i + 1).padStart(2, '0')}`,
+    rows: [['Brightness', `magnitude ${r.v_mag ?? '?'}`], ['Seen in', `${r.seen} of ${r.total} photos`], ['Band', `${r.band.split(', ')[1] || ''}`]],
     facts: [['Brightness', `magnitude ${r.v_mag ?? '?'}`], ['SPHEREx band', r.band], ['Photos', r.times], ['Checked by', 'NASA JPL small-body list']],
-    src: 'REAL DATA · SPHEREx via NASA/IPAC IRSA · NASA JPL' };
+    photo: r.photo, foot: `${r.date || ''}${r.list ? " · with NASA's list" : r.hint ? ' · with a hint' : ''}`, check: '✓ NASA JPL',
+    src: 'Real data. Photos: NASA SPHEREx via NASA/IPAC IRSA. Known-object check: NASA JPL Solar System Dynamics.' };
 }
-// Tilt toward the pointer, shine follows it, tap flips.
-function wireCard(el, opts = {}) {
-  const set = (px, py) => {
-    el.style.setProperty('--rx', ((px - .5) * 26).toFixed(1) + 'deg'); el.style.setProperty('--ry', (-(py - .5) * 26).toFixed(1) + 'deg');
-    el.style.setProperty('--mx', (px * 100).toFixed(1) + '%'); el.style.setProperty('--my', (py * 100).toFixed(1) + '%');
-  };
-  el.addEventListener('pointermove', e => { const r = el.getBoundingClientRect(); el.classList.add('hover'); set((e.clientX - r.left) / r.width, (e.clientY - r.top) / r.height); });
-  el.addEventListener('pointerleave', () => { el.classList.remove('hover'); set(.5, .5); });
-  el.addEventListener('click', e => {
-    if (opts.onTap && opts.onTap(el) === false) return;
-    if (el.classList.contains('locked') || el.classList.contains('sealed')) { el.classList.remove('shake'); void el.offsetWidth; el.classList.add('shake'); return; }
-    el.classList.toggle('flipped');
-  });
-}
-// Idle shimmer so cards feel alive without touching them.
-(function sway(t) {
-  document.querySelectorAll('.screen.on .tcard.idle:not(.hover)').forEach((el, i) => {
-    const a = t / 1300 + i;
-    el.style.setProperty('--rx', (Math.sin(a) * 9).toFixed(1) + 'deg'); el.style.setProperty('--ry', (Math.cos(a * .8) * 5).toFixed(1) + 'deg');
-    el.style.setProperty('--mx', (50 + Math.sin(a) * 40).toFixed(1) + '%'); el.style.setProperty('--my', (50 + Math.cos(a * .8) * 30).toFixed(1) + '%');
-  });
-  requestAnimationFrame(sway);
-})(0);
 
-/* ---------- screens + nav ---------- */
+/* ---------- details sheet ---------- */
+function openSheet(c) {
+  const k = KINDS[c.kind];
+  $('sheet').style.setProperty('--c', k.color);
+  $('sheet').innerHTML = `<div class="grab"></div>
+    <div class="sh-head"><div class="sh-art"><svg viewBox="0 0 100 100"><use href="#k-${c.kind}"/></svg></div>
+      <div><h2>${c.name}</h2><small>${c.type === 'Sample data' ? k.name : c.type}</small></div></div>
+    ${c.photo ? `<figure class="sh-photo"><img src="${c.photo}" alt="Your photo"><figcaption>Your photo, where you tapped${c.check === 'Sample' ? ' (practice sky)' : ''}</figcaption></figure>` : ''}
+    ${c.closeup ? `<figure class="sh-photo"><img src="${c.closeup.src}" alt="Close-up"><figcaption>${c.closeup.credit}</figcaption></figure>` : ''}
+    <div class="sh-rows">${c.facts.map(([a, b]) => `<div><span>${a}</span><b>${b}</b></div>`).join('')}</div>
+    <p class="sh-src">${c.src}</p>`;
+  $('app').classList.add('sheet-open');
+}
+const closeSheet = () => $('app').classList.remove('sheet-open');
+$('scrim').onclick = closeSheet;
+addEventListener('keydown', e => { if (e.key === 'Escape') closeSheet(); });
+
+/* ---------- screens ---------- */
 function show(id) {
+  closeSheet();
   document.querySelectorAll('.screen').forEach(s => s.classList.toggle('on', s.id === id));
-  $('app').classList.toggle('playing', id === 'play');
-  $('skyline').style.display = id === 'home' ? '' : 'none';
-  $('navHome').classList.toggle('on', id === 'home');
-  $('navCol').classList.toggle('on', id === 'collection');
   if (id !== 'play') clearInterval(timer);
   if (id === 'home') renderHome();
 }
-function progress() {
-  const found = ORDER.filter(k => col[k]).length;
-  const xp = ORDER.reduce((a, k) => a + (col[k] || 0) * (ORDER.indexOf(k) + 1) * 10, 0) + reals.length * 40;
-  const lv = Math.floor(Math.sqrt(xp / 25)) + 1, base = 25 * (lv - 1) ** 2, next = 25 * lv ** 2;
-  return { found, xp, lv, pct: (xp - base) / (next - base) * 100 };
-}
-function updateBadge() { $('colLabel').textContent = `Deck ${ORDER.filter(k => col[k]).length}/5`; }
 function renderHome() {
-  const p = progress();
-  $('lvl').textContent = p.lv; $('rank').textContent = RANKS[Math.min(RANKS.length - 1, p.lv - 1)];
-  $('xpbar').style.width = p.pct + '%';
-  $('deckCount').textContent = `${p.found}/5`;
-  $('deckSub').textContent = p.found ? `${p.found} of 5 found${reals.length ? ` · ${reals.length} real` : ''}` : 'No cards yet. Go hunt!';
-  const got = ORDER.filter(k => col[k]).reverse();
-  const picks = [...got, ...ORDER.filter(k => !col[k])].slice(0, 3);
-  $('fan').innerHTML = picks.map(k => cardHTML(sampleCard(k), 64)).join('');
+  const d = new Date();
+  $('today').textContent = `${d.getDate()} ${MONTHS[d.getMonth()]}`;
+  $('deckCount').textContent = `${ORDER.filter(k => col[k]).length}/5`;
 }
 function go(where) { if (where === 'hunt') newRound(); else if (where === 'collection') renderCollection(); else show('home'); }
 document.querySelectorAll('[data-go]').forEach(b => b.onclick = () => go(b.dataset.go));
 
-/* ---------- background starfield (menus) ---------- */
+/* ---------- home sky: still stars, nothing pointed out ---------- */
 (function () {
   const cv = $('bg'), ctx = cv.getContext('2d'), r = rng(7);
-  const stars = [...Array(140)].map(() => [r(), r() * .8, .4 + r() * 1.4, r() * 6.28, .4 + r() * 2]);
-  let mover = { x: .2, y: .2, step: 0, t: 0 };
-  function frameBg(t) {
-    if (!$('app').classList.contains('playing')) {
+  const stars = [...Array(170)].map(() => [r(), r() * .7, .4 + Math.pow(r(), 3) * 1.6, r() * 6.28, .3 + r() * 1.2]);
+  function draw(t) {
+    if ($('home').classList.contains('on')) {
       const dpr = devicePixelRatio || 1, w = cv.clientWidth, h = cv.clientHeight;
       if (cv.width !== Math.round(w * dpr)) { cv.width = Math.round(w * dpr); cv.height = Math.round(h * dpr); }
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      const g = ctx.createRadialGradient(w * .7, h * .1, 0, w * .7, h * .1, h);
-      g.addColorStop(0, '#22206a'); g.addColorStop(.55, '#121540'); g.addColorStop(1, '#070820');
-      ctx.fillStyle = g; ctx.fillRect(0, 0, w, h);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.fillStyle = '#000'; ctx.fillRect(0, 0, w, h);
       for (const [x, y, s, ph, sp] of stars) {
-        const a = .35 + .65 * (.5 + .5 * Math.sin(t / 1000 * sp + ph));
-        ctx.fillStyle = `rgba(230,232,255,${a})`; ctx.beginPath(); ctx.arc(x * w, y * h, s, 0, 7); ctx.fill();
+        ctx.fillStyle = `rgba(244,244,242,${.35 + .5 * (.5 + .5 * Math.sin(t / 1400 * sp + ph))})`;
+        ctx.beginPath(); ctx.arc(x * w, y * h, s, 0, 7); ctx.fill();
       }
-      // The game's idea in the background: one dot that jumps while the stars stay put.
-      if (t - mover.t > 700) { mover.t = t; mover.step++; if (mover.step > 6) mover = { x: .1 + Math.random() * .6, y: .08 + Math.random() * .35, step: 0, t }; }
-      const mx = (mover.x + mover.step * .018) * w, my = (mover.y + mover.step * .009) * h;
-      ctx.strokeStyle = 'rgba(255,210,63,.35)'; ctx.setLineDash([2, 6]); ctx.beginPath(); ctx.moveTo(mover.x * w, mover.y * h); ctx.lineTo(mx, my); ctx.stroke(); ctx.setLineDash([]);
-      ctx.fillStyle = '#ffd23f'; ctx.shadowColor = '#ffd23f'; ctx.shadowBlur = 12; ctx.beginPath(); ctx.arc(mx, my, 2.6, 0, 7); ctx.fill(); ctx.shadowBlur = 0;
     }
-    requestAnimationFrame(frameBg);
+    requestAnimationFrame(draw);
   }
-  requestAnimationFrame(frameBg);
+  requestAnimationFrame(draw);
 })();
 
 /* ---------- the big sky photo ---------- */
-// Real survey images are large, so the sample sky is a big field you scan by dragging and zooming.
+// Real survey images are large, so the practice sky is a big field you scan by dragging and zooming.
+// The mover is drawn exactly like the stars around it: same colour, no glow. Finding it is the player's job.
 const WORLD = 1600, FRAMES = 4;
 function pickKind() {
   if (roundNo < SCRIPT.length) return SCRIPT[roundNo];
@@ -488,41 +375,31 @@ function blob(ctx, x, y, s, a, rgb = '232,236,255') {
 function makeRound(kind) {
   const seed = 1000 + Math.floor(Math.random() * 90000), r = rng(seed);
   const stars = [];
-  for (let i = 0; i < 950; i++) { const c = r(); stars.push([r() * WORLD, r() * WORLD, 2 + Math.pow(r(), 3.2) * 13, .45 + r() * .55, c < .08 ? '255,214,170' : c < .2 ? '178,200,255' : '232,236,255']); }
+  for (let i = 0; i < 950; i++) { const c = r(); stars.push([r() * WORLD, r() * WORLD, 2 + Math.pow(r(), 3.2) * 13, .45 + r() * .55, c < .08 ? '255,226,200' : c < .2 ? '210,220,255' : '236,238,244']); }
   const speed = { uncommon: 30, legendary: 40, rare: 20 }[kind] || 16;
   const ang = r() * Math.PI * 2, x0 = 220 + r() * (WORLD - 440), y0 = 220 + r() * (WORLD - 440);
   const path = [...Array(FRAMES)].map((_, i) => [x0 + Math.cos(ang) * speed * i, y0 + Math.sin(ang) * speed * i]);
   const frames = [...Array(FRAMES)].map((_, i) => {
-    // Grain: a small random tile repeated, different per photo, as real frames would differ.
     const t = document.createElement('canvas'); t.width = t.height = 256;
     const tg = t.getContext('2d'), img = tg.createImageData(256, 256), n = rng(seed + i * 7919);
-    for (let p = 0; p < 65536; p++) { const v = 6 + n() * 18; img.data[p * 4] = v * .55; img.data[p * 4 + 1] = v * .6; img.data[p * 4 + 2] = v + 10; img.data[p * 4 + 3] = 255; }
+    for (let p = 0; p < 65536; p++) { const v = 4 + n() * 14; img.data[p * 4] = v; img.data[p * 4 + 1] = v; img.data[p * 4 + 2] = v + 3; img.data[p * 4 + 3] = 255; }
     tg.putImageData(img, 0, 0);
     const c = document.createElement('canvas'); c.width = c.height = WORLD;
     const g = c.getContext('2d');
     g.fillStyle = g.createPattern(t, 'repeat'); g.fillRect(0, 0, WORLD, WORLD);
     for (const [x, y, s, a, rgb] of stars) blob(g, x, y, s, a, rgb);
     const [mx, my] = path[i];
-    if (kind === 'rare') { blob(g, mx, my, 22, .5); blob(g, mx, my, 8, .9); }
-    else blob(g, mx, my, kind === 'unique' ? 7 : 9, kind === 'unique' ? .6 : .95);
+    if (kind === 'rare') { blob(g, mx, my, 20, .45, '236,238,244'); blob(g, mx, my, 7, .9, '236,238,244'); }
+    else blob(g, mx, my, kind === 'unique' ? 6 : 8, kind === 'unique' ? .6 : .9, '236,238,244');
     return c;
   });
   return { kind, path, frames, w: WORLD, h: WORLD };
 }
 
 /* Real SPHEREx photos: each real pixel is 6.15 arcseconds of sky, so a cutout is only a few hundred pixels.
-   Drawn as hard squares and blown up to phone size it looks blocky. We redraw it the way astronomers display
-   survey images: the dark sky pushed to black, a colour scale, smooth enlargement and a soft glow on stars.
-   No detail is added; every star is still exactly where SPHEREx saw it. */
+   We redraw it the way survey images are usually displayed: the dark sky pushed to black, a grey scale,
+   smooth enlargement and a soft glow on stars. No detail is added; every star stays where SPHEREx saw it. */
 const EXPORT_SCALE = 6, UP = 4;
-const LUT = (() => {
-  const stops = [[0, [4, 6, 22]], [.28, [18, 22, 70]], [.52, [84, 80, 196]], [.78, [206, 214, 255]], [1, [255, 255, 255]]], out = [];
-  for (let i = 0; i < 256; i++) {
-    const v = i / 255, j = stops.findIndex(s => s[0] >= v), [a, b] = [stops[Math.max(0, j - 1)], stops[j]], f = (v - a[0]) / Math.max(1e-6, b[0] - a[0]);
-    out.push(a[1].map((c, q) => Math.round(c + (b[1][q] - c) * f)));
-  }
-  return out;
-})();
 function prepReal(img) {
   const nw = Math.round(img.width / EXPORT_SCALE), nh = Math.round(img.height / EXPORT_SCALE);
   const n = document.createElement('canvas'); n.width = nw; n.height = nh;
@@ -532,17 +409,16 @@ function prepReal(img) {
   const sorted = [...vals].sort((a, b) => a - b), q = p => sorted[Math.floor(p * (sorted.length - 1))];
   const lo = q(.72), hi = Math.max(lo + 1, q(.998));
   vals.forEach((v, i) => {
-    const t = Math.pow(Math.min(1, Math.max(0, (v - lo) / (hi - lo))), .85), c = LUT[Math.round(t * 255)];
-    px[i * 4] = c[0]; px[i * 4 + 1] = c[1]; px[i * 4 + 2] = c[2];
+    const t = Math.pow(Math.min(1, Math.max(0, (v - lo) / (hi - lo))), .85) * 255;
+    px[i * 4] = t; px[i * 4 + 1] = t; px[i * 4 + 2] = Math.min(255, t + 6);
   });
   nc.putImageData(d, 0, 0);
   const big = document.createElement('canvas'); big.width = nw * UP; big.height = nh * UP;
   const bc = big.getContext('2d'); bc.imageSmoothingEnabled = true; bc.imageSmoothingQuality = 'high';
-  // enlarge in two steps: smoother than one big jump
   const mid = document.createElement('canvas'); mid.width = nw * 2; mid.height = nh * 2;
   const mc = mid.getContext('2d'); mc.imageSmoothingQuality = 'high'; mc.drawImage(n, 0, 0, mid.width, mid.height);
   bc.drawImage(mid, 0, 0, big.width, big.height);
-  bc.globalCompositeOperation = 'lighter'; bc.globalAlpha = .45; bc.filter = `blur(${UP * 1.2}px)`; bc.drawImage(big, 0, 0);
+  bc.globalCompositeOperation = 'lighter'; bc.globalAlpha = .4; bc.filter = `blur(${UP * 1.2}px)`; bc.drawImage(big, 0, 0);
   bc.filter = 'none'; bc.globalAlpha = 1; bc.globalCompositeOperation = 'source-over';
   return big;
 }
@@ -561,28 +437,34 @@ function clampView() {
 function render() {
   if (!round) return;
   const cv = $('sky'), ctx = cv.getContext('2d'), dpr = devicePixelRatio || 1;
-  ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.fillStyle = '#05071a'; ctx.fillRect(0, 0, cv.width, cv.height);
+  ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.fillStyle = '#000'; ctx.fillRect(0, 0, cv.width, cv.height);
   ctx.setTransform(dpr * view.s, 0, 0, dpr * view.s, -view.ox * view.s * dpr, -view.oy * view.s * dpr);
   ctx.imageSmoothingEnabled = true; ctx.imageSmoothingQuality = 'high';
   ctx.drawImage(round.frames[frame], 0, 0);
+  if (hintOn && round.hintArea) {
+    // A hint narrows the search to an area. It never marks the mover itself.
+    const [hx, hy, hr] = round.hintArea;
+    ctx.lineWidth = 2 / view.s; ctx.setLineDash([8 / view.s, 8 / view.s]); ctx.strokeStyle = 'rgba(244,244,242,.6)';
+    ctx.beginPath(); ctx.arc(hx, hy, hr, 0, 7); ctx.stroke(); ctx.setLineDash([]);
+  }
   if (round.real && showKnown) {
-    ctx.lineWidth = 3 / view.s; ctx.font = `800 ${14 / view.s}px Nunito, sans-serif`;
+    // Real NASA sky only: a data view of where NASA JPL says each known object is. Practice rounds never show this.
+    ctx.lineWidth = 2 / view.s; ctx.font = `500 ${12 / view.s}px "Hanken Grotesk", sans-serif`;
     for (const o of round.objects) {
       const pos = o.positions[frame]; if (!pos) continue;
-      ctx.strokeStyle = '#c3b3ff'; ctx.beginPath(); ctx.arc(pos[0], pos[1], 18, 0, 7); ctx.stroke();
-      ctx.fillStyle = '#ffd23f'; ctx.fillText(`${o.name} · mag ${o.v_mag ?? '?'}`, pos[0] + 22, pos[1] + 5);
+      ctx.strokeStyle = '#f4f4f2'; ctx.beginPath(); ctx.arc(pos[0], pos[1], 16, 0, 7); ctx.stroke();
+      ctx.fillStyle = '#c9c9c4'; ctx.fillText(`${o.name} · mag ${o.v_mag ?? '?'}`, pos[0] + 20, pos[1] + 4);
     }
   }
   drawMini();
-  $('frameLabel').textContent = `${frame + 1}/${round.frames.length}`;
-  [...$('dots').children].forEach((d, i) => d.classList.toggle('on', i === frame));
+  [...$('frames').children].forEach((d, i) => d.classList.toggle('on', i === frame));
 }
 function drawMini() {
   const m = $('mini').getContext('2d');
-  m.clearRect(0, 0, 184, 184);
-  m.fillStyle = 'rgba(255,255,255,.06)'; m.fillRect(8, 8, 168, 168);
-  const k = 168 / Math.max(round.w, round.h);
-  m.strokeStyle = '#c3b3ff'; m.lineWidth = 4;
+  m.clearRect(0, 0, 152, 152);
+  const k = 136 / Math.max(round.w, round.h);
+  if (hintOn && round.hintArea) { m.fillStyle = 'rgba(244,244,242,.15)'; m.beginPath(); m.arc(8 + round.hintArea[0] * k, 8 + round.hintArea[1] * k, round.hintArea[2] * k, 0, 7); m.fill(); }
+  m.strokeStyle = '#f4f4f2'; m.lineWidth = 3;
   m.strokeRect(8 + view.ox * k, 8 + view.oy * k, view.w / view.s * k, view.h / view.s * k);
 }
 function startBlink() { clearInterval(timer); timer = setInterval(() => { frame = (frame + 1) % round.frames.length; render(); }, round.real ? 900 : 650); }
@@ -629,45 +511,62 @@ function zoomAt(px, py, f) {
   view.s *= f; clampView(); view.ox = wx - px / view.s; view.oy = wy - py / view.s;
 }
 let toastTimer = null;
-function toast(text, color) {
-  const t = $('toast'); t.textContent = text; t.style.color = color || ''; t.style.opacity = 1;
+function toast(text) {
+  const t = $('toast'); t.textContent = text; t.style.opacity = 1;
   clearTimeout(toastTimer); toastTimer = setTimeout(() => t.style.opacity = 0, 2600);
 }
 function lockOn(sx, sy, then) {
   clearInterval(timer);
   const l = document.createElement('div'); l.className = 'lock'; l.style.left = sx + 'px'; l.style.top = sy + 'px';
-  $('play').appendChild(l); toast('Locked on!', 'var(--yellow)');
-  setTimeout(() => { l.remove(); then(); }, 650);
+  $('play').appendChild(l); toast('Got it');
+  setTimeout(() => { l.remove(); then(); }, 550);
+}
+// Cut a small piece of the photo around the tap: this is the picture on the card.
+function snapshot(wx, wy) {
+  const W = 228, H = 144, c = document.createElement('canvas'); c.width = W; c.height = H;
+  const g = c.getContext('2d'), z = round.real ? 1 : 1.4;
+  g.fillStyle = '#000'; g.fillRect(0, 0, W, H);
+  g.drawImage(round.frames[frame], wx - W / 2 / z, wy - H / 2 / z, W / z, H / z, 0, 0, W, H);
+  return c.toDataURL('image/jpeg', .82);
 }
 function tap(wx, wy, sx, sy) {
   const tol = Math.max(24, 34 / view.s);
   if (round.real) {
     const hit = round.objects.find(o => o.positions.some(p => p && Math.hypot(p[0] - wx, p[1] - wy) < tol));
-    if (hit) { lockOn(sx, sy, () => realCaught(hit)); return; }
+    if (hit) { const shot = snapshot(wx, wy); lockOn(sx, sy, () => realCaught(hit, shot)); return; }
     tries++;
-    toast(tries < 2 ? 'Nothing known there. Keep looking.' : 'Real asteroids can be faint. Try "Show known objects".', 'var(--pink)');
+    toast(tries < 3 ? 'Nothing known there. Keep looking.' : 'Real asteroids can be very faint. Try a hint.');
     return;
   }
-  if (round.path.some(([mx, my]) => Math.hypot(mx - wx, my - wy) < tol)) { lockOn(sx, sy, caught); return; }
+  if (round.path.some(([mx, my]) => Math.hypot(mx - wx, my - wy) < tol)) { const shot = snapshot(wx, wy); lockOn(sx, sy, () => caught(shot)); return; }
   tries++;
-  toast('That one stays still. Keep looking.', 'var(--pink)');
+  toast(tries < 3 ? 'That one stays still. Keep looking.' : 'Stuck? Try a hint.');
+}
+// The hint circle contains the mover but is not centred on it.
+function makeHintArea() {
+  const R = round.real ? 90 : 230;
+  let tx, ty;
+  if (round.real) { const o = round.objects.find(o => o.positions.some(Boolean)); if (!o) return null; [tx, ty] = o.positions.find(Boolean); }
+  else [tx, ty] = round.path[0];
+  const a = Math.random() * 6.28, d = R * (.3 + Math.random() * .4);
+  return [tx + Math.cos(a) * d, ty + Math.sin(a) * d, R];
 }
 
 /* ---------- flow ---------- */
-function newRound() { startRound(makeRound(pickKind())); toast('Drag to look around. Tap what moved.'); }
+function newRound() { startRound(makeRound(pickKind())); toast('Tap what moves'); }
 function startRound(r) {
-  round = r; frame = 0; paused = false; tries = 0; showKnown = false;
-  $('pause').textContent = 'Pause';
-  $('dots').innerHTML = '<i></i>'.repeat(round.frames.length);
-  $('known').hidden = !round.real; $('known').textContent = 'Show known objects';
+  round = r; frame = 0; paused = false; tries = 0; hintOn = false; showKnown = false; listUsed = false; round.hintArea = makeHintArea();
+  $('known').hidden = !round.real; $('known').textContent = "Show NASA's list";
+  $('pause').textContent = '❚❚ Pause'; $('hint').disabled = !round.hintArea; $('hint').style.opacity = round.hintArea ? 1 : .4;
+  $('frames').innerHTML = round.real ? round.meta.frames.map((f, i) => `<span>${'AB'[i] || i + 1} · ${f.time_utc.slice(11, 16)}</span>`).join('')
+                                     : round.frames.map((_, i) => `<span>${i + 1}</span>`).join('');
   $('realTag').hidden = !round.real;
-  if (round.real) $('realTag').textContent = `Real SPHEREx data · NASA/IPAC IRSA · ${round.meta.frames.map(f => f.time_utc).join('  →  ')}`;
+  if (round.real) $('realTag').textContent = `Real SPHEREx photos · NASA/IPAC IRSA · ${round.meta.frames[0].time_utc.slice(0, 10)}`;
   show('play'); fit();
   view.s = Math.max(view.w / round.w, view.h / round.h);
   view.ox = (round.w - view.w / view.s) / 2; view.oy = (round.h - view.h / view.s) / 2; clampView();
   render(); startBlink();
 }
-// The wider patch shows more sky at once, so it needs less zoom. Falls back to the original small round.
 const REAL_DIRS = ['real_round_wide/', 'real_round/'];
 async function fetchRound(dir) {
   const meta = await fetch(dir + 'round.json').then(r => { if (!r.ok) throw new Error(r.status); return r.json(); });
@@ -676,110 +575,76 @@ async function fetchRound(dir) {
   return { meta, imgs, dir };
 }
 async function loadReal() {
-  $('realSub').textContent = 'Loading real SPHEREx photos...';
+  $('realSub').textContent = 'Loading...';
   for (const dir of REAL_DIRS) {
     try {
       const { meta, imgs } = await fetchRound(dir);
       const frames = imgs.map(prepReal), k = UP / EXPORT_SCALE;
       const objects = meta.objects.map(o => ({ ...o, positions: o.positions.map(p => p && [p[0] * k, p[1] * k]) }));
       startRound({ real: true, meta, frames, objects, w: frames[0].width, h: frames[0].height });
-      toast('Real NASA photos, hours apart. Look for a dot that moves.');
-      $('realSub').innerHTML = 'Two SPHEREx photos, 3 hours apart.<br>Find a real asteroid.';
+      toast('Real NASA photos, hours apart. Tap what moves.');
+      $('realSub').textContent = 'SPHEREx photos';
       return;
     } catch (e) { /* try the next folder */ }
   }
   show('home');
-  $('realSub').textContent = 'Real sky not available here (open the game through a web server).';
+  $('realSub').textContent = 'needs a web server';
 }
-function burst(color) {
-  const host = $('caughtCard');
-  const f = document.createElement('div'); f.className = 'flash'; $('caught').appendChild(f); setTimeout(() => f.remove(), 600);
-  for (let i = 0; i < 18; i++) {
-    const p = document.createElement('div'); p.className = 'burst';
-    const a = Math.random() * 6.28, d = 140 + Math.random() * 120;
-    p.style.background = i % 3 ? '#fff7ea' : color; p.style.boxShadow = `0 0 8px ${i % 3 ? '#fff7ea' : color}`;
-    host.appendChild(p);
-    p.animate([{ transform: 'translate(-50%,-50%) scale(.5)', opacity: 0 }, { opacity: 1, offset: .2 },
-      { transform: `translate(${Math.cos(a) * d}px, ${Math.sin(a) * d}px) scale(1)`, opacity: 0 }],
-      { duration: 1600 + Math.random() * 900, easing: 'cubic-bezier(.2,.7,.3,1)' }).onfinish = () => p.remove();
-  }
-}
-// Every catch arrives face down like a pack card: tap to flip it over.
-function presentCard(c, title, color) {
-  $('caught').style.setProperty('--ray', color);
+function presentCard(c, title) {
+  $('stage').style.setProperty('--c', KINDS[c.kind].color);
   $('caughtTitle').textContent = title;
-  $('hint').textContent = 'Tap the card to reveal it';
-  $('after').classList.remove('on');
-  const w = Math.min(270, innerWidth * .7, (Math.min(innerHeight, 900) - 280) * .716);
-  $('caughtCard').innerHTML = cardHTML({ ...c, locked: false }, Math.round(w));
-  const el = $('caughtCard').firstElementChild;
-  el.classList.remove('open'); el.classList.add('flipped', 'sealed');
-  let stage = 0;
-  wireCard(el, { onTap: () => {
-    if (stage === 0) {
-      stage = 1; el.classList.remove('sealed', 'flipped'); el.classList.add('idle');
-      setTimeout(() => { burst(color); el.classList.add('open'); }, 260);
-      $('hint').textContent = 'Tap to flip · move over it to make it shine';
-      $('after').classList.add('on');
-      return false;
-    }
-  } });
+  $('caughtCard').innerHTML = cardFront(c, Math.round(Math.min(240, innerWidth * .62, (Math.min(innerHeight, 900) - 260) * .716)));
+  $('caughtCard').firstElementChild.onclick = () => openSheet(c);
   show('caught');
 }
-function realCaught(o) {
-  const comet = /(^|\s|\()\d*[PC]\//.test(o.name), k = comet ? 'rare' : 'common', m = round.meta;
-  col[k] = (col[k] || 0) + 1;
-  const rec = { name: o.name, v_mag: o.v_mag, comet, seen: o.positions.filter(Boolean).length, total: m.frames.length,
+function realCaught(o, shot) {
+  const comet = /(^|\s|\()\d*[PC]\//.test(o.name), m = round.meta;
+  const rec = { name: o.name, v_mag: o.v_mag, comet, seen: o.positions.filter(Boolean).length, total: m.frames.length, photo: shot, date: today(), hint: hintOn, list: listUsed,
     band: `${m.frames[0].detector}, ${m.frames[0].wavelength_um.join('–')} µm`, times: m.frames.map(f => f.time_utc).join(', ') };
   const idx = reals.findIndex(r => r.name === o.name);
   if (idx < 0) reals.push(rec); else reals[idx] = rec;
-  save(); updateBadge();
-  presentCard(realCard(rec, idx < 0 ? reals.length - 1 : idx), 'Caught a real one!', '#33e0c0');
+  save();
+  presentCard(realCard(rec, idx < 0 ? reals.length - 1 : idx), 'A real asteroid, checked by NASA JPL');
 }
-function caught() {
+function caught(shot) {
   const k = round.kind, first = !col[k];
-  col[k] = (col[k] || 0) + 1; save(); updateBadge(); roundNo++;
-  presentCard(sampleCard(k), k === 'unique' ? 'You found something new?' : first ? 'New card!' : 'Caught!', KINDS[k].color);
+  col[k] = (col[k] || 0) + 1; photos[k] = { img: shot, date: today(), hint: hintOn }; save(); roundNo++;
+  presentCard(sampleCard(k), k === 'unique' ? 'Not on any list. Sent to experts.' : first ? `First ${KINDS[k].short} in your deck` : 'Caught');
 }
 $('again').onclick = () => round && round.real ? loadReal() : newRound();
 
 /* ---------- the deck: a pile you swipe cards off ---------- */
 let deckItems = [], order = [], dragMoved = false;
 const TILT = [-4, 3.5, -2.5, 4.5, -3.5, 2.5];
+function cardW() { return Math.round(Math.min(230, innerWidth * .6, (Math.min(innerHeight, 900) - 330) * .716)); }
 function renderCollection() {
-  const p = progress();
-  deckItems = [...ORDER.map(k => ({ c: sampleCard(k), color: KINDS[k].color, tier: KINDS[k].tier })),
-               ...reals.map((r, i) => ({ c: realCard(r, i), color: '#33e0c0', tier: 'Real NASA find' }))];
-  $('colCount').textContent = `${p.found} of 5 kinds found${reals.length ? ` · ${reals.length} real NASA find${reals.length > 1 ? 's' : ''}` : ''}`;
-  $('colBar').style.width = p.found / 5 * 100 + '%';
-  $('deck').innerHTML = deckItems.map(d => `<div class="slot">${cardHTML(d.c, 248)}</div>`).join('');
-  $('pips').innerHTML = deckItems.map(d => `<button class="${d.c.locked ? '' : 'got'}" style="--c:${d.color}" aria-label="${d.c.name}"></button>`).join('');
-  // found cards on top, unfound ones underneath
+  const w = cardW();
+  deckItems = [...ORDER.map(k => ({ c: sampleCard(k), k })), ...reals.map((r, i) => ({ c: realCard(r, i), k: r.comet ? 'rare' : 'common', real: true }))];
+  $('deck').innerHTML = deckItems.map(d => `<div class="slot${d.c.locked ? ' locked' : ''}"><div class="fr">${d.c.locked ? '' : cardFront(d.c, w)}</div><div class="bk">${cardBack(w)}</div></div>`).join('');
+  const found = ORDER.filter(k => col[k]).length;
+  $('kinds5').innerHTML = ORDER.map(k => `<button class="${col[k] ? 'got' : ''}" style="--c:${KINDS[k].color}" aria-label="${KINDS[k].short}"></button>`).join('') + `<span>${found} of 5 kinds${reals.length ? ` · ${reals.length} real` : ''}</span>`;
   order = deckItems.map((_, i) => i).sort((a, b) => (deckItems[a].c.locked - deckItems[b].c.locked) || a - b);
-  [...$('deck').children].forEach(slot => {
-    const el = slot.firstElementChild; el.classList.add('idle');
-    wireCard(el, { onTap: () => !dragMoved && slot.classList.contains('top') ? undefined : false });
+  [...$('deck').children].forEach((slot, i) => {
+    slot.onclick = () => { if (!dragMoved && slot.classList.contains('top') && !deckItems[i].c.locked) openSheet(deckItems[i].c); };
     wireDrag(slot);
   });
-  [...$('pips').children].forEach((b, i) => b.onclick = () => jumpTo(i));
+  [...$('kinds5').querySelectorAll('button')].forEach((b, i) => b.onclick = () => jumpTo(i));
   show('collection'); layoutStack();
 }
 function layoutStack() {
   const slots = $('deck').children;
   order.forEach((idx, depth) => {
-    const s = slots[idx], d = Math.min(depth, 4);
+    const s = slots[idx], d = Math.min(depth, 3), t = TILT[idx % TILT.length];
     s.classList.toggle('top', depth === 0);
     s.style.zIndex = 100 - depth;
-    s.style.opacity = depth > 4 ? 0 : 1;
-    s.style.transform = depth === 0 ? 'none' : `translate(${TILT[idx % TILT.length] * 2.5}px, ${d * 9}px) scale(${(1 - d * .03).toFixed(3)}) rotate(${(TILT[idx % TILT.length] * (1 + d * .6)).toFixed(1)}deg)`;
+    s.style.opacity = depth > 3 ? 0 : 1;
+    s.style.transform = depth === 0 ? 'rotate(-1.5deg)' : `translate(${t * 5}px, ${-d * 6}px) rotate(${(t * (1.6 + d)).toFixed(1)}deg)`;
   });
   const it = deckItems[order[0]]; if (!it) return;
-  $('capName').textContent = it.c.locked ? '???' : it.c.name;
-  $('capSub').textContent = it.c.locked ? `${it.tier} · not found yet` : `${it.tier} · tap to flip · swipe for next${it.c.count ? ` · ×${it.c.count}` : ''}`;
+  $('caption').innerHTML = it.c.locked ? `${KINDS[it.k].short} · <b>not found yet</b>` : `<b>${it.c.name}</b> · tap for details · swipe for next`;
   $('stackPos').textContent = `${order[0] + 1} / ${deckItems.length}`;
-  [...$('pips').children].forEach((b, j) => b.classList.toggle('cur', j === order[0]));
+  [...$('kinds5').querySelectorAll('button')].forEach((b, j) => b.classList.toggle('cur', j === order[0]));
 }
-// Throw the top card off to one side; it slides back in at the bottom of the pile.
 function nextCard(dir = 1) {
   const s = $('deck').children[order[0]]; if (!s || order.length < 2) return;
   s.classList.remove('drag');
@@ -822,49 +687,20 @@ addEventListener('keydown', e => { if (!$('collection').classList.contains('on')
 
 $('exit').onclick = () => show('home');
 $('realBtn').onclick = loadReal;
-$('known').onclick = () => { showKnown = !showKnown; $('known').textContent = showKnown ? 'Hide known objects' : 'Show known objects'; render(); };
-$('pause').onclick = () => { paused = !paused; $('pause').textContent = paused ? 'Play' : 'Pause'; paused ? clearInterval(timer) : startBlink(); };
-addEventListener('resize', () => { if ($('app').classList.contains('playing')) { fit(); clampView(); render(); } });
+$('known').onclick = () => { showKnown = !showKnown; if (showKnown) listUsed = true; $('known').textContent = showKnown ? "Hide NASA's list" : "Show NASA's list"; render(); };
+$('hint').onclick = () => { if (!round.hintArea) return; hintOn = true; render(); toast('Look inside the circle'); };
+$('pause').onclick = () => { paused = !paused; $('pause').textContent = paused ? '▶ Play' : '❚❚ Pause'; paused ? clearInterval(timer) : startBlink(); };
+addEventListener('resize', () => { if ($('play').classList.contains('on')) { fit(); clampView(); render(); } });
 
-/* ---------- home: real-photo thumbnail ---------- */
-(async function () {
-  for (const dir of REAL_DIRS) {
-    try {
-      const { imgs } = await fetchRound(dir);
-      const c = prepReal(imgs[0]), t = document.createElement('canvas'); t.width = t.height = 124;
-      const s = Math.min(c.width, c.height) * .4;
-      t.getContext('2d').drawImage(c, (c.width - s) / 2, (c.height - s) / 2, s, s, 0, 0, 124, 124);
-      $('realThumb').style.backgroundImage = `url(${t.toDataURL()})`;
-      return;
-    } catch (e) { /* not served over http, or folder missing */ }
-  }
-})();
-
-/* ---------- skyline ---------- */
-(function () {
-  const r = rng(23); let out = '';
-  [['#2a2a78', 80], ['#22216a', 62], ['#17174f', 48]].forEach(([fill, base], li) => {
-    let x = -5;
-    while (x < 440) {
-      const w = 22 + r() * 40, h = base + r() * 55;
-      out += `<rect x="${x}" y="${150 - h}" width="${w}" height="${h}" fill="${fill}"/>`;
-      if (li === 2) for (let wy = 150 - h + 10; wy < 140; wy += 14) for (let wx = x + 5; wx < x + w - 6; wx += 10)
-        if (r() < .25) out += `<rect x="${wx}" y="${wy}" width="4" height="6" rx="1" fill="${r() < .3 ? '#c3b3ff' : '#ffd23f'}"/>`;
-      x += w + 2;
-    }
-  });
-  $('skyline').innerHTML = out;
-})();
-
-updateBadge(); show('home');
+show('home');
 
 // Direct links for demos and recordings: #play, #real, #caught=<kind>, #collection, #full (fills the collection).
 (function () {
   const h = location.hash.slice(1);
-  if (h === 'full') { ORDER.forEach(k => col[k] = col[k] || 1); updateBadge(); }
+  if (h === 'full') ORDER.forEach(k => col[k] = col[k] || 1);
   if (h === 'play') newRound();
   else if (h === 'real') loadReal();
-  else if (h.startsWith('caught=') && KINDS[h.slice(7)]) { round = makeRound(h.slice(7)); caught(); }
+  else if (h.startsWith('caught=') && KINDS[h.slice(7)]) { round = makeRound(h.slice(7)); frame = 0; caught(snapshot(...round.path[0])); }
   else if (h === 'collection' || h === 'full') renderCollection();
 })();
 </script>
