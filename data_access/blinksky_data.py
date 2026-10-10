@@ -150,8 +150,7 @@ def mark_png(png: Path, header: dict, objects: list, centre: tuple, scale: int =
     pic = Image.open(png).convert("RGB"); draw = ImageDraw.Draw(pic)
     ny = pic.height // scale; inside = 0
     for o in objects:
-        dra, ddec = o["offset_arcsec"]
-        ra = centre[0] + dra / 3600 / math.cos(math.radians(centre[1])); dec = centre[1] + ddec / 3600
+        ra, dec = o["ra_deg"], o["dec_deg"]
         x, y = world_to_pixel(header, ra, dec)
         px, py = (x + .5) * scale, (ny - 1 - y + .5) * scale  # the PNG is flipped vertically
         if 0 <= px < pic.width and 0 <= py < pic.height:
@@ -180,6 +179,17 @@ def _dms(dec: float) -> str:
     return f"{sign}{dd:02d}-{mm:02d}-{(m - mm) * 60:04.1f}"
 
 
+def _ra_deg(s: str) -> float:
+    hh, mm, ss = (float(x) for x in s.split(":"))
+    return 15 * (hh + mm / 60 + ss / 3600)
+
+
+def _dec_deg(s: str) -> float:
+    s = s.replace("'", " ").replace('"', " ").split()
+    sign = -1 if s[0].startswith("-") else 1
+    return sign * (abs(float(s[0])) + float(s[1]) / 60 + float(s[2]) / 3600)
+
+
 def known_objects(ra: float, dec: float, when: str, halfwidth: float = 0.3) -> dict:
     """NASA JPL sb_ident: known asteroids/comets inside a box on the sky at a given time (geocentric view)."""
     params = {"mpc-code": "500", "obs-time": when, "fov-ra-center": _hms(ra), "fov-dec-center": _dms(dec),
@@ -197,7 +207,9 @@ def known_objects(ra: float, dec: float, when: str, halfwidth: float = 0.3) -> d
             vmag = float(row[6])
         except ValueError:
             vmag = None
-        objects.append({"name": row[0], "ra": row[1], "dec": row[2], "v_mag": vmag,
+        # Place objects with the astrometric RA/Dec. The "distance from centre" columns are rounded to one
+        # significant figure by JPL (e.g. "4.E3"), which can be off by tens of SPHEREx pixels.
+        objects.append({"name": row[0], "ra": row[1], "dec": row[2], "ra_deg": _ra_deg(row[1]), "dec_deg": _dec_deg(row[2]), "v_mag": vmag,
                         "offset_arcsec": [float(row[3]), float(row[4])],
                         "rate_arcsec_per_hour": [float(row[7]), float(row[8])]})
     objects.sort(key=lambda o: (o["v_mag"] is None, o["v_mag"] or 99))
@@ -221,8 +233,7 @@ def export_round(folder: Path, frames: list, a) -> None:
         out_frames.append({"src": fname, "time_utc": t.strftime("%Y-%m-%d %H:%M UTC"), "detector": img["detector"],
                            "wavelength_um": img["wavelength_um"], "obs_id": img["obs_id"]})
         for o in ko["objects"]:
-            dra, ddec = o["offset_arcsec"]
-            ra = a.ra + dra / 3600 / math.cos(math.radians(a.dec)); dec = a.dec + ddec / 3600
+            ra, dec = o["ra_deg"], o["dec_deg"]
             x, y = world_to_pixel(header, ra, dec)
             pos = [round((x + .5) * scale, 1), round((ny - 1 - y + .5) * scale, 1)]
             inside = 0 <= pos[0] < nx * scale and 0 <= pos[1] < ny * scale

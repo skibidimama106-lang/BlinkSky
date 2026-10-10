@@ -39,12 +39,12 @@ python -m http.server 8000
 
 (Double-clicking `index.html` also opens the game, but browsers block it from loading the real-data round, so **Real NASA sky** only works when the folder is served or opened online.)
 
-1. Press **Start hunting**.
-2. Watch the photos flip. Drag to look around, pinch or scroll to zoom, and tap the dot that moves.
-   The mover looks exactly like the stars around it: nothing glows or points at it. Stuck? **Hint** circles an area that contains it (never the dot itself), and the card then says "with a hint".
-3. Your catch arrives face up, with a piece of your own photo on it and a ring where you tapped. Tap the card for its details.
-4. Open **Your deck** to look through your cards: swipe the top card away to see the next one. Kinds you have not found yet show the card back.
-5. **Search objects** lists every known object NASA JPL found in the real SPHEREx photos. Type a name or number and tap it: the real photos open with that object circled, blinking between the two times. Real cards have the same **See it in the photo** button. Looking never adds a card; cards only come from catching.
+1. Press **Hunt now**, then **Start** on the SPHEREx images. (A practice sky with generated images is there too, as a warm-up.)
+2. Watch the images flip. Drag to look around, pinch or scroll to zoom, and tap the dot that moves.
+   The mover looks exactly like the stars around it: nothing glows or points at it. Stuck? **Hint** circles an area that contains it (never the dot itself), and the card then says "with a hint". In the SPHEREx images, **Show NASA's list** circles every known object NASA JPL lists there.
+3. Your catch arrives face up, with a piece of the image you found it in, a ring where you tapped, and the symbol of its type in the corner. Tap the card for its details: real facts from NASA JPL, like who an asteroid is named after.
+4. Open **Deck** (bottom bar): your cards sit in one stack per type. Sort the stacks by type, rarity or source, and tap a stack to swipe through it.
+5. **Search** (bottom bar) lists every known object NASA JPL found in the SPHEREx images. Tap one and the images open with that object circled. Looking never adds a card; cards only come from catching.
 
 The first few rounds show each kind of object once. After that, rarer objects show up less often.
 
@@ -112,6 +112,50 @@ python blinksky_data.py --ra 237.82 --dec -20.15 --size 0.2 --gap-hours 3 --mark
 ```
 
 This saves the two photos with JPL's predicted positions circled, plus `blink.gif`.
+
+### Full SPHEREx image round (October 2026)
+
+The game now plays a **whole SPHEREx image pair** (`real_round_full/`, about 2,034 × 1,809 SPHEREx pixels, roughly 3.5° of sky), in the spirit of the image sets IASC citizen scientists search: a big image you scan piece by piece, with no promise of how many movers it holds. It is shown at search sharpness (about 2–3 screen pixels per SPHEREx pixel) and zoom is capped both ways, so movers stay visible and the image never turns to blur.
+
+`data_access/blinksky_full_round.py` builds it:
+
+- downloads the two full images (D5, 3.8–4.4 µm, 2026-07-21 07:12 and 10:24 UTC) from NASA/IPAC IRSA,
+- **cleans flagged pixels** (cosmic rays, hot pixels, persistence, streaks…, from each image's FLAGS layer) so they do not blink like movers,
+- **lines photo B up with photo A pixel by pixel** using the full TAN-SIP positions in the files, and crops both to the area they share,
+- uses **one brightness stretch** for both photos so the sky does not flicker,
+- asks NASA JPL (sb_ident, high-precision second pass) for known objects brighter than V20, and places each one from its **precise RA/Dec**.
+
+What we found: **21 Lutetia (V 11.2) is clearly visible and moves about 4 SPHEREx pixels in 3 hours**; known asteroids around V 17 are not visible in a single exposure in this band. So in band D5 the visibility limit lies somewhere between magnitude 11 and ~16; finding it exactly, and testing the shorter-wavelength detectors, is next.
+
+**A bug we fixed:** JPL's "distance from centre" columns are rounded to one significant figure (e.g. `4.E3` arcseconds), which can be off by tens of SPHEREx pixels. Object positions are now computed from JPL's astrometric RA/Dec instead (in `blinksky_data.py` and `blinksky_full_round.py`). The older `real_round/` and `real_round_wide/` folders were made before this fix; the game uses them only as a fallback.
+
+```
+python blinksky_full_round.py --vmag-lim 20 --cache ../.fits_cache --out ../real_round_full
+python blinksky_facts.py --round ../real_round_full
+```
+
+### Things that stay put: stars
+
+Tapping a star is not a wrong answer. The game checks the tapped spot in both images: a star is bright in the same place in both, a mover is in one and not the other. For stars it offers **"What is it?"**: distance in light years, temperature compared with the Sun, colour and brightness, from the **Gaia DR3** catalogue served by **NASA/IPAC IRSA**. Every star you look up is kept in a **Stars seen** log in the Deck, like a Pokédex records what you have seen as well as what you have caught.
+
+`data_access/blinksky_stars.py` finds the visible sources in the full round, turns their pixels into RA/Dec with the round's saved positions, downloads Gaia stars for the same sky (IRSA TAP) and matches them: 3,089 of the 5,000 brightest visible sources match a Gaia star.
+
+```
+python blinksky_stars.py --round ../real_round_full
+```
+
+If something changed between the images and NASA JPL has nothing there, the game flags it as an **Unlisted change** for expert review (most such flags turn out to be glitches; experts check each one).
+
+### Real facts on every card
+
+`data_access/blinksky_facts.py` asks the **NASA JPL Small-Body Database API** (`https://ssd-api.jpl.nasa.gov/sbdb.api`) about every object in a round and saves a short summary to `facts.json` next to the photos:
+type of orbit, size, how long one trip around the Sun takes, when and by whom it was discovered, and who it is named after (when it has a name).
+Where JPL has no measured size, the size is estimated from the object's brightness with a typical reflectivity and is labelled "(estimate)" on the card.
+Cards show only three of these facts; the rest sit in the card's details, so players are not buried in numbers.
+
+```
+python blinksky_facts.py --round ../real_round_wide
+```
 
 ### How the data gets into the game
 

@@ -1,0 +1,62 @@
+{
+ "57742 (2001 UA163)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 2 km (estimate)",
+  "period": "3.7 years",
+  "discovered": "2001 · LINEAR",
+  "named_after": null
+ },
+ "62571 (2000 SY274)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "6.4 km across",
+  "period": "4.5 years",
+  "discovered": "2000 · LINEAR",
+  "named_after": null
+ },
+ "84659 (2002 VO78)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 2 km (estimate)",
+  "period": "3.6 years",
+  "discovered": "2002 · LINEAR",
+  "named_after": null
+ },
+ "(2022 UR130)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 689 m (estimate)",
+  "period": "5.3 years",
+  "discovered": null,
+  "named_after": null
+ },
+ "(2022 QJ66)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 921 m (estimate)",
+  "period": "5.4 years",
+  "discovered": null,
+  "named_after": null
+ },
+ "(2023 WB22)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 462 m (estimate)",
+  "period": "4.7 years",
+  "discovered": null,
+  "named_after": null
+ }
+}

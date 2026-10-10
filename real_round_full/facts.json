@@ -1,0 +1,1292 @@
+{
+ "21 Lutetia (A852 VA)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "98.0 km across",
+  "period": "3.8 years",
+  "discovered": "1852 · Goldschmidt, H.",
+  "named_after": null
+ },
+ "5787 (1992 FA1)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 7 km (estimate)",
+  "period": "3.4 years",
+  "discovered": "1992 · Ueda and Kaneda",
+  "named_after": null
+ },
+ "637 Chrysothemis (A907 EN)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "24.2 km across",
+  "period": "5.7 years",
+  "discovered": "1907 · Metcalf, J. H.",
+  "named_after": null
+ },
+ "1745 Ferguson (1941 SY1)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "12.1 km across",
+  "period": "4.8 years",
+  "discovered": "1941 · Willis, J.",
+  "named_after": null
+ },
+ "2800 Ovidius (4585 P-L)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "15.3 km across",
+  "period": "5.6 years",
+  "discovered": "1960 · PLS",
+  "named_after": null
+ },
+ "28857 (2000 JE59)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "8.3 km across",
+  "period": "4.3 years",
+  "discovered": "2000 · LINEAR",
+  "named_after": null
+ },
+ "31401 (1999 AK)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 8 km (estimate)",
+  "period": "4.4 years",
+  "discovered": "1999 · Korlevic, K.",
+  "named_after": null
+ },
+ "2436 Hatshepsut (6066 P-L)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "18.8 km across",
+  "period": "5.7 years",
+  "discovered": "1960 · PLS",
+  "named_after": null
+ },
+ "51512 (2001 FG99)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "2.9 km across",
+  "period": "3.6 years",
+  "discovered": "2001 · LINEAR",
+  "named_after": null
+ },
+ "25974 (2001 FF43)": {
+  "kind": "common",
+  "orbit_class": "Mars-crossing Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "3.7 km across",
+  "period": "3.6 years",
+  "discovered": "2001 · LINEAR",
+  "named_after": null
+ },
+ "27251 (1999 XG14)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "6.5 km across",
+  "period": "4.1 years",
+  "discovered": "1999 · LINEAR",
+  "named_after": null
+ },
+ "12081 (1998 FH115)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 6 km (estimate)",
+  "period": "3.4 years",
+  "discovered": "1998 · LINEAR",
+  "named_after": null
+ },
+ "18496 (1996 JN1)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 4 km (estimate)",
+  "period": "3.8 years",
+  "discovered": "1996 · McNaught, R. H.",
+  "named_after": null
+ },
+ "9345 (1991 RA10)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "3.2 km across",
+  "period": "3.6 years",
+  "discovered": "1991 · Holt, H. E.",
+  "named_after": null
+ },
+ "9757 Felixdejager (1991 GA6)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "6.5 km across",
+  "period": "4.9 years",
+  "discovered": "1991 · Elst, E. W.",
+  "named_after": "Felix de Jager (b. 1999) is the second grandson of the discoverer and son of Sigyn and Philip de Jager-Elst."
+ },
+ "22788 von Steuben (1999 JA136)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "4.8 km across",
+  "period": "3.8 years",
+  "discovered": "1999 · LONEOS",
+  "named_after": "A Prussian military officer, Friedrich Wilhelm Augustin Ludolf Gerhard von Steuben (1730-1794), taught standards of military drill and discipline to the…"
+ },
+ "68551 (2001 XH57)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 5 km (estimate)",
+  "period": "4.4 years",
+  "discovered": "2001 · LINEAR",
+  "named_after": null
+ },
+ "51046 (2000 GV136)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "5.7 km across",
+  "period": "4.3 years",
+  "discovered": "2000 · LINEAR",
+  "named_after": null
+ },
+ "14184 (1998 WA32)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "5.9 km across",
+  "period": "5.0 years",
+  "discovered": "1998 · LINEAR",
+  "named_after": null
+ },
+ "21855 (1999 TG150)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "10.6 km across",
+  "period": "5.7 years",
+  "discovered": "1999 · LINEAR",
+  "named_after": null
+ },
+ "56444 (2000 GB68)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 3 km (estimate)",
+  "period": "3.7 years",
+  "discovered": "2000 · LINEAR",
+  "named_after": null
+ },
+ "120056 (2003 BA79)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 4 km (estimate)",
+  "period": "4.4 years",
+  "discovered": "2003 · LONEOS",
+  "named_after": null
+ },
+ "12017 (1996 XC1)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 4 km (estimate)",
+  "period": "3.5 years",
+  "discovered": "1996 · Kobayashi, T.",
+  "named_after": null
+ },
+ "28981 (2001 LY3)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "6.2 km across",
+  "period": "4.2 years",
+  "discovered": "2001 · LINEAR",
+  "named_after": null
+ },
+ "8869 Olausgutho (1992 EE11)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 6 km (estimate)",
+  "period": "5.5 years",
+  "discovered": "1992 · UESAC",
+  "named_after": "Olaus Johannis Gutho, from the island of Gotland, was a student at Uppsala University from 1477 to 1486."
+ },
+ "28180 (1998 WU1)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "4.7 km across",
+  "period": "3.7 years",
+  "discovered": "1998 · Kobayashi, T.",
+  "named_after": null
+ },
+ "28278 (1999 CQ27)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "6.6 km across",
+  "period": "5.1 years",
+  "discovered": "1999 · LINEAR",
+  "named_after": null
+ },
+ "50166 (2000 AW150)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "4.0 km across",
+  "period": "3.6 years",
+  "discovered": "2000 · LINEAR",
+  "named_after": null
+ },
+ "10105 Holmhallar (1992 EM12)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "12.0 km across",
+  "period": "5.5 years",
+  "discovered": "1992 · UESAC",
+  "named_after": "Holmhällar, on Gotland, contains an unusual area of seastacks."
+ },
+ "13492 Vitalijzakharov (1984 YE4)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "2.5 km across",
+  "period": "3.6 years",
+  "discovered": "1984 · Karachkina, L. G.",
+  "named_after": "Vitalij Aleksandrovich Zakharov (b. 1964) is an active surgeon-oncologist at the Simferopol cancer dispensary center."
+ },
+ "18234 (4262 T-1)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 6 km (estimate)",
+  "period": "4.5 years",
+  "discovered": "1971 · van Houten et al.",
+  "named_after": null
+ },
+ "25890 Louisburg (2000 VG38)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 8 km (estimate)",
+  "period": "4.7 years",
+  "discovered": "2000 · Robinson, L.",
+  "named_after": "Louisburg, Kansas, is the home of Powell Observatory, a public observatory owned and managed by the Astronomical Society of Kansas City."
+ },
+ "4454 Kumiko (1988 VW)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "13.1 km across",
+  "period": "5.7 years",
+  "discovered": "1988 · Ueda and Kaneda",
+  "named_after": null
+ },
+ "21758 Adrianveres (1999 RT196)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 4 km (estimate)",
+  "period": "3.5 years",
+  "discovered": "1999 · LINEAR",
+  "named_after": "Adrian Veres (b. 1989) was awarded first place in the 2005 Intel International Science and Engineering Fair for his biochemistry project."
+ },
+ "23938 Kurosaki (1998 TR33)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 5 km (estimate)",
+  "period": "4.9 years",
+  "discovered": "1998 · LONEOS",
+  "named_after": "Hirohisa Kurosaki (b. 1970), of the Japan Aerospace Exploration Agency, works on asteroids, space debris and remote sensing."
+ },
+ "35575 (1998 HC18)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "5.2 km across",
+  "period": "4.6 years",
+  "discovered": "1998 · LINEAR",
+  "named_after": null
+ },
+ "35753 (1999 GE45)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "3.9 km across",
+  "period": "3.8 years",
+  "discovered": "1999 · LINEAR",
+  "named_after": null
+ },
+ "3234 Hergiani (1978 QO2)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "13.9 km across",
+  "period": "5.5 years",
+  "discovered": "1978 · Chernykh, N.",
+  "named_after": null
+ },
+ "9243 Alag (1998 FF68)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "9.1 km across",
+  "period": "5.5 years",
+  "discovered": "1998 · LINEAR",
+  "named_after": "Ayush Alag (b. 2001) was a finalist in the 2019 Regeneron Science Talent Search (STS), a science competition for high school seniors, for his computational…"
+ },
+ "22708 (1998 RK66)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "5.7 km across",
+  "period": "4.8 years",
+  "discovered": "1998 · LINEAR",
+  "named_after": null
+ },
+ "27112 (1998 VC35)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "8.8 km across",
+  "period": "4.3 years",
+  "discovered": "1998 · Ueda et al.",
+  "named_after": null
+ },
+ "3154 Grant (1984 SO3)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 9 km (estimate)",
+  "period": "5.4 years",
+  "discovered": "1984 · Skiff, B. A.",
+  "named_after": null
+ },
+ "42943 (1999 TH92)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 2 km (estimate)",
+  "period": "3.4 years",
+  "discovered": "1999 · LINEAR",
+  "named_after": null
+ },
+ "54374 (2000 KM55)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "2.8 km across",
+  "period": "3.7 years",
+  "discovered": "2000 · LINEAR",
+  "named_after": null
+ },
+ "86705 (2000 FW64)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 3 km (estimate)",
+  "period": "3.7 years",
+  "discovered": "2000 · LINEAR",
+  "named_after": null
+ },
+ "219352 (2000 RK19)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "4.7 km across",
+  "period": "4.4 years",
+  "discovered": "2000 · LINEAR",
+  "named_after": null
+ },
+ "16905 (1998 DT21)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "9.7 km across",
+  "period": "5.3 years",
+  "discovered": "1998 · Spacewatch",
+  "named_after": null
+ },
+ "30393 (2000 KN30)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "9.6 km across",
+  "period": "4.4 years",
+  "discovered": "2000 · LINEAR",
+  "named_after": null
+ },
+ "33261 Ginagarlie (1998 HQ45)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "3.2 km across",
+  "period": "4.6 years",
+  "discovered": "1998 · LINEAR",
+  "named_after": "Gina Garlie mentored a finalist in the 2016 Broadcom MASTERS, a math and science competition for middle school students."
+ },
+ "44242 (1998 QB37)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "2.8 km across",
+  "period": "4.1 years",
+  "discovered": "1998 · LINEAR",
+  "named_after": null
+ },
+ "54670 (2000 WW92)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 2 km (estimate)",
+  "period": "3.4 years",
+  "discovered": "2000 · LINEAR",
+  "named_after": null
+ },
+ "57742 (2001 UA163)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 2 km (estimate)",
+  "period": "3.7 years",
+  "discovered": "2001 · LINEAR",
+  "named_after": null
+ },
+ "92487 (2000 LL31)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 2 km (estimate)",
+  "period": "3.2 years",
+  "discovered": "2000 · LONEOS",
+  "named_after": null
+ },
+ "66263 (1999 GT58)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 4 km (estimate)",
+  "period": "4.4 years",
+  "discovered": "1999 · LINEAR",
+  "named_after": null
+ },
+ "89756 (2002 AE54)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "5.2 km across",
+  "period": "5.5 years",
+  "discovered": "2002 · LINEAR",
+  "named_after": null
+ },
+ "83690 (2001 TW63)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "5.0 km across",
+  "period": "4.3 years",
+  "discovered": "2001 · LINEAR",
+  "named_after": null
+ },
+ "148585 (2001 RO4)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 2 km (estimate)",
+  "period": "3.6 years",
+  "discovered": "2001 · LINEAR",
+  "named_after": null
+ },
+ "189712 (2001 TE183)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 2 km (estimate)",
+  "period": "3.7 years",
+  "discovered": "2001 · LINEAR",
+  "named_after": null
+ },
+ "214362 (2005 KW9)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "2.3 km across",
+  "period": "4.2 years",
+  "discovered": "2005 · Broughton, J.",
+  "named_after": null
+ },
+ "14367 Hippokrates (1988 RY3)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "6.3 km across",
+  "period": "5.6 years",
+  "discovered": "1988 · Borngen, F.",
+  "named_after": "The Greek physician Hippokrates (460?-375 B.C.) is regarded as the founder of medicine as an empirical science."
+ },
+ "14854 (1989 SO1)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "3.8 km across",
+  "period": "4.3 years",
+  "discovered": "1989 · Elst, E. W.",
+  "named_after": null
+ },
+ "34714 Haozhang (2001 OB105)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 4 km (estimate)",
+  "period": "4.4 years",
+  "discovered": "2001 · LONEOS",
+  "named_after": "Hao Zhang (b. 1970) is a Chinese professor at China University of Geosciences (Wuhan, China)."
+ },
+ "36611 (2000 QF145)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "3.4 km across",
+  "period": "3.3 years",
+  "discovered": "2000 · LINEAR",
+  "named_after": null
+ },
+ "98641 (2000 WW122)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "3.1 km across",
+  "period": "3.9 years",
+  "discovered": "2000 · LINEAR",
+  "named_after": null
+ },
+ "23704 (1997 SD10)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 3 km (estimate)",
+  "period": "3.7 years",
+  "discovered": "1997 · Beijing Schmidt CCD Asteroid Program",
+  "named_after": null
+ },
+ "52155 (2236 T-1)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "4.9 km across",
+  "period": "4.2 years",
+  "discovered": "1971 · van Houten et al.",
+  "named_after": null
+ },
+ "53631 (2000 CD119)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 3 km (estimate)",
+  "period": "3.6 years",
+  "discovered": "2000 · LINEAR",
+  "named_after": null
+ },
+ "105090 (2000 KW82)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 4 km (estimate)",
+  "period": "5.1 years",
+  "discovered": "2000 · LONEOS",
+  "named_after": null
+ },
+ "101148 (1998 RV70)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 2 km (estimate)",
+  "period": "3.6 years",
+  "discovered": "1998 · LINEAR",
+  "named_after": null
+ },
+ "25133 Douglin (1998 SU14)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "2.4 km across",
+  "period": "4.1 years",
+  "discovered": "1998 · LONEOS",
+  "named_after": "Douglas N. C. Lin (b. 1949) is a theoretical astrophysicist at the University of California, Santa Cruz."
+ },
+ "27132 Jezek (1998 XJ9)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "2.1 km across",
+  "period": "3.7 years",
+  "discovered": "1998 · Pravec et al.",
+  "named_after": "Czech composer Jaroslav Ježek (1906–1942) conducted the orchestra Osvobozené divadlo (Liberated Theatre), Prague, during 1928–1938."
+ },
+ "28555 Jenniferchan (2000 EM41)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "2.2 km across",
+  "period": "3.6 years",
+  "discovered": "2000 · LINEAR",
+  "named_after": "Jennifer Chan (b. 1994) is a finalist in the 2013 Intel Science Talent Search, a science competition for high-school seniors, for her biochemistry project."
+ },
+ "29706 Simonetta (1998 YS11)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 3 km (estimate)",
+  "period": "3.6 years",
+  "discovered": "1998 · Boattini et al.",
+  "named_after": "Simonetta Boattini (b. 1972) is the younger sister of the first discoverer."
+ },
+ "45736 (2000 GA170)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "3.2 km across",
+  "period": "4.1 years",
+  "discovered": "2000 · LONEOS",
+  "named_after": null
+ },
+ "46311 (2001 QF20)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "4.0 km across",
+  "period": "5.2 years",
+  "discovered": "2001 · LINEAR",
+  "named_after": null
+ },
+ "50877 (2000 GF29)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "3.9 km across",
+  "period": "5.1 years",
+  "discovered": "2000 · LINEAR",
+  "named_after": null
+ },
+ "60827 (2000 HW46)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 3 km (estimate)",
+  "period": "4.3 years",
+  "discovered": "2000 · LINEAR",
+  "named_after": null
+ },
+ "78599 (2002 SM27)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "4.1 km across",
+  "period": "5.1 years",
+  "discovered": "2002 · NEAT",
+  "named_after": null
+ },
+ "99425 (2002 AE190)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "1.3 km across",
+  "period": "3.3 years",
+  "discovered": "2002 · Spacewatch",
+  "named_after": null
+ },
+ "109405 (2001 QH181)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 3 km (estimate)",
+  "period": "4.4 years",
+  "discovered": "2001 · NEAT",
+  "named_after": null
+ },
+ "416588 (2004 JS31)": {
+  "kind": "common",
+  "orbit_class": "Mars-crossing Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 1048 m (estimate)",
+  "period": "3.1 years",
+  "discovered": "2004 · LINEAR",
+  "named_after": null
+ },
+ "25512 Anncomins (1999 XT97)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "3.6 km across",
+  "period": "3.6 years",
+  "discovered": "1999 · LINEAR",
+  "named_after": "Ann Comins mentored a finalist in the 2009 Intel Science Talent Search (STS), a science competition for high school seniors."
+ },
+ "30158 Mabdulla (2000 GQ55)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "5.4 km across",
+  "period": "5.1 years",
+  "discovered": "2000 · LINEAR",
+  "named_after": "Muhammad Ugur Oglu Abdulla (b. 1999) is a finalist in the 2014 Broadcom MASTERS, a math and science competition for middle school students, for his…"
+ },
+ "36191 (1999 TY78)": {
+  "kind": "common",
+  "orbit_class": "Outer Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "6.1 km across",
+  "period": "5.8 years",
+  "discovered": "1999 · Spacewatch",
+  "named_after": null
+ },
+ "45181 (1999 XZ146)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 2 km (estimate)",
+  "period": "3.5 years",
+  "discovered": "1999 · Spacewatch",
+  "named_after": null
+ },
+ "53592 (2000 CH56)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "1.9 km across",
+  "period": "3.2 years",
+  "discovered": "2000 · LINEAR",
+  "named_after": null
+ },
+ "60922 (2000 JF41)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 3 km (estimate)",
+  "period": "3.7 years",
+  "discovered": "2000 · LINEAR",
+  "named_after": null
+ },
+ "62445 (2000 SF207)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 2 km (estimate)",
+  "period": "3.8 years",
+  "discovered": "2000 · LINEAR",
+  "named_after": null
+ },
+ "62571 (2000 SY274)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "6.4 km across",
+  "period": "4.5 years",
+  "discovered": "2000 · LINEAR",
+  "named_after": null
+ },
+ "73766 (1994 PH9)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 3 km (estimate)",
+  "period": "4.1 years",
+  "discovered": "1994 · Elst, E. W.",
+  "named_after": null
+ },
+ "86692 (2000 FS47)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 2 km (estimate)",
+  "period": "3.7 years",
+  "discovered": "2000 · LINEAR",
+  "named_after": null
+ },
+ "113927 (2002 TT288)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "2.4 km across",
+  "period": "3.6 years",
+  "discovered": "2002 · LINEAR",
+  "named_after": null
+ },
+ "116092 (2003 WJ126)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 3 km (estimate)",
+  "period": "4.2 years",
+  "discovered": "2003 · LINEAR",
+  "named_after": null
+ },
+ "116845 (2004 FY48)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "3.3 km across",
+  "period": "3.6 years",
+  "discovered": "2004 · LINEAR",
+  "named_after": null
+ },
+ "14094 Garneau (1997 OJ1)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "3.9 km across",
+  "period": "5.0 years",
+  "discovered": "1997 · Spacewatch",
+  "named_after": "Marc Garneau (b. 1949) was the first Canadian in space and was appointed president of the Canadian Space Agency in 2001."
+ },
+ "14560 (1997 WB33)": {
+  "kind": "common",
+  "orbit_class": "Outer Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 7 km (estimate)",
+  "period": "6.3 years",
+  "discovered": "1997 · LINEAR",
+  "named_after": null
+ },
+ "56919 (2000 QF251)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 4 km (estimate)",
+  "period": "5.4 years",
+  "discovered": "2000 · LONEOS",
+  "named_after": null
+ },
+ "58549 (1997 GM14)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 2 km (estimate)",
+  "period": "4.1 years",
+  "discovered": "1997 · LINEAR",
+  "named_after": null
+ },
+ "112011 (2002 GW158)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 2 km (estimate)",
+  "period": "3.4 years",
+  "discovered": "2002 · NEAT",
+  "named_after": null
+ },
+ "215590 (2003 KY10)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "4.8 km across",
+  "period": "4.6 years",
+  "discovered": "2003 · Spacewatch",
+  "named_after": null
+ },
+ "26993 Littlewood (1997 XC1)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "4.0 km across",
+  "period": "5.1 years",
+  "discovered": "1997 · Comba, P. G.",
+  "named_after": "John Edensor Littlewood (1885-1977) was an English mathematician mainly associated with Trinity College, Cambridge."
+ },
+ "29616 (1998 SG64)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 3 km (estimate)",
+  "period": "3.7 years",
+  "discovered": "1998 · Elst, E. W.",
+  "named_after": null
+ },
+ "30914 (1993 FV82)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 2 km (estimate)",
+  "period": "3.2 years",
+  "discovered": "1993 · UESAC",
+  "named_after": null
+ },
+ "34898 (2622 P-L)": {
+  "kind": "common",
+  "orbit_class": "Outer Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "8.7 km across",
+  "period": "5.7 years",
+  "discovered": "1960 · van Houten et al.",
+  "named_after": null
+ },
+ "38810 (2000 RP70)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "4.4 km across",
+  "period": "3.9 years",
+  "discovered": "2000 · LINEAR",
+  "named_after": null
+ },
+ "46386 (2001 XP195)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 2 km (estimate)",
+  "period": "3.3 years",
+  "discovered": "2001 · LINEAR",
+  "named_after": null
+ },
+ "50766 (2000 FA2)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "5.0 km across",
+  "period": "5.1 years",
+  "discovered": "2000 · Spacewatch",
+  "named_after": null
+ },
+ "54814 (2001 MK28)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "2.1 km across",
+  "period": "4.3 years",
+  "discovered": "2001 · NEAT",
+  "named_after": null
+ },
+ "64398 (2001 US154)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 4 km (estimate)",
+  "period": "5.4 years",
+  "discovered": "2001 · LINEAR",
+  "named_after": null
+ },
+ "105327 (2000 QF83)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "6.5 km across",
+  "period": "5.3 years",
+  "discovered": "2000 · LINEAR",
+  "named_after": null
+ },
+ "21197 (1994 PS7)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "4.0 km across",
+  "period": "4.7 years",
+  "discovered": "1994 · Elst, E. W.",
+  "named_after": null
+ },
+ "24633 (1981 EP25)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "3.0 km across",
+  "period": "4.9 years",
+  "discovered": "1981 · Bus, S. J.",
+  "named_after": null
+ },
+ "29236 (1992 EB14)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "2.0 km across",
+  "period": "3.7 years",
+  "discovered": "1992 · UESAC",
+  "named_after": null
+ },
+ "38243 (1999 PB4)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "6.5 km across",
+  "period": "5.6 years",
+  "discovered": "1999 · Broughton, J.",
+  "named_after": null
+ },
+ "59860 (1999 RP94)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "6.4 km across",
+  "period": "5.6 years",
+  "discovered": "1999 · LINEAR",
+  "named_after": null
+ },
+ "63394 (2001 JL8)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 3 km (estimate)",
+  "period": "5.0 years",
+  "discovered": "2001 · LONEOS",
+  "named_after": null
+ },
+ "68394 (2001 QZ68)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "1.9 km across",
+  "period": "3.7 years",
+  "discovered": "2001 · LINEAR",
+  "named_after": null
+ },
+ "76171 (2000 EH31)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "3.3 km across",
+  "period": "4.2 years",
+  "discovered": "2000 · LINEAR",
+  "named_after": null
+ },
+ "85100 (2189 T-3)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "2.0 km across",
+  "period": "4.2 years",
+  "discovered": "1977 · van Houten et al.",
+  "named_after": null
+ },
+ "128015 (2003 JR11)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "6.3 km across",
+  "period": "5.6 years",
+  "discovered": "2003 · LINEAR",
+  "named_after": null
+ },
+ "128945 (2004 TB129)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "5.1 km across",
+  "period": "4.6 years",
+  "discovered": "2004 · LINEAR",
+  "named_after": null
+ },
+ "130848 (2000 UF64)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "1.4 km across",
+  "period": "3.3 years",
+  "discovered": "2000 · LINEAR",
+  "named_after": null
+ },
+ "219003 (2008 KR11)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 3 km (estimate)",
+  "period": "4.5 years",
+  "discovered": "2008 · Calvin College",
+  "named_after": null
+ },
+ "242426 (2004 LY25)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "3.8 km across",
+  "period": "5.6 years",
+  "discovered": "2004 · Spacewatch",
+  "named_after": null
+ },
+ "101927 (1999 RN19)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "7.1 km across",
+  "period": "5.6 years",
+  "discovered": "1999 · LINEAR",
+  "named_after": null
+ },
+ "112986 (2002 RJ29)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 2 km (estimate)",
+  "period": "3.5 years",
+  "discovered": "2002 · NEAT",
+  "named_after": null
+ },
+ "138831 (2000 UD68)": {
+  "kind": "common",
+  "orbit_class": "Outer Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "9.0 km across",
+  "period": "5.7 years",
+  "discovered": "2000 · LINEAR",
+  "named_after": null
+ },
+ "221241 (2005 UK215)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 3 km (estimate)",
+  "period": "4.4 years",
+  "discovered": "2005 · NEAT",
+  "named_after": null
+ },
+ "366372 (2000 SP90)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 2 km (estimate)",
+  "period": "4.4 years",
+  "discovered": "2000 · LINEAR",
+  "named_after": null
+ }
+}

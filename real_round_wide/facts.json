@@ -1,0 +1,612 @@
+{
+ "18234 (4262 T-1)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 6 km (estimate)",
+  "period": "4.5 years",
+  "discovered": "1971 · van Houten et al.",
+  "named_after": null
+ },
+ "57742 (2001 UA163)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 2 km (estimate)",
+  "period": "3.7 years",
+  "discovered": "2001 · LINEAR",
+  "named_after": null
+ },
+ "25133 Douglin (1998 SU14)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "2.4 km across",
+  "period": "4.1 years",
+  "discovered": "1998 · LONEOS",
+  "named_after": "Douglas N. C. Lin (b. 1949) is a theoretical astrophysicist at the University of California, Santa Cruz."
+ },
+ "62571 (2000 SY274)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "6.4 km across",
+  "period": "4.5 years",
+  "discovered": "2000 · LINEAR",
+  "named_after": null
+ },
+ "84659 (2002 VO78)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 2 km (estimate)",
+  "period": "3.6 years",
+  "discovered": "2002 · LINEAR",
+  "named_after": null
+ },
+ "150604 (2000 XY8)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 4 km (estimate)",
+  "period": "5.6 years",
+  "discovered": "2000 · LINEAR",
+  "named_after": null
+ },
+ "221255 (2005 UJ275)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 2 km (estimate)",
+  "period": "4.5 years",
+  "discovered": "2005 · Spacewatch",
+  "named_after": null
+ },
+ "275766 (2001 PJ30)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 1182 m (estimate)",
+  "period": "3.6 years",
+  "discovered": "2001 · NEAT",
+  "named_after": null
+ },
+ "415283 (2013 FU19)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 766 m (estimate)",
+  "period": "3.2 years",
+  "discovered": "2005 · Spacewatch",
+  "named_after": null
+ },
+ "431633 (2007 XQ1)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 2 km (estimate)",
+  "period": "5.3 years",
+  "discovered": "2007 · CSS",
+  "named_after": null
+ },
+ "824296 (2016 UM78)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 693 m (estimate)",
+  "period": "3.6 years",
+  "discovered": "2008 · Spacewatch",
+  "named_after": null
+ },
+ "817128 (2012 DW82)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 677 m (estimate)",
+  "period": "3.4 years",
+  "discovered": "2012 · Pan-STARRS 1",
+  "named_after": null
+ },
+ "650168 (2011 YK87)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 1395 m (estimate)",
+  "period": "4.2 years",
+  "discovered": "2017 · Mount Lemmon Survey",
+  "named_after": null
+ },
+ "407516 (2010 VU134)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 1171 m (estimate)",
+  "period": "4.3 years",
+  "discovered": "1997 · Spacewatch",
+  "named_after": null
+ },
+ "655346 (2015 KU40)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 2 km (estimate)",
+  "period": "5.5 years",
+  "discovered": "2014 · Mount Lemmon Survey",
+  "named_after": null
+ },
+ "293979 (2007 TY60)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 1237 m (estimate)",
+  "period": "4.1 years",
+  "discovered": "2007 · Spacewatch",
+  "named_after": null
+ },
+ "564313 (2016 GP90)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 1363 m (estimate)",
+  "period": "4.7 years",
+  "discovered": "2004 · Mount Lemmon Survey",
+  "named_after": null
+ },
+ "617562 (2005 SO238)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 974 m (estimate)",
+  "period": "4.3 years",
+  "discovered": "2005 · Spacewatch",
+  "named_after": null
+ },
+ "764264 (2012 VW69)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 1344 m (estimate)",
+  "period": "5.3 years",
+  "discovered": "2012 · Pan-STARRS 1",
+  "named_after": null
+ },
+ "883429 (2016 QU104)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 587 m (estimate)",
+  "period": "3.5 years",
+  "discovered": "2016 · Pan-STARRS 1",
+  "named_after": null
+ },
+ "534980 (2014 WB467)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 987 m (estimate)",
+  "period": "4.3 years",
+  "discovered": "2005 · LONEOS",
+  "named_after": null
+ },
+ "651192 (2012 XD28)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 1467 m (estimate)",
+  "period": "5.4 years",
+  "discovered": "2012 · Mount Lemmon Survey",
+  "named_after": null
+ },
+ "(2019 MX30)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 649 m (estimate)",
+  "period": "3.5 years",
+  "discovered": null,
+  "named_after": null
+ },
+ "(2019 TT53)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 956 m (estimate)",
+  "period": "4.3 years",
+  "discovered": null,
+  "named_after": null
+ },
+ "(2020 HV144)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 974 m (estimate)",
+  "period": "5.7 years",
+  "discovered": null,
+  "named_after": null
+ },
+ "689889 (2013 RV90)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 652 m (estimate)",
+  "period": "3.5 years",
+  "discovered": "2006 · Spacewatch",
+  "named_after": null
+ },
+ "708072 (2011 UD227)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 2 km (estimate)",
+  "period": "5.7 years",
+  "discovered": "2011 · Spacewatch",
+  "named_after": null
+ },
+ "(2015 GK30)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 598 m (estimate)",
+  "period": "3.6 years",
+  "discovered": null,
+  "named_after": null
+ },
+ "563743 (2016 EC41)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 1093 m (estimate)",
+  "period": "4.4 years",
+  "discovered": "2010 · Mount Lemmon Survey",
+  "named_after": null
+ },
+ "(2015 HE410)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 803 m (estimate)",
+  "period": "5.3 years",
+  "discovered": null,
+  "named_after": null
+ },
+ "(2021 NH62)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 1006 m (estimate)",
+  "period": "5.7 years",
+  "discovered": null,
+  "named_after": null
+ },
+ "(2022 SU213)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 930 m (estimate)",
+  "period": "5.2 years",
+  "discovered": null,
+  "named_after": null
+ },
+ "625392 (2005 UU373)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 668 m (estimate)",
+  "period": "3.7 years",
+  "discovered": "2001 · Spacewatch",
+  "named_after": null
+ },
+ "784488 (2015 BE474)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 965 m (estimate)",
+  "period": "4.8 years",
+  "discovered": "2015 · Pan-STARRS 1",
+  "named_after": null
+ },
+ "(2014 TO112)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 864 m (estimate)",
+  "period": "4.4 years",
+  "discovered": null,
+  "named_after": null
+ },
+ "764275 (2012 VT121)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 1401 m (estimate)",
+  "period": "5.6 years",
+  "discovered": "2012 · Spacewatch",
+  "named_after": null
+ },
+ "775031 (2005 YJ300)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 905 m (estimate)",
+  "period": "4.6 years",
+  "discovered": "2005 · Spacewatch",
+  "named_after": null
+ },
+ "814539 (2008 TH38)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 674 m (estimate)",
+  "period": "3.8 years",
+  "discovered": "2008 · Spacewatch",
+  "named_after": null
+ },
+ "(2016 RC75)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 629 m (estimate)",
+  "period": "3.6 years",
+  "discovered": null,
+  "named_after": null
+ },
+ "(2022 SA205)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 1048 m (estimate)",
+  "period": "5.4 years",
+  "discovered": null,
+  "named_after": null
+ },
+ "817849 (2012 VD72)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 626 m (estimate)",
+  "period": "3.8 years",
+  "discovered": "2008 · Spacewatch",
+  "named_after": null
+ },
+ "(2021 FG62)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 632 m (estimate)",
+  "period": "4.6 years",
+  "discovered": null,
+  "named_after": null
+ },
+ "758753 (2007 AA34)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 635 m (estimate)",
+  "period": "3.6 years",
+  "discovered": "2011 · Pan-STARRS 1",
+  "named_after": null
+ },
+ "(2014 UY289)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 699 m (estimate)",
+  "period": "4.4 years",
+  "discovered": null,
+  "named_after": null
+ },
+ "(2014 WH438)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 719 m (estimate)",
+  "period": "4.4 years",
+  "discovered": null,
+  "named_after": null
+ },
+ "(2020 QN123)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 360 m (estimate)",
+  "period": "3.2 years",
+  "discovered": null,
+  "named_after": null
+ },
+ "(2022 QR66)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 1039 m (estimate)",
+  "period": "5.6 years",
+  "discovered": null,
+  "named_after": null
+ },
+ "625470 (2005 WM41)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 533 m (estimate)",
+  "period": "3.7 years",
+  "discovered": "2005 · Mount Lemmon Survey",
+  "named_after": null
+ },
+ "(2015 KJ511)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 674 m (estimate)",
+  "period": "5.4 years",
+  "discovered": null,
+  "named_after": null
+ },
+ "(2016 EZ404)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 635 m (estimate)",
+  "period": "4.7 years",
+  "discovered": null,
+  "named_after": null
+ },
+ "(2022 UR130)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 689 m (estimate)",
+  "period": "5.3 years",
+  "discovered": null,
+  "named_after": null
+ },
+ "(2015 KK451)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 453 m (estimate)",
+  "period": "5.5 years",
+  "discovered": null,
+  "named_after": null
+ },
+ "(2015 KP305)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 470 m (estimate)",
+  "period": "5.4 years",
+  "discovered": null,
+  "named_after": null
+ },
+ "(2022 QJ66)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 921 m (estimate)",
+  "period": "5.4 years",
+  "discovered": null,
+  "named_after": null
+ },
+ "(2023 WB22)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 462 m (estimate)",
+  "period": "4.7 years",
+  "discovered": null,
+  "named_after": null
+ },
+ "(2013 HU78)": {
+  "kind": "common",
+  "orbit_class": "Main-belt Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 293 m (estimate)",
+  "period": "4.2 years",
+  "discovered": null,
+  "named_after": null
+ },
+ "(2011 WT139)": {
+  "kind": "common",
+  "orbit_class": "Mars-crossing Asteroid",
+  "neo": false,
+  "pha": false,
+  "size": "about 412 m (estimate)",
+  "period": "4.1 years",
+  "discovered": null,
+  "named_after": null
+ },
+ "(2025 NZ1)": {
+  "kind": "uncommon",
+  "orbit_class": "Apollo",
+  "neo": true,
+  "pha": false,
+  "size": "about 280 m (estimate)",
+  "period": "3.3 years",
+  "discovered": null,
+  "named_after": null
+ },
+ "(2018 AN3)": {
+  "kind": "uncommon",
+  "orbit_class": "Amor",
+  "neo": true,
+  "pha": false,
+  "size": null,
+  "period": "3.9 years",
+  "discovered": null,
+  "named_after": null
+ },
+ "(2020 XB1)": {
+  "kind": "uncommon",
+  "orbit_class": "Apollo",
+  "neo": true,
+  "pha": false,
+  "size": null,
+  "period": "3.7 years",
+  "discovered": null,
+  "named_after": null
+ },
+ "(2024 XU6)": {
+  "kind": "uncommon",
+  "orbit_class": "Apollo",
+  "neo": true,
+  "pha": false,
+  "size": null,
+  "period": "4.2 years",
+  "discovered": null,
+  "named_after": null
+ }
+}
