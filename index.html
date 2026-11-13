@@ -311,6 +311,65 @@
   .bside { display: flex; flex-direction: column; align-items: center; gap: 8px; }
   .bside small { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--g1); }
   .bside .win .tc { outline: 2px solid #7fe0a3; outline-offset: 3px; }
+  /* v16: card table */
+  .btable { flex: 1; min-height: 0; display: flex; flex-direction: column; align-items: center; padding: 0 12px; }
+  .bhand { display: flex; justify-content: center; align-items: flex-end; min-height: 0; }
+  .bhand.foe { height: 58px; margin-top: 2px; }
+  .bhand.foe .hb .tc.back { border: 1px solid #6a5aa8; box-shadow: -3px 2px 6px rgba(0,0,0,.75); border-radius: 5px; }
+  .bhand.foe .hb { margin: 0 -5px; transform: rotate(var(--r)) translateY(var(--y)); transition: opacity .3s, transform .3s; }
+  .bhand.me { height: 104px; padding-bottom: 4px; }
+  .bhand.me .hc { margin: 0 -8px; padding: 0; background: none; border: 0; cursor: pointer; transform: rotate(var(--r)) translateY(var(--y)); transform-origin: 50% 120%; transition: transform .25s cubic-bezier(.3,.7,.3,1), filter .25s; }
+  .bhand.me .hc:hover { transform: rotate(var(--r)) translateY(calc(var(--y) - 8px)); }
+  .bhand.me .hc.sel { transform: rotate(0deg) translateY(-26px) scale(1.12); z-index: 3; filter: drop-shadow(0 8px 18px rgba(0,0,0,.6)); }
+  .bhand.me.locked .hc { pointer-events: none; filter: brightness(.6); }
+  .blabel { font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--g1); margin-top: 4px; }
+  .bslots { flex: 1; min-height: 0; display: flex; align-items: center; justify-content: center; gap: 8px; perspective: 1000px; width: 100%; }
+  .bslot { width: var(--sw, 150px); aspect-ratio: 63 / 88; position: relative; border-radius: 12px; border: 1px dashed #2e2e2e; }
+  .bslot:has(.throw) { border-color: transparent; }
+  .bcol { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+  .bvs { font-size: 12px; font-weight: 600; letter-spacing: .1em; color: var(--g1); width: 26px; text-align: center; transition: color .3s, transform .3s; }
+  .bvs.hot { color: var(--wh); transform: scale(1.3); }
+  .throw { position: absolute; inset: 0; transition: transform .55s cubic-bezier(.2,.8,.25,1), opacity .35s; }
+  .throw.from-me { transform: translate(-30%, 120%) rotate(-18deg) scale(.55); opacity: 0; }
+  .throw.from-foe { transform: translate(30%, -120%) rotate(16deg) scale(.55); opacity: 0; }
+  .throw.leave-l { transform: translate(-140%, 10%) rotate(-14deg); opacity: 0; }
+  .throw.leave-r { transform: translate(140%, 10%) rotate(14deg); opacity: 0; }
+  .flip { position: absolute; inset: 0; transform-style: preserve-3d; transition: transform .6s cubic-bezier(.3,.7,.3,1); }
+  .flip.up { transform: rotateY(180deg); }
+  .flip > .face { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+  .flip > .face.front { transform: rotateY(180deg); }
+  .flip .tc { width: 100%; }
+  .bslot.win .throw { transform: scale(1.06); }
+  .bslot.win .face.front .tc { box-shadow: 0 0 0 2px #7fe0a3, 0 0 30px rgba(127,224,163,.5); }
+  .bslot.lose .throw { transform: scale(.93); opacity: .5; }
+  .bslot.draw .throw { opacity: .85; }
+  /* v18: a calm chart table, not a casino. Dark navy, still stars, thin lines, a faint sky grid. No glow, no bursts. */
+  #battle { background: linear-gradient(180deg, #0e1227 0%, #0a0d1d 60%, #07090f 100%); overflow: hidden; }
+  #battle::before { content: ''; position: absolute; inset: 0; z-index: -1; pointer-events: none; opacity: .35;
+      background-image:
+        radial-gradient(1px 1px at 12% 18%, #fff, transparent), radial-gradient(1px 1px at 27% 62%, #fff, transparent),
+        radial-gradient(1px 1px at 44% 9%, #fff, transparent), radial-gradient(1px 1px at 63% 33%, #fff, transparent),
+        radial-gradient(1px 1px at 78% 71%, #fff, transparent), radial-gradient(1px 1px at 88% 14%, #fff, transparent),
+        radial-gradient(1px 1px at 6% 84%, #fff, transparent), radial-gradient(1px 1px at 52% 88%, #fff, transparent);
+      background-size: 240px 240px; }
+  #battle .bslots { position: relative; box-sizing: border-box; width: calc(100% - 8px); margin: 6px 4px; padding: 14px 8px; border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.10); background-color: rgba(255,255,255,.015);
+      background-image: linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+      background-size: 28px 28px; background-position: center; }
+  #battle .bslot { border: 1px solid rgba(255,255,255,.12); background: rgba(0,0,0,.25); }
+  #battle .bslot:has(.throw) { border-color: transparent; background: none; }
+  #battle .bvs { width: 26px; font-size: 11px; font-weight: 600; letter-spacing: .12em; color: var(--g1); }
+  #battle .bvs.hot { color: var(--wh); transform: none; }
+  #battle .bslot.win .face.front .tc { box-shadow: none; outline: 1.5px solid #7fe0a3; outline-offset: 3px; }
+  #battle .bslot.win .throw { transform: scale(1.03); }
+  #battle .bmsg { width: 100%; box-sizing: border-box; padding-inline: 8px; }
+  .tc-rows div.hl { background: rgba(255,255,255,.13); margin: 0 -.3em; padding-inline: .3em; border-radius: .25em; }
+  .tc-rows div.hl b { font-weight: 600; }
+  #bScore.bump { animation: bump .45s; display: inline-block; }
+  @keyframes bump { 40% { transform: scale(1.5); color: #7fe0a3; } }
+  .bpick .stats { display: flex; gap: 8px; }
+  .bpick .stats button { flex: 1; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 2px; padding: 10px 6px; }
+  .bpick .stats button span { font-weight: 600; }
   .bmsg { text-align: center; padding: 10px 20px 0; font-size: 14px; line-height: 1.45; min-height: 52px; }
   .bmsg b { font-weight: 600; }
   .bpick { padding: 10px 20px 22px; display: flex; flex-direction: column; gap: 8px; max-height: 38%; overflow-y: auto; }
@@ -494,8 +553,13 @@
 
   <section class="screen" id="battle">
     <div class="loc"><button class="x" id="battleExit" aria-label="Leave">✕</button><div style="text-align:right"><b id="bTitle"></b><span id="bScore"></span></div></div>
-    <div class="bfield"><div class="bside"><small id="bFoeLabel">Defender</small><div id="bFoe"></div></div><div class="bside"><small>You</small><div id="bMe"></div></div></div>
-    <div class="bmsg" id="bMsg"></div>
+    <div class="btable">
+      <div class="bhand foe" id="bFoeHand" aria-label="The other deck"></div>
+      <small class="blabel" id="bFoeLabel">Defender</small>
+      <div class="bslots"><div class="bcol"><div class="bslot" id="bFoe"></div><small class="blabel" id="bFoeName">Computer</small></div><div class="bvs" id="bVs">VS</div><div class="bcol"><div class="bslot" id="bMe"></div><small class="blabel">You</small></div></div>
+      <div class="bmsg" id="bMsg"></div>
+      <div class="bhand me" id="bMyHand" aria-label="Your hand"></div>
+    </div>
     <div class="bpick" id="bPick"></div>
   </section>
 
@@ -548,6 +612,9 @@ const BACK_SVG = `<svg viewBox="0 0 630 880"><rect width="630" height="880" fill
 /* ---------- state ---------- */
 const load = (k, d) => { try { return JSON.parse(localStorage.getItem(k) || '') ?? d; } catch (e) { return d; } };
 let col = load('blinksky2.col', {}), photos = load('blinksky2.photos', {}), reals = load('blinksky2.real', []), flags = load('blinksky2.flags', []), seen = load('blinksky2.seen', []);
+// Catches saved by the October version have no receipt, no time and no sky position. Give each one a receipt
+// (from what it does have) so it can still be sent to the team. The team measures its position from the image.
+flags.forEach(f => { if (!f.id) { f.id = receiptId(`${f.round}|${Math.round(f.x)}|${Math.round(f.y)}|${f.date}`); f.tag = f.tag || 'ANON'; f.kind = f.kind || 'unsorted'; f.old = true; } });
 const save = () => { try {
   localStorage.setItem('blinksky2.col', JSON.stringify(col)); localStorage.setItem('blinksky2.photos', JSON.stringify(photos)); localStorage.setItem('blinksky2.real', JSON.stringify(reals)); localStorage.setItem('blinksky2.flags', JSON.stringify(flags)); localStorage.setItem('blinksky2.seen', JSON.stringify(seen));
 } catch (e) {} };
@@ -1532,6 +1599,12 @@ function realChecks(r, j, ob) {
   return out;
 }
 function flagChecks(f) {
+  if (f.old) return [
+    ['ok', 'Something changed', `A light ${f.what || 'changed between the images'}.`],
+    ['ok', "Not on NASA JPL's list", "Checked against NASA JPL's list of known objects: no match."],
+    ['warn', 'Older catch', 'Saved by the October version: no time, no sky position, no star or glitch check. Our team checks it from the image.'],
+    ['no', 'Status', 'Candidate. Not confirmed, not a discovery.'],
+  ];
   return [
     ['ok', 'Something changed', `A light ${f.what}.`],
     ['ok', "Not on NASA JPL's list", `${f.nKnown ? `Checked against the ${f.nKnown} known asteroids and comets JPL places in this image` : "Checked against NASA JPL's list of known objects"}: no match.`],
@@ -1571,7 +1644,8 @@ function receiptText(f) {
   return [
     'BlinkSky receipt (prototype)', `Receipt: ${f.id}`, `Finder tag: ${f.tag}`, `Team or school: ${f.team || team || 'none given'}`, `Saved on this device: ${f.date}`,
     `What was seen: a light ${f.what}`, `SPHEREx image: ${f.obs || f.round}, ${f.time || ''}, ${f.band}`,
-    f.ra != null ? `Position (J2000): RA ${f.ra.toFixed(5)} deg, Dec ${f.dec.toFixed(5)} deg  (${fmtRA(f.ra)}, ${fmtDec(f.dec)}); from the image's own sky grid, good to about 3 arcseconds` : 'Position: not recorded',
+    f.old ? `Position: not recorded (older catch, saved before receipts existed). The light is at x ${Math.round(f.x)}, y ${Math.round(f.y)} in the game's copy of image ${f.round}.`
+    : f.ra != null ? `Position (J2000): RA ${f.ra.toFixed(5)} deg, Dec ${f.dec.toFixed(5)} deg  (${fmtRA(f.ra)}, ${fmtDec(f.dec)}); from the image's own sky grid, good to about 3 arcseconds` : 'Position: not recorded',
     'Checks:', ...flagChecks(f).map(([st, a, b]) => `  [${st === 'ok' ? 'pass' : st === 'warn' ? 'caution' : 'note'}] ${a}: ${b}`),
     'Data: NASA SPHEREx Quick Release via NASA/IPAC IRSA; known objects from NASA JPL; stars from Gaia DR3.',
   ].join('\n');
@@ -1584,6 +1658,12 @@ async function saveReceipt(f) {
 const isoTime = s => (s || '').replace(' UTC', '').replace(' ', 'T') + ':00Z';
 function reportText(f) {
   const kind = f.kind || 'appeared', dec = d => (d >= 0 ? '+' : '') + d.toFixed(5);
+  if (kind === 'unsorted' || f.ra == null) return [
+    'BlinkSky note (prototype)', `Receipt: ${f.id}`, `A light ${f.what || 'that changed between the images'}.`,
+    `Image: SPHEREx ${f.round}${f.band ? ', ' + f.band : ''}. Spot in the game image: x ${Math.round(f.x)}, y ${Math.round(f.y)}.`,
+    'Older catch: no sky position or time was saved, so no draft report can be written yet.',
+    'Our team measures its position from the image, sorts it, and only then writes a report for the right official list.',
+  ].join('\n') + '\n';
   if (kind === 'moved') {     // layout of the Minor Planet Center's ADES format (pipe-separated)
     const line = (time, ra, de) => `${f.id.padEnd(7)}|CCD |288 |${isoTime(time).padEnd(24)}|${ra.toFixed(5).padEnd(11)}|${dec(de).padEnd(11)}|Gaia3 |`;
     return [
@@ -1618,12 +1698,13 @@ function reportText(f) {
     'One sighting is not enough for that list, so our team checks later SPHEREx photos first.',
   ].join('\n') + '\n';
 }
-function saveReport(f) { if (f.ra != null) downloadText(`BlinkSky draft report ${f.id}.${(f.kind || 'appeared') === 'moved' ? 'psv' : 'txt'}`, reportText(f)); }
+function saveReport(f) { if (f.ra != null || f.old) downloadText(`BlinkSky draft report ${f.id}.${(f.kind || 'appeared') === 'moved' ? 'psv' : 'txt'}`, reportText(f)); }
 
 /* ---------- v6: sort by kind, the matching gate, send for review, the answer back on the card ---------- */
 const CHANGE = {
   moved:    { label: 'It moved', gate: 'Minor Planet Center', why: 'the official list of asteroids and comets', temp: 'like 2026 AB1, given by the Minor Planet Center' },
   appeared: { label: 'A new light', gate: 'Transient Name Server', why: 'the official list of new lights in the sky', temp: 'like AT 2026abc, given by the Transient Name Server' },
+  unsorted: { label: 'Not sorted yet (an older catch)', gate: '', why: '', temp: '' },
   vanished: { label: 'A light that went out', gate: 'AAVSO Variable Star Index', why: 'the official list of stars that change brightness', temp: 'a place in the Variable Star Index, if it is a star that fades and returns' },
 };
 // One id per device, so "three players agree" means three devices, whatever tag they typed.
@@ -1677,14 +1758,14 @@ function flowHtml(f) {
   const row = (st, a, b) => `<div class="chk ${st}"><i>${st === 'ok' ? '✓' : st === 'warn' ? '!' : '–'}</i><span><b>${a}</b><small>${b}</small></span></div>`;
   return '<h3>What happens to this catch</h3>'
     + row('ok', 'Spotted by you', f.date)
-    + row('ok', 'Checked by the code', `${f.confirmed ? 'Not a camera glitch. ' : ''}NASA JPL's list and Gaia's stars: no match`)
-    + row('ok', 'Sorted by kind', `${ch.label}. ${ch.gate ? `Its official list is the ${ch.gate}` : 'No official list takes this kind yet'}`)
+    + row('ok', 'Checked by the code', f.old ? "NASA JPL's list: no match. (Older catch: fewer checks were run.)" : `${f.confirmed ? 'Not a camera glitch. ' : ''}NASA JPL's list and Gaia's stars: no match`)
+    + row(f.old ? 'warn' : 'ok', 'Sorted by kind', `${ch.label}. ${ch.gate ? `Its official list is the ${ch.gate}` : f.old ? 'Our team sorts it and picks the right official list' : 'No official list takes this kind yet'}`)
     + row(f.mailed ? 'ok' : 'no', 'Sent to the BlinkSky team', f.mailed ? `Email opened ${f.mailed}. Our team checks it again before anything is reported` : 'Tap "Send to our team for expert review" below')
     + row(!r ? 'no' : r.agree >= need ? 'ok' : 'warn', 'Other players spot the same change', !r ? 'Counted when several players, at different times and places, send the same find'
         : `${r.agree} of ${need} so far, each at a different time and place${r.flagged > r.agree ? ` (${r.flagged} flags in all; the rest were too close in time or place to count)` : ''}`)
     + row(!r || r.status === 'sent' ? 'no' : r.status === 'review' ? 'warn' : 'ok', 'Reviewed by the BlinkSky team',
         !r || r.status === 'sent' ? 'Starts when enough players have flagged it' : r.status === 'review' ? 'Waiting for a reviewer' : r.status === 'approved' ? 'Passed' : 'Not passed on')
-    + row(r && r.status === 'approved' ? 'warn' : 'no', 'Reported to the official list', r && r.status === 'approved' ? `Report ready for the ${ch.gate}. Our team sends it` : `Our team reports it to the ${ch.gate} after checking`)
+    + row(r && r.status === 'approved' ? 'warn' : 'no', 'Reported to the official list', r && r.status === 'approved' ? `Report ready for the ${ch.gate}. Our team sends it` : `Our team reports it to the ${ch.gate || 'right official list'} after checking`)
     + row('no', 'Seen again on another night', 'A find only becomes official when it is found again.<br><button class="linkbtn" id="againBtn">Look for it in other SPHEREx photos →</button>')
     + row('no', 'Gets a temporary name', ch.temp || 'From the official list')
     + (f.kind === 'moved' ? row('no', 'Gets a number, then a name', 'Once its path is well known, often years later. The finder may then suggest a name') : '')
@@ -1806,7 +1887,7 @@ function wireRelay(f) {
   const btn = $('sendFlag'), paint = () => { if ($('flow')) { $('flow').innerHTML = flowHtml(f); btn.textContent = f.mailed ? 'Send to our team again' : 'Send to our team for expert review'; wireExtras(f); } };
   wireExtras(f);
   btn.onclick = async () => {
-    if (f.ra == null) { toast('This catch has no sky position, so it cannot be sent.'); return; }
+    if (f.ra == null && !f.old) { toast('This catch has no sky position, so it cannot be sent.'); return; }
     if (!TEAM_EMAIL) { toast('The team inbox is not set up yet. Save the receipt and the draft report instead.'); return; }
     location.href = mailLink(f);
     f.mailed = new Date().toISOString().slice(0, 16).replace('T', ' ') + ' UTC'; save(); paint();
@@ -1927,43 +2008,100 @@ async function startBattle(p, cpu = false) {
   battle = { cpu, foeTag: cpu ? 'the computer' : cleanTag(p.t) || 'PLAYER', foe: mk(Array.isArray(p.d) ? p.d.slice(0, DECK_MAX) : []), me: mk(deckCodes()), n: 0, score: [0, 0], used: [], pick: null, last: null };
   show('battle'); renderBattle();
 }
-function renderBattle() {
-  const b = battle, w = bw(), done = b.n >= ROUNDS;
-  $('bTitle').textContent = `You vs ${b.foeTag}`; $('bScore').textContent = `${b.score[0]} – ${b.score[1]}`; $('bFoeLabel').textContent = b.cpu ? "The computer's deck" : `${b.foeTag}'s deck`;
-  const L = b.last;
-  $('bFoe').className = L && L.res < 0 ? 'win' : ''; $('bMe').className = L && L.res > 0 ? 'win' : '';
-  $('bFoe').innerHTML = L ? bcard(L.foe, w) : cardBack(w);
-  $('bMe').innerHTML = L ? bcard(L.me, w) : b.pick != null ? bcard(b.me[b.pick], w) : cardBack(w);
-  if (L) {
-    const [, label, f] = STATS.find(s => s[0] === L.stat);
-    $('bMsg').innerHTML = `<b>${label}:</b> your ${f(L.me)} against ${f(L.foe)}.<br>${L.res > 0 ? 'You take the round.' : L.res < 0 ? `${b.cpu ? "The computer's" : b.foeTag + "'s"} deck holds.` : 'A draw.'}`;
-    if (!done) { $('bPick').innerHTML = `<button class="main" id="bNext">Next round</button>`; $('bNext').onclick = () => { b.last = null; b.pick = null; renderBattle(); }; return; }
-    const [a, z] = b.score, word = a > z ? 'You won' : a < z ? 'You lost' : 'A draw';
-    $('bMsg').innerHTML += `<br><b>${word} ${a}–${z} against ${b.foeTag}'s deck.</b>`;
-    $('bPick').innerHTML = `<button class="main" id="bSend">${b.cpu ? 'Play again' : `Send the result to ${b.foeTag}`}</button><button class="quiet" id="bDone">Back to your deck</button>`;
-    $('bSend').onclick = async () => {
-      if (b.cpu) { $('cpuBtn').onclick(); return; }
-      const link = location.href.split('#')[0] + '#result=' + b64e(JSON.stringify({ a: tag || 'PLAYER', d: b.foeTag, s: b.score }));
-      try { await navigator.clipboard.writeText(link); $('bSend').textContent = 'Link copied'; } catch (e) { prompt('Copy this link', link); }
-    };
-    $('bDone').onclick = () => go('collection');
-    return;
-  }
+// v16: a real card table. Your hand at the bottom, theirs face down at the top. Tap a card, pick a number,
+// and both cards are thrown face down, flip together, and the winner glows.
+const wait = ms => new Promise(ok => setTimeout(ok, ms));
+const slotW = () => Math.round(Math.max(90, Math.min(bw(), (innerHeight - 480) * 63 / 88, (Math.min(innerWidth, 430) - 24 - 8 - 16 - 38 - 16 - 4) / 2)));   // fits inside the mat
+function bHands() {
+  const b = battle, left = b.me.map((c, i) => i).filter(i => !b.used.includes(i)), foeLeft = ROUNDS - b.n - (b.thrown ? 1 : 0);
+  $('bFoeHand').innerHTML = Array.from({ length: Math.max(0, foeLeft) }, (_, i) => { const t = foeLeft > 1 ? i / (foeLeft - 1) - .5 : 0; return `<div class="hb" style="--r:${(-t * 16).toFixed(1)}deg;--y:${(Math.abs(t) * -10).toFixed(1)}px">${cardBack(40)}</div>`; }).join('');
+  $('bMyHand').innerHTML = left.map((i, k) => { const t = left.length > 1 ? k / (left.length - 1) - .5 : 0;
+    return `<button class="hc${b.pick === i ? ' sel' : ''}" data-i="${i}" aria-label="${b.me[i].name}" style="--r:${(t * 18).toFixed(1)}deg;--y:${(Math.abs(t) * 12).toFixed(1)}px">${bcard(b.me[i], 66)}</button>`; }).join('');
+  $('bMyHand').classList.toggle('locked', !!b.busy);
+  [...$('bMyHand').querySelectorAll('.hc')].forEach(x => x.onclick = () => { if (b.busy || b.last) return; b.pick = +x.dataset.i; bHands(); bChoose(); });
+}
+function bHeader() {
+  const b = battle;
+  $('bTitle').textContent = `You vs ${b.foeTag}`; $('bScore').textContent = `${b.score[0]} – ${b.score[1]}`;
+  $('bFoeLabel').textContent = b.cpu ? "The computer's hand" : `${b.foeTag}'s hand`; $('bFoeName').textContent = b.cpu ? 'Computer' : b.foeTag;
+  $('bFoe').style.setProperty('--sw', slotW() + 'px'); $('bMe').style.setProperty('--sw', slotW() + 'px');
+}
+function bChoose() {
+  const b = battle;
   if (b.pick == null) {
-    $('bMsg').innerHTML = `<b>Round ${b.n + 1} of ${ROUNDS}.</b> Pick a card to attack with.`;
-    $('bPick').innerHTML = b.me.map((c, i) => b.used.includes(i) ? '' : `<button data-i="${i}"><span>${tlogo(c.kind)} ${c.name}</span><small>${STATS[0][2](c)} · ${STATS[1][2](c)}</small></button>`).join('');
-    [...$('bPick').querySelectorAll('button')].forEach(x => x.onclick = () => { b.pick = +x.dataset.i; renderBattle(); });
+    $('bMsg').innerHTML = `<b>Round ${b.n + 1} of ${ROUNDS}.</b> Tap a card in your hand.`;
+    $('bPick').innerHTML = '';
     return;
   }
   const c = b.me[b.pick];
-  $('bMsg').innerHTML = `<b>${c.name}.</b> Which number do you attack with? The higher one wins.`;
-  $('bPick').innerHTML = STATS.map(([k, label, f]) => `<button data-s="${k}"><span>${label}</span><small>${f(c)}</small></button>`).join('') + `<button class="quiet" id="bBack">← Pick another card</button>`;
-  [...$('bPick').querySelectorAll('button[data-s]')].forEach(x => x.onclick = () => {
-    const foe = b.foe[b.n % b.foe.length], s = x.dataset.s, res = Math.sign(statVal(c, s) - statVal(foe, s));
-    if (res > 0) b.score[0]++; else if (res < 0) b.score[1]++;
-    b.used.push(b.pick); b.n++; b.last = { me: c, foe, stat: s, res }; renderBattle();
-  });
-  $('bBack').onclick = () => { b.pick = null; renderBattle(); };
+  $('bMsg').innerHTML = `<b>${c.name}.</b> Throw it with which number? Higher wins.`;
+  $('bPick').innerHTML = `<div class="stats">${STATS.map(([k, label, f]) => `<button data-s="${k}"><span>${label}</span><small>${f(c)}</small></button>`).join('')}</div>`;
+  [...$('bPick').querySelectorAll('button[data-s]')].forEach(x => x.onclick = () => bThrow(x.dataset.s));
+}
+async function bThrow(s) {
+  const b = battle, c = b.me[b.pick], foe = b.foe[b.n % b.foe.length], res = Math.sign(statVal(c, s) - statVal(foe, s)), w = slotW();
+  b.busy = true; b.used.push(b.pick); b.thrown = true; $('bPick').innerHTML = '';
+  const face = (card, from) => `<div class="throw ${from}"><div class="flip"><div class="face back">${cardBack(w)}</div><div class="face front">${bcard(card, w)}</div></div></div>`;
+  $('bMe').className = 'bslot'; $('bFoe').className = 'bslot';
+  $('bMe').innerHTML = face(c, 'from-me'); bHands();
+  $('bMsg').innerHTML = `You throw a card face down...`;
+  await wait(30); $('bMe').firstElementChild.classList.remove('from-me');
+  await wait(380);
+  $('bFoe').innerHTML = face(foe, 'from-foe'); b.pick = null; bHands();
+  $('bMsg').innerHTML = `${b.cpu ? 'The computer' : b.foeTag} throws one back...`;
+  await wait(30); $('bFoe').firstElementChild.classList.remove('from-foe');
+  await wait(650);
+  $('bMsg').innerHTML = '<b>Flip!</b>'; $('bVs').classList.add('hot');
+  $('bMe').querySelector('.flip').classList.add('up'); await wait(140); $('bFoe').querySelector('.flip').classList.add('up');
+  await wait(700);
+  const si = STATS.findIndex(x => x[0] === s), [, label, f] = STATS[si];
+  for (const el of [$('bMe'), $('bFoe')]) { const row = el.querySelectorAll('.face.front .tc-rows > div')[si]; if (row) row.classList.add('hl'); }
+  $('bMsg').innerHTML = `<b>${label}:</b> your ${f(c)} against ${f(foe)}.`;
+  await wait(650);
+  $('bVs').classList.remove('hot');
+  $('bMe').classList.add(res > 0 ? 'win' : res < 0 ? 'lose' : 'draw'); $('bFoe').classList.add(res < 0 ? 'win' : res > 0 ? 'lose' : 'draw');
+  if (res > 0) b.score[0]++; else if (res < 0) b.score[1]++;
+  b.n++; b.thrown = false; b.last = { me: c, foe, stat: s, res }; b.busy = false;
+  bHeader(); if (res) { $('bScore').classList.remove('bump'); void $('bScore').offsetWidth; $('bScore').classList.add('bump'); }
+  $('bMsg').innerHTML = `<b>${label}:</b> your ${f(c)} against ${f(foe)}.<br>${res > 0 ? 'You take the round!' : res < 0 ? `${b.cpu ? 'The computer' : b.foeTag} takes it.` : 'A draw.'}`;
+  bHands(); bAfter();
+}
+function bBurst(el, color) {
+  for (let i = 0; i < 16; i++) {
+    const s = document.createElement('i'), a = i / 16 * 6.283 + Math.random() * .3, d = 70 + Math.random() * 60;
+    s.className = 'spark'; s.style.setProperty('--sc', color); s.style.setProperty('--dx', `${(Math.cos(a) * d).toFixed(0)}px`); s.style.setProperty('--dy', `${(Math.sin(a) * d).toFixed(0)}px`);
+    s.style.animationDelay = `${(Math.random() * .12).toFixed(2)}s`; el.appendChild(s); setTimeout(() => s.remove(), 1200);
+  }
+}
+function bAfter() {
+  const b = battle;
+  if (b.n < ROUNDS) {
+    $('bPick').innerHTML = `<button class="main" id="bNext">Next round</button>`;
+    $('bNext').onclick = async () => {
+      if (b.busy) return; b.busy = true; $('bPick').innerHTML = '';
+      const t1 = $('bMe').querySelector('.throw'), t2 = $('bFoe').querySelector('.throw');
+      if (t1) t1.classList.add('leave-l'); if (t2) t2.classList.add('leave-r');
+      await wait(380);
+      $('bMe').innerHTML = ''; $('bFoe').innerHTML = ''; $('bMe').className = 'bslot'; $('bFoe').className = 'bslot';
+      b.last = null; b.pick = null; b.busy = false; bHands(); bChoose();
+    };
+    return;
+  }
+  const [x, y] = b.score, word = x > y ? 'You won' : x < y ? 'You lost' : 'A draw';
+  $('bMsg').innerHTML += `<br><b>${word} ${x}–${y}${b.cpu ? '' : ` against ${b.foeTag}'s deck`}.</b>`;
+  $('bPick').innerHTML = `<button class="main" id="bSend">${b.cpu ? 'Play again' : `Send the result to ${b.foeTag}`}</button><button class="quiet" id="bDone">Back to your deck</button>`;
+  $('bSend').onclick = async () => {
+    if (b.cpu) { $('cpuBtn').onclick(); return; }
+    const link = location.href.split('#')[0] + '#result=' + b64e(JSON.stringify({ a: tag || 'PLAYER', d: b.foeTag, s: b.score }));
+    try { await navigator.clipboard.writeText(link); $('bSend').textContent = 'Link copied'; } catch (e) { prompt('Copy this link', link); }
+  };
+  $('bDone').onclick = () => go('collection');
+}
+function renderBattle() {
+  const b = battle;
+  b.busy = false; b.thrown = false;
+  bHeader(); $('bMe').innerHTML = ''; $('bFoe').innerHTML = ''; $('bMe').className = 'bslot'; $('bFoe').className = 'bslot'; $('bVs').classList.remove('hot');
+  bHands(); bChoose();
 }
 $('battleExit').onclick = () => go('collection');
 function showResult(p) {
