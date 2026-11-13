@@ -395,7 +395,7 @@
   <section class="screen" id="caught">
     <div class="loc"><button class="x" data-go="home" aria-label="Close">✕</button></div>
     <div class="stage" id="stage"><div id="caughtCard"></div></div>
-    <div class="caughtmsg"><b id="caughtTitle">Caught</b><span>✓ Added to your deck · tap the card for details</span><button class="savebtn" id="saveImg">↓ Save as image</button></div>
+    <div class="caughtmsg"><b id="caughtTitle">Caught</b><span id="caughtSub">✓ Added to your deck · tap the card for details</span><button class="savebtn" id="saveImg">↓ Save as image</button></div>
     <div class="btnrow"><button class="startbtn" id="again">Hunt again</button><button class="ghostbtn" data-go="collection">Deck</button></div>
   </section>
 
@@ -633,7 +633,7 @@ function realCard(r, i) {
 }
 
 /* ---------- details sheet ---------- */
-function openSheet(c) {
+function openSheet(c, fromCatch = false) {
   const k = KINDS[c.kind];
   $('sheet').style.setProperty('--c', k.color);
   $('sheet').innerHTML = `<div class="grab"></div>
@@ -646,11 +646,11 @@ function openSheet(c) {
     <div class="sh-rows">${c.facts.map(([a, b]) => `<div><span>${a}</span><b>${b}</b></div>`).join('')}</div>
     ${c.realName ? cardPrintHtml(c.fp) : ''}
     ${c.checks ? `<details class="how"><summary>How we know</summary>${c.checks.map(([st, a, b]) => `<div class="chk ${st}"><i>${st === 'ok' ? '✓' : st === 'warn' ? '!' : '–'}</i><span><b>${a}</b><small>${b}</small></span></div>`).join('')}</details>` : ''}
-    ${c.receipt ? receiptHtml(c.receipt) : ''}
+    ${c.receipt ? (fromCatch ? `<p class="sh-story"><b>Want experts to look at it?</b><br>It is saved in your Deck. Open it there and press "Send to our team for expert review".</p>` : receiptHtml(c.receipt)) : ''}
     <p class="sh-src">${c.src}</p>
     <button class="ghostbtn sh-see" id="saveSheet">↓ Save card as image</button>`;
   $('saveSheet').onclick = () => saveCardImage(c);
-  if (c.receipt) { $('saveReceipt').onclick = () => saveReceipt(c.receipt); $('saveReport').onclick = () => saveReport(c.receipt); wireRelay(c.receipt); }
+  if (c.receipt && !fromCatch) { $('saveReceipt').onclick = () => saveReceipt(c.receipt); $('saveReport').onclick = () => saveReport(c.receipt); wireRelay(c.receipt); }
   if (c.realName) $('seeIn').onclick = () => explore(c.realName, document.querySelector('.screen.on').id);
   $('app').classList.add('sheet-open');
 }
@@ -1114,11 +1114,12 @@ function listResults() {
   [...$('results').querySelectorAll('.res:not(:disabled)')].forEach(b => b.onclick = () => explore(all[+b.dataset.i].name, 'search'));
 }
 $('q').addEventListener('input', listResults);
-function presentCard(c, title) {
+function presentCard(c, title, sub) {
   $('stage').style.setProperty('--c', KINDS[c.kind].color);
   $('caughtTitle').textContent = title;
+  $('caughtSub').textContent = sub || '✓ Added to your deck · tap the card for details';
   $('caughtCard').innerHTML = cardFront(c, Math.round(Math.min(240, innerWidth * .62, (Math.min(innerHeight, 900) - 260) * .716)));
-  $('caughtCard').firstElementChild.onclick = () => openSheet(c);
+  $('caughtCard').firstElementChild.onclick = () => openSheet(c, true);
   $('saveImg').onclick = () => saveCardImage(c, title);
   show('caught');
 }
@@ -1298,7 +1299,7 @@ function flagChange(spot, shot) {
   rec.pos = rec.pos.filter(Boolean).sort((p, q) => p.time < q.time ? -1 : 1);
   rec.tag = tag || 'ANON'; rec.id = receiptId(`${rec.obs}|${Math.round(spot.x)}|${Math.round(spot.y)}`);
   flags.push(rec); save();
-  presentCard(flagCard(rec, flags.length - 1), "Not on any list. You have a receipt.");
+  presentCard(flagCard(rec, flags.length - 1), "A new find! It's saved in your deck.", '✓ Open it from your Deck to send it to experts for review');
 }
 function flagCard(f, i) {
   const ch = CHANGE[f.kind] || CHANGE.appeared, st = relayLine(f);
@@ -1533,7 +1534,7 @@ function receiptHtml(f) {
     <button class="ghostbtn" id="saveCert">↓ Save certificate</button>
     <label class="tagrow" style="margin:12px 0 4px"><span>Team or school</span><input id="teamIn" maxlength="40" placeholder="optional" autocomplete="off" style="text-transform:none;letter-spacing:0"></label>
     <div id="flow">${flowHtml(f)}</div>
-    <button class="ghostbtn" id="sendFlag">${f.mailed ? 'Send to our team again' : 'Send to our team'}</button></div>`;
+    <button class="ghostbtn" id="sendFlag">${f.mailed ? 'Send to our team again' : 'Send to our team for expert review'}</button></div>`;
 }
 function downloadText(name, text) {
   const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([text], { type: 'text/plain' })); a.download = name;
@@ -1655,7 +1656,7 @@ function flowHtml(f) {
     + row('ok', 'Spotted by you', f.date)
     + row('ok', 'Checked by the code', `${f.confirmed ? 'Not a camera glitch. ' : ''}NASA JPL's list and Gaia's stars: no match`)
     + row('ok', 'Sorted by kind', `${ch.label}. ${ch.gate ? `Its official list is the ${ch.gate}` : 'No official list takes this kind yet'}`)
-    + row(f.mailed ? 'ok' : 'no', 'Sent to the BlinkSky team', f.mailed ? `Email opened ${f.mailed}. Our team checks it again before anything is reported` : 'Tap "Send to our team" below')
+    + row(f.mailed ? 'ok' : 'no', 'Sent to the BlinkSky team', f.mailed ? `Email opened ${f.mailed}. Our team checks it again before anything is reported` : 'Tap "Send to our team for expert review" below')
     + row(!r ? 'no' : r.agree >= need ? 'ok' : 'warn', 'Other players spot the same change', !r ? 'Counted when several players, at different times and places, send the same find'
         : `${r.agree} of ${need} so far, each at a different time and place${r.flagged > r.agree ? ` (${r.flagged} flags in all; the rest were too close in time or place to count)` : ''}`)
     + row(!r || r.status === 'sent' ? 'no' : r.status === 'review' ? 'warn' : 'ok', 'Reviewed by the BlinkSky team',
@@ -1779,7 +1780,7 @@ function wireExtras(f) {
   if (a) a.onclick = () => { if (f.ra == null) { toast('This catch has no sky position.'); return; } closeSheet(); openWatch({ ra: f.ra, dec: f.dec, name: `Your find ${f.id}` }, 'collection'); };
 }
 function wireRelay(f) {
-  const btn = $('sendFlag'), paint = () => { if ($('flow')) { $('flow').innerHTML = flowHtml(f); btn.textContent = f.mailed ? 'Send to our team again' : 'Send to our team'; wireExtras(f); } };
+  const btn = $('sendFlag'), paint = () => { if ($('flow')) { $('flow').innerHTML = flowHtml(f); btn.textContent = f.mailed ? 'Send to our team again' : 'Send to our team for expert review'; wireExtras(f); } };
   wireExtras(f);
   btn.onclick = async () => {
     if (f.ra == null) { toast('This catch has no sky position, so it cannot be sent.'); return; }
