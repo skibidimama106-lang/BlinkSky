@@ -940,9 +940,27 @@ function snapshot(wx, wy) {
 function momentOf(i) { const f = round.meta && round.meta.frames && round.meta.frames[i]; return f && f.moment != null ? f.moment : i; }
 // Look at the tapped spot in both images: a star stays put, a mover or a new light is in one image and not the other.
 // Tuned on the full SPHEREx round: 600/600 stars read as stars, Lutetia reads as a change, 2/600 empty-sky taps raise a false change.
+// v13: the tap now snaps to the nearby light the finger meant (phones missed stars by more than the old 6-pixel window).
 const SPOT_RULES = { bright: 200, min: 75, keep: .55, change: .2 };
 function inspectSpot(wx, wy) {
   const up = round.up || 1, r = Math.max(4, Math.round(3 * up)), cur = round.frames[frame], oth = round.frames[(frame + 1) % round.frames.length];
+  // A fingertip covers far more than a few photo pixels. Look about 22 screen pixels around the tap (scaled with the zoom)
+  // for the light the player most likely meant: bright, and close to the finger. Then judge that light.
+  const reach = Math.min(120, Math.max(r, Math.round(22 / (view && view.s ? view.s : 1))));
+  if (reach > r) {
+    const X = Math.max(0, Math.round(wx - reach)), Y = Math.max(0, Math.round(wy - reach));
+    const ww = Math.min(cur.width - X, 2 * reach + 1), hh = Math.min(cur.height - Y, 2 * reach + 1);
+    if (ww > 2 && hh > 2) {
+      const d = cur.getContext('2d').getImageData(X, Y, ww, hh).data;
+      let best = -1, bx = wx, by = wy;
+      for (let yy = 0; yy < hh; yy++) for (let xx = 0; xx < ww; xx++) {
+        const dist = Math.hypot(X + xx - wx, Y + yy - wy); if (dist > reach) continue;
+        const sc = d[(yy * ww + xx) * 4] * (1 - .5 * dist / reach);
+        if (sc > best) { best = sc; bx = X + xx; by = Y + yy; }
+      }
+      wx = bx; wy = by;
+    }
+  }
   const x0 = Math.max(0, Math.round(wx - r)), y0 = Math.max(0, Math.round(wy - r)), w = Math.min(cur.width - x0, 2 * r + 1), hgt = Math.min(cur.height - y0, 2 * r + 1);
   if (w < 3 || hgt < 3) return { kind: 'nothing' };
   const a = cur.getContext('2d').getImageData(x0, y0, w, hgt).data, b = oth.getContext('2d').getImageData(x0, y0, w, hgt).data;
@@ -956,7 +974,9 @@ function inspectSpot(wx, wy) {
   const T = SPOT_RULES, next = (frame + 1) % round.frames.length;
   const level = i => {                                                                  // same spot, in photo i
     const d = i === next ? b : round.frames[i].getContext('2d').getImageData(x0, y0, w, hgt).data;
-    return Math.max(...[-4, 0, 4].map(o => d[Math.min(d.length - 4, Math.max(0, bi + o))])) - bg;
+    const px = (bi / 4) % w, py = Math.floor(bi / 4 / w); let m = 0;
+    for (let dy = -1; dy <= 1; dy++) for (let dx = -1; dx <= 1; dx++) { const qx = px + dx, qy = py + dy; if (qx >= 0 && qy >= 0 && qx < w && qy < hgt) m = Math.max(m, d[(qy * w + qx) * 4]); }
+    return m - bg;
   };
   const others = round.frames.map((_, i) => i).filter(i => i !== frame), lv = {};
   for (const i of others) lv[i] = level(i);
