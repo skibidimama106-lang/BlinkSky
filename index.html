@@ -363,6 +363,32 @@
   #battle .bslot.win .face.front .tc { box-shadow: none; outline: 1.5px solid #7fe0a3; outline-offset: 3px; }
   #battle .bslot.win .throw { transform: scale(1.03); }
   #battle .bmsg { width: 100%; box-sizing: border-box; padding-inline: 8px; }
+  /* v21: results. Calm: one accent colour per outcome, a line-art emblem that draws itself, the score, one dot per round. */
+  .mres { text-align: center; padding: 6px 4px 2px; --a: #7fe0a3; }
+  .mres.loss { --a: #ff9a6a; } .mres.draw { --a: #c9bdf0; }
+  .mres .emb { width: 92px; height: 92px; display: block; margin: 0 auto 8px; overflow: visible; }
+  .mres .emb .ln { fill: none; stroke: var(--a); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 320; stroke-dashoffset: 320; animation: resdraw 1.3s ease forwards; }
+  .mres .emb .ln.thin { stroke-width: 1; opacity: .55; animation-delay: .25s; }
+  .mres .emb .st { fill: var(--a); opacity: 0; animation: resfade .5s .85s forwards; }
+  @keyframes resdraw { to { stroke-dashoffset: 0; } }
+  @keyframes resfade { to { opacity: 1; } }
+  @media (prefers-reduced-motion: reduce) { .mres .emb .ln { stroke-dashoffset: 0; } .mres .emb .st { opacity: 1; } }
+  .mres .kicker { font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: var(--a); font-weight: 600; }
+  .mres h2 { font-size: 30px; font-weight: 300; letter-spacing: -.02em; line-height: 1.1; margin: 6px 0 0; }
+  .mres .score { display: flex; justify-content: center; align-items: flex-end; gap: 18px; margin: 16px 0 4px; }
+  .mres .score div { min-width: 70px; }
+  .mres .score b { display: block; font-size: 46px; font-weight: 200; line-height: 1; }
+  .mres .score b.lead { color: var(--a); }
+  .mres .score span { display: block; margin-top: 4px; font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--g1); }
+  .mres .score i { font-style: normal; font-size: 22px; color: var(--g2); padding-bottom: 14px; }
+  .mres .pips { display: flex; justify-content: center; gap: 9px; margin: 10px 0 6px; }
+  .mres .pips i { width: 10px; height: 10px; border-radius: 50%; border: 1.5px solid var(--a); }
+  .mres .pips i.w { background: var(--a); } .mres .pips i.d { background: linear-gradient(90deg, var(--a) 50%, transparent 50%); }
+  .mres .line { font-size: 14px; color: #cfcfcb; line-height: 1.5; margin: 10px 8px 0; }
+  .resbtns { display: flex; flex-direction: column; gap: 8px; margin-top: 18px; }
+  .resbtns button { margin: 0 !important; width: 100%; }
+  .bresult { position: absolute; inset: 56px 0 0; z-index: 4; display: flex; flex-direction: column; justify-content: center; padding: 20px 24px 28px; background: linear-gradient(180deg, #0e1227, #090c1a); }
+  .bresult[hidden] { display: none; }
   .tc-rows div.hl { background: rgba(255,255,255,.13); margin: 0 -.3em; padding-inline: .3em; border-radius: .25em; }
   .tc-rows div.hl b { font-weight: 600; }
   #bScore.bump { animation: bump .45s; display: inline-block; }
@@ -561,6 +587,7 @@
       <div class="bhand me" id="bMyHand" aria-label="Your hand"></div>
     </div>
     <div class="bpick" id="bPick"></div>
+    <div class="bresult" id="bResult" hidden></div>
   </section>
 
   <nav class="tabbar" id="tabbar">
@@ -940,7 +967,18 @@ function drawMini() {
   m.strokeStyle = '#f4f4f2'; m.lineWidth = 3;
   m.strokeRect(8 + view.ox * k, 8 + view.oy * k, view.w / view.s * k, view.h / view.s * k);
 }
-function startBlink() { clearInterval(timer); timer = setInterval(() => { frame = (frame + 1) % round.frames.length; render(); }, round.real ? 900 : 650); }
+// Photos taken minutes apart show no motion between them. Flip so that every step crosses the long gap
+// (A, C, B, D for two moments of two photos): the mover then jumps on every flip, not on every other one.
+function blinkOrder() {
+  const n = round.frames.length, groups = [];
+  if (!round.real) return [...Array(n).keys()];
+  for (let i = 0; i < n; i++) { const m = momentOf(i); let g = groups.find(x => x.m === m); if (!g) groups.push(g = { m, f: [] }); g.f.push(i); }
+  if (groups.length < 2) return [...Array(n).keys()];
+  const out = [], most = Math.max(...groups.map(g => g.f.length));
+  for (let k = 0; k < most; k++) for (const g of groups) if (g.f[k] != null) out.push(g.f[k]);
+  return out;
+}
+function startBlink() { clearInterval(timer); const ord = blinkOrder(); timer = setInterval(() => { const j = ord.indexOf(frame); frame = ord[(j + 1) % ord.length]; render(); }, round.real ? 900 : 650); }
 
 /* ---------- pan, zoom, tap ---------- */
 const ptrs = new Map(); let gesture = null;
@@ -2061,7 +2099,7 @@ async function bThrow(s) {
   $('bVs').classList.remove('hot');
   $('bMe').classList.add(res > 0 ? 'win' : res < 0 ? 'lose' : 'draw'); $('bFoe').classList.add(res < 0 ? 'win' : res > 0 ? 'lose' : 'draw');
   if (res > 0) b.score[0]++; else if (res < 0) b.score[1]++;
-  b.n++; b.thrown = false; b.last = { me: c, foe, stat: s, res }; b.busy = false;
+  b.n++; b.thrown = false; b.last = { me: c, foe, stat: s, res }; b.busy = false; (b.hist = b.hist || []).push(res);
   bHeader(); if (res) { $('bScore').classList.remove('bump'); void $('bScore').offsetWidth; $('bScore').classList.add('bump'); }
   $('bMsg').innerHTML = `<b>${label}:</b> your ${f(c)} against ${f(foe)}.<br>${res > 0 ? 'You take the round!' : res < 0 ? `${b.cpu ? 'The computer' : b.foeTag} takes it.` : 'A draw.'}`;
   bHands(); bAfter();
@@ -2072,6 +2110,32 @@ function bBurst(el, color) {
     s.className = 'spark'; s.style.setProperty('--sc', color); s.style.setProperty('--dx', `${(Math.cos(a) * d).toFixed(0)}px`); s.style.setProperty('--dy', `${(Math.sin(a) * d).toFixed(0)}px`);
     s.style.animationDelay = `${(Math.random() * .12).toFixed(2)}s`; el.appendChild(s); setTimeout(() => s.remove(), 1200);
   }
+}
+// One result panel for every ending: who won, by how much, and which rounds.
+const RES_EMBLEM = {
+  win: '<path class="ln" d="M50.0 23.0 L55.9 38.9 L72.8 39.6 L59.5 50.1 L64.1 66.4 L50.0 57.0 L35.9 66.4 L40.5 50.1 L27.2 39.6 L44.1 38.9 Z"/><ellipse class="ln thin" cx="50" cy="50" rx="44" ry="15" transform="rotate(-18 50 50)"/><circle class="st" cx="50" cy="47" r="3.2"/><circle class="st" cx="91" cy="36" r="2.6"/><circle class="st" cx="14" cy="22" r="1.5"/><circle class="st" cx="84" cy="80" r="1.4"/><circle class="st" cx="20" cy="84" r="1.2"/>',
+  loss: '<path class="ln" d="M14 16 L66 68"/><path class="ln thin" d="M26 12 L70 56 M12 30 L56 74"/><circle class="st" cx="70" cy="72" r="5.5"/><circle class="st" cx="84" cy="40" r="1.6"/><circle class="st" cx="34" cy="80" r="1.6"/><circle class="st" cx="86" cy="86" r="1.3"/>',
+  draw: '<path class="ln" d="M22 60 L50 36 L78 60"/><path class="ln thin" d="M22 60 L78 60"/><circle class="st" cx="22" cy="60" r="4.5"/><circle class="st" cx="78" cy="60" r="4.5"/><circle class="st" cx="50" cy="36" r="2.4"/>',
+};
+function resultCopy(role, mine, theirs, who) {
+  const o = mine > theirs ? 'win' : mine < theirs ? 'loss' : 'draw', d = Math.abs(mine - theirs);
+  if (role === 'attack') {
+    if (o === 'win') return { o, kicker: 'Victory', title: d === ROUNDS ? 'A clean sweep' : d >= 3 ? 'You won, clearly' : 'You won, just', line: `Your catches beat ${who}'s in ${mine} of ${ROUNDS} rounds.` };
+    if (o === 'loss') return { o, kicker: 'Defeat', title: d >= 3 ? `${who} was too strong` : 'So close', line: 'Bigger, faster and rarer catches win more rounds. Go hunting, then try again.' };
+    return { o, kicker: 'Draw', title: 'Evenly matched', line: 'Neither deck could pull ahead.' };
+  }
+  if (o === 'win') return { o, kicker: 'Your deck held', title: `${who} attacked, and lost`, line: `While you were away, your deck defended by itself and won ${mine}–${theirs}.` };
+  if (o === 'loss') return { o, kicker: 'Your deck lost', title: `${who} broke through`, line: `Your deck defended by itself but lost ${mine}–${theirs}. Catch rarer objects to make it stronger, then challenge ${who} back.` };
+  return { o, kicker: 'A draw', title: `${who} could not break through`, line: `Your deck held ${who} to a ${mine}–${theirs} draw.` };
+}
+function resultHtml(role, mine, theirs, who, rounds) {
+  const c = resultCopy(role, mine, theirs, who);
+  const pips = rounds && rounds.length ? `<div class="pips" aria-label="Rounds">${rounds.map(r => `<i class="${r > 0 ? 'w' : r === 0 ? 'd' : ''}"></i>`).join('')}</div>` : '';
+  return { o: c.o, html: `<div class="mres ${c.o}">
+    <svg class="emb" viewBox="0 0 100 100" aria-hidden="true">${RES_EMBLEM[c.o]}</svg>
+    <div class="kicker">${c.kicker}</div><h2>${c.title}</h2>
+    <div class="score"><div><b class="${mine > theirs ? 'lead' : ''}">${mine}</b><span>${role === 'attack' ? 'You' : 'Your deck'}</span></div><i>–</i><div><b class="${theirs > mine ? 'lead' : ''}">${theirs}</b><span>${who}</span></div></div>
+    ${pips}<p class="line">${c.line}</p></div>` };
 }
 function bAfter() {
   const b = battle;
@@ -2087,9 +2151,11 @@ function bAfter() {
     };
     return;
   }
-  const [x, y] = b.score, word = x > y ? 'You won' : x < y ? 'You lost' : 'A draw';
-  $('bMsg').innerHTML += `<br><b>${word} ${x}–${y}${b.cpu ? '' : ` against ${b.foeTag}'s deck`}.</b>`;
-  $('bPick').innerHTML = `<button class="main" id="bSend">${b.cpu ? 'Play again' : `Send the result to ${b.foeTag}`}</button><button class="quiet" id="bDone">Back to your deck</button>`;
+  const [x, y] = b.score, who = b.cpu ? 'Computer' : b.foeTag, r = resultHtml('attack', x, y, who, b.hist);
+  $('bPick').innerHTML = '';
+  $('bResult').innerHTML = r.html + `<div class="resbtns"><button class="startbtn" id="bSend">${b.cpu ? 'Play again' : `Send the result to ${b.foeTag}`}</button>${r.o === 'loss' ? '<button class="ghostbtn" id="bHunt">Go hunting for stronger cards</button>' : ''}<button class="ghostbtn" id="bDone">Back to your deck</button></div>`;
+  $('bResult').hidden = false;
+  if ($('bHunt')) $('bHunt').onclick = () => go('modes');
   $('bSend').onclick = async () => {
     if (b.cpu) { $('cpuBtn').onclick(); return; }
     const link = location.href.split('#')[0] + '#result=' + b64e(JSON.stringify({ a: tag || 'PLAYER', d: b.foeTag, s: b.score }));
@@ -2099,7 +2165,7 @@ function bAfter() {
 }
 function renderBattle() {
   const b = battle;
-  b.busy = false; b.thrown = false;
+  b.busy = false; b.thrown = false; b.hist = b.hist || []; $('bResult').hidden = true;
   bHeader(); $('bMe').innerHTML = ''; $('bFoe').innerHTML = ''; $('bMe').className = 'bslot'; $('bFoe').className = 'bslot'; $('bVs').classList.remove('hot');
   bHands(); bChoose();
 }
@@ -2109,8 +2175,10 @@ function showResult(p) {
   if (s.length < 2) s.push(0, 0);
   renderCollection();
   $('sheet').style.setProperty('--c', '#f4f4f2');
-  $('sheet').innerHTML = `<div class="grab"></div><div class="sh-head"><div><h2>${a} attacked your deck</h2><small>${s[1] > s[0] ? 'Your deck held' : s[1] < s[0] ? 'Your deck lost' : 'A draw'} · ${s[1]}–${s[0]}</small></div></div>
-    <p class="sh-story">Your deck defended by itself. Catch rarer objects to make it stronger, then send ${a} your own code.</p>`;
+  const r = resultHtml('defend', s[1], s[0], a, null);
+  $('sheet').innerHTML = `<div class="grab"></div>${r.html}<div class="resbtns">${r.o === 'loss' ? '<button class="startbtn" id="resHunt">Go hunting for stronger cards</button>' : ''}<button class="${r.o === 'loss' ? 'ghostbtn' : 'startbtn'}" id="resBack">Challenge ${a} back</button></div>`;
+  if ($('resHunt')) $('resHunt').onclick = () => { closeSheet(); go('modes'); };
+  $('resBack').onclick = () => { closeSheet(); renderChallenge(); };
   $('app').classList.add('sheet-open');
 }
 
