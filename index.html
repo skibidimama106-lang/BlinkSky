@@ -288,6 +288,9 @@
   .rcpt h3 { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--g1); font-weight: 600; }
   .rcpt .sh-rows { margin-top: 8px; font-size: 13px; }
   .rcpt .ghostbtn { margin: 10px 0 0; width: 100%; }
+  .rcpt .rsend { margin: 14px 0 6px; width: 100%; }
+  .rcpt details.how { border-top: 1px solid var(--hl); }
+  .rcpt details.how[open] { padding-bottom: 10px; }
   .rcpt .ghostbtn[hidden] { display: none; }
   #flow h3 { margin: 16px 0 6px; }
   .chal { padding: 8px 20px 20px; display: flex; flex-direction: column; gap: 12px; overflow-y: auto; }
@@ -1663,12 +1666,14 @@ function receiptHtml(f) {
       <div><span>Receipt</span><b>${f.id}</b></div><div><span>Finder</span><b>${f.tag}</b></div>
       ${f.ra != null ? `<div><span>Position</span><b>${fmtRA(f.ra)}<br>${fmtDec(f.dec)}</b></div>` : ''}
       <div><span>SPHEREx image</span><b>${f.time || ''}</b></div></div>
-    <button class="ghostbtn" id="saveReceipt">↓ Save receipt</button>
-    <button class="ghostbtn" id="saveReport">↓ Save draft report file</button>
-    <button class="ghostbtn" id="saveCert">↓ Save certificate</button>
-    <label class="tagrow" style="margin:12px 0 4px"><span>Team or school</span><input id="teamIn" maxlength="40" placeholder="optional" autocomplete="off" style="text-transform:none;letter-spacing:0"></label>
-    <div id="flow">${flowHtml(f)}</div>
-    <button class="ghostbtn" id="sendFlag">${f.mailed ? 'Send to our team again' : 'Send to our team for expert review'}</button></div>`;
+    <button class="startbtn rsend" id="sendFlag">${f.mailed ? 'Send to our team again' : 'Send to our team for expert review'}</button>
+    <details class="how"><summary>What happens to this catch</summary><div id="flow">${flowHtml(f)}</div></details>
+    <details class="how"><summary>Save receipt, report or certificate</summary>
+      <label class="tagrow" style="margin:4px 0 4px"><span>Team or school</span><input id="teamIn" maxlength="40" placeholder="optional" autocomplete="off" style="text-transform:none;letter-spacing:0"></label>
+      <button class="ghostbtn" id="saveReceipt">↓ Save receipt</button>
+      <button class="ghostbtn" id="saveReport">↓ Save draft report file</button>
+      <button class="ghostbtn" id="saveCert">↓ Save certificate</button>
+    </details></div>`;
 }
 function downloadText(name, text) {
   const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([text], { type: 'text/plain' })); a.download = name;
@@ -1794,8 +1799,7 @@ function relayLine(f) {
 function flowHtml(f) {
   const ch = CHANGE[f.kind] || CHANGE.appeared, r = f.relay, need = r ? r.needed : 3;
   const row = (st, a, b) => `<div class="chk ${st}"><i>${st === 'ok' ? '✓' : st === 'warn' ? '!' : '–'}</i><span><b>${a}</b><small>${b}</small></span></div>`;
-  return '<h3>What happens to this catch</h3>'
-    + row('ok', 'Spotted by you', f.date)
+  return row('ok', 'Spotted by you', f.date)
     + row('ok', 'Checked by the code', f.old ? "NASA JPL's list: no match. (Older catch: fewer checks were run.)" : `${f.confirmed ? 'Not a camera glitch. ' : ''}NASA JPL's list and Gaia's stars: no match`)
     + row(f.old ? 'warn' : 'ok', 'Sorted by kind', `${ch.label}. ${ch.gate ? `Its official list is the ${ch.gate}` : f.old ? 'Our team sorts it and picks the right official list' : 'No official list takes this kind yet'}`)
     + row(f.mailed ? 'ok' : 'no', 'Sent to the BlinkSky team', f.mailed ? `Email opened ${f.mailed}. Our team checks it again before anything is reported` : 'Tap "Send to our team for expert review" below')
