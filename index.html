@@ -1700,7 +1700,7 @@ async function relayRefresh(f) {
   if (j.ok) { f.relay = j.state; save(); }
 }
 // The team inbox finds are sent to. Email is today's way of reaching the team; a server can replace it later.
-const TEAM_EMAIL = 'blinksky@getwarmdesk.org';
+const TEAM_EMAIL = 'BlinkSky@duck.com';
 function mailLink(f) {
   const body = ['A BlinkSky find for the team to check.', '', receiptText(f), '', '--- Draft report ---', reportText(f)].join('\n');
   return `mailto:${TEAM_EMAIL}?subject=${encodeURIComponent(`BlinkSky find ${f.id} (${(CHANGE[f.kind] || CHANGE.appeared).label})`)}&body=${encodeURIComponent(body)}`;
