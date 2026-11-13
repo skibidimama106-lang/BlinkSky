@@ -64,6 +64,9 @@
   #bg { position: absolute; inset: 0; width: 100%; height: 100%; }
   .homefade { position: absolute; inset: 0; background: linear-gradient(transparent 35%, rgba(0,0,0,.9) 62%, #000 75%); pointer-events: none; }
   .homebody { margin-top: auto; position: relative; z-index: 1; }
+  .neostrip { display: flex; align-items: center; gap: 8px; margin: 14px 20px 0; padding: 0; background: none; color: var(--g1); font-size: 13px; text-align: left; }
+  .neostrip i { width: 7px; height: 7px; border-radius: 50%; background: #f08a3c; flex: none; }
+  .neostrip b { color: var(--wh); font-weight: 500; }
   .decklink { display: block; margin: 14px auto 0; font-size: 13px; color: var(--wh); }
   .decklink span { color: var(--g1); }
 
@@ -122,6 +125,8 @@
   .caughtmsg { text-align: center; font-size: 13px; padding: 0 20px; }
   .caughtmsg b { display: block; font-weight: 500; font-size: 15px; }
   .caughtmsg span { color: var(--g1); font-size: 12px; }
+  .savebtn { display: block; margin: 10px auto 0; padding: 7px 14px; border: 1px solid #2c2c2c; border-radius: 999px; font-size: 12px; color: var(--g1); }
+  .savebtn:active { transform: scale(.97); }
   .btnrow { display: flex; gap: 10px; padding: 0 20px 22px; }
   .btnrow .startbtn, .btnrow .ghostbtn { margin: 14px 0 0; width: auto; flex: 1; padding: 15px; font-size: 15px; align-items: center; }
 
@@ -203,6 +208,43 @@
   .sh-story { margin-top: 14px; font-size: 14px; line-height: 1.5; color: #d8d8d4; }
   .sh-story b { color: var(--c); font-weight: 600; }
 
+
+  /* v5: Explorer (any patch of sky as a little video) + colour fingerprint */
+  .tests { display: flex; gap: 6px; flex-wrap: wrap; padding: 12px 20px 0; }
+  .tests button { padding: 7px 13px; border-radius: 999px; border: 1px solid #3a3a3a; font-size: 12.5px; }
+  .tests button:active { background: #1a1a1c; }
+  .testlabel { padding: 14px 20px 0; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--g1); }
+  .wbody { flex: 1; min-height: 0; overflow-y: auto; padding: 10px 20px 26px; }
+  .wstage { position: relative; aspect-ratio: 1; border-radius: 14px; overflow: hidden; border: 1px solid #2c2c2c; background: #050505; }
+  .wstage canvas { width: 100%; height: 100%; display: block; image-rendering: pixelated; }
+  .wdate { position: absolute; left: 10px; top: 10px; font-size: 12px; line-height: 1.35; background: rgba(0,0,0,.72); padding: 6px 10px; border-radius: 10px; }
+  .wdate b { display: block; font-weight: 600; font-size: 13px; }
+  .wdate span { color: #bdbdb8; }
+  .wzoom { position: absolute; right: 10px; top: 10px; padding: 7px 12px; font-size: 12px; }
+  .wflag { position: absolute; left: 10px; bottom: 10px; font-size: 11px; color: #f0c860; background: rgba(0,0,0,.72); padding: 5px 9px; border-radius: 10px; }
+  .wload { position: absolute; inset: 0; display: grid; place-items: center; text-align: center; padding: 24px; font-size: 14px; line-height: 1.5; color: #bdbdb8; background: #050505; }
+  .wload b { display: block; color: var(--wh); font-weight: 500; margin-bottom: 6px; }
+  .wctl { display: flex; align-items: center; gap: 12px; margin-top: 12px; }
+  .wctl .pill { flex: none; width: 46px; height: 42px; padding: 0; justify-content: center; }
+  .wctl input { flex: 1; accent-color: var(--wh); min-width: 0; }
+  .wctl span { font-size: 12px; color: var(--g1); white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .wdets { padding: 12px 0 0; flex-wrap: wrap; }
+  .wfind { margin-top: 14px; font-size: 14px; line-height: 1.5; color: #d8d8d4; }
+  .wfind b { color: var(--wh); font-weight: 600; }
+  .fp { margin-top: 18px; border-top: 1px solid var(--hl); padding-top: 14px; }
+  .fp-head { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
+  .fp-head b { font-weight: 500; font-size: 15px; }
+  .fp-head span { font-size: 12px; color: var(--g1); }
+  .fp canvas { width: 100%; display: block; margin-top: 10px; }
+  .fp-key { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 8px; font-size: 11.5px; color: var(--g1); }
+  .fp-key i { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 5px; }
+  .fp-note { margin-top: 8px; font-size: 12px; color: var(--g1); line-height: 1.5; }
+  .fpbar { display: flex; gap: 3px; margin-top: 10px; }
+  .fpbar div { flex: 1; display: flex; gap: 1px; height: 22px; }
+  .fpbar i { flex: 1; background: #1c1c1f; border-radius: 1px; }
+  .fpbar i.on { background: var(--c); }
+  .fpbar-ax { display: flex; justify-content: space-between; font-size: 10.5px; color: var(--g1); margin-top: 5px; }
+
   /* details sheet */
   .scrim { position: absolute; inset: 0; background: rgba(0,0,0,.6); opacity: 0; pointer-events: none; transition: opacity .3s; z-index: 20; }
   .sheet { position: absolute; left: 0; right: 0; bottom: 0; max-height: 78%; overflow-y: auto; background: var(--panel); border-top: 1px solid #2c2c2c; border-radius: 22px 22px 0 0;
@@ -223,6 +265,60 @@
   .sh-rows span { color: var(--g1); }
   .sh-rows b { font-weight: 400; text-align: right; }
   .sh-src { margin-top: 14px; font-size: 11px; color: var(--g1); line-height: 1.5; }
+  /* v4: first-time gesture guide on the sky */
+  .gest { position: absolute; left: 50%; top: 44%; transform: translate(-50%, -50%); pointer-events: none; display: flex; flex-direction: column; align-items: center; gap: 12px; z-index: 3; }
+  .gest span { background: rgba(0,0,0,.74); border: 1px solid #2c2c2c; border-radius: 999px; padding: 9px 17px; font-size: 13px; white-space: nowrap; }
+  .gest-art { width: 170px; height: 84px; position: relative; }
+  .gest-art .hand { position: absolute; left: 50%; top: 8px; width: 60px; height: 60px; margin-left: -30px; animation: gdrag 2.2s ease-in-out infinite; filter: drop-shadow(0 2px 8px #000); }
+  .gest-art .trail { position: absolute; left: 50%; top: 22px; width: 110px; height: 2px; margin-left: -55px; border-top: 2px dashed rgba(244,244,242,.35); }
+  @keyframes gdrag { 0%, 100% { transform: translateX(-50px); } 50% { transform: translateX(50px); } }
+  .gdot { position: absolute; top: 31px; left: 50%; width: 24px; height: 24px; margin-left: -12px; border-radius: 50%; border: 2px solid var(--wh); background: rgba(244,244,242,.28); }
+  .gdot.a { animation: gpa 1.8s ease-in-out infinite; } .gdot.b { animation: gpb 1.8s ease-in-out infinite; }
+  @keyframes gpa { 0%, 100% { transform: translate(-13px, 8px); } 50% { transform: translate(-52px, 26px); } }
+  @keyframes gpb { 0%, 100% { transform: translate(13px, -8px); } 50% { transform: translate(52px, -26px); } }
+  /* v4: how we know, receipt, challenge, battle */
+  .how { margin-top: 16px; border: 1px solid #2c2c2c; border-radius: 14px; padding: 0 14px; }
+  .how summary { padding: 13px 0; font-size: 14px; font-weight: 500; cursor: pointer; list-style: none; display: flex; justify-content: space-between; }
+  .how summary::after { content: '+'; color: var(--g1); } .how[open] summary::after { content: '–'; }
+  .chk { display: flex; gap: 10px; padding: 9px 0; border-top: 1px solid var(--hl); font-size: 13px; line-height: 1.4; }
+  .chk i { font-style: normal; width: 18px; height: 18px; border-radius: 50%; display: grid; place-items: center; font-size: 11px; flex: none; margin-top: 1px; background: #1f3a2a; color: #7fe0a3; }
+  .chk.warn i { background: #3d3114; color: #f0c860; } .chk.no i { background: #262626; color: var(--g1); }
+  .chk b { display: block; font-weight: 500; } .chk small { color: var(--g1); font-size: 12px; }
+  .rcpt { margin-top: 16px; border: 1px dashed #4a4a4a; border-radius: 14px; padding: 14px; }
+  .rcpt h3 { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--g1); font-weight: 600; }
+  .rcpt .sh-rows { margin-top: 8px; font-size: 13px; }
+  .rcpt .ghostbtn { margin: 10px 0 0; width: 100%; }
+  .rcpt .ghostbtn[hidden] { display: none; }
+  #flow h3 { margin: 16px 0 6px; }
+  .chal { padding: 8px 20px 20px; display: flex; flex-direction: column; gap: 12px; overflow-y: auto; }
+  .chal .h1 { padding: 0; font-size: 32px; }
+  .playmode { display: flex; flex-direction: column; gap: 12px; border: 1px solid #2c2c2c; border-radius: 18px; padding: 16px; }
+  .playmode h2 { font-size: 17px; font-weight: 500; display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+  .playmode h2 span { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--g1); border: 1px solid #3a3a3a; border-radius: 999px; padding: 4px 10px; font-weight: 500; white-space: nowrap; }
+  .playmode.soon { border-style: dashed; } .playmode.soon .intro { color: var(--g1); }
+  .chal .startbtn, .chal .ghostbtn { margin: 0; width: 100%; }
+  .tagrow { display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--g1); }
+  .tagrow input, .chal .paste { flex: 1; background: #111113; border: 1px solid #3a3a3a; border-radius: 999px; padding: 11px 16px; color: var(--wh); font: inherit; font-size: 14px; min-width: 0; }
+  .tagrow input { text-transform: uppercase; letter-spacing: .08em; }
+  .linkbtn { color: #6fd3d6; font: inherit; font-size: 12px; padding: 4px 0 0; text-align: left; background: none; border: 0; cursor: pointer; }
+  .wnote { font-size: 12px; color: var(--g1); margin: 8px 0 0; line-height: 1.45; }
+  #wMap { height: 330px; margin-top: 12px; border-radius: 14px; overflow: hidden; background: #111; }
+  .qrbox { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+  .qrbox canvas { width: 220px; height: 220px; border-radius: 12px; background: #fff; image-rendering: pixelated; }
+  .qrbox small, .chalnote { font-size: 12px; color: var(--g1); text-align: center; line-height: 1.45; }
+  #scanVideo { width: 100%; border-radius: 14px; background: #000; }
+  .bfield { flex: 1; min-height: 0; display: flex; justify-content: center; align-items: center; gap: 12px; padding: 0 12px; }
+  .bside { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+  .bside small { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--g1); }
+  .bside .win .tc { outline: 2px solid #7fe0a3; outline-offset: 3px; }
+  .bmsg { text-align: center; padding: 10px 20px 0; font-size: 14px; line-height: 1.45; min-height: 52px; }
+  .bmsg b { font-weight: 600; }
+  .bpick { padding: 10px 20px 22px; display: flex; flex-direction: column; gap: 8px; max-height: 38%; overflow-y: auto; }
+  .bpick button { display: flex; justify-content: space-between; align-items: center; gap: 10px; border: 1px solid #3a3a3a; border-radius: 14px; padding: 11px 14px; font-size: 14px; text-align: left; }
+  .bpick button small { color: var(--g1); font-size: 12px; }
+  .bpick button.main { background: var(--wh); color: var(--bk); border-color: var(--wh); font-weight: 600; justify-content: center; border-radius: 999px; }
+  .bpick button.quiet { border: 0; justify-content: center; color: var(--g1); font-size: 13px; padding: 4px; }
+  .chalbtn { font-size: 13px; padding: 7px 13px; border: 1px solid #3a3a3a; border-radius: 999px; }
   @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
 </style>
 </head>
@@ -273,6 +369,7 @@
     </div>
     <div class="homebody">
       <h1 class="h1">Tonight's sky</h1>
+      <button class="neostrip" id="neoStrip" hidden></button>
       <button class="startbtn" data-go="modes" style="margin-bottom:22px">Hunt now</button>
     </div>
   </section>
@@ -287,6 +384,7 @@
     </div>
     <div class="realtag" id="realTag" hidden></div>
     <div class="toast" id="toast">Tap what moves</div>
+    <div class="gest" id="gest" hidden><div class="gest-art" id="gestArt"></div><span id="gestText"></span></div>
     <div class="startip" id="starTip" hidden><span id="starTipText">That's a star. It stays put.</span><button id="starTipBtn">What is it?</button></div>
     <div class="hud bottom">
       <button class="pill" id="pause">❚❚ Pause</button>
@@ -297,7 +395,7 @@
   <section class="screen" id="caught">
     <div class="loc"><button class="x" data-go="home" aria-label="Close">✕</button></div>
     <div class="stage" id="stage"><div id="caughtCard"></div></div>
-    <div class="caughtmsg"><b id="caughtTitle">Caught</b><span>✓ Added to your deck · tap the card for details</span></div>
+    <div class="caughtmsg"><b id="caughtTitle">Caught</b><span>✓ Added to your deck · tap the card for details</span><button class="savebtn" id="saveImg">↓ Save as image</button></div>
     <div class="btnrow"><button class="startbtn" id="again">Hunt again</button><button class="ghostbtn" data-go="collection">Deck</button></div>
   </section>
 
@@ -314,13 +412,13 @@
       <button class="practicelink" data-go="hunt">Warm up on a practice sky first →</button>
     </div>
     <div class="modesfoot">
-      <p>BlinkSky is a prototype for NASA Space Apps 2026. SPHEREx images come from NASA/IPAC IRSA; known objects and facts come from NASA JPL. Practice skies are generated.</p>
+      <p>BlinkSky is a prototype for NASA Space Apps 2026. SPHEREx images come from NASA/IPAC IRSA (Quick Release 3, <a href="https://doi.org/10.26131/IRSA662" target="_blank" rel="noopener">doi:10.26131/IRSA662</a>); known objects and facts come from NASA JPL. Practice skies are generated.</p>
       <a class="codelink" href="https://github.com/skibidimama106-lang/BlinkSky" target="_blank" rel="noopener">How we use the data · GitHub ↗</a>
     </div>
   </section>
 
   <section class="screen" id="collection">
-    <div class="deckbar"><h1 class="h1" id="deckTitle">Deck</h1><button class="backstacks" id="backStacks" hidden>← All stacks</button></div>
+    <div class="deckbar"><h1 class="h1" id="deckTitle">Deck</h1><button class="backstacks" id="backStacks" hidden>← All stacks</button><button class="chalbtn" id="challengeBtn">Play cards</button></div>
     <div class="sorts" id="sorts"><span>Sort by</span><button data-sort="type" class="on">Type</button><button data-sort="rarity">Rarity</button><button data-sort="source">Source</button></div>
     <div class="stacks" id="stacks"></div>
     <div class="stackview" id="stackview" hidden>
@@ -333,9 +431,72 @@
   <section class="screen" id="search">
     <div class="loc"><button class="x" data-go="home" aria-label="Back">←</button></div>
     <div class="deckhead"><h1 class="h1">Search the sky</h1></div>
-    <div class="searchbox"><input id="q" type="search" placeholder="Name or number, e.g. 57742 or Douglin" autocomplete="off" aria-label="Search objects"></div>
+    <div class="searchbox"><input id="q" type="search" placeholder="Coordinates (269.45 +4.77) or a name" autocomplete="off" aria-label="Sky coordinates or an object name"></div>
+    <div class="testlabel">Watch a patch of sky change</div>
+    <div class="tests" id="tests"></div>
     <p class="searchnote" id="searchNote"></p>
     <div class="results" id="results"></div>
+  </section>
+
+  <section class="screen" id="watch">
+    <div class="loc"><button class="x" id="watchBack" aria-label="Back">←</button><div style="text-align:right"><b id="wName"></b><span id="wPos"></span></div></div>
+    <div class="wbody">
+      <div class="wstage">
+        <canvas id="wCv" width="702" height="702"></canvas>
+        <div class="wdate" id="wDate" hidden></div>
+        <button class="pill wzoom" id="wZoom" hidden>Zoom in</button>
+        <div class="wflag" id="wFlag" hidden></div>
+        <div class="wload" id="wLoad"></div>
+      </div>
+      <div class="wctl"><button class="pill" id="wPlay" aria-label="Pause">❚❚</button><input type="range" id="wSeek" min="0" max="0" value="0" aria-label="Photo"><span id="wCount"></span></div>
+      <div class="sorts wdets" id="wDets"></div>
+      <div class="sorts wdets" id="wViews"></div>
+      <div class="sorts wdets" id="wFov"></div>
+      <p class="wnote" id="wNote"></p>
+      <p class="wfind" id="wFind"></p>
+      <div class="fp" id="wFp" hidden>
+        <div class="fp-head"><b>Colour fingerprint</b><span id="fpCount"></span></div>
+        <canvas id="fpCv" width="780" height="360"></canvas>
+        <div class="fp-key" id="fpKey"></div>
+        <p class="fp-note" id="fpNote"></p>
+      </div>
+      <div class="fp" id="wAl">
+        <div class="fp-head"><b>The sky around it</b><span>SPHEREx DR1 all-sky map · Aladin Lite</span></div>
+        <button class="pill" id="wAlGo" style="margin-top:10px">Show the sky around this patch</button>
+        <div id="wAlBox" style="height:340px;margin-top:10px;border-radius:12px;overflow:hidden" hidden></div>
+        <p class="fp-note" id="wAlNote">Opens NASA's all-sky SPHEREx map (DR1, all 102 colours combined) around this spot in Aladin Lite, the sky viewer from CDS Strasbourg. The blue square is the patch shown above. Drag to look around, scroll to zoom.</p>
+      </div>
+      <p class="sh-src" id="wSrc"></p>
+    </div>
+  </section>
+
+  <section class="screen" id="challenge">
+    <div class="loc"><button class="x" data-go="collection" aria-label="Back">←</button></div>
+    <div class="chal">
+      <h1 class="h1">Play your cards</h1>
+      <div class="playmode"><h2>Against the computer</h2>
+        <p class="intro">Five rounds against a deck the computer draws from the objects in today's SPHEREx photos.</p>
+        <button class="startbtn" id="cpuBtn">Play against the computer</button></div>
+      <div class="playmode soon"><h2>Raid a player <span>Coming soon</span></h2>
+        <p class="intro">Attack any player's deck while they are away, the way you would raid a village. They set their defence, and you bring your best catches.</p></div>
+      <div class="playmode"><h2>Challenge a friend</h2>
+      <p class="intro">Your friend scans this code and attacks a copy of your deck. Your deck defends by itself, so you don't need to be online.</p>
+      <label class="tagrow"><span>Your tag</span><input id="tagIn" maxlength="7" placeholder="up to 7 letters" autocomplete="off"></label>
+      <div class="qrbox"><canvas id="qr" width="240" height="240"></canvas><small id="qrNote"></small></div>
+      <button class="startbtn" id="copyLink">Copy link</button>
+      <button class="ghostbtn" id="scanBtn">Scan a friend's code</button>
+      <video id="scanVideo" playsinline muted hidden></video>
+      <input class="paste" id="pasteLink" placeholder="or paste a friend's link here" autocomplete="off" aria-label="Paste a challenge link">
+      <p class="chalnote" id="chalNote"></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="screen" id="battle">
+    <div class="loc"><button class="x" id="battleExit" aria-label="Leave">✕</button><div style="text-align:right"><b id="bTitle"></b><span id="bScore"></span></div></div>
+    <div class="bfield"><div class="bside"><small id="bFoeLabel">Defender</small><div id="bFoe"></div></div><div class="bside"><small>You</small><div id="bMe"></div></div></div>
+    <div class="bmsg" id="bMsg"></div>
+    <div class="bpick" id="bPick"></div>
   </section>
 
   <nav class="tabbar" id="tabbar">
@@ -442,19 +603,33 @@ function realCard(r, i) {
   const front = [['Rarity', k.often]];
   front.push(j && j.size ? ['Size', j.size] : ['Brightness', `magnitude ${r.v_mag ?? '?'}`]);
   front.push(r.moved ? ['Moved', r.moved.replace(/ \(.*\)/, '')] : j && j.period ? ['One orbit', j.period] : ['Seen in', `${r.seen} of ${r.total} photos`]);
+  // NASA JPL Horizons: where its orbit says it should be, seen from SPHEREx
+  const ob = r.orbit || (realRound && realRound.orbits && realRound.orbits[r.name]) || null;
+  const seen = ob && ob.seen_arcsec != null ? Math.round(ob.seen_arcsec) : null;
   const facts = [['Rarity', `${k.tier} · ${k.often}`]];
-  if (r.moved) facts.push(['Moved between images', r.moved]);
+  if (seen != null) facts.push(['Moved between images', `${seen}″ in ${r.gap || '?'} h, measured in the photos`]);
+  else if (r.moved) facts.push(['Moved between images', r.moved]);
   facts.push(['Type', what]);
   if (j && j.size) facts.push(['Size', j.size]);
   if (j && j.period) facts.push(['One trip around the Sun', j.period]);
   if (j && j.discovered && j.named_after) facts.push(['Discovered', j.discovered]);
   facts.push(['Brightness', `magnitude ${r.v_mag ?? '?'}`]);
-  const story = j && j.named_after ? `<b>Who it's named after</b><br>${j.named_after}`
-              : j && j.discovered ? `<b>Discovered</b> in ${j.discovered.replace(' · ', ' by ')}.` : '';
+  if (ob) {
+    facts.push(["NASA's orbit predicts", `${Math.round(ob.predicted_arcsec)}″ in ${r.gap || '?'} h${seen != null ? ' ✓' : ''}`]);
+    facts.push(['From the Sun', `${ob.sun_au.toFixed(2)} × Earth's distance`]);
+    facts.push(['From SPHEREx', `${Math.round(ob.spherex_million_km)} million km`]);
+  }
+  const named = j && j.named_after ? `<b>Who it's named after</b><br>${j.named_after}`
+              : j && j.discovered ? `<b>Discovered</b> in ${j.discovered.replace(' · ', ' by ').replace(/\.$/, '')}.` : '';
+  const agrees = seen != null
+    ? `<b>NASA's orbit agrees with your photos</b><br>JPL Horizons said it should move ${Math.round(ob.predicted_arcsec)}″ between the images. Measured in the photos: ${seen}″.` : '';
+  const story = [agrees, named].filter(Boolean).join('<br><br>');
   return { kind, name: r.name, type: `SPHEREx · ${k.name}`, no: `Real ${String(i + 1).padStart(2, '0')}`, realName: r.name,
-    rows: front, facts: facts.slice(0, 6), story,
+    rows: front, facts: facts.slice(0, 10), story,
+    checks: realChecks(r, j, ob),
+    fp: r.fp || [],
     photo: r.photo, foot: `${r.date || ''}${r.list ? " · with NASA's list" : r.hint ? ' · with a hint' : ''}`, check: '✓ JPL',
-    src: `Real data. Photos: NASA SPHEREx via NASA/IPAC IRSA (${r.band}; ${r.times}). Facts and known-object check: NASA JPL Solar System Dynamics.` };
+    src: `Real data. Photos: NASA SPHEREx Quick Release 3 via NASA/IPAC IRSA (${r.band}; ${r.times}; doi:10.26131/IRSA662). Facts and known-object check: NASA JPL Solar System Dynamics${ob ? ' (SBDB, sb_ident, Horizons)' : ''}.` };
 }
 
 /* ---------- details sheet ---------- */
@@ -469,7 +644,13 @@ function openSheet(c) {
     ${c.photo ? `<figure class="sh-photo"><img src="${c.photo}" alt="Your photo"><figcaption>Your photo, where you tapped${c.check === 'Practice' ? ' (practice sky)' : ''}</figcaption></figure>` : ''}
     ${c.closeup ? `<figure class="sh-photo"><img src="${c.closeup.src}" alt="Close-up"><figcaption>${c.closeup.credit}</figcaption></figure>` : ''}
     <div class="sh-rows">${c.facts.map(([a, b]) => `<div><span>${a}</span><b>${b}</b></div>`).join('')}</div>
-    <p class="sh-src">${c.src}</p>`;
+    ${c.realName ? cardPrintHtml(c.fp) : ''}
+    ${c.checks ? `<details class="how"><summary>How we know</summary>${c.checks.map(([st, a, b]) => `<div class="chk ${st}"><i>${st === 'ok' ? '✓' : st === 'warn' ? '!' : '–'}</i><span><b>${a}</b><small>${b}</small></span></div>`).join('')}</details>` : ''}
+    ${c.receipt ? receiptHtml(c.receipt) : ''}
+    <p class="sh-src">${c.src}</p>
+    <button class="ghostbtn sh-see" id="saveSheet">↓ Save card as image</button>`;
+  $('saveSheet').onclick = () => saveCardImage(c);
+  if (c.receipt) { $('saveReceipt').onclick = () => saveReceipt(c.receipt); $('saveReport').onclick = () => saveReport(c.receipt); wireRelay(c.receipt); }
   if (c.realName) $('seeIn').onclick = () => explore(c.realName, document.querySelector('.screen.on').id);
   $('app').classList.add('sheet-open');
 }
@@ -484,12 +665,53 @@ function show(id) {
   $('app').classList.toggle('tabs', ['home', 'collection', 'search'].includes(id));
   $('tabDeck').classList.toggle('on', id === 'collection'); $('tabSky').classList.toggle('on', id === 'home'); $('tabSearch').classList.toggle('on', id === 'search');
   if (id !== 'play') clearInterval(timer);
+  if (id !== 'watch') clearInterval(wTimer);
+  if (id !== 'challenge') stopScan();
+  if (id !== 'play') tutShow(0);
   if (id === 'home') renderHome();
   updateDeckCount();
 }
 function renderHome() {
   const d = new Date();
   $('today').textContent = `${d.getDate()} ${MONTHS[d.getMonth()]}`;
+  loadNeos().then(showNeoStrip);
+}
+
+/* ---------- today near Earth: NASA NeoWs (api.nasa.gov), fetched once a day and kept on this device ---------- */
+const MOON_KM = 384400;
+let neos = null;
+async function loadNeos() {
+  if (neos) return neos;
+  const t = new Date(), day = `${t.getFullYear()}-${String(t.getMonth() + 1).padStart(2, '0')}-${String(t.getDate()).padStart(2, '0')}`;
+  try { const c = JSON.parse(localStorage.getItem('blinksky-neows') || 'null'); if (c && c.day === day) return neos = c; } catch (e) { /* no cache */ }
+  try {
+    const d = await fetch(`https://api.nasa.gov/neo/rest/v1/feed?start_date=${day}&end_date=${day}&api_key=DEMO_KEY`).then(r => { if (!r.ok) throw r.status; return r.json(); });
+    const list = (d.near_earth_objects[day] || []).map(o => {
+      const ca = o.close_approach_data[0], m = o.estimated_diameter.meters;
+      return { name: o.name.replace(/[()]/g, ''), url: o.nasa_jpl_url, size: Math.round((m.estimated_diameter_min + m.estimated_diameter_max) / 2),
+        moons: +ca.miss_distance.kilometers / MOON_KM, kmh: Math.round(+ca.relative_velocity.kilometers_per_hour), time: ca.close_approach_date_full, risky: o.is_potentially_hazardous_asteroid };
+    }).sort((a, b) => a.moons - b.moons);
+    neos = { day, list };
+    try { localStorage.setItem('blinksky-neows', JSON.stringify(neos)); } catch (e) { /* storage off */ }
+  } catch (e) { neos = null; }
+  return neos;
+}
+const sizeWord = m => m < 15 ? 'car-sized' : m < 40 ? 'bus-sized' : m < 120 ? 'building-sized' : m < 400 ? 'stadium-sized' : 'mountain-sized';
+function showNeoStrip(n) {
+  const s = $('neoStrip');
+  if (!n || !n.list.length) { s.hidden = true; return; }
+  const c = n.list[0];
+  s.innerHTML = `<i></i><span><b>${n.list.length} asteroid${n.list.length === 1 ? '' : 's'} pass Earth today</b> · closest ${sizeWord(c.size)}, ${c.moons.toFixed(1)}× the Moon's distance ›</span>`;
+  s.hidden = false;
+  s.onclick = openNeoSheet;
+}
+function openNeoSheet() {
+  const n = neos;
+  $('sheet').style.setProperty('--c', '#f08a3c');
+  $('sheet').innerHTML = `<div class="grab"></div><div class="sh-head"><div><h2>Near Earth today</h2><small>${n.day} · closest first</small></div></div>
+    <div class="sh-rows">${n.list.map(o => `<div><span>${o.name}<br><small>about ${o.size} m · ${sizeWord(o.size)}${o.risky ? ' · watched closely' : ''}</small></span><b>${o.moons.toFixed(1)}× Moon<br><small>${o.kmh.toLocaleString()} km/h</small></b></div>`).join('')}</div>
+    <p class="sh-src">These pass Earth today, at the distance shown (the Moon is ${MOON_KM.toLocaleString()} km away). Most are far too faint for SPHEREx images, so you can't catch them in a hunt. "Watched closely" is NASA's "potentially hazardous" label: big enough and with an orbit close enough to keep an eye on. It does not mean it will hit. Data: NASA NeoWs (api.nasa.gov), from NASA JPL's close-approach list.</p>`;
+  $('app').classList.add('sheet-open');
 }
 // The tab shows how many cards you own (no limit). "x of 5 kinds" lives on the Deck screen as set progress.
 function updateDeckCount() { /* the Deck tab shows no count: it is one deck, not one of many */ }
@@ -636,7 +858,7 @@ function render() {
     }
   }
   drawMini();
-  $('frameNow').textContent = round.real ? `${'AB'[frame] || frame + 1} · ${round.meta.frames[frame].time_utc.slice(11, 16)}` : `${frame + 1}/${round.frames.length}`;
+  $('frameNow').textContent = round.real ? `${'ABCDEF'[frame] || frame + 1} · ${round.meta.frames[frame].time_utc.slice(11, 16)}` : `${frame + 1}/${round.frames.length}`;
   const dot = $('frameDot'); if (dot.dataset.f !== String(frame)) { dot.dataset.f = frame; dot.classList.remove('tick'); void dot.offsetWidth; dot.classList.add('tick'); }
 }
 function drawMini() {
@@ -667,8 +889,9 @@ sky.addEventListener('pointermove', e => {
   if (ptrs.size === 1) {
     const dx = e.clientX - prev[0], dy = e.clientY - prev[1];
     view.ox -= dx / view.s; view.oy -= dy / view.s;
-    if (gesture) gesture.moved += Math.abs(dx) + Math.abs(dy);
+    if (gesture) { gesture.moved += Math.abs(dx) + Math.abs(dy); if (gesture.moved > 40) tutAdvance('drag'); }
   } else if (ptrs.size === 2) {
+    tutAdvance('zoom');
     const [a, b] = [...ptrs.values()], rect = sky.getBoundingClientRect();
     const others = [...ptrs.entries()].find(([id]) => id !== e.pointerId)[1];
     const d0 = Math.hypot(prev[0] - others[0], prev[1] - others[1]), d1 = Math.hypot(a[0] - b[0], a[1] - b[1]);
@@ -688,7 +911,7 @@ function endPtr(e) {
 sky.addEventListener('pointerup', endPtr); sky.addEventListener('pointercancel', endPtr);
 sky.addEventListener('wheel', e => {
   e.preventDefault(); const rect = sky.getBoundingClientRect();
-  zoomAt(e.clientX - rect.left, e.clientY - rect.top, e.deltaY < 0 ? 1.15 : 1 / 1.15); clampView(); render();
+  zoomAt(e.clientX - rect.left, e.clientY - rect.top, e.deltaY < 0 ? 1.15 : 1 / 1.15); clampView(); render(); tutAdvance('zoom');
 }, { passive: false });
 function zoomAt(px, py, f) {
   const wx = view.ox + px / view.s, wy = view.oy + py / view.s;
@@ -713,6 +936,8 @@ function snapshot(wx, wy) {
   g.drawImage(round.frames[frame], wx - W / 2 / z, wy - H / 2 / z, W / z, H / z, 0, 0, W, H);
   return c.toDataURL('image/jpeg', .82);
 }
+// Photos taken within minutes of each other are one "moment". Older rounds have two photos, so two moments.
+function momentOf(i) { const f = round.meta && round.meta.frames && round.meta.frames[i]; return f && f.moment != null ? f.moment : i; }
 // Look at the tapped spot in both images: a star stays put, a mover or a new light is in one image and not the other.
 // Tuned on the full SPHEREx round: 600/600 stars read as stars, Lutetia reads as a change, 2/600 empty-sky taps raise a false change.
 const SPOT_RULES = { bright: 200, min: 75, keep: .55, change: .2 };
@@ -728,13 +953,24 @@ function inspectSpot(wx, wy) {
   const ring = cur.getContext('2d').getImageData(X0, Y0, Math.min(cur.width - X0, 2 * R + 1), Math.min(cur.height - Y0, 2 * R + 1)).data;
   const vals = []; for (let i = 0; i < ring.length; i += 16) vals.push(ring[i]); vals.sort((p, q) => p - q);
   const bg = vals[Math.floor(vals.length * .4)], here = a[bi] - bg;
-  const there = Math.max(...[-4, 0, 4].map(o => b[Math.min(b.length - 4, Math.max(0, bi + o))])) - bg;  // same spot, other image
-  const T = SPOT_RULES;
-  if (a[bi] > T.bright && there + bg > T.bright * T.keep) return { kind: 'star' };   // a big bright star: bright in both images
+  const T = SPOT_RULES, next = (frame + 1) % round.frames.length;
+  const level = i => {                                                                  // same spot, in photo i
+    const d = i === next ? b : round.frames[i].getContext('2d').getImageData(x0, y0, w, hgt).data;
+    return Math.max(...[-4, 0, 4].map(o => d[Math.min(d.length - 4, Math.max(0, bi + o))])) - bg;
+  };
+  const others = round.frames.map((_, i) => i).filter(i => i !== frame), lv = {};
+  for (const i of others) lv[i] = level(i);
+  const kept = i => lv[i] > here * T.keep, gone = i => lv[i] <= here * T.change;
+  if (a[bi] > T.bright && others.every(i => lv[i] + bg > T.bright * T.keep)) return { kind: 'star' };   // a big bright star: bright in every image
   if (here < T.min) return { kind: 'nothing' };
-  if (there > here * T.keep) return { kind: 'star' };
-  if (there > here * T.change) return { kind: 'nothing' };                              // in between: too unclear to call a change
-  return { kind: 'change', x: x0 + (bi / 4) % w, y: y0 + Math.floor(bi / 4 / w) };
+  if (others.every(kept)) return { kind: 'star' };
+  const twins = others.filter(i => momentOf(i) === momentOf(frame)), far = others.filter(i => momentOf(i) !== momentOf(frame));
+  if (twins.length) {                       // photos taken minutes apart: a real light is in all of them, a glitch is in one
+    if (twins.some(gone)) return { kind: 'glitch' };
+    if (!twins.every(kept)) return { kind: 'nothing' };
+  }
+  if (!far.length || !far.every(gone)) return { kind: 'nothing' };                      // in between: too unclear to call a change
+  return { kind: 'change', x: x0 + (bi / 4) % w, y: y0 + Math.floor(bi / 4 / w), seenIn: [frame, ...twins].sort(), confirmed: twins.length > 0 };
 }
 function tap(wx, wy, sx, sy) {
   const tol = Math.max(24, 34 / view.s);
@@ -744,9 +980,10 @@ function tap(wx, wy, sx, sy) {
     if (hit) { const shot = snapshot(wx, wy); lockOn(sx, sy, () => realCaught(hit, shot)); return; }
   } else if (round.path.some(([mx, my]) => Math.hypot(mx - wx, my - wy) < tol)) { const shot = snapshot(wx, wy); lockOn(sx, sy, () => caught(shot)); return; }
   const spot = inspectSpot(wx, wy);
+  if (round.real && spot.kind === 'glitch') { toast('That light is in one photo only. The photo taken minutes later does not show it, so it is a camera glitch.'); return; }
   if (round.real && spot.kind === 'change') {
     const near = flags.find(f => f.round === round.meta.frames[0].obs_id && Math.hypot(f.x - spot.x, f.y - spot.y) < 12 * (round.up || 1));
-    if (near) { toast('You already flagged this change. Experts will check it.'); return; }
+    if (near) { toast('You already caught this change. Open its card in your deck to send it for review.'); return; }
     const shot = snapshot(spot.x, spot.y); lockOn(sx, sy, () => flagChange(spot, shot)); return;
   }
   tries++;
@@ -788,8 +1025,9 @@ function startRound(r, opts = {}) {
   const fo = round.focus && round.objects.find(o => o.name === round.focus), fp = fo && fo.positions.find(Boolean);
   if (fp) { view.s = Math.max(view.s, 3 / (round.up || UP)); view.ox = fp[0] - view.w / 2 / view.s; view.oy = fp[1] - view.h / 2 / view.s; }
   clampView(); render(); startBlink();
+  tutShow(!tut && !round.explore ? 1 : 0);
 }
-const REAL_DIRS = ['real_round_full/', 'real_round_wide/', 'real_round/'];
+const REAL_DIRS = ['real_round_4/', 'real_round_full/', 'real_round_wide/', 'real_round/'];
 async function fetchRound(dir) {
   const meta = await fetch(dir + 'round.json').then(r => { if (!r.ok) throw new Error(r.status); return r.json(); });
   const imgs = await Promise.all(meta.frames.map(f => new Promise((ok, bad) => {
@@ -808,7 +1046,9 @@ async function getRealRound() {
       const facts = await fetch(dir + 'facts.json').then(r => r.ok ? r.json() : {}).catch(() => ({}));
       const st = await fetch(dir + 'stars.json').then(r => r.ok ? r.json() : null).catch(() => null);
       const stars = st ? st.stars.map(s => ({ x: s[0] * k, y: s[1] * k, id: s[2], g: s[3], ly: s[4], teff: s[5] })) : [];
-      return realRound = { real: true, up, meta, frames, objects, facts, stars, w: frames[0].width, h: frames[0].height };
+      const orbits = await fetch(dir + 'horizons.json').then(r => r.ok ? r.json() : {}).catch(() => ({}));
+      const prints = await fetch(dir + 'fingerprint.json').then(r => r.ok ? r.json() : {}).catch(() => ({}));
+      return realRound = { real: true, up, k, meta, frames, objects, facts, orbits, prints, stars, w: frames[0].width, h: frames[0].height };
     } catch (e) { /* try the next folder */ }
   }
   return null;
@@ -827,8 +1067,8 @@ async function renderModes() {
   const r = await getRealRound();
   if (!r) { $('realSub').textContent = 'Needs the game to be opened online or through a web server'; return; }
   const t = r.meta.frames[0].time_utc, d = new Date(t.slice(0, 10) + 'T00:00:00Z');
-  const gap = Math.round((new Date(r.meta.frames[1].time_utc.replace(' UTC', 'Z').replace(' ', 'T')) - new Date(t.replace(' UTC', 'Z').replace(' ', 'T'))) / 36e5 * 10) / 10;
-  $('realSub').textContent = `${d.getUTCDate()} ${MONTHS[d.getUTCMonth()].charAt(0) + MONTHS[d.getUTCMonth()].slice(1).toLowerCase()} ${d.getUTCFullYear()} · two images, ${gap} hours apart`;
+  const gap = Math.round((new Date(r.meta.frames[r.meta.frames.length - 1].time_utc.replace(' UTC', 'Z').replace(' ', 'T')) - new Date(t.replace(' UTC', 'Z').replace(' ', 'T'))) / 36e5 * 10) / 10;
+  $('realSub').textContent = `${d.getUTCDate()} ${MONTHS[d.getUTCMonth()].charAt(0) + MONTHS[d.getUTCMonth()].slice(1).toLowerCase()} ${d.getUTCFullYear()} · ${['', '', 'two', 'three', 'four'][r.meta.frames.length] || r.meta.frames.length} images, ${gap} hours apart`;
   const f = r.frames[0], cv = $('modeThumb'), g = cv.getContext('2d'), cw = Math.min(f.width * .55, 640), ch = cw * 300 / 560;
   g.drawImage(f, (f.width - cw) / 2, (f.height - ch) / 2, cw, ch, 0, 0, 560, 300);
 }
@@ -853,7 +1093,15 @@ async function renderSearch() {
 }
 function listResults() {
   if (!searchMeta) { $('searchNote').textContent = 'Search needs the game to be opened online or through a web server.'; $('results').innerHTML = ''; return; }
+  $('q').onkeydown = e => { if (e.key === 'Enter' && $('goCoords')) $('goCoords').click(); };
   const raw = $('q').value.trim(), q = raw.toLowerCase(), all = searchMeta.objects;
+  const co = parseCoords(raw);
+  if (co) {
+    $('searchNote').textContent = 'Those look like sky coordinates.';
+    $('results').innerHTML = `<button class="res" id="goCoords"><span><b>Watch this patch of sky</b><small>${fmtRA(co.ra)}  ${fmtDec(co.dec)} · every SPHEREx photo of it, as a little video</small></span><span class="go">→</span></button>`;
+    $('goCoords').onclick = () => openWatch(co);
+    return;
+  }
   const hits = all.filter(o => !q || o.name.toLowerCase().includes(q));
   const when = searchMeta.frames[0].time_utc.slice(0, 10);
   $('searchNote').innerHTML = q && !hits.length
@@ -871,7 +1119,104 @@ function presentCard(c, title) {
   $('caughtTitle').textContent = title;
   $('caughtCard').innerHTML = cardFront(c, Math.round(Math.min(240, innerWidth * .62, (Math.min(innerHeight, 900) - 260) * .716)));
   $('caughtCard').firstElementChild.onclick = () => openSheet(c);
+  $('saveImg').onclick = () => saveCardImage(c, title);
   show('caught');
+}
+
+/* ---------- save a card as a picture to keep or share (1080 × 1350, the size Instagram and WhatsApp show in full) ---------- */
+const loadImg = src => new Promise((ok, no) => { const i = new Image(); i.onload = () => ok(i); i.onerror = no; i.src = src; });
+function iconImg(kind, size) {
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="${size}" height="${size}">${TYPE_ICON[kind].replaceAll('var(--c)', KINDS[kind].color).replaceAll('currentColor', '#0b0b0d')}</svg>`;
+  return loadImg('data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg));
+}
+function roundRect(g, x, y, w, h, r) { g.beginPath(); g.roundRect(x, y, w, h, r); }
+function fitText(g, text, max) {
+  if (g.measureText(text).width <= max) return text;
+  while (text.length > 1 && g.measureText(text + '…').width > max) text = text.slice(0, -1);
+  return text + '…';
+}
+function wrapText(g, text, max) {
+  const lines = [''];
+  for (const w of text.split(' ')) { const t = lines.at(-1) ? lines.at(-1) + ' ' + w : w; if (g.measureText(t).width > max && lines.at(-1)) lines.push(w); else lines[lines.length - 1] = t; }
+  return lines;
+}
+async function cardImage(c, title) {
+  const F = '"Hanken Grotesk", "Helvetica Neue", Arial, sans-serif', k = KINDS[c.kind];
+  await Promise.all(['300', '400', '600', '700'].map(w => document.fonts.load(`${w} 40px "Hanken Grotesk"`).catch(() => {})));
+  const cv = document.createElement('canvas'); cv.width = 1080; cv.height = 1350;
+  const g = cv.getContext('2d'), spacing = v => { if ('letterSpacing' in g) g.letterSpacing = v; };
+  g.fillStyle = '#000'; g.fillRect(0, 0, 1080, 1350);
+  const glow = g.createRadialGradient(540, 690, 0, 540, 690, 620);
+  glow.addColorStop(0, k.color + '30'); glow.addColorStop(1, '#0000'); g.fillStyle = glow; g.fillRect(0, 0, 1080, 1350);
+
+  // header: the game's name and what happened
+  g.textAlign = 'center'; g.fillStyle = '#f4f4f2'; g.font = `700 46px ${F}`; spacing('-1px'); g.fillText('BlinkSky', 540, 96);
+  g.fillStyle = '#8a8a8a'; g.font = `400 26px ${F}`; spacing('0px');
+  wrapText(g, title || c.type, 900).slice(0, 2).forEach((l, i) => g.fillText(l, 540, 144 + i * 34));
+
+  // the card, same layout as on screen at 2.5× (1em = 30 px)
+  const W = 600, H = Math.round(W * 88 / 63), X = 240, Y = 228, u = 30, P = 15;
+  g.save(); g.translate(540, Y + H / 2); g.rotate(-2 * Math.PI / 180); g.translate(-540, -(Y + H / 2));
+  g.shadowColor = 'rgba(0,0,0,.9)'; g.shadowBlur = 60; g.shadowOffsetY = 36;
+  const bg = g.createLinearGradient(X, Y, X + W * .6, Y + H); bg.addColorStop(0, '#1b1b1b'); bg.addColorStop(.45, '#0a0a0a'); bg.addColorStop(1, '#050505');
+  roundRect(g, X, Y, W, H, .75 * u); g.fillStyle = bg; g.fill(); g.shadowColor = '#0000';
+  g.lineWidth = 2.5; g.strokeStyle = '#3c3c3c'; g.stroke();
+  g.textAlign = 'left'; g.textBaseline = 'middle';
+  // top row: tier + type logo
+  const logo = 1.7 * .72 * u, topY = Y + P + logo / 2;
+  g.fillStyle = '#8a8a8a'; g.font = `400 ${.72 * u}px ${F}`; spacing('1.3px'); g.fillText(k.tier.toUpperCase(), X + P + 6, topY);
+  g.beginPath(); g.arc(X + W - P - 6 - logo / 2, topY, logo / 2, 0, 7); g.fillStyle = k.color; g.fill();
+  g.drawImage(await iconImg(c.kind, 64), X + W - P - 6 - logo / 2 - logo * .36, topY - logo * .36, logo * .72, logo * .72);
+  // photo window
+  const wx = X + P, wy = topY + logo / 2 + .45 * .72 * u, ww = W - 2 * P, wh = Math.round(ww * 26 / 38);
+  g.save(); roundRect(g, wx, wy, ww, wh, .45 * u); g.fillStyle = '#050505'; g.fill(); g.clip();
+  if (c.photo) {
+    const im = await loadImg(c.photo), s = Math.max(ww / im.width, wh / im.height);
+    g.drawImage(im, wx + (ww - im.width * s) / 2, wy + (wh - im.height * s) / 2, im.width * s, im.height * s);
+    g.beginPath(); g.arc(wx + ww / 2, wy + wh / 2, .8 * u, 0, 7); g.lineWidth = 12; g.strokeStyle = 'rgba(0,0,0,.45)'; g.stroke(); g.lineWidth = 5; g.strokeStyle = k.color; g.stroke();
+  } else g.drawImage(await iconImg(c.kind, 256), wx + ww / 2 - wh * .3, wy + wh * .2, wh * .6, wh * .6);
+  g.restore();
+  roundRect(g, wx, wy, ww, wh, .45 * u); g.lineWidth = 2.5; g.strokeStyle = '#2c2c2c'; g.stroke();
+  // name, type, fact rows
+  let y = wy + wh + .45 * u + 1.55 * u * .55;
+  g.fillStyle = '#f4f4f2'; g.font = `300 ${1.55 * u}px ${F}`; spacing('-1.4px'); g.fillText(fitText(g, c.name, ww - 6), X + P + 3, y);
+  y += 1.55 * u * .5 + .35 * .62 * u + .62 * u * .5;
+  g.fillStyle = k.color; g.font = `600 ${.62 * u}px ${F}`; spacing('1.9px'); g.fillText(c.type.toUpperCase(), X + P + 4, y);
+  y += .62 * u * .5 + .5 * .68 * u;
+  const rh = .68 * u * 1.25 + 2 * .3 * .68 * u, rx = X + P + 4, rw = ww - 8;
+  g.font = `400 ${.68 * u}px ${F}`; spacing('0px'); g.lineWidth = 2; g.strokeStyle = '#262626';
+  g.beginPath(); g.moveTo(rx, y); g.lineTo(rx + rw, y); g.stroke();
+  for (const [a, b] of c.rows) {
+    g.fillStyle = '#8a8a8a'; g.textAlign = 'left'; g.fillText(a, rx, y + rh / 2);
+    g.fillStyle = '#f4f4f2'; g.textAlign = 'right'; g.fillText(fitText(g, String(b), rw - g.measureText(a).width - 20), rx + rw, y + rh / 2);
+    y += rh; g.beginPath(); g.moveTo(rx, y); g.lineTo(rx + rw, y); g.stroke();
+  }
+  // foot
+  g.font = `400 ${.56 * u}px ${F}`; g.fillStyle = '#8a8a8a'; const fy = Y + H - P - .56 * u * .6;
+  g.textAlign = 'left'; g.fillText(fitText(g, `${c.no}${c.foot ? ' · ' + c.foot : ''}`, rw * .75), rx, fy);
+  g.textAlign = 'right'; g.fillText(c.check, rx + rw, fy);
+  g.restore();
+
+  // credit line: where the picture and the check come from
+  g.textAlign = 'center'; g.textBaseline = 'alphabetic'; spacing('0px');
+  g.fillStyle = '#8a8a8a'; g.font = `400 22px ${F}`;
+  const credit = c.check === 'Practice' ? 'Practice sky · sample data'
+    : c.check === 'Flagged' ? 'NASA SPHEREx images · no match on NASA JPL’s list · waiting for experts'
+    : 'Image: NASA SPHEREx via NASA/IPAC IRSA · Checked with NASA JPL';
+  g.fillText(credit, 540, 1262);
+  g.fillStyle = '#4a4a4a'; g.font = `400 20px ${F}`; g.fillText('skibidimama106-lang.github.io/BlinkSky', 540, 1298);
+  return cv;
+}
+async function saveCardImage(c, title) {
+  try {
+    const cv = await cardImage(c, title);
+    const blob = await new Promise(ok => cv.toBlob(ok, 'image/png'));
+    const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
+    a.download = `BlinkSky - ${c.name.replace(/[\\/:*?"<>|]/g, '')}.png`;
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(a.href), 4000);
+    toast('Saved to your downloads');
+  } catch (e) { console.error(e); toast("Couldn't make the image. Try again."); }
 }
 // ---------- stars: things that do not move, explained (Gaia DR3 via NASA/IPAC IRSA) ----------
 let tipTimer = null;
@@ -917,37 +1262,64 @@ $('sky').addEventListener('pointerdown', () => { $('starTip').hidden = true; });
 // "Moved 23 arcseconds in 3.2 hours (about 4 SPHEREx pixels)": the change the player spotted, in real units.
 function gapHours() {
   const t = round.meta.frames.map(f => new Date(f.time_utc.replace(' UTC', 'Z').replace(' ', 'T')));
-  return Math.round((t[1] - t[0]) / 36e5 * 10) / 10;
+  return Math.round((t[t.length - 1] - t[0]) / 36e5 * 10) / 10;
 }
 function movedText(o) {
-  if (!o.positions[0] || !o.positions[1]) return null;
-  const px = Math.hypot(o.positions[1][0] - o.positions[0][0], o.positions[1][1] - o.positions[0][1]) / (round.up || 1);
+  const p = o.positions.filter(Boolean);
+  if (p.length < 2) return null;
+  const px = Math.hypot(p[p.length - 1][0] - p[0][0], p[p.length - 1][1] - p[0][1]) / (round.up || 1);
   const arcsec = Math.round(px * (round.meta.pixel_arcsec || 6.15));
   return `${arcsec}″ in ${gapHours()} h (about ${Math.max(1, Math.round(px))} SPHEREx pixel${Math.round(px) === 1 ? '' : 's'})`;
 }
 // Something changed and NASA JPL has nothing there: the most exciting outcome, and the most often a glitch. Say both.
 function flagChange(spot, shot) {
-  const m = round.meta, inA = frame === 0;
+  const m = round.meta, idx = round.frames.map((_, i) => i), mine = momentOf(frame), inA = mine === momentOf(0);
+  const near = spot.seenIn || [frame], far = idx.filter(i => momentOf(i) !== mine);
+  const label = list => `${list.length > 1 ? 'photos' : 'photo'} ${list.map(i => 'ABCDEF'[i]).join(' and ')} (${m.frames[list[0]].time_utc.slice(11, 16)})`;
   const rec = { round: m.frames[0].obs_id, x: spot.x, y: spot.y, photo: shot, date: today(), hint: hintOn,
-    what: inA ? `in image A (${m.frames[0].time_utc.slice(11, 16)}), gone from image B` : `in image B (${m.frames[1].time_utc.slice(11, 16)}), not in image A`,
+    what: `in ${label(near)}, ${inA ? 'gone from' : 'not in'} ${label(far)}`,
     gap: gapHours(), band: `${m.frames[0].detector}, ${m.frames[0].wavelength_um.join('–')} µm` };
+  const sky = pxToSky(spot.x, spot.y);
+  if (sky) { rec.ra = sky.ra; rec.dec = sky.dec; }
+  rec.time = m.frames[frame].time_utc; rec.obs = m.frames[frame].obs_id; rec.nKnown = round.objects.length; rec.nStars = (round.stars || []).length;
+  rec.time2 = m.frames[far[0]].time_utc; rec.seen = near.length; rec.confirmed = !!spot.confirmed; rec.photos = idx.length;
+  // one position per photo, each measured in that photo
+  const place = (i, x, y) => { const p = peakNear(i, x, y), s = pxToSky(p.x, p.y); return s ? { time: m.frames[i].time_utc, ra: s.ra, dec: s.dec } : null; };
+  rec.pos = near.map(i => place(i, spot.x, spot.y));
+  const part = findPartner(spot);
+  rec.kind = part ? 'moved' : inA ? 'vanished' : 'appeared';
+  if (part) {
+    const s2 = pxToSky(part.x, part.y);
+    if (s2) { rec.ra2 = s2.ra; rec.dec2 = s2.dec; }
+    rec.pos.push(...far.map(i => place(i, part.x, part.y)));
+    rec.sep = Math.round(Math.hypot(part.x - spot.x, part.y - spot.y) / (round.up || 1) * (m.pixel_arcsec || 6.15));
+    rec.what = `that moved about ${rec.sep}″ in ${rec.gap} h`;
+  }
+  rec.pos = rec.pos.filter(Boolean).sort((p, q) => p.time < q.time ? -1 : 1);
+  rec.tag = tag || 'ANON'; rec.id = receiptId(`${rec.obs}|${Math.round(spot.x)}|${Math.round(spot.y)}`);
   flags.push(rec); save();
-  presentCard(flagCard(rec, flags.length - 1), "Something changed, and it isn't on NASA JPL's list");
+  presentCard(flagCard(rec, flags.length - 1), "Not on any list. You have a receipt.");
 }
 function flagCard(f, i) {
-  return { kind: 'unique', name: 'Unlisted change', type: 'SPHEREx · flagged for experts', no: `Flag ${String(i + 1).padStart(2, '0')}`,
-    rows: [['Status', 'waiting for expert review'], ['Seen', f.what], ['Images', `${f.gap} h apart`]],
-    facts: [['Status', 'Flagged. Waiting for expert review'], ['What changed', `A light ${f.what}`], ['Checked against', "NASA JPL's list of known objects: no match"], ['SPHEREx band', f.band]],
+  const ch = CHANGE[f.kind] || CHANGE.appeared, st = relayLine(f);
+  return { kind: 'unique', name: 'Unlisted change', type: `SPHEREx · ${ch.label.toLowerCase()}`, no: `Flag ${String(i + 1).padStart(2, '0')}`,
+    rows: [['Status', st], ['Seen', f.what], ['Images', `${f.gap} h apart`]],
+    facts: [['Status', st], ['Kind of change', ch.label], ['What changed', `A light ${f.what}`], ['Would go to', ch.gate ? `${ch.gate}, ${ch.why}` : 'No official list takes this kind yet. Our team looks first.'], ['Checked against', "NASA JPL's list of known objects: no match"], ['SPHEREx band', f.band]],
     story: "<b>What could it be?</b><br>A new asteroid or comet, a star that flared, or a camera glitch. Most flags turn out to be glitches, which is why experts check every one.",
+    checks: flagChecks(f), receipt: f.id ? f : null,
     photo: f.photo, foot: `${f.date}${f.hint ? ' · with a hint' : ''}`, check: 'Flagged',
-    src: 'Prototype: flags are saved on this device. In the full version they go to experts, who confirm real finds and report them to the Minor Planet Center.' };
+    src: 'Prototype: the receipt is saved on this device. It is a candidate, not a discovery. Only the official list can confirm a new object.' };
 }
 function realCaught(o, shot) {
   const comet = /(^|\s|\()\d*[PC]\//.test(o.name), m = round.meta;
   const rec = { name: o.name, v_mag: o.v_mag, comet, seen: o.positions.filter(Boolean).length, total: m.frames.length, photo: shot, date: today(), hint: hintOn, list: listUsed, jpl: (realRound && realRound.facts && realRound.facts[o.name]) || null,
+    orbit: (realRound && realRound.orbits && realRound.orbits[o.name]) || null, gap: gapHours(),
     moved: movedText(o),
     band: `${m.frames[0].detector}, ${m.frames[0].wavelength_um.join('–')} µm`, times: m.frames.map(f => f.time_utc).join(', ') };
   const idx = reals.findIndex(r => r.name === o.name);
+  // Colour fingerprint: every photo saw the object in one of SPHEREx's 102 colours. A new catch adds its colours to the ones already held.
+  const fresh = (realRound && realRound.prints && realRound.prints[o.name] || { slices: [] }).slices;
+  rec.fp = mergeSlices(idx < 0 ? [] : reals[idx].fp || [], fresh);
   if (idx < 0) reals.push(rec); else reals[idx] = rec;
   save();
   const rc = realCard(rec, idx < 0 ? reals.length - 1 : idx);
@@ -980,7 +1352,7 @@ function groupCards(cards) {
 function renderCollection() { show('collection'); showStacks(); }
 // Every type is its own stack, like piles of cards on a table. Tap a stack to swipe through it.
 function showStacks() {
-  $('stackview').hidden = true; $('stacks').hidden = false; $('sorts').hidden = false; $('backStacks').hidden = true; $('deckTitle').textContent = 'Deck';
+  $('stackview').hidden = true; $('stacks').hidden = false; $('sorts').hidden = false; $('backStacks').hidden = true; $('deckTitle').textContent = 'Deck'; $('challengeBtn').hidden = false;
   const groups = groupCards(allCards()), W = 110;
   $('stacks').innerHTML = groups.map((g, gi) => {
     const top = g.items[0], n = g.items.length;
@@ -994,7 +1366,7 @@ function showStacks() {
   [...$('stacks').querySelectorAll('.pile:not(:disabled)')].forEach(b => { if (b.id !== 'seenPile') b.onclick = () => openStack(groups[+b.dataset.g]); });
 }
 function openStack(g) {
-  $('stacks').hidden = true; $('sorts').hidden = true; $('stackview').hidden = false; $('backStacks').hidden = false;
+  $('stacks').hidden = true; $('sorts').hidden = true; $('stackview').hidden = false; $('backStacks').hidden = false; $('challengeBtn').hidden = true;
   $('deckTitle').textContent = g.label;
   const w = cardW();
   deckItems = g.items;
@@ -1080,16 +1452,1072 @@ $('hint').onclick = () => { if (!round.hintArea) return; hintOn = true; render()
 $('pause').onclick = () => { paused = !paused; $('pause').textContent = paused ? '▶ Play' : '❚❚ Pause'; paused ? clearInterval(timer) : startBlink(); };
 addEventListener('resize', () => { if ($('play').classList.contains('on')) { fit(); clampView(); render(); } });
 
+/* ================= v4: check-up behind the catch, receipt, challenge a friend ================= */
+/* ---------- first time on the sky: a hand shows how to move around, then how to zoom ---------- */
+let tut = load('blinksky2.tut', 0), tutStep = 0, tutTimer = null;
+const HAND_SVG = `<i class="trail"></i><svg class="hand" viewBox="0 0 48 48" fill="none"><circle cx="20" cy="11" r="9" stroke="#f4f4f2" stroke-opacity=".5" stroke-width="2"/>
+  <path d="M16 11a4 4 0 0 1 8 0v12l8.6 1.7c2.6.5 4.4 2.9 4.1 5.5l-1 8.3c-.4 3.1-3 5.5-6.200000000000001 5.5H21.7c-2.1 0-4.1-1-5.300000000000001-2.8L9.6 31.300000000000001c-1-1.5-.5-3.5 1.1-4.3 1.3-.7 2.9-.4 3.9.7L16 29.2z" fill="#f4f4f2" stroke="#0b0b0d" stroke-width="1.5" stroke-linejoin="round"/></svg>`;
+function tutShow(step) {
+  tutStep = step; clearTimeout(tutTimer);
+  const g = $('gest'); if (!step) { g.hidden = true; return; }
+  const touch = matchMedia('(pointer: coarse)').matches, art = step === 1 ? HAND_SVG : touch ? '<i class="gdot a"></i><i class="gdot b"></i>' : '';
+  $('gestArt').innerHTML = art; $('gestArt').hidden = !art;
+  $('gestText').textContent = step === 1 ? 'Drag to look around the sky' : touch ? 'Pinch to zoom in' : 'Scroll to zoom in';
+  g.hidden = false;
+  tutTimer = setTimeout(() => step === 1 ? tutShow(2) : tutDone(), step === 1 ? 12000 : 6000);
+}
+function tutDone() { tutShow(0); tut = 1; try { localStorage.setItem('blinksky2.tut', '1'); } catch (e) {} }
+function tutAdvance(kind) { if (tutStep === 1 && kind === 'drag') tutShow(2); else if (tutStep === 2 && kind === 'zoom') tutDone(); }
+
+let tag = load('blinksky2.tag', '');
+const cleanTag = s => String(s || '').toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 7);
+const gapOf = m => { const t = m.frames.map(f => new Date(f.time_utc.replace(' UTC', 'Z').replace(' ', 'T'))); return Math.round((t[t.length - 1] - t[0]) / 36e5 * 10) / 10; };
+
+// A tapped pixel -> sky position, using the SPHEREx image's own sky grid (TAN-SIP keywords kept in round.json).
+// Checked against NASA JPL Horizons positions for 8 known asteroids in this round: within about 1 to 3 arcseconds.
+function pxToSky(wx, wy) {
+  const m = round && round.meta; if (!m || !m.wcs || !m.crop) return null;
+  const w = m.wcs, c = m.crop, k = round.k || 1, n = key => parseFloat(w[key]);
+  const u = wx / k + c.x0 + 1 - n('CRPIX1'), v = c.y0 + c.height - wy / k - n('CRPIX2');   // PNG rows run top-down, FITS rows bottom-up
+  let f = u, g = v;
+  for (const key in w) {
+    const t = key.split('_'); if (t.length !== 3 || isNaN(+t[1]) || isNaN(+t[2])) continue;
+    const add = parseFloat(w[key]) * u ** +t[1] * v ** +t[2];
+    if (t[0] === 'A') f += add; else if (t[0] === 'B') g += add;
+  }
+  const R = Math.PI / 180, xi = R * (n('PC1_1') * f + n('PC1_2') * g), eta = R * (n('PC2_1') * f + n('PC2_2') * g);
+  const a0 = R * n('CRVAL1'), d0 = R * n('CRVAL2'), den = Math.cos(d0) - eta * Math.sin(d0);
+  return { ra: ((a0 + Math.atan2(xi, den)) / R + 360) % 360, dec: Math.atan2(Math.sin(d0) + eta * Math.cos(d0), Math.hypot(xi, den)) / R };
+}
+const two = x => String(x).padStart(2, '0');
+function fmtRA(d) { const h = d / 15, hh = Math.floor(h), mm = Math.floor((h - hh) * 60), ss = ((h - hh) * 60 - mm) * 60; return `${two(hh)}h ${two(mm)}m ${ss.toFixed(1).padStart(4, '0')}s`; }
+function fmtDec(d) { const s = d < 0 ? '−' : '+', a = Math.abs(d), dd = Math.floor(a), mm = Math.floor((a - dd) * 60), ss = Math.round(((a - dd) * 60 - mm) * 60); return `${s}${two(dd)}° ${two(mm)}′ ${two(Math.min(ss, 59))}″`; }
+function receiptId(text) { let h = 2166136261; for (const ch of text) { h ^= ch.charCodeAt(0); h = Math.imul(h, 16777619); } return 'BS' + (h >>> 0).toString(36).toUpperCase().padStart(5, '0').slice(-5); }
+
+// The checks that run after a tap. The player only sees the card; these sit behind "How we know".
+function realChecks(r, j, ob) {
+  const moved = ob && ob.seen_arcsec != null ? ob.seen_arcsec : null, speed = moved != null && r.gap ? moved / r.gap : ob && r.gap ? ob.predicted_arcsec / r.gap : null;
+  const out = [];
+  out.push(r.seen >= 2 ? ['ok', 'Real, not a camera glitch', `It shows in ${r.seen} of ${r.total} images taken ${r.gap} hours apart. A glitch shows in one.`]
+                       : ['warn', 'In one image only', `NASA JPL places a known object here, but it was inside only ${r.seen} of the ${r.total} images.`]);
+  if (speed != null) out.push(['ok', 'It moves', `${moved != null ? 'Measured' : 'Predicted'}: about ${speed.toFixed(1)}″ per hour across the sky. Stars do not shift in hours.`]);
+  out.push(['ok', 'A known object', `NASA JPL's small-body list has ${r.name} at this spot at this time.`]);
+  if (speed != null) out.push(['ok', 'What kind', `${j && j.orbit_class ? j.orbit_class + ' (NASA JPL). ' : ''}Its speed is ${speed > 90 ? 'fast, like something passing near Earth' : speed >= 3 ? 'typical of the asteroid belt' : 'slow, like something far out'} (rough guide).`]);
+  if (ob) out.push(moved != null ? ['ok', "Where NASA's orbit said", `JPL Horizons, seen from SPHEREx: ${ob.predicted_arcsec.toFixed(1)}″ between the images. In the photos: ${moved.toFixed(1)}″.`]
+                                 : ['no', "Where NASA's orbit said", `JPL Horizons predicts ${ob.predicted_arcsec.toFixed(1)}″ between the images. Too faint to measure in the photos.`]);
+  return out;
+}
+function flagChecks(f) {
+  return [
+    ['ok', 'Something changed', `A light ${f.what}.`],
+    ['ok', "Not on NASA JPL's list", `${f.nKnown ? `Checked against the ${f.nKnown} known asteroids and comets JPL places in this image` : "Checked against NASA JPL's list of known objects"}: no match.`],
+    ['ok', 'Not a listed star', `${f.nStars ? `Checked against ${f.nStars.toLocaleString()} Gaia stars in this image` : 'Checked against the Gaia star list'}: none at this spot.`],
+    f.kind === 'moved' && f.confirmed ? ['ok', 'Real, not a camera glitch', `It is in all ${f.photos} photos, at two spots ${f.sep}″ apart. A glitch shows in one photo.`]
+      : f.kind === 'moved' ? ['warn', 'Seen at two spots', `It is in both images, ${f.sep}″ apart, so it is unlikely to be a glitch. A report needs three or more positions.`]
+      : f.confirmed ? ['ok', 'Real, not a camera glitch', `It shows in ${f.seen} photos taken minutes apart. A glitch shows in one.`]
+      : ['warn', 'Seen in one image only', 'With two images we cannot rule out a camera glitch or a cosmic-ray hit. It needs a second sighting.'],
+    ...(f.kind === 'moved' && f.confirmed ? [['warn', 'Two moments only', 'An orbit needs positions from more than one night.']] : []),
+    ['ok', 'Sorted by kind', `${(CHANGE[f.kind] || CHANGE.appeared).label}.`],
+    ['no', 'Status', 'Candidate. Not confirmed, not a discovery.'],
+  ];
+}
+
+/* ---------- receipt + draft report ---------- */
+function receiptHtml(f) {
+  return `<div class="rcpt"><h3>Your receipt</h3><div class="sh-rows">
+      <div><span>Receipt</span><b>${f.id}</b></div><div><span>Finder</span><b>${f.tag}</b></div>
+      ${f.ra != null ? `<div><span>Position</span><b>${fmtRA(f.ra)}<br>${fmtDec(f.dec)}</b></div>` : ''}
+      <div><span>SPHEREx image</span><b>${f.time || ''}</b></div></div>
+    <button class="ghostbtn" id="saveReceipt">↓ Save receipt</button>
+    <button class="ghostbtn" id="saveReport">↓ Save draft report file</button>
+    <button class="ghostbtn" id="saveCert">↓ Save certificate</button>
+    <label class="tagrow" style="margin:12px 0 4px"><span>Team or school</span><input id="teamIn" maxlength="40" placeholder="optional" autocomplete="off" style="text-transform:none;letter-spacing:0"></label>
+    <div id="flow">${flowHtml(f)}</div>
+    <button class="ghostbtn" id="sendFlag">${f.mailed ? 'Send to our team again' : 'Send to our team'}</button></div>`;
+}
+function downloadText(name, text) {
+  const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([text], { type: 'text/plain' })); a.download = name;
+  document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 4000);
+}
+async function sha256(text) {
+  try { const b = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(text)); return [...new Uint8Array(b)].map(x => x.toString(16).padStart(2, '0')).join(''); }
+  catch (e) { return null; }
+}
+function receiptText(f) {
+  return [
+    'BlinkSky receipt (prototype)', `Receipt: ${f.id}`, `Finder tag: ${f.tag}`, `Team or school: ${f.team || team || 'none given'}`, `Saved on this device: ${f.date}`,
+    `What was seen: a light ${f.what}`, `SPHEREx image: ${f.obs || f.round}, ${f.time || ''}, ${f.band}`,
+    f.ra != null ? `Position (J2000): RA ${f.ra.toFixed(5)} deg, Dec ${f.dec.toFixed(5)} deg  (${fmtRA(f.ra)}, ${fmtDec(f.dec)}); from the image's own sky grid, good to about 3 arcseconds` : 'Position: not recorded',
+    'Checks:', ...flagChecks(f).map(([st, a, b]) => `  [${st === 'ok' ? 'pass' : st === 'warn' ? 'caution' : 'note'}] ${a}: ${b}`),
+    'Data: NASA SPHEREx Quick Release via NASA/IPAC IRSA; known objects from NASA JPL; stars from Gaia DR3.',
+  ].join('\n');
+}
+async function saveReceipt(f) {
+  const body = receiptText(f), h = await sha256(body);
+  downloadText(`BlinkSky receipt ${f.id}.txt`, body + `\n${h ? `SHA-256 of the lines above: ${h}` : ''}\n`);
+}
+// The draft report matches the kind of change. None of these is validated or sent anywhere.
+const isoTime = s => (s || '').replace(' UTC', '').replace(' ', 'T') + ':00Z';
+function reportText(f) {
+  const kind = f.kind || 'appeared', dec = d => (d >= 0 ? '+' : '') + d.toFixed(5);
+  if (kind === 'moved') {     // layout of the Minor Planet Center's ADES format (pipe-separated)
+    const line = (time, ra, de) => `${f.id.padEnd(7)}|CCD |288 |${isoTime(time).padEnd(24)}|${ra.toFixed(5).padEnd(11)}|${dec(de).padEnd(11)}|Gaia3 |`;
+    return [
+      '# version=2017', '# observatory', '! mpcCode 288', '# submitter', `! name ${f.tag}`, '# comment',
+      '! line DRAFT written by the BlinkSky prototype. Not validated and not submitted.',
+      '! line Station 288 = SPHEREx. A space telescope report also needs the spacecraft position (JPL Horizons, SPHEREx = -163182).',
+      f.pos && f.pos.length > 2 ? `! line ${f.pos.length} positions from two moments ${f.gap} h apart, each measured to the nearest SPHEREx pixel (about 6 arcseconds).`
+                                : '! line Two positions only: a real submission needs three or more positions of the same object.',
+      `! line Source images: NASA SPHEREx ${f.obs || f.round}, ${f.band}. Times are the image times to the minute.`,
+      'trkSub |mode|stn |obsTime                 |ra         |dec        |astCat|notes',
+      ...(f.pos && f.pos.length ? f.pos.map(p => line(p.time, p.ra, p.dec)) : [line(f.time, f.ra, f.dec), ...(f.ra2 != null ? [line(f.time2, f.ra2, f.dec2)] : [])]),
+    ].join('\n') + '\n';
+  }
+  if (kind === 'appeared') {
+    return [
+      'DRAFT for the Transient Name Server (wis-tns.org)',
+      "Written by the BlinkSky prototype. Not in the server's upload format, not validated, not sent.",
+      `Reporter: ${f.tag}`, `Internal name: ${f.id}`,
+      `Position (J2000): RA ${f.ra.toFixed(5)} deg, Dec ${dec(f.dec)} deg (good to about 3 arcseconds)`,
+      `Discovery time (UTC): ${isoTime(f.time)}  (the SPHEREx image that shows the light)`,
+      `Last time it was not there (UTC): ${f.time2 ? isoTime(f.time2) : 'not recorded'}  (the other SPHEREx image of the same spot)`,
+      'Discovery brightness: NOT MEASURED YET. The server requires it.',
+      `Instrument: SPHEREx, ${f.band}; image ${f.obs || f.round}`,
+      `Status: candidate, ${f.confirmed ? `seen in ${f.seen} photos taken minutes apart` : 'seen in one image only'}. Not confirmed.`,
+    ].join('\n') + '\n';
+  }
+  return [
+    'BlinkSky note (prototype)', `Receipt: ${f.id}`,
+    `A light ${f.what}.`,
+    `Position (J2000): RA ${f.ra.toFixed(5)} deg, Dec ${dec(f.dec)} deg`,
+    'If this is a star that fades and comes back, its official list is the AAVSO Variable Star Index (VSX).',
+    'One sighting is not enough for that list, so our team checks later SPHEREx photos first.',
+  ].join('\n') + '\n';
+}
+function saveReport(f) { if (f.ra != null) downloadText(`BlinkSky draft report ${f.id}.${(f.kind || 'appeared') === 'moved' ? 'psv' : 'txt'}`, reportText(f)); }
+
+/* ---------- v6: sort by kind, the matching gate, send for review, the answer back on the card ---------- */
+const CHANGE = {
+  moved:    { label: 'It moved', gate: 'Minor Planet Center', why: 'the official list of asteroids and comets', temp: 'like 2026 AB1, given by the Minor Planet Center' },
+  appeared: { label: 'A new light', gate: 'Transient Name Server', why: 'the official list of new lights in the sky', temp: 'like AT 2026abc, given by the Transient Name Server' },
+  vanished: { label: 'A light that went out', gate: 'AAVSO Variable Star Index', why: 'the official list of stars that change brightness', temp: 'a place in the Variable Star Index, if it is a star that fades and returns' },
+};
+// One id per device, so "three players agree" means three devices, whatever tag they typed.
+const pid = (() => { let p = load('blinksky2.pid', ''); if (!p) { p = 'P' + Math.random().toString(36).slice(2, 10).toUpperCase(); try { localStorage.setItem('blinksky2.pid', JSON.stringify(p)); } catch (e) {} } return p; })();
+// A light that is in one image and not the other may simply have moved. Look near the spot, in the other image,
+// for a light that is missing from this one. Found: the change is "moved", and we have two positions.
+function findPartner(spot) {
+  const up = round.up || 1, R = Math.round(10 * up), T = SPOT_RULES, cur = round.frames[frame];
+  const idx = round.frames.map((_, i) => i), mine = momentOf(frame), near = idx.filter(i => momentOf(i) === mine), far = idx.filter(i => momentOf(i) !== mine);
+  if (!far.length) return null;
+  const x0 = Math.max(0, Math.round(spot.x - R)), y0 = Math.max(0, Math.round(spot.y - R)), w = Math.min(cur.width - x0, 2 * R + 1), h = Math.min(cur.height - y0, 2 * R + 1);
+  if (w < 3 || h < 3) return null;
+  const px = i => round.frames[i].getContext('2d').getImageData(x0, y0, w, h).data, A = near.map(px), B = far.map(px);
+  const vals = []; for (let i = 0; i < B[0].length; i += 16) vals.push(B[0][i]); vals.sort((p, q) => p - q);
+  const bg = vals[Math.floor(vals.length * .4)];
+  const sx = Math.min(w - 1, Math.max(0, Math.round(spot.x) - x0)), sy = Math.min(h - 1, Math.max(0, Math.round(spot.y) - y0)), here = A[near.indexOf(frame)][(sy * w + sx) * 4] - bg;
+  let best = null, bv = 0;
+  for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
+    if (Math.hypot(x - sx, y - sy) < 2 * up) continue;
+    const i = (y * w + x) * 4;
+    const vb = Math.min(...B.map(d => d[i])) - bg, va = Math.max(...A.map(d => d[i])) - bg;   // in every photo of the other moment, in none of this one
+    if (vb >= T.min && vb >= here * T.keep && va < vb * T.change && vb > bv) { bv = vb; best = { x: x0 + x, y: y0 + y }; }
+  }
+  return best;
+}
+// Where the light sits in photo i, near (x, y): find the brightest pixel, then take the centre of the light around it
+// (each pixel weighted by how far it rises above the background), which is finer than one whole pixel.
+function peakNear(i, x, y) {
+  const up = round.up || 1, r = Math.round(3 * up), f = round.frames[i];
+  const x0 = Math.max(0, Math.round(x - r)), y0 = Math.max(0, Math.round(y - r)), w = Math.min(f.width - x0, 2 * r + 1), h = Math.min(f.height - y0, 2 * r + 1);
+  if (w < 1 || h < 1) return { x, y };
+  const d = f.getContext('2d').getImageData(x0, y0, w, h).data;
+  let bi = 0; for (let k = 0; k < d.length; k += 4) if (d[k] > d[bi]) bi = k;
+  const px = (bi / 4) % w, py = Math.floor(bi / 4 / w), vals = [];
+  for (let k = 0; k < d.length; k += 4) vals.push(d[k]);
+  vals.sort((p, q) => p - q);
+  const bg = vals[Math.floor(vals.length * .4)], c = Math.max(1, Math.round(2 * up));
+  let sw = 0, sx = 0, sy = 0;
+  for (let yy = Math.max(0, py - c); yy <= Math.min(h - 1, py + c); yy++) for (let xx = Math.max(0, px - c); xx <= Math.min(w - 1, px + c); xx++) {
+    const v = d[(yy * w + xx) * 4] - bg; if (v > 0) { sw += v; sx += v * xx; sy += v * yy; }
+  }
+  return sw > 0 ? { x: x0 + sx / sw, y: y0 + sy / sw } : { x: x0 + px, y: y0 + py };
+}
+function relayLine(f) {
+  const r = f.relay;
+  return !r ? 'On this device only' : r.status === 'sent' ? `Sent · ${r.agree} of ${r.needed} independent players` : r.status === 'review' ? 'Under review by the BlinkSky team'
+    : r.status === 'approved' ? 'Passed review · draft report ready' : 'Reviewed · not passed on';
+}
+function flowHtml(f) {
+  const ch = CHANGE[f.kind] || CHANGE.appeared, r = f.relay, need = r ? r.needed : 3;
+  const row = (st, a, b) => `<div class="chk ${st}"><i>${st === 'ok' ? '✓' : st === 'warn' ? '!' : '–'}</i><span><b>${a}</b><small>${b}</small></span></div>`;
+  return '<h3>What happens to this catch</h3>'
+    + row('ok', 'Spotted by you', f.date)
+    + row('ok', 'Checked by the code', `${f.confirmed ? 'Not a camera glitch. ' : ''}NASA JPL's list and Gaia's stars: no match`)
+    + row('ok', 'Sorted by kind', `${ch.label}. ${ch.gate ? `Its official list is the ${ch.gate}` : 'No official list takes this kind yet'}`)
+    + row(f.mailed ? 'ok' : 'no', 'Sent to the BlinkSky team', f.mailed ? `Email opened ${f.mailed}. Our team checks it again before anything is reported` : 'Tap "Send to our team" below')
+    + row(!r ? 'no' : r.agree >= need ? 'ok' : 'warn', 'Other players spot the same change', !r ? 'Counted when several players, at different times and places, send the same find'
+        : `${r.agree} of ${need} so far, each at a different time and place${r.flagged > r.agree ? ` (${r.flagged} flags in all; the rest were too close in time or place to count)` : ''}`)
+    + row(!r || r.status === 'sent' ? 'no' : r.status === 'review' ? 'warn' : 'ok', 'Reviewed by the BlinkSky team',
+        !r || r.status === 'sent' ? 'Starts when enough players have flagged it' : r.status === 'review' ? 'Waiting for a reviewer' : r.status === 'approved' ? 'Passed' : 'Not passed on')
+    + row(r && r.status === 'approved' ? 'warn' : 'no', 'Reported to the official list', r && r.status === 'approved' ? `Report ready for the ${ch.gate}. Our team sends it` : `Our team reports it to the ${ch.gate} after checking`)
+    + row('no', 'Seen again on another night', 'A find only becomes official when it is found again.<br><button class="linkbtn" id="againBtn">Look for it in other SPHEREx photos →</button>')
+    + row('no', 'Gets a temporary name', ch.temp || 'From the official list')
+    + (f.kind === 'moved' ? row('no', 'Gets a number, then a name', 'Once its path is well known, often years later. The finder may then suggest a name') : '')
+    + row(r && r.status === 'approved' ? 'ok' : 'no', 'Answer', r && r.answer ? r.answer : 'Nothing yet');
+}
+async function relaySend(f) {
+  const body = { pid, tag: f.tag, id: f.id, kind: f.kind || 'appeared', round: f.round, obs: f.obs, time: f.time, time2: f.time2 || null, band: f.band, what: f.what,
+    ra: f.ra, dec: f.dec, ra2: f.ra2 ?? null, dec2: f.dec2 ?? null };
+  const res = await fetch('api/catch', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+  let j = null; try { j = await res.json(); } catch (e) { throw new Error('offline'); }
+  if (!j.ok) throw new Error(j.error || 'offline');
+  f.relay = j.state; save();
+}
+async function relayRefresh(f) {
+  const j = await (await fetch(`api/catch?id=${encodeURIComponent(f.id)}&pid=${pid}`, { cache: 'no-store' })).json();
+  if (j.ok) { f.relay = j.state; save(); }
+}
+// The team inbox finds are sent to. Email is today's way of reaching the team; a server can replace it later.
+const TEAM_EMAIL = 'blinksky@getwarmdesk.org';
+function mailLink(f) {
+  const body = ['A BlinkSky find for the team to check.', '', receiptText(f), '', '--- Draft report ---', reportText(f)].join('\n');
+  return `mailto:${TEAM_EMAIL}?subject=${encodeURIComponent(`BlinkSky find ${f.id} (${(CHANGE[f.kind] || CHANGE.appeared).label})`)}&body=${encodeURIComponent(body)}`;
+}
+let team = load('blinksky2.team', '');
+// A certificate the finder can keep and show: what was found, by whom, and what it is (a candidate, not a discovery).
+// Same look as the app: black sky, thin type, hairline rows, one accent colour, and the finder's own photo.
+async function certCanvas(f) {
+  const W = 1600, H = 1131, cv = document.createElement('canvas'); cv.width = W; cv.height = H;
+  const g = cv.getContext('2d'), ch = CHANGE[f.kind] || CHANGE.appeared, F = '"Hanken Grotesk", "Helvetica Neue", Arial, sans-serif', ACC = '#a990ff';
+  try { await Promise.all(['300 120px', '400 28px', '500 22px', '600 26px'].map(w => document.fonts.load(`${w} "Hanken Grotesk"`))); } catch (e) {}
+  const text = (s, x, y, font, fill, align = 'left', spacing = '0px') => { g.font = `${font} ${F}`; g.fillStyle = fill; g.textAlign = align; g.letterSpacing = spacing; g.fillText(s, x, y); g.letterSpacing = '0px'; };
+  const line = (x1, y1, x2, y2, col, w = 1) => { g.strokeStyle = col; g.lineWidth = w; g.beginPath(); g.moveTo(x1, y1); g.lineTo(x2, y2); g.stroke(); };
+
+  // sky: near-black, a soft glow, a star field that is the same every time for this receipt, and faint orbit lines
+  g.fillStyle = '#050506'; g.fillRect(0, 0, W, H);
+  const glow = g.createRadialGradient(1280, 150, 0, 1280, 150, 950); glow.addColorStop(0, 'rgba(169,144,255,.11)'); glow.addColorStop(1, 'rgba(169,144,255,0)');
+  g.fillStyle = glow; g.fillRect(0, 0, W, H);
+  let seed = 7; for (const c of String(f.id || 'BS')) seed = (seed * 31 + c.charCodeAt(0)) >>> 0;
+  const rnd = () => (seed = (seed * 1664525 + 1013904223) >>> 0) / 4294967296;
+  for (let i = 0; i < 300; i++) {
+    const x = rnd() * W, y = rnd() * H, big = rnd() < .05;
+    g.fillStyle = `rgba(255,255,255,${(big ? .55 : .12 + rnd() * .3).toFixed(2)})`;
+    g.beginPath(); g.arc(x, y, big ? 1.9 : .5 + rnd() * .9, 0, 6.283); g.fill();
+  }
+  g.strokeStyle = 'rgba(255,255,255,.055)'; g.lineWidth = 1;
+  for (const r of [520, 760, 1010]) { g.beginPath(); g.ellipse(-80, H + 120, r * 1.5, r, -.32, 0, 6.283); g.stroke(); }
+
+  // frame: one hairline, with small accent corners
+  g.strokeStyle = 'rgba(255,255,255,.35)'; g.lineWidth = 1; g.strokeRect(36.5, 36.5, W - 73, H - 73);
+  for (const [cx, cy, sx, sy] of [[36, 36, 1, 1], [W - 36, 36, -1, 1], [36, H - 36, 1, -1], [W - 36, H - 36, -1, -1]]) {
+    line(cx, cy, cx + 44 * sx, cy, ACC, 3); line(cx, cy, cx, cy + 44 * sy, ACC, 3);
+  }
+
+  // header
+  text('BLINKSKY', 90, 114, '700 32px', '#ffffff', 'left', '9px');
+  text(`No. ${f.id}`, W - 90, 114, '600 28px', '#e2e2e2', 'right', '3px');
+  line(90, 142, W - 90, 142, 'rgba(255,255,255,.3)');
+
+  // who
+  text('CERTIFICATE OF A CANDIDATE FIND', 90, 216, '700 27px', '#c4b3ff', 'left', '6px');
+  text('Awarded to', 90, 282, '500 30px', '#d6d6d6');
+  text(f.tag || 'PLAYER', 84, 400, '500 122px', '#ffffff', 'left', '5px');
+  const team_ = f.team || team;
+  if (team_) text(team_, 90, 456, '600 34px', '#e6cfa4');
+  text("for spotting a change in NASA's SPHEREx photos that is on no list we checked.", 90, team_ ? 528 : 490, '500 32px', '#f0f0f0');
+
+  // the finder's own photo
+  const px = 90, py = 578, pw = 520, ph = 328;
+  g.fillStyle = '#000'; g.fillRect(px, py, pw, ph);
+  if (f.photo) {
+    const im = await new Promise(ok => { const i = new Image(); i.onload = () => ok(i); i.onerror = () => ok(null); i.src = f.photo; });
+    if (im) { g.imageSmoothingEnabled = false; g.drawImage(im, px, py, pw, ph); g.imageSmoothingEnabled = true; }
+  }
+  g.strokeStyle = 'rgba(255,255,255,.28)'; g.lineWidth = 1; g.strokeRect(px + .5, py + .5, pw - 1, ph - 1);
+  const mx = px + pw / 2, my = py + ph / 2;                    // sight marks around the tapped spot
+  for (const [dx, dy] of [[1, 0], [-1, 0], [0, 1], [0, -1]]) line(mx + dx * 26, my + dy * 26, mx + dx * 58, my + dy * 58, ACC, 2);
+  text("The finder's own photo, where they tapped", px, py + ph + 38, '500 24px', '#d0d0d0');
+
+  // facts, as hairline rows
+  const rx = 680, rw = W - 90 - rx, rows = [
+    ['What changed', ch.label],
+    ['Where', f.ra != null ? `${fmtRA(f.ra)}   ${fmtDec(f.dec)}` : 'not recorded'],
+    ['SPHEREx photo', f.time || ''],
+    ['Checked against', 'NASA JPL and ESA Gaia lists: no match'],
+    ['Camera error', f.confirmed ? `Ruled out: in ${f.seen} photos minutes apart` : 'Not ruled out yet'],
+    ['Would go to', ch.gate || 'our team first'],
+  ];
+  rows.forEach(([a, b], i) => {
+    const y = py + 40 + i * 55;
+    text(a.toUpperCase(), rx, y, '600 21px', '#c8c8c8', 'left', '2px');
+    text(b, rx + rw, y, '600 29px', '#ffffff', 'right');
+    line(rx, y + 18, rx + rw, y + 18, 'rgba(255,255,255,.28)');
+  });
+
+  // who signs it, and the stamp that says what this is
+  text('Team Earth Intruders', 90, 1002, '700 30px', '#ffffff');
+  text(`BlinkSky · NASA Space Apps Challenge 2026 · saved ${f.date}`, 90, 1036, '500 23px', '#d0d0d0');
+  g.save(); g.translate(W - 185, 1000); g.rotate(-.14);
+  g.strokeStyle = '#c4b3ff'; g.lineWidth = 3; g.beginPath(); g.arc(0, 0, 84, 0, 6.283); g.stroke();
+  g.lineWidth = 1.5; g.beginPath(); g.arc(0, 0, 74, 0, 6.283); g.stroke();
+  text('CANDIDATE', 1, -4, '700 21px', '#d5c8ff', 'center', '2px'); text('not yet confirmed', 0, 24, '600 16px', '#d5c8ff', 'center');
+  g.restore();
+  text('A candidate, not a discovery. Only the official list can confirm a new object.', 90, 1078, '500 20px', '#c8c8c8');
+  text('Data: NASA SPHEREx · NASA JPL · ESA Gaia', W - 300, 1078, '500 20px', '#c8c8c8', 'right');
+  return cv;
+}
+async function saveCert(f) {
+  const cv = await certCanvas(f);
+  cv.toBlob(b => { const a = document.createElement('a'); a.href = URL.createObjectURL(b); a.download = `BlinkSky certificate ${f.id}.png`; document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 4000); toast('Certificate saved to your downloads'); }, 'image/png');
+}
+function wireExtras(f) {
+  if ($('saveCert')) $('saveCert').onclick = () => saveCert(f);
+  const t = $('teamIn');
+  if (t) { t.value = f.team || team; t.oninput = () => { team = t.value.trim().slice(0, 40); f.team = team; try { localStorage.setItem('blinksky2.team', JSON.stringify(team)); } catch (e) {} save(); }; }
+  const a = $('againBtn');
+  if (a) a.onclick = () => { if (f.ra == null) { toast('This catch has no sky position.'); return; } closeSheet(); openWatch({ ra: f.ra, dec: f.dec, name: `Your find ${f.id}` }, 'collection'); };
+}
+function wireRelay(f) {
+  const btn = $('sendFlag'), paint = () => { if ($('flow')) { $('flow').innerHTML = flowHtml(f); btn.textContent = f.mailed ? 'Send to our team again' : 'Send to our team'; wireExtras(f); } };
+  wireExtras(f);
+  btn.onclick = async () => {
+    if (f.ra == null) { toast('This catch has no sky position, so it cannot be sent.'); return; }
+    if (!TEAM_EMAIL) { toast('The team inbox is not set up yet. Save the receipt and the draft report instead.'); return; }
+    location.href = mailLink(f);
+    f.mailed = new Date().toISOString().slice(0, 16).replace('T', ' ') + ' UTC'; save(); paint();
+    toast('Your email app opens with the find filled in. Press send there.');
+    if (!f.relay) { try { await relaySend(f); paint(); } catch (e) { /* no review server here: the email is enough */ } }
+  };
+  if (f.relay) relayRefresh(f).then(paint).catch(() => {});
+}
+
+/* ---------- challenge a friend: the code carries a copy of the deck ---------- */
+const b64e = str => btoa(String.fromCharCode(...new TextEncoder().encode(str))).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+const b64d = str => new TextDecoder().decode(Uint8Array.from(atob(str.replace(/-/g, '+').replace(/_/g, '/')), ch => ch.charCodeAt(0)));
+const DECK_MAX = 20, ROUNDS = 5;
+function deckCodes() { return [...reals.map(r => 'r' + r.name), ...flags.map(() => 'f'), ...ORDER.filter(k => col[k]).map(k => 's' + k)].slice(0, DECK_MAX); }
+const duelLink = () => location.href.split('#')[0] + '#duel=' + b64e(JSON.stringify({ t: tag || 'PLAYER', d: deckCodes() }));
+
+function loadQrLib() {
+  return new Promise(ok => {
+    if (window.qrcode) return ok(true);
+    const sc = document.createElement('script'); sc.src = 'https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js';
+    sc.onload = () => ok(!!window.qrcode); sc.onerror = () => ok(false); document.head.appendChild(sc);
+  });
+}
+async function drawQr() {
+  const cv = $('qr'), n = deckCodes().length;
+  $('qrNote').textContent = n ? `${n} card${n === 1 ? '' : 's'} in this code` : 'Your deck is empty, so your friend will face starter cards.';
+  if (!(await loadQrLib())) { cv.hidden = true; $('qrNote').textContent = 'The QR picture needs an internet connection. "Copy link" still works.'; return; }
+  try {
+    const q = qrcode(0, 'L'); q.addData(duelLink()); q.make();
+    const m = q.getModuleCount(), pad = 3, cell = Math.max(2, Math.floor(520 / (m + pad * 2)));
+    cv.width = cv.height = cell * (m + pad * 2); cv.hidden = false;
+    const g = cv.getContext('2d'); g.fillStyle = '#fff'; g.fillRect(0, 0, cv.width, cv.height); g.fillStyle = '#000';
+    for (let r = 0; r < m; r++) for (let c = 0; c < m; c++) if (q.isDark(r, c)) g.fillRect((c + pad) * cell, (r + pad) * cell, cell, cell);
+  } catch (e) { cv.hidden = true; $('qrNote').textContent = 'This deck is too big for one code. "Copy link" still works.'; }
+}
+function renderChallenge() { show('challenge'); $('tagIn').value = tag; $('chalNote').textContent = ''; $('pasteLink').value = ''; drawQr(); }
+$('challengeBtn').onclick = renderChallenge;
+$('tagIn').addEventListener('input', () => { tag = cleanTag($('tagIn').value); $('tagIn').value = tag; try { localStorage.setItem('blinksky2.tag', JSON.stringify(tag)); } catch (e) {} drawQr(); });
+$('copyLink').onclick = async () => {
+  const link = duelLink();
+  try { await navigator.clipboard.writeText(link); $('chalNote').textContent = 'Link copied. Send it to your friend.'; }
+  catch (e) { $('pasteLink').value = link; $('pasteLink').select(); $('chalNote').textContent = 'Copy the link from the box above.'; }
+};
+$('pasteLink').addEventListener('input', () => { if ($('pasteLink').value.includes('#') && !openLink($('pasteLink').value.trim())) $('chalNote').textContent = "That doesn't look like a BlinkSky challenge link."; });
+
+let scanStream = null;
+function stopScan() { if (scanStream) scanStream.getTracks().forEach(t => t.stop()); scanStream = null; const v = $('scanVideo'); if (v) v.hidden = true; }
+$('scanBtn').onclick = async () => {
+  if (scanStream) { stopScan(); return; }
+  if (!('BarcodeDetector' in window)) { $('chalNote').textContent = "This browser has no built-in scanner. Point your phone's camera at the code, or paste the link."; return; }
+  try { scanStream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } }); }
+  catch (e) { $('chalNote').textContent = "Couldn't open the camera. Paste the link instead."; return; }
+  const v = $('scanVideo'), det = new BarcodeDetector({ formats: ['qr_code'] }); v.srcObject = scanStream; v.hidden = false; await v.play();
+  $('chalNote').textContent = "Point the camera at your friend's code.";
+  const loop = async () => { if (!scanStream) return; try { const r = await det.detect(v); if (r[0] && openLink(r[0].rawValue)) return; } catch (e) {} setTimeout(loop, 300); };
+  loop();
+};
+
+// Opens "#duel=..." (attack this deck) or "#result=..." (how your deck did). Returns false for anything else.
+function openLink(text) {
+  const m = /#(duel|result)=([A-Za-z0-9_-]+)/.exec(text || ''); if (!m) return false;
+  let p; try { p = JSON.parse(b64d(m[2])); } catch (e) { return false; }
+  if (!p || typeof p !== 'object') return false;
+  stopScan(); history.replaceState(null, '', location.pathname + location.search);
+  if (m[1] === 'duel') startBattle(p); else showResult(p);
+  return true;
+}
+addEventListener('hashchange', () => openLink(location.hash));
+
+/* ---------- the battle: one real number against another, best of five ---------- */
+let liteData = null, battle = null;
+async function getLite() {
+  if (realRound) return { meta: realRound.meta, facts: realRound.facts, orbits: realRound.orbits };
+  if (liteData) return liteData;
+  for (const dir of REAL_DIRS) {
+    try {
+      const meta = await fetch(dir + 'round.json').then(r => { if (!r.ok) throw 0; return r.json(); });
+      const facts = await fetch(dir + 'facts.json').then(r => r.ok ? r.json() : {}).catch(() => ({}));
+      const orbits = await fetch(dir + 'horizons.json').then(r => r.ok ? r.json() : {}).catch(() => ({}));
+      return liteData = { meta, facts, orbits };
+    } catch (e) { /* next folder */ }
+  }
+  return liteData = { meta: null, facts: {}, orbits: {} };
+}
+const SAMPLE_STATS = { common: [2, 30], uncommon: [.3, 120], rare: [5, 60], legendary: [1, 300], unique: [null, null] };   // practice cards: sample numbers
+// A card code from a link is only trusted if it names something this app already knows.
+function battleCard(code, d) {
+  const t = code[0], v = code.slice(1);
+  if (t === 'r' && d.meta && d.meta.objects.some(o => o.name === v)) {
+    const j = d.facts[v] || {}, o = d.orbits[v], gap = gapOf(d.meta), m = /([\d.]+)\s*(km|m)\b/.exec(j.size || '');
+    return { name: v, kind: KINDS[j.kind] ? j.kind : 'common', src: 'SPHEREx catch', size: m ? +m[1] * (m[2] === 'm' ? .001 : 1) : null, speed: o && gap ? o.predicted_arcsec / gap : null };
+  }
+  if (t === 'f') return { name: 'Unlisted change', kind: 'unique', src: 'Flagged find', size: null, speed: null };
+  if (t === 's' && KINDS[v]) return { name: KINDS[v].name, kind: v, src: 'Practice card', size: SAMPLE_STATS[v][0], speed: SAMPLE_STATS[v][1] };
+  return null;
+}
+const STATS = [
+  ['size', 'Size', c => c.size == null ? 'unknown' : c.size >= 1 ? `${+c.size.toFixed(1)} km` : `${Math.round(c.size * 1000)} m`],
+  ['speed', 'Speed', c => c.speed == null ? 'unknown' : `${+c.speed.toFixed(1)}″/h`],
+  ['rare', 'Rarity', c => KINDS[c.kind].tier],
+];
+const statVal = (c, s) => s === 'rare' ? ORDER.indexOf(c.kind) + 1 : (c[s] ?? 0);
+const padDeck = cards => { const out = cards.slice(); while (out.length < ROUNDS) out.push({ name: 'Starter rock', kind: 'common', src: 'Starter card', size: 1, speed: 20 }); return out; };
+const bcard = (c, w) => cardFront({ kind: c.kind, name: c.name, type: c.src, rows: STATS.map(([, label, f]) => [label, f(c)]), no: '', check: '', photo: null }, w);
+const bw = () => Math.round(Math.min(170, (Math.min(innerWidth, 430) - 48) / 2));
+
+// The computer's deck: five objects from the round that have a known size and speed, drawn at random.
+async function computerDeck() {
+  const d = await getLite(), pool = d.meta ? d.meta.objects.map(o => 'r' + o.name).filter(c => { const k = battleCard(c, d); return k && k.size != null && k.speed != null; }) : [];
+  for (let i = pool.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [pool[i], pool[j]] = [pool[j], pool[i]]; }
+  const deck = pool.slice(0, ROUNDS), spare = ['srare', 'suncommon', 'scommon', 'slegendary', 'scommon'];
+  while (deck.length < ROUNDS) deck.push(spare[deck.length]);
+  return deck;
+}
+$('cpuBtn').onclick = async () => startBattle({ t: 'COMPUTER', d: await computerDeck() }, true);
+async function startBattle(p, cpu = false) {
+  const d = await getLite(), mk = codes => padDeck(codes.map(c => battleCard(String(c), d)).filter(Boolean));
+  battle = { cpu, foeTag: cpu ? 'the computer' : cleanTag(p.t) || 'PLAYER', foe: mk(Array.isArray(p.d) ? p.d.slice(0, DECK_MAX) : []), me: mk(deckCodes()), n: 0, score: [0, 0], used: [], pick: null, last: null };
+  show('battle'); renderBattle();
+}
+function renderBattle() {
+  const b = battle, w = bw(), done = b.n >= ROUNDS;
+  $('bTitle').textContent = `You vs ${b.foeTag}`; $('bScore').textContent = `${b.score[0]} – ${b.score[1]}`; $('bFoeLabel').textContent = b.cpu ? "The computer's deck" : `${b.foeTag}'s deck`;
+  const L = b.last;
+  $('bFoe').className = L && L.res < 0 ? 'win' : ''; $('bMe').className = L && L.res > 0 ? 'win' : '';
+  $('bFoe').innerHTML = L ? bcard(L.foe, w) : cardBack(w);
+  $('bMe').innerHTML = L ? bcard(L.me, w) : b.pick != null ? bcard(b.me[b.pick], w) : cardBack(w);
+  if (L) {
+    const [, label, f] = STATS.find(s => s[0] === L.stat);
+    $('bMsg').innerHTML = `<b>${label}:</b> your ${f(L.me)} against ${f(L.foe)}.<br>${L.res > 0 ? 'You take the round.' : L.res < 0 ? `${b.cpu ? "The computer's" : b.foeTag + "'s"} deck holds.` : 'A draw.'}`;
+    if (!done) { $('bPick').innerHTML = `<button class="main" id="bNext">Next round</button>`; $('bNext').onclick = () => { b.last = null; b.pick = null; renderBattle(); }; return; }
+    const [a, z] = b.score, word = a > z ? 'You won' : a < z ? 'You lost' : 'A draw';
+    $('bMsg').innerHTML += `<br><b>${word} ${a}–${z} against ${b.foeTag}'s deck.</b>`;
+    $('bPick').innerHTML = `<button class="main" id="bSend">${b.cpu ? 'Play again' : `Send the result to ${b.foeTag}`}</button><button class="quiet" id="bDone">Back to your deck</button>`;
+    $('bSend').onclick = async () => {
+      if (b.cpu) { $('cpuBtn').onclick(); return; }
+      const link = location.href.split('#')[0] + '#result=' + b64e(JSON.stringify({ a: tag || 'PLAYER', d: b.foeTag, s: b.score }));
+      try { await navigator.clipboard.writeText(link); $('bSend').textContent = 'Link copied'; } catch (e) { prompt('Copy this link', link); }
+    };
+    $('bDone').onclick = () => go('collection');
+    return;
+  }
+  if (b.pick == null) {
+    $('bMsg').innerHTML = `<b>Round ${b.n + 1} of ${ROUNDS}.</b> Pick a card to attack with.`;
+    $('bPick').innerHTML = b.me.map((c, i) => b.used.includes(i) ? '' : `<button data-i="${i}"><span>${tlogo(c.kind)} ${c.name}</span><small>${STATS[0][2](c)} · ${STATS[1][2](c)}</small></button>`).join('');
+    [...$('bPick').querySelectorAll('button')].forEach(x => x.onclick = () => { b.pick = +x.dataset.i; renderBattle(); });
+    return;
+  }
+  const c = b.me[b.pick];
+  $('bMsg').innerHTML = `<b>${c.name}.</b> Which number do you attack with? The higher one wins.`;
+  $('bPick').innerHTML = STATS.map(([k, label, f]) => `<button data-s="${k}"><span>${label}</span><small>${f(c)}</small></button>`).join('') + `<button class="quiet" id="bBack">← Pick another card</button>`;
+  [...$('bPick').querySelectorAll('button[data-s]')].forEach(x => x.onclick = () => {
+    const foe = b.foe[b.n % b.foe.length], s = x.dataset.s, res = Math.sign(statVal(c, s) - statVal(foe, s));
+    if (res > 0) b.score[0]++; else if (res < 0) b.score[1]++;
+    b.used.push(b.pick); b.n++; b.last = { me: c, foe, stat: s, res }; renderBattle();
+  });
+  $('bBack').onclick = () => { b.pick = null; renderBattle(); };
+}
+$('battleExit').onclick = () => go('collection');
+function showResult(p) {
+  const a = cleanTag(p.a) || 'PLAYER', s = Array.isArray(p.s) ? p.s.slice(0, 2).map(x => Math.max(0, Math.min(ROUNDS, +x || 0))) : [0, 0];
+  if (s.length < 2) s.push(0, 0);
+  renderCollection();
+  $('sheet').style.setProperty('--c', '#f4f4f2');
+  $('sheet').innerHTML = `<div class="grab"></div><div class="sh-head"><div><h2>${a} attacked your deck</h2><small>${s[1] > s[0] ? 'Your deck held' : s[1] < s[0] ? 'Your deck lost' : 'A draw'} · ${s[1]}–${s[0]}</small></div></div>
+    <p class="sh-story">Your deck defended by itself. Catch rarer objects to make it stronger, then send ${a} your own code.</p>`;
+  $('app').classList.add('sheet-open');
+}
+
+/* ---------- v5: colour fingerprint ---------- */
+// SPHEREx sees 102 colours: 6 detectors x 17 steps. Ranges are the ones NASA/IPAC IRSA lists for each detector (micrometres).
+const BANDS = { D1: [0.746, 1.117], D2: [1.103, 1.65], D3: [1.63, 2.435], D4: [2.403, 3.847], D5: [3.811, 4.43], D6: [4.412, 5.01] };
+const DETS = Object.keys(BANDS);
+function channelOf(det, wave) { const [lo, hi] = BANDS[det]; return DETS.indexOf(det) * 17 + Math.max(0, Math.min(16, Math.floor((wave - lo) / (hi - lo) * 17))); }
+function mergeSlices(old, add) {
+  const by = new Map();
+  for (const sl of [...old, ...add]) by.set(channelOf(sl.detector, sl.wave_um), sl);
+  return [...by.values()].sort((a, b) => a.wave_um - b.wave_um);
+}
+function printBar(slices) {
+  const on = new Set(slices.map(sl => channelOf(sl.detector, sl.wave_um)));
+  return `<div class="fpbar">${DETS.map((d, i) => `<div>${Array.from({ length: 17 }, (_, k) => `<i class="${on.has(i * 17 + k) ? 'on' : ''}"></i>`).join('')}</div>`).join('')}</div>
+    <div class="fpbar-ax"><span>0.75 µm</span><span>near-infrared colours</span><span>5.0 µm</span></div>`;
+}
+function cardPrintHtml(fp) {
+  const n = new Set((fp || []).map(sl => channelOf(sl.detector, sl.wave_um))).size;
+  const list = (fp || []).map(sl => `${sl.wave_um.toFixed(2)} µm: ${sl.flux_mjy >= 10 ? Math.round(sl.flux_mjy) : sl.flux_mjy.toFixed(1)} mJy`).join(' · ');
+  return `<div class="fp"><div class="fp-head"><b>Colour fingerprint</b><span>${n} of 102 colours</span></div>${printBar(fp || [])}
+    <p class="fp-note">${n ? `Your photos saw it at ${list}. Each SPHEREx photo sees one colour, so every new catch of this object fills in more.`
+      : 'Too faint in these photos to measure a colour. A brighter pass will start the fingerprint.'}</p></div>`;
+}
+
+/* ---------- v10: live Explorer in the browser ----------
+   Any RA/Dec -> a "little video" of SPHEREx photos, with no helper server.
+   NASA/IPAC IRSA sends no cross-site permission header, so requests go through the BlinkSky relay
+   (a tiny Cloudflare Worker, proxy_worker/worker.js) that only forwards SPHEREx searches, cutouts and Gaia lookups.
+   This is a line-by-line port of data_access/blinksky_explorer.py (same steps, same numbers). */
+const RELAY = 'https://blinksky-relay.a-slave-of-allah.workers.dev';
+// DR1 (Nov 2026) replaces QR2 and is processed to match QR3. A new release = one more line here.
+const LIVE_RELEASES = [['spherex_dr1', '10.26131/IRSA678'], ['spherex_qr3', '10.26131/IRSA662']];
+const LIVE = { OUT_SCALE: 3.075, VISIT_GAP_DAYS: 30, SIZE: 0.1,
+  BAD_BITS: { 0: 'TRANSIENT', 1: 'OVERFLOW', 2: 'SUR_ERROR', 6: 'NONFUNC', 9: 'MISSING_DATA', 10: 'HOT', 15: 'NONLINEAR',
+              17: 'PERSIST', 19: 'OUTLIER', 26: 'BLOOM', 27: 'SNOWBALL', 28: 'HALO' } };
+
+// ---- small number helpers (NaN-aware, like numpy's nan* functions) ----
+const liveMedian = a => { const v = a.filter(Number.isFinite).sort((x, y) => x - y), n = v.length; return n ? (n % 2 ? v[(n - 1) / 2] : (v[n / 2 - 1] + v[n / 2]) / 2) : NaN; };
+const livePct = (a, p) => { const v = a.filter(Number.isFinite).sort((x, y) => x - y); if (!v.length) return NaN; const k = (v.length - 1) * p / 100, f = Math.floor(k); return f + 1 < v.length ? v[f] + (v[f + 1] - v[f]) * (k - f) : v[f]; };
+const D2R = Math.PI / 180;
+
+// ---- FITS reader: just enough for SPHEREx cutouts (images + one binary table) ----
+function fitsRead(buf) {
+  const dv = new DataView(buf), u8 = new Uint8Array(buf), hdus = {}; let pos = 0;
+  while (pos + 2880 <= u8.length) {
+    const h = {}; let end = false;
+    while (!end && pos + 2880 <= u8.length) {
+      for (let i = 0; i < 36; i++) {
+        let c = ''; for (let j = 0; j < 80; j++) c += String.fromCharCode(u8[pos + i * 80 + j]);
+        const k = c.slice(0, 8).trim();
+        if (k === 'END') { end = true; break; }
+        if (c[8] !== '=') continue;
+        let v = c.slice(10).trim();
+        if (v[0] === "'") v = v.slice(1, v.indexOf("'", 1)).trim();
+        else { v = v.split('/')[0].trim(); v = v === 'T' ? true : v === 'F' ? false : Number.isFinite(+v) ? +v : v; }
+        h[k] = v;
+      }
+      pos += 2880;
+    }
+    const naxis = h.NAXIS || 0, dims = []; for (let i = 1; i <= naxis; i++) dims.push(h['NAXIS' + i]);
+    const n = naxis ? dims.reduce((a, b) => a * b, 1) : 0, bytes = Math.abs(h.BITPIX) / 8 * (h.GCOUNT || 1) * ((h.PCOUNT || 0) + n);
+    hdus[h.EXTNAME || (Object.keys(hdus).length ? 'HDU' + Object.keys(hdus).length : 'PRIMARY')] = { h, start: pos, dims, dv };
+    pos += Math.ceil(bytes / 2880) * 2880;
+  }
+  return hdus;
+}
+function fitsImage(hdu) {
+  const { h, start, dims, dv } = hdu, n = dims[0] * dims[1], out = new Float64Array(n), b = h.BITPIX;
+  for (let i = 0; i < n; i++) out[i] = b === -32 ? dv.getFloat32(start + 4 * i) : b === -64 ? dv.getFloat64(start + 8 * i) : b === 32 ? dv.getInt32(start + 4 * i) : dv.getInt16(start + 2 * i);
+  return out;   // row-major: index = y * nx + x (y = FITS row - 1)
+}
+function fitsTable(hdu) {     // first row of a binary table, every column as an array
+  const { h, start, dv } = hdu, out = {}; let off = 0;
+  for (let c = 1; c <= h.TFIELDS; c++) {
+    const m = String(h['TFORM' + c]).match(/^(\d*)([A-Z])/), r = m[1] ? +m[1] : 1, t = m[2];
+    const size = { J: 4, E: 4, D: 8, I: 2, K: 8, B: 1 }[t], vals = [];
+    for (let i = 0; i < r; i++) { const p = start + off + i * size; vals.push(t === 'J' ? dv.getInt32(p) : t === 'E' ? dv.getFloat32(p) : t === 'D' ? dv.getFloat64(p) : t === 'I' ? dv.getInt16(p) : t === 'K' ? Number(dv.getBigInt64(p)) : dv.getUint8(p)); }
+    out[h['TTYPE' + c]] = vals; off += r * size;
+  }
+  return out;
+}
+
+// ---- WCS: gnomonic (TAN) projection with SIP distortion, as in the SPHEREx headers. Pixels are 0-based like astropy. ----
+function wcsMake(h) {
+  const sip = p => { const o = h[p + '_ORDER'] || 0, t = []; for (let i = 0; i <= o; i++) for (let j = 0; j <= o - i; j++) { const v = h[`${p}_${i}_${j}`]; if (v) t.push([i, j, v]); } return t; };
+  const poly = (t, x, y) => t.reduce((a, [i, j, v]) => a + v * x ** i * y ** j, 0);
+  const c1 = h.CDELT1 || 1, c2 = h.CDELT2 || 1;
+  const m = [(h.PC1_1 ?? 1) * c1, (h.PC1_2 || 0) * c1, (h.PC2_1 || 0) * c2, (h.PC2_2 ?? 1) * c2], det = m[0] * m[3] - m[1] * m[2];
+  const A = sip('A'), B = sip('B'), AP = sip('AP'), BP = sip('BP'), a0 = h.CRVAL1 * D2R, d0 = h.CRVAL2 * D2R;
+  return {
+    pix2world(px, py) {
+      const u = px + 1 - h.CRPIX1, v = py + 1 - h.CRPIX2, x = u + poly(A, u, v), y = v + poly(B, u, v);
+      const xi = (m[0] * x + m[1] * y) * D2R, eta = (m[2] * x + m[3] * y) * D2R;
+      const den = Math.cos(d0) - eta * Math.sin(d0);
+      let ra = (a0 + Math.atan2(xi, den)) / D2R; ra = ((ra % 360) + 360) % 360;
+      return [ra, Math.atan2(Math.sin(d0) + eta * Math.cos(d0), Math.hypot(xi, den)) / D2R];
+    },
+    world2pix(ra, dec) {
+      const a = ra * D2R, d = dec * D2R, ca = Math.cos(a - a0), D = Math.sin(d) * Math.sin(d0) + Math.cos(d) * Math.cos(d0) * ca;
+      const xi = Math.cos(d) * Math.sin(a - a0) / D / D2R, eta = (Math.sin(d) * Math.cos(d0) - Math.cos(d) * Math.sin(d0) * ca) / D / D2R;
+      const x = (m[3] * xi - m[1] * eta) / det, y = (-m[2] * xi + m[0] * eta) / det;
+      let u = x + poly(AP, x, y), v = y + poly(BP, x, y);
+      for (let k = 0; k < 3; k++) { u = x - poly(A, u, v); v = y - poly(B, u, v); }   // polish so forward(u,v) = (x,y) exactly
+      return [u + h.CRPIX1 - 1, v + h.CRPIX2 - 1];
+    },
+  };
+}
+
+// ---- 1. find the images (IRSA's image search, through the relay) ----
+async function liveFindImages(ra, dec) {
+  const out = [], seen = new Set();
+  for (const [col, doi] of LIVE_RELEASES) {
+    const r = await fetch(`${RELAY}/sia?collection=${col}&ra=${ra}&dec=${dec}`);
+    if (!r.ok) throw new Error(`NASA's image search answered ${r.status}`);
+    const xml = new DOMParser().parseFromString(await r.text(), 'text/xml');
+    const fields = [...xml.getElementsByTagNameNS('*', 'FIELD')].map(f => f.getAttribute('name'));
+    for (const tr of xml.getElementsByTagNameNS('*', 'TR')) {
+      const tds = [...tr.getElementsByTagNameNS('*', 'TD')], x = {};
+      fields.forEach((f, i) => x[f] = tds[i] ? tds[i].textContent : '');
+      const id = x.obs_id + '|' + x.energy_bandpassname;     // the same exposure must not come twice from two releases
+      if (x.dataproduct_subtype !== 'science' || seen.has(id)) continue;
+      seen.add(id);
+      out.push({ obs_id: x.obs_id, mjd: +x.t_min, detector: x.energy_bandpassname, url: x.access_url, release: col, doi });
+    }
+  }
+  return out.sort((a, b) => a.mjd - b.mjd);
+}
+function liveVisits(images) {
+  const v = [];
+  for (const im of images) { if (v.length && im.mjd - v[v.length - 1].at(-1).mjd <= LIVE.VISIT_GAP_DAYS) v[v.length - 1].push(im); else v.push([im]); }
+  return v;
+}
+function livePick(visits) {     // one photo per detector per visit, from the middle of the visit (quick mode)
+  const chosen = [];
+  visits.forEach((visit, vi) => {
+    const by = {}; for (const im of visit) (by[im.detector] = by[im.detector] || []).push(im);
+    for (const det of Object.keys(by).sort()) { const ims = by[det]; chosen.push({ ...ims[Math.floor(ims.length / 2)], visit: vi }); }
+  });
+  return chosen.sort((a, b) => a.mjd - b.mjd);
+}
+
+// ---- 2+3. one photo: re-grid it north-up and measure the brightest source near the centre ----
+function liveWavelength(hd, tb, xf, yf) {
+  const xs = tb.X, ys = tb.Y, V = tb.VALUES, nx = xs.length;
+  const xr = xf - hd.CRPIX1W + hd.CRVAL1W, yr = yf - hd.CRPIX2W + hd.CRVAL2W;
+  const ss = (arr, v) => { let i = 0; while (i < arr.length && arr[i] < v) i++; return i; };
+  const ix = Math.min(Math.max(ss(xs, xr) - 1, 0), xs.length - 2), iy = Math.min(Math.max(ss(ys, yr) - 1, 0), ys.length - 2);
+  const fx = (xr - xs[ix]) / (xs[ix + 1] - xs[ix]), fy = (yr - ys[iy]) / (ys[iy + 1] - ys[iy]);
+  const at = (y, x, k) => V[(y * nx + x) * 2 + k];
+  return [0, 1].map(k => at(iy, ix, k) * (1 - fx) * (1 - fy) + at(iy, ix + 1, k) * fx * (1 - fy) + at(iy + 1, ix, k) * (1 - fx) * fy + at(iy + 1, ix + 1, k) * fx * fy);
+}
+function liveMeasure(buf, ra, dec, size) {
+  const F = fitsRead(buf), hd = F.IMAGE.h, nx = F.IMAGE.dims[0], ny = F.IMAGE.dims[1];
+  const img = fitsImage(F.IMAGE), flags = fitsImage(F.FLAGS), vr = fitsImage(F.VARIANCE), w = wcsMake(hd), N = nx * ny;
+  const [x0, y0] = w.world2pix(ra, dec);
+  if (!(x0 >= 6 && x0 < nx - 6 && y0 >= 6 && y0 < ny - 6)) return null;
+  const bad = new Uint8Array(N), badBits = Object.keys(LIVE.BAD_BITS).map(Number);
+  for (let i = 0; i < N; i++) for (const b of badBits) if ((flags[i] >>> b) & 1) { bad[i] = 1; break; }
+  const good = []; for (let i = 0; i < N; i++) if (!bad[i]) good.push(img[i]);
+  const sky = good.length ? liveMedian(good) : liveMedian([...img]);
+  const sig = good.length ? 1.4826 * liveMedian(good.map(v => Math.abs(v - sky))) : 1;
+  const clean = img.map(v => Number.isFinite(v) ? v : sky), disp = Float64Array.from(clean);
+  let hiOk = -Infinity, anyOver = false; for (let i = 0; i < N; i++) { if ((flags[i] >>> 1) & 1) anyOver = true; else if (clean[i] > hiOk) hiOk = clean[i]; }
+  if (anyOver && hiOk > -Infinity) for (let i = 0; i < N; i++) if ((flags[i] >>> 1) & 1) disp[i] = hiOk;
+  // the picture: the same north-up grid for every photo, so frames line up
+  const n = Math.round(size * 3600 / LIVE.OUT_SCALE), pic = new Float64Array(n * n);
+  for (let j = 0; j < n; j++) for (let i = 0; i < n; i++) {
+    const dE = ((n - 1) / 2 - i) * LIVE.OUT_SCALE / 3600, dN = ((n - 1) / 2 - j) * LIVE.OUT_SCALE / 3600, dg = dec + dN;
+    const [px, py] = w.world2pix(ra + dE / Math.cos(dg * D2R), dg);
+    if (!(px >= 0 && py >= 0 && px <= nx - 1 && py <= ny - 1)) { pic[j * n + i] = NaN; continue; }
+    const ix = Math.min(Math.floor(px), nx - 2), iy = Math.min(Math.floor(py), ny - 2), fx = px - ix, fy = py - iy, k = iy * nx + ix;
+    pic[j * n + i] = disp[k] * (1 - fx) * (1 - fy) + disp[k + 1] * fx * (1 - fy) + disp[k + nx] * (1 - fx) * fy + disp[k + nx + 1] * fx * fy;
+  }
+  // the measurement: brightest 3x3 sum within ~18 arcsec of the centre
+  const cx = Math.round(x0), cy = Math.round(y0); let best = -Infinity, bx = cx, by = cy;
+  for (let yy = cy - 3; yy <= cy + 3; yy++) for (let xx = cx - 3; xx <= cx + 3; xx++) {
+    if (Math.hypot(xx - x0, yy - y0) > 3.2) continue;
+    let s = 0; for (let a = yy - 1; a <= yy + 1; a++) for (let b = xx - 1; b <= xx + 1; b++) if (a >= 0 && b >= 0 && a < ny && b < nx) s += clean[a * nx + b];
+    if (s > best) { best = s; bx = xx; by = yy; }
+  }
+  const ring = [];
+  for (let yy = 0; yy < ny; yy++) for (let xx = 0; xx < nx; xx++) { const r = Math.hypot(xx - bx, yy - by), k = yy * nx + xx; if (r >= 6 && r <= 10 && !bad[k] && Number.isFinite(img[k])) ring.push(img[k]); }
+  const bg = ring.length > 20 ? liveMedian(ring) : sky;
+  let flux = 0, ev = 0, ps = 0, mx = 0, my = 0;
+  for (let yy = Math.max(0, by - 2); yy < Math.min(ny, by + 3); yy++) for (let xx = Math.max(0, bx - 2); xx < Math.min(nx, bx + 3); xx++) {
+    const k = yy * nx + xx, c = clean[k] - bg; flux += c; if (Number.isFinite(vr[k])) ev += vr[k];
+    if (c > 0) { ps += c; mx += c * xx; my += c * yy; }
+  }
+  const err = Math.sqrt(ev) || sig * 5;
+  if (ps > 0) { mx /= ps; my /= ps; } else { mx = bx; my = by; }
+  const [sra, sdec] = w.pix2world(mx, my);
+  let dra = sra - ra; if (dra > 180) dra -= 360; if (dra < -180) dra += 360;
+  const warn = new Set();
+  for (let yy = Math.max(0, by - 1); yy < Math.min(ny, by + 2); yy++) for (let xx = Math.max(0, bx - 1); xx < Math.min(nx, bx + 2); xx++)
+    for (const b of badBits) if ((flags[yy * nx + xx] >>> b) & 1) warn.add(LIVE.BAD_BITS[b]);
+  const [wave, width] = liveWavelength(hd, fitsTable(F['WCS-WAVE']), mx + 1, my + 1), pixSr = (6.15 / 206265) ** 2, r4 = v => Math.round(v * 1e4) / 1e4;
+  return { pic, n, sky, sigma: sig, flux_mjy: r4(flux * pixSr * 1e9), err_mjy: r4(err * pixSr * 1e9), snr: err > 0 ? Math.round(flux / err * 10) / 10 : 0,
+    off_e: Math.round(dra * Math.cos(dec * D2R) * 3600 * 100) / 100, off_n: Math.round((sdec - dec) * 3600 * 100) / 100,
+    wave_um: r4(wave), width_um: r4(width), flags: [...warn].sort() };
+}
+function livePicture(pic, n, lo, hi) {    // same stretch as save_png() in the Python tool
+  const cv = document.createElement('canvas'); cv.width = cv.height = n;
+  const g = cv.getContext('2d'), id = g.createImageData(n, n);
+  for (let i = 0; i < n * n; i++) {
+    const v = Number.isFinite(pic[i]) ? pic[i] : lo, s = Math.asinh(Math.min(Math.max((v - lo) / Math.max(hi - lo, 1e-9), 0), 1) * 60) / Math.asinh(60), b = Math.floor(s * 255);
+    id.data[i * 4] = id.data[i * 4 + 1] = id.data[i * 4 + 2] = b; id.data[i * 4 + 3] = 255;
+  }
+  g.putImageData(id, 0, 0); return cv;
+}
+
+// ---- 4. motion: straight line through the positions, one pass to drop outliers (fit_motion in the Python tool) ----
+function liveFitMotion(frames) {
+  let good = frames.filter(f => f.snr >= 8);
+  if (good.length < 4) return null;
+  const ts = good.map(f => f.mjd); if (Math.max(...ts) - Math.min(...ts) < 70) return null;
+  const line = (t, y) => { const n = t.length, mt = t.reduce((a, b) => a + b, 0) / n, my = y.reduce((a, b) => a + b, 0) / n; let sxx = 0, sxy = 0; t.forEach((v, i) => { sxx += (v - mt) ** 2; sxy += (v - mt) * (y[i] - my); }); const s = sxy / sxx; return [s, my - s * mt]; };
+  const years = g => { const t = g.map(f => f.mjd), m = t.reduce((a, b) => a + b, 0) / t.length; return t.map(v => (v - m) / 365.25); };
+  for (let it = 0; it < 2; it++) {
+    const t = years(good), dist = new Array(good.length).fill(0);
+    for (const key of ['off_e', 'off_n']) { const y = good.map(f => f[key]), [s, c] = line(t, y); y.forEach((v, i) => dist[i] += (v - (s * t[i] + c)) ** 2); }
+    const d = dist.map(Math.sqrt), lim = Math.max(3 * liveMedian(d) * 1.4826, 1), keep = d.map(v => v <= lim), nk = keep.filter(Boolean).length;
+    if (nk === good.length || nk < 4) break;
+    good = good.filter((f, i) => keep[i]);
+  }
+  const t = years(good), res = {};
+  for (const key of ['off_e', 'off_n']) {
+    const y = good.map(f => f[key]), [s, c] = line(t, y), rs = y.reduce((a, v, i) => a + (v - (s * t[i] + c)) ** 2, 0);
+    const sc = Math.sqrt(rs / Math.max(1, y.length - 2)), mt = t.reduce((a, b) => a + b, 0) / t.length;
+    res[key] = [s, sc / Math.sqrt(t.reduce((a, v) => a + (v - mt) ** 2, 0)), sc];
+  }
+  const [e, n] = [res.off_e, res.off_n], total = Math.hypot(e[0], n[0]), err = total > 0 ? Math.hypot(e[0] * e[1], n[0] * n[1]) / total : Math.hypot(e[1], n[1]);
+  const r2 = v => Math.round(v * 100) / 100, tt = good.map(f => f.mjd);
+  return { east_arcsec_per_yr: r2(e[0]), north_arcsec_per_yr: r2(n[0]), total_arcsec_per_yr: r2(total), error_arcsec_per_yr: r2(err),
+    scatter_arcsec: r2(Math.hypot(e[2], n[2])), frames_used: good.length, frames_with_warning_flags: good.filter(f => f.flags.length).length,
+    span_years: r2((Math.max(...tt) - Math.min(...tt)) / 365.25) };
+}
+const liveIso = mjd => new Date(Date.UTC(1858, 10, 17) + mjd * 864e5).toISOString().slice(0, 16).replace('T', ' ') + ' UTC';
+
+const LIVE_CACHE = new Map();
+async function liveExplore(ra, dec, progress, size = LIVE.SIZE) {
+  const key = `${ra.toFixed(4)},${dec.toFixed(4)},${size}`;
+  if (LIVE_CACHE.has(key)) return LIVE_CACHE.get(key);
+  progress('Searching NASA/IPAC IRSA for every SPHEREx photo of this spot...');
+  const images = await liveFindImages(ra, dec), visits = liveVisits(images), chosen = livePick(visits);
+  if (!chosen.length) throw new Error('SPHEREx has no public photos of this spot yet.');
+  progress(`${images.length} photos found in ${visits.length} visit${visits.length === 1 ? '' : 's'}. Cutting out ${chosen.length} small pieces...`);
+  let done = 0; const results = [];
+  const work = async im => {
+    for (let attempt = 0; attempt < 3; attempt++) {      // NASA's cutout service sometimes answers 502 for a moment
+      try {
+        const r = await fetch(`${RELAY}/cutout?url=${encodeURIComponent(im.url)}&ra=${ra}&dec=${dec}&size=${size}`);
+        if (!r.ok) throw new Error(r.status);
+        const m = liveMeasure(await r.arrayBuffer(), ra, dec, size);
+        if (m) results.push([im, m]);
+        break;
+      } catch (e) { if (attempt === 2) console.warn('skipped', im.obs_id, e); else await new Promise(ok => setTimeout(ok, 2000 * (attempt + 1))); }
+    }
+    progress(`Photo ${++done} of ${chosen.length}`);
+  };
+  const queue = [...chosen];
+  await Promise.all(Array.from({ length: 6 }, async () => { while (queue.length) await work(queue.shift()); }));
+  if (!results.length) throw new Error('No usable SPHEREx photo of this spot.');
+  results.sort((a, b) => a[0].mjd - b[0].mjd);
+  progress('Lining up the frames and measuring...');
+  const hiBy = {};
+  for (const det of new Set(results.map(([im]) => im.detector)))
+    hiBy[det] = liveMedian(results.filter(([im]) => im.detector === det).map(([, m]) => livePct(Array.from(m.pic, v => v - m.sky), 99.8)));
+  const frames = results.map(([im, m]) => ({
+    img: livePicture(Array.from(m.pic, v => v - m.sky), m.n, -1.5 * m.sigma, Math.max(hiBy[im.detector], 8 * m.sigma)),
+    mjd: Math.round(im.mjd * 1e5) / 1e5, time_utc: liveIso(im.mjd), visit: im.visit, detector: im.detector.slice(-2), obs_id: im.obs_id, release: im.release, file: im.url,
+    flux_mjy: m.flux_mjy, err_mjy: m.err_mjy, snr: m.snr, off_e: m.off_e, off_n: m.off_n, wave_um: m.wave_um, width_um: m.width_um, flags: m.flags }));
+  const byDet = {}; frames.forEach(f => (byDet[f.detector] = byDet[f.detector] || []).push(f.snr));
+  const rank = d => [byDet[d].length >= 3 ? 1 : 0, liveMedian(byDet[d])];
+  const bestDet = Object.keys(byDet).sort((a, b) => { const A = rank(a), B = rank(b); return B[0] - A[0] || B[1] - A[1]; })[0];
+  const n = Math.round(size * 3600 / LIVE.OUT_SCALE);
+  const data = { name: `RA ${ra.toFixed(4)}, Dec ${dec >= 0 ? '+' : ''}${dec.toFixed(4)}`, ra, dec, size_deg: size, picture_px: n, arcsec_per_px: LIVE.OUT_SCALE,
+    source: 'NASA SPHEREx spectral images via NASA/IPAC IRSA', live: true,
+    releases: LIVE_RELEASES.map(([c, d]) => ({ collection: c, doi: d, photos: images.filter(i => i.release === c).length })),
+    photos_available: images.length,
+    visits: visits.map(v => ({ from: liveIso(v[0].mjd).slice(0, 10), to: liveIso(v.at(-1).mjd).slice(0, 10), photos: v.length })),
+    default_detector: bestDet, motion: liveFitMotion(frames),
+    colours_collected: new Set(frames.filter(f => f.snr >= 3).map(f => f.detector + f.wave_um.toFixed(2))).size, frames };
+  LIVE_CACHE.set(key, data);
+  return data;
+}
+// Gaia DR3 stars in the picture, moved to 2026 with their own motion (blinksky_gaia_overlay.py, in the browser)
+async function liveGaia(d, year = 2026.0, gmax = 18) {
+  const r = await fetch(`${RELAY}/gaia?ra=${d.ra}&dec=${d.dec}&r=${(d.size_deg * 0.75 + 0.03).toFixed(4)}&gmax=${gmax}`);
+  if (!r.ok) return null;
+  const rows = (await r.text()).trim().split(/\r?\n/), head = rows.shift().split(','), yrs = year - 2016, half = d.picture_px * d.arcsec_per_px / 2, stars = [];
+  for (const line of rows) {
+    const c = line.split(','), x = Object.fromEntries(head.map((h, i) => [h, c[i]])), num = (v, z = 0) => Number.isFinite(parseFloat(v)) ? parseFloat(v) : z;
+    const e = (num(x.ra) - d.ra) * Math.cos(d.dec * D2R) * 3600 + num(x.pmra) / 1000 * yrs, nn = (num(x.dec) - d.dec) * 3600 + num(x.pmdec) / 1000 * yrs;
+    if (Math.abs(e) <= half && Math.abs(nn) <= half) stars.push([Math.round(e * 100) / 100, Math.round(nn * 100) / 100, Math.round(num(x.phot_g_mean_mag, 99) * 10) / 10, Math.hypot(num(x.pmra), num(x.pmdec)) / 1000, x.source_id]);
+  }
+  stars.sort((a, b) => a[2] - b[2]);
+  return { source: 'Gaia DR3 (ESA/Gaia/DPAC) via NASA/IPAC IRSA', year, g_mag_limit: gmax, stars };
+}
+
+// AllWISE sources in the picture (NASA's WISE telescope, seen around 2010). Not moved: a fast mover sits away from its square today.
+async function liveWise(d) {
+  const r = await fetch(`${RELAY}/wise?ra=${d.ra}&dec=${d.dec}&r=${(d.size_deg * 0.75).toFixed(4)}`);
+  if (!r.ok) return null;
+  const rows = (await r.text()).trim().split(/\r?\n/), head = rows.shift().split(','), half = d.picture_px * d.arcsec_per_px / 2, out = [];
+  for (const line of rows) {
+    const c = line.split(','), x = Object.fromEntries(head.map((h, i) => [h, c[i]]));
+    const e = (+x.ra - d.ra) * Math.cos(d.dec * D2R) * 3600, nn = (+x.dec - d.dec) * 3600;
+    if (Math.abs(e) <= half && Math.abs(nn) <= half) out.push([Math.round(e * 100) / 100, Math.round(nn * 100) / 100, +x.w1mpro, +x.w2mpro, x.designation]);
+  }
+  return { source: 'AllWISE (NASA WISE, 2010-2011) via NASA/IPAC IRSA', stars: out };
+}
+// Aladin Lite (CDS Strasbourg) showing NASA's SPHEREx DR1 all-sky map around the spot, with our patch drawn on it.
+const SPHEREX_HIPS = 'https://irsa.ipac.caltech.edu/data/hips/SPHEREx/spherex_allsky_cube';
+let aladinMod = null, aladinView = null, aladinBox = null;
+async function liveAladin(el, d) {
+  if (!aladinMod) { aladinMod = (await import('https://cdn.jsdelivr.net/npm/aladin-lite@3.6.1/dist/aladin.js')).default; await aladinMod.init; }
+  const A = aladinMod;
+  if (!aladinView) {
+    // the survey must be given here: switching it afterwards left only the coarsest tiles loading
+    aladinView = A.aladin(el, { fov: 0.6, target: `${d.ra} ${d.dec}`, survey: SPHEREX_HIPS, showReticle: false, showCooGrid: false, showProjectionControl: false, showFrame: false, showLayersControl: false, showFullscreenControl: true });
+    aladinBox = A.graphicOverlay({ color: '#6fd3d6', lineWidth: 2 }); aladinView.addOverlay(aladinBox);
+  } else { aladinView.gotoRaDec(d.ra, d.dec); aladinView.setFoV(Math.max(0.6, d.size_deg * 5)); }
+  aladinBox.removeAll();
+  const h = d.picture_px * d.arcsec_per_px / 7200, c = Math.cos(d.dec * D2R);
+  aladinBox.add(A.polygon([[d.ra - h / c, d.dec - h], [d.ra + h / c, d.dec - h], [d.ra + h / c, d.dec + h], [d.ra - h / c, d.dec + h]]));
+}
+
+/* ---------- v5: Explorer. Any patch of sky, as a little video of SPHEREx photos ---------- */
+// Positions: Gaia DR3 (ESA), moved to 2026 with Gaia's own motion; WISE 0855 from the challenge statement, moved with its catalogue motion.
+const TESTS = [
+  { id: 'barnard', name: "Barnard's Star", ra: 269.44627, dec: 4.76859, ref: 10.39, refBy: 'Gaia DR3', what: 'the fastest-moving star in the sky' },
+  { id: 'epsindb', name: 'Epsilon Indi B', ra: 331.09665, dec: -56.80066, ref: 4.68, refBy: 'Gaia DR3', what: 'a pair of brown dwarfs' },
+  { id: 'wise0855', name: 'WISE 0855', ra: 133.7600, dec: -7.2422, det: 'D5', ref: 8.1, refBy: 'the WISE catalogue', what: 'a very cold, fast brown dwarf' },
+  { id: 'rwaur', name: 'RW Aurigae', ra: 76.95608, dec: 30.4012, variable: true, what: 'a young star that changes brightness' },
+  { id: 'rdra', name: 'R Draconis', ra: 248.16738, dec: 66.75501, variable: true, what: 'a red giant that pulses over months' },
+];
+const VISIT_COL = ['#6fd3d6', '#ff8a4c', '#a990ff', '#c9b79c', '#f4f4f2'];
+let watch = null, wTimer = null, wBack = 'search';
+
+// "269.45 +4.77" · "17h57m48.5s +04d41m36s" · "08 55 10.83 -07 14 42.5" -> degrees
+function parseCoords(text) {
+  const t = text.trim().replace(/[−–]/g, '-').replace(/,/g, ' ');
+  let m = t.match(/^(-?\d+(?:\.\d+)?)\s+([+-]?\d+(?:\.\d+)?)$/);
+  if (m) { const ra = +m[1], dec = +m[2]; return ra >= 0 && ra < 360 && Math.abs(dec) <= 90 ? { ra, dec } : null; }
+  m = t.match(/^(\d{1,2})\s*[h: ]\s*(\d{1,2})\s*[m: ]\s*(\d{1,2}(?:\.\d+)?)\s*s?\s+([+-]?)(\d{1,2})\s*[d°: ]\s*(\d{1,2})\s*[m′': ]\s*(\d{1,2}(?:\.\d+)?)\s*[s″"]?$/i);
+  if (!m) return null;
+  const ra = 15 * (+m[1] + m[2] / 60 + m[3] / 3600), dec = (m[4] === '-' ? -1 : 1) * (+m[5] + m[6] / 60 + m[7] / 3600);
+  return ra < 360 && Math.abs(dec) <= 90 ? { ra, dec } : null;
+}
+function renderTests() {
+  $('tests').innerHTML = TESTS.map(t => `<button data-id="${t.id}">${t.name}</button>`).join('');
+  [...$('tests').children].forEach(b => b.onclick = () => openWatch(TESTS.find(t => t.id === b.dataset.id)));
+}
+function wLoading(title, text) { $('wLoad').hidden = false; $('wLoad').innerHTML = `<div><b>${title}</b>${text || ''}</div>`; }
+async function openWatch(t, back = 'search') {
+  wBack = back; clearInterval(wTimer); watch = null;
+  show('watch');
+  $('wName').textContent = t.name || 'Patch of sky';
+  $('wPos').textContent = `${fmtRA(t.ra)}  ${fmtDec(t.dec)}`;
+  for (const id of ['wDate', 'wZoom', 'wFlag', 'wFp']) $(id).hidden = true;
+  $('wDets').innerHTML = ''; $('wFind').textContent = ''; $('wSrc').textContent = ''; $('wCount').textContent = '';
+  try { history.replaceState(null, '', '#sky=' + (t.id || `${+t.ra.toFixed(5)},${+t.dec.toFixed(5)}`)); } catch (e) {}
+  const dir = t.id ? `explore/${t.id}/` : null;
+  let data, gaiaP;
+  if (dir) {
+    wLoading('Loading SPHEREx photos...');
+    try { data = await fetch(dir + 'target.json').then(r => { if (!r.ok) throw 0; return r.json(); }); }
+    catch (e) { wLoading('Photos not found', 'This object has not been fetched yet.'); return; }
+    const imgs = await Promise.all(data.frames.map(f => new Promise(ok => { const im = new Image(); im.onload = () => ok(im); im.onerror = () => ok(null); im.src = dir + f.src; })));
+    data.frames.forEach((f, i) => f.img = imgs[i]);
+    data.frames = data.frames.filter(f => f.img);
+    gaiaP = fetch(dir + 'gaia.json').then(r => r.ok ? r.json() : null);
+  } else {
+    // Any coordinates: ask NASA live, through the BlinkSky relay, and measure the photos right here in the browser.
+    const title = 'Asking NASA for this patch of sky';
+    wLoading(title, t.size > LIVE.SIZE ? 'Fetching a wider piece of every photo. Bigger pieces take longer to arrive: about two minutes.' : 'Finding every SPHEREx photo of this spot and cutting out the small piece we need. This takes about a minute.');
+    try { data = await liveExplore(t.ra, t.dec, msg => { if (!watch) wLoading(title, msg); }, t.size || LIVE.SIZE); }
+    catch (e) { wLoading('No luck with this spot', (e && e.message ? e.message : String(e)) + ' Try again in a minute, or pick one of the five test objects.'); return; }
+    gaiaP = liveGaia(data);
+  }
+  if (document.querySelector('.screen.on').id !== 'watch') return;
+  watch = { t, data, det: t.det && data.frames.some(f => f.detector === t.det) ? t.det : data.default_detector, i: 0, zoom: 1, playing: true };
+  if (!t.name) $('wName').textContent = data.name;
+  $('wLoad').hidden = true; $('wDate').hidden = false; watch.view = 'photo'; watch.cache = {}; wViewsInit(); gaiaP.then(j => { if (watch && watch.data === data) { watch.gaia = j; wPaintChips(); wDraw(); } }).catch(() => {});
+  const have = DETS.filter(d => data.frames.some(f => f.detector === d));
+  $('wDets').innerHTML = `<span>Colour band</span>` + have.map(d => `<button data-d="${d}" title="${BANDS[d][0]}–${BANDS[d][1]} µm">${d}</button>`).join('') + `<button data-d="all">All</button>`;
+  [...$('wDets').querySelectorAll('button')].forEach(b => b.onclick = () => { watch.det = b.dataset.d; watch.i = 0; wSync(); });
+  wFindText(); drawPrint(); wSrcText(); wSync(); wPlay(true);
+  $('wAlGo').onclick = async () => { $('wAlGo').hidden = true; $('wAlBox').hidden = false; try { await liveAladin($('wAlBox'), data); } catch (e) { $('wAlNote').textContent = 'The Aladin sky viewer did not load. Try again later.'; } };
+  if (aladinView && !$('wAlBox').hidden) liveAladin($('wAlBox'), data).catch(() => {});
+}
+const wFrames = () => watch.data.frames.filter(f => watch.det === 'all' || f.detector === watch.det);
+function wSync() {
+  [...$('wDets').querySelectorAll('button')].forEach(b => b.classList.toggle('on', b.dataset.d === watch.det));
+  const fr = wFrames(); $('wSeek').max = Math.max(0, fr.length - 1); watch.i = Math.min(watch.i, fr.length - 1); wDraw();
+}
+function wPlay(on) {
+  watch.playing = on; clearInterval(wTimer);
+  $('wPlay').textContent = on ? '❚❚' : '▶'; $('wPlay').setAttribute('aria-label', on ? 'Pause' : 'Play');
+  if (on) wTimer = setInterval(() => { const n = wFrames().length; if (n) { watch.i = (watch.i + 1) % n; wDraw(); } }, 700);
+}
+function wDraw() {
+  const fr = wFrames(), f = fr[watch.i]; if (!f) return;
+  const cv = $('wCv'), g = cv.getContext('2d'), W = cv.width, d = watch.data, n = d.picture_px, z = watch.zoom;
+  g.imageSmoothingEnabled = false; g.fillStyle = '#050505'; g.fillRect(0, 0, W, W);
+  const sw = n / z, s0 = (n - sw) / 2;
+  g.drawImage(watch.view === 'photo' ? f.img : wComposite(f), s0, s0, sw, sw, 0, 0, W, W);
+  // Where the source sat on the first visit: a fixed mark, so any drift away from it is easy to see.
+  const first = d.frames.filter(x => x.visit === d.frames[0].visit && x.snr >= 8);
+  if (first.length) {
+    const e = first.reduce((a, x) => a + x.off_e, 0) / first.length, nn = first.reduce((a, x) => a + x.off_n, 0) / first.length;
+    const k = W / sw / d.arcsec_per_px, cx = W / 2 - e * k, cy = W / 2 - nn * k, r = 9 * k;
+    g.strokeStyle = 'rgba(111,211,214,.9)'; g.lineWidth = 2; g.beginPath();
+    for (const [dx, dy] of [[1, 0], [-1, 0], [0, 1], [0, -1]]) { g.moveTo(cx + dx * r, cy + dy * r); g.lineTo(cx + dx * r * 1.9, cy + dy * r * 1.9); }
+    g.stroke();
+  }
+  if (watch.showGaia && watch.gaia) {      // Gaia's stars, as circles on top of the SPHEREx photo
+    const k = W / sw / d.arcsec_per_px; g.lineWidth = 1.5;
+    for (const [e, nn, mag, pm] of watch.gaia.stars) {
+      const cx = W / 2 - e * k, cy = W / 2 - nn * k; if (cx < 0 || cy < 0 || cx > W || cy > W) continue;
+      g.strokeStyle = pm >= 1 ? 'rgba(255,138,76,.95)' : 'rgba(169,144,255,.85)';
+      g.beginPath(); g.arc(cx, cy, Math.max(7, (19 - mag) * 1.6) * Math.sqrt(z), 0, 6.283); g.stroke();
+    }
+  }
+  if (watch.showWise && watch.wise) {      // NASA WISE sources (2010-2011), as squares
+    const k = W / sw / d.arcsec_per_px; g.lineWidth = 1.5; g.strokeStyle = 'rgba(120,230,150,.9)';
+    for (const [e, nn, w1, w2] of watch.wise.stars) {
+      const cx = W / 2 - e * k, cy = W / 2 - nn * k; if (cx < 0 || cy < 0 || cx > W || cy > W) continue;
+      const r = Math.max(6, (17 - (Number.isFinite(w2) ? w2 : w1)) * 1.5) * Math.sqrt(z); g.strokeRect(cx - r, cy - r, 2 * r, 2 * r);
+    }
+  }
+  const visits = [...new Set(d.frames.map(x => x.visit))];
+  $('wDate').innerHTML = `<b>${niceDate(f.time_utc)}</b><span>Visit ${visits.indexOf(f.visit) + 1} of ${visits.length} · ${f.detector} · ${f.wave_um.toFixed(2)} µm${watch.view === 'photo' ? '' : ' · ' + watch.viewLabel}</span>`;
+  $('wFlag').hidden = !f.flags.length; $('wFlag').textContent = f.flags.length ? `NASA flags here: ${f.flags.join(', ').toLowerCase().replace(/_/g, ' ')}` : '';
+  $('wSeek').value = watch.i; $('wCount').textContent = `${watch.i + 1} / ${fr.length}`;
+}
+// ---- more ways to look at the same photos ----
+const VIEWS = [['photo', 'Each photo'], ['sum', 'Added up'], ['all', 'All time'], ['diff', 'Difference'], ['gaia', 'Gaia stars'], ['wise', 'WISE']];
+function wViewsInit() {
+  const d = watch.data, wide = d.picture_px * d.arcsec_per_px / 60;
+  $('wViews').innerHTML = '<span>Show</span>' + VIEWS.map(([k, l]) => `<button data-v="${k}">${l}</button>`).join('');
+  $('wFov').innerHTML = '<span>Field of view</span>' + [1, 2, 4].map(z => `<button data-z="${z}">${(wide / z).toFixed(wide / z < 3 ? 1 : 0)} arcmin</button>`).join('')
+    + (d.size_deg < 0.2 ? `<button data-z="wide" title="Fetches bigger pieces of every photo from NASA">Wider: 15 arcmin</button>` : '');
+  [...$('wViews').querySelectorAll('button')].forEach(b => b.onclick = () => {
+    if (b.dataset.v === 'gaia') watch.showGaia = !watch.showGaia;
+    else if (b.dataset.v === 'wise') {
+      watch.showWise = !watch.showWise;
+      if (watch.showWise && !watch.wiseP) { const dd = watch.data; watch.wiseP = liveWise(dd).then(j => { if (watch && watch.data === dd) { watch.wise = j; wPaintChips(); wDraw(); } }).catch(() => {}); }
+    }
+    else watch.view = b.dataset.v;
+    wPaintChips(); wDraw();
+  });
+  [...$('wFov').querySelectorAll('button')].forEach(b => b.onclick = () => {
+    if (b.dataset.z === 'wide') { const t = watch.t; openWatch({ name: t.name, ref: t.ref, refBy: t.refBy, variable: t.variable, det: t.det, what: t.what, ra: t.ra, dec: t.dec, size: 0.25 }, wBack); return; }
+    watch.zoom = +b.dataset.z; wPaintChips(); wDraw();
+  });
+  wPaintChips();
+}
+function wPaintChips() {
+  [...$('wViews').querySelectorAll('button')].forEach(b => { b.classList.toggle('on', b.dataset.v === 'gaia' ? !!watch.showGaia : b.dataset.v === 'wise' ? !!watch.showWise : b.dataset.v === watch.view); if (b.dataset.v === 'gaia') b.hidden = !watch.gaia; });
+  [...$('wFov').querySelectorAll('button')].forEach(b => b.classList.toggle('on', +b.dataset.z === watch.zoom));
+  $('wNote').textContent = watch.view === 'sum' ? 'Added up: every photo of one visit in this colour band, averaged. Noise drops, so faint things show up.'
+    : watch.view === 'all' ? `All time: every photo this detector (${watch.det === 'all' ? 'all six' : watch.det}) took of this spot, from every visit, averaged. The faintest things that stay put show best here. Something that moved between visits smears into a short trail.`
+    : watch.view === 'diff' ? 'Difference: this visit minus another visit. Things that stayed the same cancel to grey. Something that moved shows as a white dot next to a black one.' : '';
+  if (watch.showWise) $('wNote').textContent += watch.wise ? ` Squares: the ${watch.wise.stars.length} sources NASA's WISE telescope saw here in 2010-2011 (AllWISE). Something that moved since sits away from its square.` : ' Asking NASA for WISE sources...';
+  if (watch.showGaia && watch.gaia) $('wNote').textContent += ` Circles: the ${watch.gaia.stars.length} stars Europe's Gaia mission lists here, moved to ${watch.gaia.year} with Gaia's own motion (orange = a fast mover). A light with no circle is not in Gaia's list.`;
+}
+// The photos of one visit in the chosen band, averaged pixel by pixel (they are already lined up north-up).
+function wStack(visit) {
+  const d = watch.data, n = d.picture_px, key = visit + '|' + watch.det;
+  if (watch.cache[key]) return watch.cache[key];
+  const fr = d.frames.filter(x => (visit === 'all' || x.visit === visit) && (watch.det === 'all' || x.detector === watch.det));
+  const sum = new Float32Array(n * n), c = document.createElement('canvas'); c.width = c.height = n;
+  const g = c.getContext('2d', { willReadFrequently: true });
+  for (const x of fr) { g.clearRect(0, 0, n, n); g.drawImage(x.img, 0, 0, n, n); const p = g.getImageData(0, 0, n, n).data; for (let i = 0; i < n * n; i++) sum[i] += p[i * 4]; }
+  if (fr.length) for (let i = 0; i < n * n; i++) sum[i] /= fr.length;
+  return watch.cache[key] = { px: sum, count: fr.length };
+}
+function wComposite(f) {
+  const d = watch.data, n = d.picture_px, visits = [...new Set(d.frames.map(x => x.visit))];
+  const a = wStack(watch.view === 'all' ? 'all' : f.visit), c = document.createElement('canvas'); c.width = c.height = n;
+  const g = c.getContext('2d'), im = g.createImageData(n, n);
+  let other = null;
+  if (watch.view === 'diff') {
+    const o = f.visit === visits[0] ? visits[visits.length - 1] : visits[0];
+    other = o === f.visit ? null : wStack(o);
+    watch.viewLabel = other && other.count ? `minus visit ${visits.indexOf(o) + 1}` : 'only one visit, nothing to subtract';
+  } else watch.viewLabel = watch.view === 'all' ? `${a.count} photo${a.count === 1 ? '' : 's'} from every visit added up` : `${a.count} photo${a.count === 1 ? '' : 's'} added up`;
+  for (let i = 0; i < n * n; i++) {
+    const v = other && other.count ? Math.max(0, Math.min(255, 128 + (a.px[i] - other.px[i]))) : a.px[i];
+    im.data[i * 4] = im.data[i * 4 + 1] = im.data[i * 4 + 2] = v; im.data[i * 4 + 3] = 255;
+  }
+  g.putImageData(im, 0, 0);
+  return c;
+}
+function niceDate(t) { const d = new Date(t.slice(0, 10) + 'T00:00:00Z'), m = MONTHS[d.getUTCMonth()]; return `${d.getUTCDate()} ${m.charAt(0) + m.slice(1).toLowerCase()} ${d.getUTCFullYear()}`; }
+function wFindText() {
+  const { t, data } = watch, m = data.motion, v = data.visits;
+  const span = `${v.length} visit${v.length === 1 ? '' : 's'} from ${v[0].from.slice(0, 7)} to ${v[v.length - 1].to.slice(0, 7)}`;
+  let text;
+  if (m && m.total_arcsec_per_yr >= 3 * m.error_arcsec_per_yr && m.total_arcsec_per_yr >= 1) {
+    text = `<b>It moved.</b> Measured in these photos: <b>${m.total_arcsec_per_yr.toFixed(1)}″ a year</b> (give or take ${m.error_arcsec_per_yr.toFixed(1)}″), from ${m.frames_used} photos over ${span}.`;
+    if (t.ref) text += ` ${t.refBy} says ${t.ref}″ a year.`;
+    text += ' The blue marks show where it sat on the first visit.';
+  } else if (m) {
+    text = `<b>No clear motion.</b> The brightest source at the centre stayed put to within ${Math.max(m.error_arcsec_per_yr, 0.1).toFixed(1)}″ a year over ${span}.`;
+    if (t.ref) text += ` ${t.refBy.charAt(0).toUpperCase() + t.refBy.slice(1)} says the real object moves ${t.ref}″ a year, so what is measured here is a brighter neighbour star. The object itself only shows, faintly, in the red bands D5 and D6.`;
+    if (t.variable) text += ' Watch its brightness instead: the fingerprint below compares the visits colour by colour.';
+  } else text = `SPHEREx has ${data.photos_available} photos of this spot over ${span}. Nothing at the centre was clear enough to track.`;
+  $('wFind').innerHTML = text;
+}
+function wSrcText() {
+  const d = watch.data;
+  $('wSrc').innerHTML = `Showing ${d.frames.length} of ${d.photos_available} SPHEREx photos of this spot, re-gridded north-up so they line up. Source: NASA SPHEREx spectral images via NASA/IPAC IRSA (${d.releases.filter(r => r.photos).map(r => `${r.collection.replace('spherex_', '').toUpperCase()} <a href="https://doi.org/${r.doi}" target="_blank" rel="noopener" style="color:inherit">doi:${r.doi}</a>`).join(', ')}). Brightness is a quick 5×5-pixel sum, good for comparing, not a calibrated measurement.`;
+}
+// Brightness against colour: one dot per photo. This is a spectrum, built from whatever photos exist.
+function drawPrint() {
+  const d = watch.data, pts = d.frames.filter(f => f.snr >= 3 && f.flux_mjy > 0);
+  $('wFp').hidden = !pts.length; if (!pts.length) return;
+  const cv = $('fpCv'), g = cv.getContext('2d'), W = cv.width, H = cv.height, L = 70, R = 14, T = 16, B = 40;
+  g.clearRect(0, 0, W, H);
+  const x = w => L + (w - 0.7) / (5.05 - 0.7) * (W - L - R);
+  const top = Math.max(...pts.map(p => p.flux_mjy)) * 1.12, y = v => H - B - v / top * (H - T - B);
+  g.font = '20px "Hanken Grotesk", Arial, sans-serif'; g.textBaseline = 'middle';
+  DETS.forEach((dn, i) => {                               // the six detectors as faint bands
+    const [lo, hi] = BANDS[dn];
+    if (i % 2 === 0) { g.fillStyle = 'rgba(255,255,255,.035)'; g.fillRect(x(lo), T, x(hi) - x(lo), H - T - B); }
+    g.fillStyle = '#6a6a6a'; g.textAlign = 'center'; g.fillText(dn, (x(lo) + x(hi)) / 2, T + 16);
+  });
+  g.strokeStyle = '#2c2c2c'; g.lineWidth = 1; g.beginPath(); g.moveTo(L, T); g.lineTo(L, H - B); g.lineTo(W - R, H - B); g.stroke();
+  g.fillStyle = '#8a8a8a'; g.textAlign = 'right';
+  const nice = v => v >= 100 ? Math.round(v / 10) * 10 : v >= 10 ? Math.round(v) : +v.toFixed(1);
+  for (const fr of [0, .5, 1]) { const v = top / 1.12 * fr; g.fillText(nice(v), L - 8, y(v)); g.strokeStyle = 'rgba(255,255,255,.06)'; g.beginPath(); g.moveTo(L, y(v)); g.lineTo(W - R, y(v)); g.stroke(); }
+  g.textAlign = 'center'; for (const w of [1, 2, 3, 4, 5]) g.fillText(w + ' µm', x(w), H - 12);
+  const visits = [...new Set(d.frames.map(f => f.visit))];
+  for (const p of pts) {
+    const c = VISIT_COL[visits.indexOf(p.visit) % VISIT_COL.length];
+    g.beginPath(); g.arc(x(p.wave_um), y(p.flux_mjy), 6, 0, 7);
+    if (p.flags.length) { g.strokeStyle = c; g.lineWidth = 2; g.stroke(); } else { g.fillStyle = c; g.fill(); }
+  }
+  const chans = new Set(pts.map(p => channelOf(p.detector, p.wave_um))).size;
+  $('fpCount').textContent = `${chans} of 102 colours`;
+  $('fpKey').innerHTML = visits.map((v, i) => `<span><i style="background:${VISIT_COL[i % VISIT_COL.length]}"></i>${d.visits[v] ? d.visits[v].from.slice(0, 7) : 'visit ' + (i + 1)}</span>`).join('')
+    + (pts.some(p => p.flags.length) ? '<span><i style="background:none;border:1.5px solid #8a8a8a"></i>NASA flagged (too bright or damaged pixel)</span>' : '');
+  $('fpNote').textContent = 'Brightness (mJy) of the source at the centre, by the colour each photo saw it in. Every SPHEREx photo sees one colour, so the fingerprint fills in as more photos are added.';
+}
+$('wPlay').onclick = () => watch && wPlay(!watch.playing);
+$('wSeek').oninput = e => { if (watch) { wPlay(false); watch.i = +e.target.value; wDraw(); } };
+$('wZoom').onclick = () => { if (watch) { watch.zoom = watch.zoom === 1 ? 3 : 1; $('wZoom').textContent = watch.zoom === 1 ? 'Zoom in' : 'Zoom out'; wDraw(); } };
+$('watchBack').onclick = () => { clearInterval(wTimer); try { history.replaceState(null, '', location.pathname); } catch (e) {} wBack === 'search' ? renderSearch() : show(wBack); };
+renderTests();
+addEventListener('hashchange', () => { const h = location.hash.slice(1); if (!h.startsWith('sky=')) return; const v = decodeURIComponent(h.slice(4)), t = TESTS.find(x => x.id === v) || parseCoords(v.replace(',', ' ')); if (t && !(watch && Math.abs(watch.t.ra - t.ra) < 1e-5 && Math.abs(watch.t.dec - t.dec) < 1e-5)) openWatch(t); });
+
+
 show('home');
 
 // Direct links for demos and recordings: #play, #real, #caught=<kind>, #collection, #full (fills the collection).
 (function () {
   const h = location.hash.slice(1);
   if (h === 'full') ORDER.forEach(k => col[k] = col[k] || 1);
-  if (h === 'play') newRound();
+  if (h === 'tut') { tut = 0; newRound(); }   // demo link: show the gesture guide again
+  else if (h === 'play') newRound();
   else if (h === 'real') loadReal();
   else if (h === 'search') renderSearch();
+  else if (h.startsWith('sky=')) { const v = decodeURIComponent(h.slice(4)), t = TESTS.find(x => x.id === v) || parseCoords(v.replace(',', ' ')); if (t) openWatch(t); else renderSearch(); }
   else if (h.startsWith('caught=') && KINDS[h.slice(7)]) { round = makeRound(h.slice(7)); frame = 0; caught(snapshot(...round.path[0])); }
+  else if (h.startsWith('duel=') || h.startsWith('result=')) openLink('#' + h);
   else if (h === 'collection' || h === 'full') renderCollection();
 })();
 </script>

@@ -1,0 +1,110 @@
+{
+ "57742 (2001 UA163)": {
+  "predicted_arcsec": 74.1,
+  "measured_arcsec": 77.3,
+  "sun_au": 1.947,
+  "spherex_au": 1.211,
+  "spherex_million_km": 181.1,
+  "positions": [
+   [
+    237.73204,
+    -20.08369
+   ],
+   [
+    237.75132,
+    -20.09348
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "62571 (2000 SY274)": {
+  "predicted_arcsec": 18.5,
+  "measured_arcsec": 18.6,
+  "sun_au": 2.66,
+  "spherex_au": 1.981,
+  "spherex_million_km": 296.3,
+  "positions": [
+   [
+    237.83361,
+    -20.17405
+   ],
+   [
+    237.8363,
+    -20.17851
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "84659 (2002 VO78)": {
+  "predicted_arcsec": 25.2,
+  "measured_arcsec": null,
+  "sun_au": 2.533,
+  "spherex_au": 1.844,
+  "spherex_million_km": 275.9,
+  "positions": [
+   [
+    237.92708,
+    -20.24581
+   ],
+   [
+    237.92892,
+    -20.25259
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "(2022 UR130)": {
+  "predicted_arcsec": 3.2,
+  "measured_arcsec": 6.7,
+  "sun_au": 3.067,
+  "spherex_au": 2.404,
+  "spherex_million_km": 359.7,
+  "positions": [
+   [
+    238.12033,
+    -20.16455
+   ],
+   [
+    238.11943,
+    -20.16486
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "(2022 QJ66)": {
+  "predicted_arcsec": 16.2,
+  "measured_arcsec": 13.5,
+  "sun_au": 3.949,
+  "spherex_au": 3.318,
+  "spherex_million_km": 496.4,
+  "positions": [
+   [
+    237.76625,
+    -20.22151
+   ],
+   [
+    237.76163,
+    -20.22029
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "(2023 WB22)": {
+  "predicted_arcsec": 3.2,
+  "measured_arcsec": 12.2,
+  "sun_au": 2.976,
+  "spherex_au": 2.313,
+  "spherex_million_km": 346.0,
+  "positions": [
+   [
+    237.81291,
+    -20.15463
+   ],
+   [
+    237.81385,
+    -20.15463
+   ]
+  ],
+  "seen_arcsec": null
+ }
+}

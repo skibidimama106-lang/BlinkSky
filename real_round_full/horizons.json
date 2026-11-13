@@ -1,0 +1,2324 @@
+{
+ "21 Lutetia (A852 VA)": {
+  "predicted_arcsec": 24.2,
+  "measured_arcsec": 22.8,
+  "sun_au": 2.224,
+  "spherex_au": 1.497,
+  "spherex_million_km": 223.9,
+  "positions": [
+   [
+    239.3845,
+    -20.71897
+   ],
+   [
+    239.38983,
+    -20.7235
+   ]
+  ],
+  "seen_arcsec": 23.7
+ },
+ "5787 (1992 FA1)": {
+  "predicted_arcsec": 56.7,
+  "measured_arcsec": null,
+  "sun_au": 1.974,
+  "spherex_au": 1.226,
+  "spherex_million_km": 183.5,
+  "positions": [
+   [
+    239.801,
+    -17.72382
+   ],
+   [
+    239.81751,
+    -17.72463
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "637 Chrysothemis (A907 EN)": {
+  "predicted_arcsec": 13.1,
+  "measured_arcsec": 12.9,
+  "sun_au": 3.09,
+  "spherex_au": 2.441,
+  "spherex_million_km": 365.2,
+  "positions": [
+   [
+    236.91926,
+    -20.27229
+   ],
+   [
+    236.92303,
+    -20.27314
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "1745 Ferguson (1941 SY1)": {
+  "predicted_arcsec": 11.6,
+  "measured_arcsec": 11.3,
+  "sun_au": 2.992,
+  "spherex_au": 2.348,
+  "spherex_million_km": 351.2,
+  "positions": [
+   [
+    236.35779,
+    -19.62554
+   ],
+   [
+    236.35976,
+    -19.62819
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "2800 Ovidius (4585 P-L)": {
+  "predicted_arcsec": 28.2,
+  "measured_arcsec": 27.8,
+  "sun_au": 2.684,
+  "spherex_au": 2.019,
+  "spherex_million_km": 302.0,
+  "positions": [
+   [
+    237.10077,
+    -18.271
+   ],
+   [
+    237.10713,
+    -18.276
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "28857 (2000 JE59)": {
+  "predicted_arcsec": 71.8,
+  "measured_arcsec": null,
+  "sun_au": 2.055,
+  "spherex_au": 1.313,
+  "spherex_million_km": 196.4,
+  "positions": [
+   [
+    239.97179,
+    -18.10233
+   ],
+   [
+    239.99049,
+    -18.0933
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "31401 (1999 AK)": {
+  "predicted_arcsec": 30.4,
+  "measured_arcsec": 30.7,
+  "sun_au": 2.485,
+  "spherex_au": 1.779,
+  "spherex_million_km": 266.2,
+  "positions": [
+   [
+    239.72505,
+    -18.27371
+   ],
+   [
+    239.73351,
+    -18.27113
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "2436 Hatshepsut (6066 P-L)": {
+  "predicted_arcsec": 10.0,
+  "measured_arcsec": 9.5,
+  "sun_au": 3.11,
+  "spherex_au": 2.454,
+  "spherex_million_km": 367.1,
+  "positions": [
+   [
+    238.1545,
+    -18.08301
+   ],
+   [
+    238.15741,
+    -18.08315
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "51512 (2001 FG99)": {
+  "predicted_arcsec": 117.5,
+  "measured_arcsec": 115.8,
+  "sun_au": 1.773,
+  "spherex_au": 1.024,
+  "spherex_million_km": 153.2,
+  "positions": [
+   [
+    236.75307,
+    -19.79747
+   ],
+   [
+    236.77361,
+    -19.82376
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "25974 (2001 FF43)": {
+  "predicted_arcsec": 137.4,
+  "measured_arcsec": null,
+  "sun_au": 1.685,
+  "spherex_au": 0.911,
+  "spherex_million_km": 136.3,
+  "positions": [
+   [
+    238.50701,
+    -17.64709
+   ],
+   [
+    238.54573,
+    -17.65687
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "27251 (1999 XG14)": {
+  "predicted_arcsec": 52.2,
+  "measured_arcsec": null,
+  "sun_au": 2.286,
+  "spherex_au": 1.568,
+  "spherex_million_km": 234.6,
+  "positions": [
+   [
+    239.72973,
+    -17.64296
+   ],
+   [
+    239.74098,
+    -17.63318
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "12081 (1998 FH115)": {
+  "predicted_arcsec": 18.5,
+  "measured_arcsec": null,
+  "sun_au": 2.388,
+  "spherex_au": 1.702,
+  "spherex_million_km": 254.6,
+  "positions": [
+   [
+    236.60392,
+    -21.13155
+   ],
+   [
+    236.60694,
+    -21.12724
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "18496 (1996 JN1)": {
+  "predicted_arcsec": 45.9,
+  "measured_arcsec": 45.7,
+  "sun_au": 2.014,
+  "spherex_au": 1.273,
+  "spherex_million_km": 190.5,
+  "positions": [
+   [
+    239.20291,
+    -18.96484
+   ],
+   [
+    239.21615,
+    -18.96725
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "9345 (1991 RA10)": {
+  "predicted_arcsec": 39.5,
+  "measured_arcsec": 39.2,
+  "sun_au": 2.227,
+  "spherex_au": 1.524,
+  "spherex_million_km": 228.0,
+  "positions": [
+   [
+    237.143,
+    -20.23604
+   ],
+   [
+    237.1542,
+    -20.23287
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "9757 Felixdejager (1991 GA6)": {
+  "predicted_arcsec": 6.2,
+  "measured_arcsec": null,
+  "sun_au": 2.798,
+  "spherex_au": 2.101,
+  "spherex_million_km": 314.3,
+  "positions": [
+   [
+    239.92582,
+    -21.09277
+   ],
+   [
+    239.92764,
+    -21.09247
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "22788 von Steuben (1999 JA136)": {
+  "predicted_arcsec": 36.2,
+  "measured_arcsec": 36.8,
+  "sun_au": 2.424,
+  "spherex_au": 1.721,
+  "spherex_million_km": 257.5,
+  "positions": [
+   [
+    238.79462,
+    -19.21868
+   ],
+   [
+    238.80442,
+    -19.21473
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "68551 (2001 XH57)": {
+  "predicted_arcsec": 69.3,
+  "measured_arcsec": null,
+  "sun_au": 2.247,
+  "spherex_au": 1.556,
+  "spherex_million_km": 232.8,
+  "positions": [
+   [
+    236.33249,
+    -19.43099
+   ],
+   [
+    236.33985,
+    -19.44895
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "51046 (2000 GV136)": {
+  "predicted_arcsec": 46.0,
+  "measured_arcsec": null,
+  "sun_au": 2.717,
+  "spherex_au": 2.026,
+  "spherex_million_km": 303.0,
+  "positions": [
+   [
+    239.8249,
+    -17.76385
+   ],
+   [
+    239.82342,
+    -17.77654
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "14184 (1998 WA32)": {
+  "predicted_arcsec": 8.8,
+  "measured_arcsec": 8.0,
+  "sun_au": 2.838,
+  "spherex_au": 2.157,
+  "spherex_million_km": 322.7,
+  "positions": [
+   [
+    238.98616,
+    -19.46796
+   ],
+   [
+    238.98866,
+    -19.46865
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "21855 (1999 TG150)": {
+  "predicted_arcsec": 16.4,
+  "measured_arcsec": 15.4,
+  "sun_au": 2.865,
+  "spherex_au": 2.175,
+  "spherex_million_km": 325.4,
+  "positions": [
+   [
+    239.77432,
+    -19.92157
+   ],
+   [
+    239.77773,
+    -19.92482
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "56444 (2000 GB68)": {
+  "predicted_arcsec": 69.7,
+  "measured_arcsec": 69.0,
+  "sun_au": 1.909,
+  "spherex_au": 1.161,
+  "spherex_million_km": 173.6,
+  "positions": [
+   [
+    238.67099,
+    -19.18482
+   ],
+   [
+    238.68986,
+    -19.19236
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "120056 (2003 BA79)": {
+  "predicted_arcsec": 95.5,
+  "measured_arcsec": null,
+  "sun_au": 2.119,
+  "spherex_au": 1.422,
+  "spherex_million_km": 212.7,
+  "positions": [
+   [
+    236.31986,
+    -17.55911
+   ],
+   [
+    236.33369,
+    -17.58214
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "12017 (1996 XC1)": {
+  "predicted_arcsec": 35.4,
+  "measured_arcsec": null,
+  "sun_au": 2.171,
+  "spherex_au": 1.448,
+  "spherex_million_km": 216.6,
+  "positions": [
+   [
+    239.32251,
+    -17.55318
+   ],
+   [
+    239.33198,
+    -17.55707
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "28981 (2001 LY3)": {
+  "predicted_arcsec": 22.2,
+  "measured_arcsec": null,
+  "sun_au": 2.309,
+  "spherex_au": 1.626,
+  "spherex_million_km": 243.3,
+  "positions": [
+   [
+    236.31649,
+    -18.61343
+   ],
+   [
+    236.31829,
+    -18.61935
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "8869 Olausgutho (1992 EE11)": {
+  "predicted_arcsec": 27.9,
+  "measured_arcsec": 27.8,
+  "sun_au": 2.715,
+  "spherex_au": 2.046,
+  "spherex_million_km": 306.1,
+  "positions": [
+   [
+    237.30869,
+    -19.38392
+   ],
+   [
+    237.31595,
+    -19.38756
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "28180 (1998 WU1)": {
+  "predicted_arcsec": 45.9,
+  "measured_arcsec": null,
+  "sun_au": 2.26,
+  "spherex_au": 1.528,
+  "spherex_million_km": 228.5,
+  "positions": [
+   [
+    240.12648,
+    -21.06247
+   ],
+   [
+    240.129,
+    -21.075
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "28278 (1999 CQ27)": {
+  "predicted_arcsec": 31.4,
+  "measured_arcsec": 30.2,
+  "sun_au": 2.808,
+  "spherex_au": 2.125,
+  "spherex_million_km": 318.0,
+  "positions": [
+   [
+    238.953,
+    -19.61467
+   ],
+   [
+    238.9542,
+    -19.62333
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "50166 (2000 AW150)": {
+  "predicted_arcsec": 59.1,
+  "measured_arcsec": 60.5,
+  "sun_au": 2.137,
+  "spherex_au": 1.407,
+  "spherex_million_km": 210.5,
+  "positions": [
+   [
+    239.41311,
+    -18.78084
+   ],
+   [
+    239.42781,
+    -18.77215
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "10105 Holmhallar (1992 EM12)": {
+  "predicted_arcsec": 19.5,
+  "measured_arcsec": 18.7,
+  "sun_au": 2.906,
+  "spherex_au": 2.248,
+  "spherex_million_km": 336.3,
+  "positions": [
+   [
+    237.25783,
+    -18.94884
+   ],
+   [
+    237.26301,
+    -18.95114
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "13492 Vitalijzakharov (1984 YE4)": {
+  "predicted_arcsec": 14.2,
+  "measured_arcsec": null,
+  "sun_au": 2.676,
+  "spherex_au": 1.989,
+  "spherex_million_km": 297.6,
+  "positions": [
+   [
+    238.40215,
+    -21.06699
+   ],
+   [
+    238.40145,
+    -21.07088
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "18234 (4262 T-1)": {
+  "predicted_arcsec": 19.0,
+  "measured_arcsec": 17.9,
+  "sun_au": 2.737,
+  "spherex_au": 2.062,
+  "spherex_million_km": 308.5,
+  "positions": [
+   [
+    237.71376,
+    -20.43107
+   ],
+   [
+    237.71821,
+    -20.43429
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "25890 Louisburg (2000 VG38)": {
+  "predicted_arcsec": 12.5,
+  "measured_arcsec": null,
+  "sun_au": 3.069,
+  "spherex_au": 2.429,
+  "spherex_million_km": 363.4,
+  "positions": [
+   [
+    236.62389,
+    -18.15914
+   ],
+   [
+    236.62667,
+    -18.15688
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "4454 Kumiko (1988 VW)": {
+  "predicted_arcsec": 7.5,
+  "measured_arcsec": 8.1,
+  "sun_au": 3.425,
+  "spherex_au": 2.755,
+  "spherex_million_km": 412.1,
+  "positions": [
+   [
+    239.76362,
+    -20.8399
+   ],
+   [
+    239.76149,
+    -20.83924
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "21758 Adrianveres (1999 RT196)": {
+  "predicted_arcsec": 18.9,
+  "measured_arcsec": null,
+  "sun_au": 2.476,
+  "spherex_au": 1.761,
+  "spherex_million_km": 263.5,
+  "positions": [
+   [
+    239.91345,
+    -21.12599
+   ],
+   [
+    239.91579,
+    -21.12123
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "23938 Kurosaki (1998 TR33)": {
+  "predicted_arcsec": 23.9,
+  "measured_arcsec": 22.8,
+  "sun_au": 2.601,
+  "spherex_au": 1.931,
+  "spherex_million_km": 288.9,
+  "positions": [
+   [
+    237.01475,
+    -18.48252
+   ],
+   [
+    237.01994,
+    -18.48697
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "35575 (1998 HC18)": {
+  "predicted_arcsec": 27.1,
+  "measured_arcsec": 27.2,
+  "sun_au": 2.478,
+  "spherex_au": 1.791,
+  "spherex_million_km": 267.9,
+  "positions": [
+   [
+    237.38159,
+    -20.44543
+   ],
+   [
+    237.3895,
+    -20.44414
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "35753 (1999 GE45)": {
+  "predicted_arcsec": 55.0,
+  "measured_arcsec": 53.9,
+  "sun_au": 2.197,
+  "spherex_au": 1.495,
+  "spherex_million_km": 223.6,
+  "positions": [
+   [
+    236.82463,
+    -20.25517
+   ],
+   [
+    236.83528,
+    -20.26671
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "3234 Hergiani (1978 QO2)": {
+  "predicted_arcsec": 5.3,
+  "measured_arcsec": 5.3,
+  "sun_au": 3.466,
+  "spherex_au": 2.839,
+  "spherex_million_km": 424.7,
+  "positions": [
+   [
+    236.41125,
+    -19.77838
+   ],
+   [
+    236.40972,
+    -19.77871
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "9243 Alag (1998 FF68)": {
+  "predicted_arcsec": 15.3,
+  "measured_arcsec": 14.8,
+  "sun_au": 2.881,
+  "spherex_au": 2.204,
+  "spherex_million_km": 329.7,
+  "positions": [
+   [
+    238.65554,
+    -20.29843
+   ],
+   [
+    238.65992,
+    -20.29955
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "22708 (1998 RK66)": {
+  "predicted_arcsec": 2.6,
+  "measured_arcsec": 3.3,
+  "sun_au": 2.958,
+  "spherex_au": 2.275,
+  "spherex_million_km": 340.4,
+  "positions": [
+   [
+    239.51095,
+    -20.05957
+   ],
+   [
+    239.51081,
+    -20.05886
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "27112 (1998 VC35)": {
+  "predicted_arcsec": 20.2,
+  "measured_arcsec": 21.0,
+  "sun_au": 2.809,
+  "spherex_au": 2.12,
+  "spherex_million_km": 317.1,
+  "positions": [
+   [
+    239.8581,
+    -18.28876
+   ],
+   [
+    239.86099,
+    -18.28387
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "3154 Grant (1984 SO3)": {
+  "predicted_arcsec": 12.4,
+  "measured_arcsec": 12.1,
+  "sun_au": 3.548,
+  "spherex_au": 2.893,
+  "spherex_million_km": 432.7,
+  "positions": [
+   [
+    239.20471,
+    -18.99071
+   ],
+   [
+    239.20131,
+    -18.99192
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "42943 (1999 TH92)": {
+  "predicted_arcsec": 97.0,
+  "measured_arcsec": null,
+  "sun_au": 1.776,
+  "spherex_au": 1.035,
+  "spherex_million_km": 154.8,
+  "positions": [
+   [
+    236.43315,
+    -17.9042
+   ],
+   [
+    236.45709,
+    -17.91859
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "54374 (2000 KM55)": {
+  "predicted_arcsec": 51.4,
+  "measured_arcsec": 50.2,
+  "sun_au": 2.226,
+  "spherex_au": 1.515,
+  "spherex_million_km": 226.7,
+  "positions": [
+   [
+    238.32765,
+    -18.45002
+   ],
+   [
+    238.3373,
+    -18.46097
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "86705 (2000 FW64)": {
+  "predicted_arcsec": 46.7,
+  "measured_arcsec": 46.9,
+  "sun_au": 2.158,
+  "spherex_au": 1.435,
+  "spherex_million_km": 214.7,
+  "positions": [
+   [
+    238.47516,
+    -20.49193
+   ],
+   [
+    238.48842,
+    -20.48818
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "219352 (2000 RK19)": {
+  "predicted_arcsec": 42.5,
+  "measured_arcsec": 43.5,
+  "sun_au": 2.076,
+  "spherex_au": 1.338,
+  "spherex_million_km": 200.1,
+  "positions": [
+   [
+    239.75821,
+    -18.28327
+   ],
+   [
+    239.77004,
+    -18.27961
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "16905 (1998 DT21)": {
+  "predicted_arcsec": 4.9,
+  "measured_arcsec": null,
+  "sun_au": 2.905,
+  "spherex_au": 2.25,
+  "spherex_million_km": 336.6,
+  "positions": [
+   [
+    236.53847,
+    -21.01858
+   ],
+   [
+    236.53959,
+    -21.01945
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "30393 (2000 KN30)": {
+  "predicted_arcsec": 17.8,
+  "measured_arcsec": null,
+  "sun_au": 2.99,
+  "spherex_au": 2.301,
+  "spherex_million_km": 344.3,
+  "positions": [
+   [
+    240.0867,
+    -20.56301
+   ],
+   [
+    240.08196,
+    -20.56522
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "33261 Ginagarlie (1998 HQ45)": {
+  "predicted_arcsec": 16.4,
+  "measured_arcsec": 16.6,
+  "sun_au": 2.735,
+  "spherex_au": 2.061,
+  "spherex_million_km": 308.3,
+  "positions": [
+   [
+    237.98606,
+    -19.09837
+   ],
+   [
+    237.99049,
+    -19.09659
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "44242 (1998 QB37)": {
+  "predicted_arcsec": 21.2,
+  "measured_arcsec": 21.8,
+  "sun_au": 2.346,
+  "spherex_au": 1.629,
+  "spherex_million_km": 243.7,
+  "positions": [
+   [
+    239.73993,
+    -18.71116
+   ],
+   [
+    239.74588,
+    -18.70944
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "54670 (2000 WW92)": {
+  "predicted_arcsec": 48.8,
+  "measured_arcsec": 48.7,
+  "sun_au": 1.965,
+  "spherex_au": 1.22,
+  "spherex_million_km": 182.5,
+  "positions": [
+   [
+    238.98176,
+    -19.39718
+   ],
+   [
+    238.99592,
+    -19.39491
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "57742 (2001 UA163)": {
+  "predicted_arcsec": 74.4,
+  "measured_arcsec": 73.2,
+  "sun_au": 1.947,
+  "spherex_au": 1.211,
+  "spherex_million_km": 181.1,
+  "positions": [
+   [
+    237.73204,
+    -20.08369
+   ],
+   [
+    237.75154,
+    -20.09329
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "92487 (2000 LL31)": {
+  "predicted_arcsec": 72.3,
+  "measured_arcsec": 69.9,
+  "sun_au": 1.83,
+  "spherex_au": 1.065,
+  "spherex_million_km": 159.4,
+  "positions": [
+   [
+    238.93588,
+    -21.08844
+   ],
+   [
+    238.9525,
+    -21.10119
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "66263 (1999 GT58)": {
+  "predicted_arcsec": 36.5,
+  "measured_arcsec": null,
+  "sun_au": 2.456,
+  "spherex_au": 1.741,
+  "spherex_million_km": 260.5,
+  "positions": [
+   [
+    239.88806,
+    -20.68416
+   ],
+   [
+    239.89445,
+    -20.69234
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "89756 (2002 AE54)": {
+  "predicted_arcsec": 19.4,
+  "measured_arcsec": 19.4,
+  "sun_au": 2.598,
+  "spherex_au": 1.897,
+  "spherex_million_km": 283.8,
+  "positions": [
+   [
+    239.3042,
+    -20.71456
+   ],
+   [
+    239.30969,
+    -20.71289
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "83690 (2001 TW63)": {
+  "predicted_arcsec": 22.5,
+  "measured_arcsec": 20.9,
+  "sun_au": 2.383,
+  "spherex_au": 1.677,
+  "spherex_million_km": 250.9,
+  "positions": [
+   [
+    239.03976,
+    -18.33868
+   ],
+   [
+    239.04296,
+    -18.34414
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "148585 (2001 RO4)": {
+  "predicted_arcsec": 98.8,
+  "measured_arcsec": 98.2,
+  "sun_au": 1.77,
+  "spherex_au": 1.002,
+  "spherex_million_km": 149.9,
+  "positions": [
+   [
+    238.67631,
+    -20.17377
+   ],
+   [
+    238.70554,
+    -20.17468
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "189712 (2001 TE183)": {
+  "predicted_arcsec": 67.4,
+  "measured_arcsec": 67.4,
+  "sun_au": 1.934,
+  "spherex_au": 1.196,
+  "spherex_million_km": 178.9,
+  "positions": [
+   [
+    238.13433,
+    -18.29651
+   ],
+   [
+    238.15372,
+    -18.29304
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "214362 (2005 KW9)": {
+  "predicted_arcsec": 74.2,
+  "measured_arcsec": 74.3,
+  "sun_au": 2.181,
+  "spherex_au": 1.48,
+  "spherex_million_km": 221.5,
+  "positions": [
+   [
+    236.72767,
+    -19.50256
+   ],
+   [
+    236.74542,
+    -19.49052
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "14367 Hippokrates (1988 RY3)": {
+  "predicted_arcsec": 5.7,
+  "measured_arcsec": 5.3,
+  "sun_au": 2.978,
+  "spherex_au": 2.318,
+  "spherex_million_km": 346.7,
+  "positions": [
+   [
+    237.9846,
+    -18.37308
+   ],
+   [
+    237.98518,
+    -18.37455
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "14854 (1989 SO1)": {
+  "predicted_arcsec": 17.3,
+  "measured_arcsec": 16.5,
+  "sun_au": 2.788,
+  "spherex_au": 2.112,
+  "spherex_million_km": 316.0,
+  "positions": [
+   [
+    238.18599,
+    -19.92722
+   ],
+   [
+    238.1884,
+    -19.93146
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "34714 Haozhang (2001 OB105)": {
+  "predicted_arcsec": 9.7,
+  "measured_arcsec": 8.7,
+  "sun_au": 2.65,
+  "spherex_au": 1.954,
+  "spherex_million_km": 292.3,
+  "positions": [
+   [
+    239.19041,
+    -20.68538
+   ],
+   [
+    239.19179,
+    -20.68773
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "36611 (2000 QF145)": {
+  "predicted_arcsec": 66.3,
+  "measured_arcsec": 65.1,
+  "sun_au": 1.955,
+  "spherex_au": 1.229,
+  "spherex_million_km": 183.9,
+  "positions": [
+   [
+    236.7217,
+    -20.40119
+   ],
+   [
+    236.73878,
+    -20.4103
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "98641 (2000 WW122)": {
+  "predicted_arcsec": 7.4,
+  "measured_arcsec": null,
+  "sun_au": 2.474,
+  "spherex_au": 1.781,
+  "spherex_million_km": 266.4,
+  "positions": [
+   [
+    237.8304,
+    -21.1649
+   ],
+   [
+    237.83225,
+    -21.16603
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "23704 (1997 SD10)": {
+  "predicted_arcsec": 14.9,
+  "measured_arcsec": 13.5,
+  "sun_au": 2.371,
+  "spherex_au": 1.669,
+  "spherex_million_km": 249.7,
+  "positions": [
+   [
+    238.45991,
+    -19.0872
+   ],
+   [
+    238.46165,
+    -19.091
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "52155 (2236 T-1)": {
+  "predicted_arcsec": 11.9,
+  "measured_arcsec": 11.1,
+  "sun_au": 2.662,
+  "spherex_au": 1.962,
+  "spherex_million_km": 293.5,
+  "positions": [
+   [
+    239.60306,
+    -20.98835
+   ],
+   [
+    239.60579,
+    -20.99044
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "53631 (2000 CD119)": {
+  "predicted_arcsec": 44.7,
+  "measured_arcsec": 44.7,
+  "sun_au": 2.254,
+  "spherex_au": 1.553,
+  "spherex_million_km": 232.4,
+  "positions": [
+   [
+    237.59424,
+    -18.50768
+   ],
+   [
+    237.6072,
+    -18.50585
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "105090 (2000 KW82)": {
+  "predicted_arcsec": 37.6,
+  "measured_arcsec": null,
+  "sun_au": 2.652,
+  "spherex_au": 1.986,
+  "spherex_million_km": 297.1,
+  "positions": [
+   [
+    236.46117,
+    -20.57501
+   ],
+   [
+    236.46617,
+    -20.58435
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "101148 (1998 RV70)": {
+  "predicted_arcsec": 71.7,
+  "measured_arcsec": null,
+  "sun_au": 1.886,
+  "spherex_au": 1.156,
+  "spherex_million_km": 173.0,
+  "positions": [
+   [
+    236.30981,
+    -19.69287
+   ],
+   [
+    236.32717,
+    -19.70426
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "25133 Douglin (1998 SU14)": {
+  "predicted_arcsec": 21.4,
+  "measured_arcsec": 20.1,
+  "sun_au": 2.416,
+  "spherex_au": 1.722,
+  "spherex_million_km": 257.6,
+  "positions": [
+   [
+    237.695,
+    -20.26256
+   ],
+   [
+    237.69855,
+    -20.26747
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "27132 Jezek (1998 XJ9)": {
+  "predicted_arcsec": 22.0,
+  "measured_arcsec": 20.5,
+  "sun_au": 2.599,
+  "spherex_au": 1.897,
+  "spherex_million_km": 283.8,
+  "positions": [
+   [
+    239.6554,
+    -19.85626
+   ],
+   [
+    239.65514,
+    -19.86236
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "28555 Jenniferchan (2000 EM41)": {
+  "predicted_arcsec": 22.3,
+  "measured_arcsec": 21.5,
+  "sun_au": 2.436,
+  "spherex_au": 1.734,
+  "spherex_million_km": 259.3,
+  "positions": [
+   [
+    239.14553,
+    -17.98922
+   ],
+   [
+    239.15053,
+    -17.9932
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "29706 Simonetta (1998 YS11)": {
+  "predicted_arcsec": 20.7,
+  "measured_arcsec": 19.3,
+  "sun_au": 2.283,
+  "spherex_au": 1.574,
+  "spherex_million_km": 235.5,
+  "positions": [
+   [
+    238.5147,
+    -18.75472
+   ],
+   [
+    238.51594,
+    -18.76034
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "45736 (2000 GA170)": {
+  "predicted_arcsec": 24.1,
+  "measured_arcsec": 24.6,
+  "sun_au": 2.951,
+  "spherex_au": 2.272,
+  "spherex_million_km": 339.8,
+  "positions": [
+   [
+    239.18441,
+    -19.96751
+   ],
+   [
+    239.18209,
+    -19.96119
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "46311 (2001 QF20)": {
+  "predicted_arcsec": 6.4,
+  "measured_arcsec": 5.3,
+  "sun_au": 3.096,
+  "spherex_au": 2.456,
+  "spherex_million_km": 367.4,
+  "positions": [
+   [
+    236.59936,
+    -18.67644
+   ],
+   [
+    236.60081,
+    -18.67757
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "50877 (2000 GF29)": {
+  "predicted_arcsec": 7.1,
+  "measured_arcsec": null,
+  "sun_au": 3.113,
+  "spherex_au": 2.469,
+  "spherex_million_km": 369.3,
+  "positions": [
+   [
+    236.53193,
+    -20.68059
+   ],
+   [
+    236.53399,
+    -20.68023
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "60827 (2000 HW46)": {
+  "predicted_arcsec": 21.5,
+  "measured_arcsec": 20.8,
+  "sun_au": 2.509,
+  "spherex_au": 1.824,
+  "spherex_million_km": 272.9,
+  "positions": [
+   [
+    237.36344,
+    -20.6981
+   ],
+   [
+    237.36867,
+    -20.70154
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "78599 (2002 SM27)": {
+  "predicted_arcsec": 19.9,
+  "measured_arcsec": null,
+  "sun_au": 2.941,
+  "spherex_au": 2.281,
+  "spherex_million_km": 341.3,
+  "positions": [
+   [
+    237.9415,
+    -17.62019
+   ],
+   [
+    237.94229,
+    -17.62567
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "99425 (2002 AE190)": {
+  "predicted_arcsec": 72.4,
+  "measured_arcsec": 71.6,
+  "sun_au": 1.905,
+  "spherex_au": 1.172,
+  "spherex_million_km": 175.3,
+  "positions": [
+   [
+    237.38821,
+    -18.00631
+   ],
+   [
+    237.40339,
+    -18.02032
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "109405 (2001 QH181)": {
+  "predicted_arcsec": 31.1,
+  "measured_arcsec": 32.1,
+  "sun_au": 2.57,
+  "spherex_au": 1.901,
+  "spherex_million_km": 284.4,
+  "positions": [
+   [
+    236.47762,
+    -19.55927
+   ],
+   [
+    236.48236,
+    -19.55187
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "416588 (2004 JS31)": {
+  "predicted_arcsec": 81.1,
+  "measured_arcsec": 81.7,
+  "sun_au": 1.6,
+  "spherex_au": 0.8,
+  "spherex_million_km": 119.7,
+  "positions": [
+   [
+    239.3091,
+    -19.61043
+   ],
+   [
+    239.33196,
+    -19.60385
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "25512 Anncomins (1999 XT97)": {
+  "predicted_arcsec": 12.6,
+  "measured_arcsec": null,
+  "sun_au": 2.638,
+  "spherex_au": 1.95,
+  "spherex_million_km": 291.8,
+  "positions": [
+   [
+    238.22638,
+    -21.10108
+   ],
+   [
+    238.22771,
+    -21.10435
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "30158 Mabdulla (2000 GQ55)": {
+  "predicted_arcsec": 20.9,
+  "measured_arcsec": 19.5,
+  "sun_au": 2.638,
+  "spherex_au": 1.953,
+  "spherex_million_km": 292.2,
+  "positions": [
+   [
+    238.64819,
+    -18.0984
+   ],
+   [
+    238.65288,
+    -18.10212
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "36191 (1999 TY78)": {
+  "predicted_arcsec": 18.3,
+  "measured_arcsec": 17.9,
+  "sun_au": 3.006,
+  "spherex_au": 2.352,
+  "spherex_million_km": 351.8,
+  "positions": [
+   [
+    237.72053,
+    -17.74058
+   ],
+   [
+    237.72477,
+    -17.74368
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "45181 (1999 XZ146)": {
+  "predicted_arcsec": 40.2,
+  "measured_arcsec": 38.6,
+  "sun_au": 2.131,
+  "spherex_au": 1.41,
+  "spherex_million_km": 210.9,
+  "positions": [
+   [
+    238.05661,
+    -20.60081
+   ],
+   [
+    238.06599,
+    -20.60771
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "53592 (2000 CH56)": {
+  "predicted_arcsec": 40.6,
+  "measured_arcsec": 39.7,
+  "sun_au": 2.242,
+  "spherex_au": 1.547,
+  "spherex_million_km": 231.4,
+  "positions": [
+   [
+    236.73865,
+    -19.29084
+   ],
+   [
+    236.74827,
+    -19.29755
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "60922 (2000 JF41)": {
+  "predicted_arcsec": 15.1,
+  "measured_arcsec": 13.9,
+  "sun_au": 2.416,
+  "spherex_au": 1.734,
+  "spherex_million_km": 259.3,
+  "positions": [
+   [
+    236.69241,
+    -19.85846
+   ],
+   [
+    236.69437,
+    -19.86224
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "62445 (2000 SF207)": {
+  "predicted_arcsec": 38.8,
+  "measured_arcsec": 37.4,
+  "sun_au": 2.249,
+  "spherex_au": 1.54,
+  "spherex_million_km": 230.3,
+  "positions": [
+   [
+    238.102,
+    -19.79474
+   ],
+   [
+    238.10789,
+    -19.80398
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "62571 (2000 SY274)": {
+  "predicted_arcsec": 18.1,
+  "measured_arcsec": 17.0,
+  "sun_au": 2.66,
+  "spherex_au": 1.981,
+  "spherex_million_km": 296.3,
+  "positions": [
+   [
+    237.83361,
+    -20.17405
+   ],
+   [
+    237.83634,
+    -20.17838
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "73766 (1994 PH9)": {
+  "predicted_arcsec": 24.3,
+  "measured_arcsec": 23.4,
+  "sun_au": 2.311,
+  "spherex_au": 1.594,
+  "spherex_million_km": 238.5,
+  "positions": [
+   [
+    239.45447,
+    -18.80974
+   ],
+   [
+    239.46114,
+    -18.81211
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "86692 (2000 FS47)": {
+  "predicted_arcsec": 57.9,
+  "measured_arcsec": 56.7,
+  "sun_au": 2.119,
+  "spherex_au": 1.403,
+  "spherex_million_km": 209.9,
+  "positions": [
+   [
+    237.36212,
+    -20.55431
+   ],
+   [
+    237.37392,
+    -20.56598
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "113927 (2002 TT288)": {
+  "predicted_arcsec": 19.1,
+  "measured_arcsec": 19.7,
+  "sun_au": 2.384,
+  "spherex_au": 1.685,
+  "spherex_million_km": 252.1,
+  "positions": [
+   [
+    238.09234,
+    -19.71734
+   ],
+   [
+    238.09571,
+    -19.71309
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "116092 (2003 WJ126)": {
+  "predicted_arcsec": 39.9,
+  "measured_arcsec": 38.5,
+  "sun_au": 2.504,
+  "spherex_au": 1.805,
+  "spherex_million_km": 270.0,
+  "positions": [
+   [
+    238.68137,
+    -20.35199
+   ],
+   [
+    238.68542,
+    -20.36239
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "116845 (2004 FY48)": {
+  "predicted_arcsec": 60.3,
+  "measured_arcsec": 60.0,
+  "sun_au": 1.956,
+  "spherex_au": 1.212,
+  "spherex_million_km": 181.3,
+  "positions": [
+   [
+    238.80791,
+    -19.40657
+   ],
+   [
+    238.82567,
+    -19.40716
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "14094 Garneau (1997 OJ1)": {
+  "predicted_arcsec": 16.1,
+  "measured_arcsec": 15.8,
+  "sun_au": 2.909,
+  "spherex_au": 2.26,
+  "spherex_million_km": 338.1,
+  "positions": [
+   [
+    236.70155,
+    -18.40971
+   ],
+   [
+    236.70427,
+    -18.41336
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "14560 (1997 WB33)": {
+  "predicted_arcsec": 4.2,
+  "measured_arcsec": 4.3,
+  "sun_au": 3.699,
+  "spherex_au": 3.075,
+  "spherex_million_km": 460.0,
+  "positions": [
+   [
+    237.19256,
+    -18.02352
+   ],
+   [
+    237.19135,
+    -18.02344
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "56919 (2000 QF251)": {
+  "predicted_arcsec": 22.6,
+  "measured_arcsec": null,
+  "sun_au": 3.011,
+  "spherex_au": 2.36,
+  "spherex_million_km": 353.1,
+  "positions": [
+   [
+    236.67148,
+    -20.98869
+   ],
+   [
+    236.67148,
+    -20.99498
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "58549 (1997 GM14)": {
+  "predicted_arcsec": 43.8,
+  "measured_arcsec": 43.7,
+  "sun_au": 2.194,
+  "spherex_au": 1.462,
+  "spherex_million_km": 218.7,
+  "positions": [
+   [
+    239.95205,
+    -19.31539
+   ],
+   [
+    239.96494,
+    -19.31566
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "112011 (2002 GW158)": {
+  "predicted_arcsec": 54.9,
+  "measured_arcsec": 53.0,
+  "sun_au": 2.022,
+  "spherex_au": 1.3,
+  "spherex_million_km": 194.4,
+  "positions": [
+   [
+    237.30047,
+    -19.44757
+   ],
+   [
+    237.31036,
+    -19.45965
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "215590 (2003 KY10)": {
+  "predicted_arcsec": 59.2,
+  "measured_arcsec": 57.0,
+  "sun_au": 2.246,
+  "spherex_au": 1.523,
+  "spherex_million_km": 227.8,
+  "positions": [
+   [
+    239.66211,
+    -18.68367
+   ],
+   [
+    239.67195,
+    -18.69721
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "26993 Littlewood (1997 XC1)": {
+  "predicted_arcsec": 9.1,
+  "measured_arcsec": 9.1,
+  "sun_au": 3.188,
+  "spherex_au": 2.514,
+  "spherex_million_km": 376.2,
+  "positions": [
+   [
+    239.91733,
+    -18.49129
+   ],
+   [
+    239.91574,
+    -18.49332
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "29616 (1998 SG64)": {
+  "predicted_arcsec": 18.7,
+  "measured_arcsec": 18.0,
+  "sun_au": 2.587,
+  "spherex_au": 1.886,
+  "spherex_million_km": 282.1,
+  "positions": [
+   [
+    239.88958,
+    -18.52013
+   ],
+   [
+    239.89284,
+    -18.52429
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "30914 (1993 FV82)": {
+  "predicted_arcsec": 10.1,
+  "measured_arcsec": 8.1,
+  "sun_au": 2.362,
+  "spherex_au": 1.654,
+  "spherex_million_km": 247.5,
+  "positions": [
+   [
+    238.65734,
+    -20.3298
+   ],
+   [
+    238.65711,
+    -20.33259
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "34898 (2622 P-L)": {
+  "predicted_arcsec": 5.8,
+  "measured_arcsec": 5.0,
+  "sun_au": 3.423,
+  "spherex_au": 2.762,
+  "spherex_million_km": 413.2,
+  "positions": [
+   [
+    239.49674,
+    -18.55292
+   ],
+   [
+    239.49575,
+    -18.55423
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "38810 (2000 RP70)": {
+  "predicted_arcsec": 11.9,
+  "measured_arcsec": 11.1,
+  "sun_au": 2.763,
+  "spherex_au": 2.076,
+  "spherex_million_km": 310.5,
+  "positions": [
+   [
+    239.47455,
+    -18.57987
+   ],
+   [
+    239.47372,
+    -18.58307
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "46386 (2001 XP195)": {
+  "predicted_arcsec": 12.5,
+  "measured_arcsec": null,
+  "sun_au": 2.357,
+  "spherex_au": 1.642,
+  "spherex_million_km": 245.6,
+  "positions": [
+   [
+    239.87504,
+    -17.72764
+   ],
+   [
+    239.87499,
+    -17.73111
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "50766 (2000 FA2)": {
+  "predicted_arcsec": 23.7,
+  "measured_arcsec": null,
+  "sun_au": 2.789,
+  "spherex_au": 2.136,
+  "spherex_million_km": 319.6,
+  "positions": [
+   [
+    236.61591,
+    -17.99105
+   ],
+   [
+    236.62218,
+    -17.99383
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "54814 (2001 MK28)": {
+  "predicted_arcsec": 21.7,
+  "measured_arcsec": 21.4,
+  "sun_au": 2.546,
+  "spherex_au": 1.876,
+  "spherex_million_km": 280.6,
+  "positions": [
+   [
+    236.9793,
+    -17.73335
+   ],
+   [
+    236.98305,
+    -17.73821
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "64398 (2001 US154)": {
+  "predicted_arcsec": 21.9,
+  "measured_arcsec": null,
+  "sun_au": 3.109,
+  "spherex_au": 2.456,
+  "spherex_million_km": 367.4,
+  "positions": [
+   [
+    237.24869,
+    -20.94294
+   ],
+   [
+    237.24842,
+    -20.94901
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "105327 (2000 QF83)": {
+  "predicted_arcsec": 5.8,
+  "measured_arcsec": null,
+  "sun_au": 2.755,
+  "spherex_au": 2.077,
+  "spherex_million_km": 310.7,
+  "positions": [
+   [
+    237.92604,
+    -21.13244
+   ],
+   [
+    237.92771,
+    -21.13285
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "21197 (1994 PS7)": {
+  "predicted_arcsec": 3.4,
+  "measured_arcsec": 3.3,
+  "sun_au": 2.893,
+  "spherex_au": 2.222,
+  "spherex_million_km": 332.4,
+  "positions": [
+   [
+    238.42663,
+    -19.23999
+   ],
+   [
+    238.42759,
+    -19.24022
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "24633 (1981 EP25)": {
+  "predicted_arcsec": 6.1,
+  "measured_arcsec": 5.7,
+  "sun_au": 2.958,
+  "spherex_au": 2.277,
+  "spherex_million_km": 340.6,
+  "positions": [
+   [
+    239.50254,
+    -19.62086
+   ],
+   [
+    239.50429,
+    -19.62124
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "29236 (1992 EB14)": {
+  "predicted_arcsec": 29.1,
+  "measured_arcsec": 28.9,
+  "sun_au": 2.454,
+  "spherex_au": 1.768,
+  "spherex_million_km": 264.5,
+  "positions": [
+   [
+    237.30029,
+    -19.67633
+   ],
+   [
+    237.30864,
+    -19.67825
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "38243 (1999 PB4)": {
+  "predicted_arcsec": 10.4,
+  "measured_arcsec": 9.3,
+  "sun_au": 3.086,
+  "spherex_au": 2.442,
+  "spherex_million_km": 365.2,
+  "positions": [
+   [
+    237.16261,
+    -17.91782
+   ],
+   [
+    237.16229,
+    -17.9207
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "59860 (1999 RP94)": {
+  "predicted_arcsec": 10.0,
+  "measured_arcsec": 9.0,
+  "sun_au": 3.058,
+  "spherex_au": 2.386,
+  "spherex_million_km": 357.0,
+  "positions": [
+   [
+    239.14574,
+    -18.97023
+   ],
+   [
+    239.14453,
+    -18.97275
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "63394 (2001 JL8)": {
+  "predicted_arcsec": 13.7,
+  "measured_arcsec": 13.4,
+  "sun_au": 2.812,
+  "spherex_au": 2.14,
+  "spherex_million_km": 320.1,
+  "positions": [
+   [
+    237.76689,
+    -20.81357
+   ],
+   [
+    237.77097,
+    -20.81364
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "68394 (2001 QZ68)": {
+  "predicted_arcsec": 15.3,
+  "measured_arcsec": 15.7,
+  "sun_au": 2.565,
+  "spherex_au": 1.879,
+  "spherex_million_km": 281.1,
+  "positions": [
+   [
+    238.08639,
+    -19.47616
+   ],
+   [
+    238.09021,
+    -19.47388
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "76171 (2000 EH31)": {
+  "predicted_arcsec": 24.2,
+  "measured_arcsec": 23.0,
+  "sun_au": 2.861,
+  "spherex_au": 2.199,
+  "spherex_million_km": 328.9,
+  "positions": [
+   [
+    237.77947,
+    -17.99221
+   ],
+   [
+    237.77703,
+    -17.99851
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "85100 (2189 T-3)": {
+  "predicted_arcsec": 4.1,
+  "measured_arcsec": 4.9,
+  "sun_au": 2.674,
+  "spherex_au": 1.992,
+  "spherex_million_km": 298.0,
+  "positions": [
+   [
+    238.2725,
+    -19.32172
+   ],
+   [
+    238.27294,
+    -19.32067
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "128015 (2003 JR11)": {
+  "predicted_arcsec": 28.2,
+  "measured_arcsec": 27.3,
+  "sun_au": 3.008,
+  "spherex_au": 2.346,
+  "spherex_million_km": 350.9,
+  "positions": [
+   [
+    238.31015,
+    -18.16079
+   ],
+   [
+    238.31033,
+    -18.16862
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "128945 (2004 TB129)": {
+  "predicted_arcsec": 25.2,
+  "measured_arcsec": 24.6,
+  "sun_au": 2.715,
+  "spherex_au": 2.023,
+  "spherex_million_km": 302.6,
+  "positions": [
+   [
+    239.62837,
+    -18.47749
+   ],
+   [
+    239.62955,
+    -18.4844
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "130848 (2000 UF64)": {
+  "predicted_arcsec": 57.3,
+  "measured_arcsec": 57.3,
+  "sun_au": 1.973,
+  "spherex_au": 1.238,
+  "spherex_million_km": 185.2,
+  "positions": [
+   [
+    237.73814,
+    -20.47719
+   ],
+   [
+    237.75459,
+    -20.4732
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "219003 (2008 KR11)": {
+  "predicted_arcsec": 48.9,
+  "measured_arcsec": 47.3,
+  "sun_au": 2.448,
+  "spherex_au": 1.755,
+  "spherex_million_km": 262.6,
+  "positions": [
+   [
+    238.02257,
+    -19.11755
+   ],
+   [
+    238.02776,
+    -19.13023
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "242426 (2004 LY25)": {
+  "predicted_arcsec": 43.3,
+  "measured_arcsec": 42.7,
+  "sun_au": 2.349,
+  "spherex_au": 1.657,
+  "spherex_million_km": 247.9,
+  "positions": [
+   [
+    237.56528,
+    -18.0688
+   ],
+   [
+    237.57791,
+    -18.06951
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "101927 (1999 RN19)": {
+  "predicted_arcsec": 0.3,
+  "measured_arcsec": null,
+  "sun_au": 3.168,
+  "spherex_au": 2.521,
+  "spherex_million_km": 377.1,
+  "positions": [
+   [
+    236.92613,
+    -20.79367
+   ],
+   [
+    236.92622,
+    -20.79367
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "112986 (2002 RJ29)": {
+  "predicted_arcsec": 44.9,
+  "measured_arcsec": 45.1,
+  "sun_au": 1.984,
+  "spherex_au": 1.237,
+  "spherex_million_km": 185.0,
+  "positions": [
+   [
+    239.37883,
+    -19.76724
+   ],
+   [
+    239.39205,
+    -19.7681
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "138831 (2000 UD68)": {
+  "predicted_arcsec": 17.3,
+  "measured_arcsec": 18.5,
+  "sun_au": 3.26,
+  "spherex_au": 2.594,
+  "spherex_million_km": 388.0,
+  "positions": [
+   [
+    239.34696,
+    -19.13775
+   ],
+   [
+    239.34822,
+    -19.13309
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "221241 (2005 UK215)": {
+  "predicted_arcsec": 47.5,
+  "measured_arcsec": null,
+  "sun_au": 2.506,
+  "spherex_au": 1.801,
+  "spherex_million_km": 269.4,
+  "positions": [
+   [
+    239.91674,
+    -17.76443
+   ],
+   [
+    239.91779,
+    -17.7776
+   ]
+  ],
+  "seen_arcsec": null
+ },
+ "366372 (2000 SP90)": {
+  "predicted_arcsec": 47.5,
+  "measured_arcsec": 48.4,
+  "sun_au": 2.179,
+  "spherex_au": 1.477,
+  "spherex_million_km": 221.0,
+  "positions": [
+   [
+    237.18965,
+    -17.84263
+   ],
+   [
+    237.19989,
+    -17.83373
+   ]
+  ],
+  "seen_arcsec": null
+ }
+}

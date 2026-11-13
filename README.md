@@ -1,35 +1,30 @@
 # BlinkSky
 
-**Team Earth Intruders (Tahia Tabassum, Mustain Islam) · NASA Space Apps Challenge 2026 · Dhaka, Bangladesh**
+**Team Earth Intruders: Mustain Islam (Team Lead & Strategist), Ashikur Rahman (Developer), Tahia Tabassum (Video Editing and Voice Over), Zahura Islam (UI/UX Consultant) · NASA Space Apps Challenge 2026 · Dhaka, Bangladesh**
 **Challenge 12: Planet X and SPHEREx**
 
 BlinkSky is a game where you look for asteroids in photos of the sky above your city.
 The photos flip back and forth. The stars stay where they are. You tap whatever moved, and it goes into your collection.
 
-> ## ⚠️ A note on the hackathon rules
+> ## A note on the hackathon rules
 >
-> ***We are aware that NASA Space Apps does not allow teams to start building their project before the hackathon.
-> This prototype was made only because the Space Apps Bangladesh organisers asked for a prototype with the
-> prescreening submission, to show the concept and how the NASA data can be accessed. It is here to exhibit
-> the concept to the local judges.***
->
-> ***Nothing in this repository will be reused on the event day. We will build everything from scratch
-> during the hackathon, based on the full challenge statement, which NASA has not published yet (due 28 October 2026).***
+> An early concept prototype was shown for the Space Apps Bangladesh prescreening round in October 2026,
+> because the local organisers asked for one. The work done during the hackathon itself (13–14 November 2026)
+> is listed in the "Update" sections at the end of this page.
 
-## Status: early prototype for the Bangladesh prescreening round
+## Status: hackathon build (13–14 November 2026)
 
-This repository is the prototype the Space Apps Bangladesh organisers asked for with the prescreening video:
-a prototype showing how BlinkSky gets NASA data and how that data is used in the code.
-The full game will be built during the hackathon (13–14 November 2026).
+- **Explorer (the challenge's required tool):** type any sky coordinates (Right Ascension and declination), or press one of the five test objects, and BlinkSky shows every matching SPHEREx photo of that patch as a little video. Works on the public site, no install.
+- **Real NASA data:** live lookups ask NASA/IPAC IRSA for SPHEREx DR1 + QR3 photos. The game's **Real NASA sky** mode plays real SPHEREx rounds (`real_round/`, `real_round_4/`).
+- **Sample data:** the practice rounds use **generated sample** sky photos and object facts, and every such card is labelled "Sample data".
 
-- **Real NASA data:** `data_access/blinksky_data.py` fetches real SPHEREx images from NASA/IPAC IRSA and asks NASA JPL which known objects are in the photo. Its output is in `real_round/`, and the game's **Real NASA sky** mode plays it.
-- **Sample data:** the game's other rounds use **generated sample** sky photos and **sample** object facts, and every such card is labelled "Sample data".
-
-Prescreening video: https://youtu.be/enedMO1WhUw
+Prescreening video (October 2026): https://youtu.be/enedMO1WhUw
 
 ## How to try it
 
 **Online:** https://skibidimama106-lang.github.io/BlinkSky/
+
+**Explorer:** open **Search**, type coordinates such as `269.446 +4.769` or `08h55m10.831s -07d14m42.53s` (or press a test object). A link works too: `https://skibidimama106-lang.github.io/BlinkSky/#sky=331.09665,-56.80066`.
 
 **On your computer:** serve the folder, then visit http://localhost:8000:
 
@@ -42,7 +37,7 @@ python -m http.server 8000
 1. Press **Hunt now**, then **Start** on the SPHEREx images. (A practice sky with generated images is there too, as a warm-up.)
 2. Watch the images flip. Drag to look around, pinch or scroll to zoom, and tap the dot that moves.
    The mover looks exactly like the stars around it: nothing glows or points at it. Stuck? **Hint** circles an area that contains it (never the dot itself), and the card then says "with a hint". In the SPHEREx images, **Show NASA's list** circles every known object NASA JPL lists there.
-3. Your catch arrives face up, with a piece of the image you found it in, a ring where you tapped, and the symbol of its type in the corner. Tap the card for its details: real facts from NASA JPL, like who an asteroid is named after.
+3. Your catch arrives face up, with a piece of the image you found it in, a ring where you tapped, and the symbol of its type in the corner. Tap the card for its details: real facts from NASA JPL, like who an asteroid is named after. **Save as image** turns the card into a picture (1080×1350 PNG) to keep or share, with the NASA credits on it. Any card in the Deck can be saved the same way from its details.
 4. Open **Deck** (bottom bar): your cards sit in one stack per type. Sort the stacks by type, rarity or source, and tap a stack to swipe through it.
 5. **Search** (bottom bar) lists every known object NASA JPL found in the SPHEREx images. Tap one and the images open with that object circled. Looking never adds a card; cards only come from catching.
 
@@ -157,6 +152,20 @@ Cards show only three of these facts; the rest sit in the card's details, so pla
 python blinksky_facts.py --round ../real_round_wide
 ```
 
+### NASA's orbit check (JPL Horizons)
+
+`data_access/blinksky_horizons.py` asks **NASA JPL Horizons** (`https://ssd.jpl.nasa.gov/api/horizons.api`) where each object in a round should be at the time of each photo, **as seen from the SPHEREx spacecraft itself** (Horizons ID `-163182`), and how far it is from the Sun and from SPHEREx. It saves this to `horizons.json` next to the photos.
+
+For objects bright enough to see, it also measures how far the spot really moved in the two photos (centre of the spot in photo A and in photo B). For 21 Lutetia, Horizons predicts **24.2″** in 3.2 hours and the photos show **23.7″**. The card says "NASA's orbit agrees with your photos". Fainter objects get the prediction and the distances only.
+
+```
+python blinksky_horizons.py --round ../real_round_full
+```
+
+### Near Earth today (NASA NeoWs)
+
+The home screen shows how many asteroids pass Earth today and how close the closest one comes, from **NASA NeoWs** (`https://api.nasa.gov/neo/rest/v1/feed`, NASA's public `DEMO_KEY`). Tap it for the full list: size, distance in Moon-distances and speed. It is fetched once a day and kept on the device. These asteroids are far too faint for SPHEREx images, so they are shown as today's news, not as something to catch.
+
 ### How the data gets into the game
 
 The script can export a ready-to-play round straight into the game folder:
@@ -186,7 +195,11 @@ The game first looks for a wider round in `real_round_wide/` (made with `--size 
 
 The round included in this repository is the 0.2° ecliptic patch above. Its known asteroids are fainter than magnitude 19, so they are hard to see without the circles; the full game will use larger fields with brighter movers.
 
-Data credit: SPHEREx/JPL/Caltech/NASA, via NASA/IPAC IRSA. Small-body data: NASA JPL Solar System Dynamics.
+Data credit: SPHEREx/JPL/Caltech/NASA, via NASA/IPAC IRSA. Small-body data: NASA JPL Solar System Dynamics (SBDB, sb_ident, Horizons). Near-Earth asteroids: NASA NeoWs (api.nasa.gov).
+
+SPHEREx images are from the SPHEREx Quick Release 3 (QR3) Spectral Images, [doi:10.26131/IRSA662](https://doi.org/10.26131/IRSA662).
+
+"This publication makes use of data products from the Spectro-Photometer for the History of the Universe, Epoch of Reionization and Ices Explorer (SPHEREx), which is a joint project of the Jet Propulsion Laboratory and the California Institute of Technology, and is funded by the National Aeronautics and Space Administration."
 
 ## Built with
 
@@ -195,3 +208,42 @@ Plain HTML, CSS and JavaScript. No libraries. All illustrations and cards are dr
 ## Use of AI
 
 Code and illustrations were written with AI assistance (Claude, by Anthropic), directed and reviewed by the team.
+
+## Update, 13 November 2026 (hackathon day 1)
+
+- **Four-photo hunts.** A real round now uses four SPHEREx photos of one patch: two taken minutes apart, then two more about three hours later (`real_round_4/`, built by `data_access/blinksky_multi_round.py`). A light that shows in only one of two photos taken minutes apart is treated as a camera error.
+- **Send to our team.** A catch that is on no list we check gets a receipt and a draft report, and one tap opens an email to the team with both filled in. Our team checks it again before anything is reported. Nothing has been reported to any official list yet.
+- **What happens to a catch.** The card shows every step a real citizen-science find goes through: spotted, checked by code, sent, checked by the team, reported, seen again on another night, temporary name, number and name.
+- **Certificate and team.** A finder can save a certificate of a candidate find (it says candidate, not discovery) and add a team or school name.
+- **Explorer, more ways to look.** For any patch: each photo, all photos of a visit added up, the difference between two visits, a choice of field of view, and the stars from ESA's Gaia DR3 drawn as circles on the SPHEREx photo (`data_access/blinksky_gaia_overlay.py`).
+- **Where each kind of change would go.** Moved: Minor Planet Center. New light: Transient Name Server. A star that fades and returns: AAVSO Variable Star Index.
+
+## Update, 13 November 2026 (evening): any coordinates, live, on the public site
+
+- **Type any coordinates, get a little video.** The page now asks NASA directly for the patch you type, then lines the photos up and measures them in your browser. A new spot takes about a minute (NASA's cutout service is the slow step); asking again is instant.
+- **How it gets past the browser block.** NASA/IPAC IRSA does not send the header that lets a web page read its answers, so requests go through a tiny relay (`relay/worker.js`, a free Cloudflare Worker). It only forwards SPHEREx searches, SPHEREx cutouts, Gaia lookups and WISE lookups, and it strips two big layers the page never uses (PSF and ZODI), so each photo shrinks from about 5 MB to about 100 KB.
+- **Same numbers as the Python tool.** The browser code (`relay/live_explore.js`, also inside `index.html`) is a line-by-line port of `data_access/blinksky_explorer.py`. On Barnard's Star it gives the same result for all 31 photos (9.94″ a year, give or take 0.56″). Typing Epsilon Indi B's coordinates on the live page measures 4.5″ a year, give or take 0.2″ (Gaia DR3: 4.68″).
+- **Already on the newest data.** NASA released SPHEREx Data Release 1 (DR1) on 12 November 2026. It reprocesses QR2 to match QR3, and IRSA stopped returning QR2 in searches. BlinkSky switched the same day: live lookups use DR1 + QR3. A future release is one line (`LIVE_RELEASES` in `index.html`, `RELEASES` in the Python tool), and the relay accepts any SPHEREx release name.
+- **Gaia circles for any spot.** Live lookups also fetch Gaia DR3 stars for the patch and draw them on the photos.
+
+Data credit for live lookups: SPHEREx DR1 Spectral Images, [doi:10.26131/IRSA678](https://doi.org/10.26131/IRSA678), and SPHEREx QR3 Spectral Images, [doi:10.26131/IRSA662](https://doi.org/10.26131/IRSA662). The five ready-made test objects were fetched before DR1, from QR2 ([doi:10.26131/IRSA652](https://doi.org/10.26131/IRSA652)) and QR3.
+
+## Update, 13 November 2026 (night): every optional idea in the challenge
+
+The challenge lists eight "potential considerations". BlinkSky now has all of them:
+
+| Challenge idea | In BlinkSky |
+|---|---|
+| Easy to update with the latest data | Live lookups use the newest releases (DR1 + QR3, switched the day after DR1 came out). A new release is one line. |
+| Add up all the data from each of the six detectors | **All time** view: every photo the chosen detector (D1 to D6, or all six) took of the spot, from every visit, averaged. **Added up** does the same for one visit. |
+| Spectra on the fly | The colour fingerprint: brightness against wavelength from every photo, built as the photos arrive. |
+| Add or subtract images from different times | **Added up**, **All time** and **Difference** (this visit minus another). |
+| Choose the field of view | 6, 3 or 1.5 arcminutes, plus **Wider: 15 arcmin**, which fetches bigger pieces of every photo from NASA (slower, as the challenge warns). |
+| Overlay other telescopes (Gaia, WISE) | **Gaia stars** (circles, moved to 2026 with Gaia's own motion) and **WISE** (squares, where NASA's WISE telescope saw each source in 2010-2011, so a fast mover sits away from its square). |
+| Coordinates in the URL | `#sky=269.44627,4.76859` or `#sky=barnard`. |
+| Contamination flags | "NASA flags here: ..." on every frame that has any. |
+| Public tools (Astropy, Aladin) | The Python tools use Astropy. **The sky around it** opens Aladin Lite (CDS Strasbourg) on NASA's SPHEREx DR1 all-sky map, with the patch drawn as a square. |
+
+New data sources in this update: AllWISE (NASA WISE, via NASA/IPAC IRSA, [doi:10.26131/IRSA1](https://doi.org/10.26131/IRSA1)) and the SPHEREx DR1 all-sky map ([doi:10.26131/IRSA679](https://doi.org/10.26131/IRSA679)), shown with Aladin Lite (CDS, Strasbourg).
+
+Known limits: live lookups take one photo per detector per visit, so **All time** adds up 3 to 5 photos per detector there (the Python tool can take more); the WISE squares are not moved for motion since 2010; a new spot takes about a minute (two for the wider view) because NASA's cutout service is slow; the game has one real asteroid patch so far.

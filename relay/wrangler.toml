@@ -1,0 +1,6 @@
+# BlinkSky relay: lets the public BlinkSky page ask NASA/IPAC IRSA for SPHEREx photos (IRSA sends no CORS header).
+# Deploy: node wr.mjs deploy   (token from the project .env)
+name = "blinksky-relay"
+main = "worker.js"
+compatibility_date = "2025-07-01"
+workers_dev = true

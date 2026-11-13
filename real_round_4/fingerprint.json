@@ -1,0 +1,55 @@
+{
+ "21 Lutetia (A852 VA)": {
+  "slices": [
+   {
+    "frame": 0,
+    "detector": "D5",
+    "time_utc": "2026-07-21 07:08 UTC",
+    "wave_um": 3.8246,
+    "width_um": 0.0357,
+    "flux_mjy": 100.5642,
+    "snr": 175.7,
+    "flags": [
+     "OUTLIER"
+    ]
+   },
+   {
+    "frame": 1,
+    "detector": "D5",
+    "time_utc": "2026-07-21 07:12 UTC",
+    "wave_um": 3.8908,
+    "width_um": 0.0359,
+    "flux_mjy": 108.2323,
+    "snr": 179.8,
+    "flags": [
+     "OUTLIER"
+    ]
+   },
+   {
+    "frame": 2,
+    "detector": "D5",
+    "time_utc": "2026-07-21 10:24 UTC",
+    "wave_um": 3.9579,
+    "width_um": 0.0364,
+    "flux_mjy": 113.8487,
+    "snr": 186.8,
+    "flags": [
+     "NONFUNC",
+     "OUTLIER"
+    ]
+   },
+   {
+    "frame": 3,
+    "detector": "D5",
+    "time_utc": "2026-07-21 10:28 UTC",
+    "wave_um": 4.0269,
+    "width_um": 0.0368,
+    "flux_mjy": 127.4917,
+    "snr": 198.7,
+    "flags": [
+     "OUTLIER"
+    ]
+   }
+  ]
+ }
+}
