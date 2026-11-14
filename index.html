@@ -282,6 +282,8 @@
   .gest-art .trail { position: absolute; left: 50%; top: 22px; width: 110px; height: 2px; margin-left: -55px; border-top: 2px dashed rgba(244,244,242,.35); }
   @keyframes gdrag { 0%, 100% { transform: translateX(-50px); } 50% { transform: translateX(50px); } }
   .gdot { position: absolute; top: 31px; left: 50%; width: 24px; height: 24px; margin-left: -12px; border-radius: 50%; border: 2px solid var(--wh); background: rgba(244,244,242,.28); }
+  .gdot.tapdot { animation: gtap 1.3s ease-in-out infinite; }
+  @keyframes gtap { 0%, 100% { transform: scale(1.5); opacity: .35; } 45% { transform: scale(.75); opacity: 1; } }
   .gdot.a { animation: gpa 1.8s ease-in-out infinite; } .gdot.b { animation: gpb 1.8s ease-in-out infinite; }
   @keyframes gpa { 0%, 100% { transform: translate(-13px, 8px); } 50% { transform: translate(-52px, 26px); } }
   @keyframes gpb { 0%, 100% { transform: translate(13px, -8px); } 50% { transform: translate(52px, -26px); } }
@@ -938,7 +940,9 @@ function render() {
   if (hintOn && round.hintArea) {
     // A hint narrows the search to an area. It never marks the mover itself.
     const [hx, hy, hr] = round.hintArea;
-    ctx.lineWidth = 2 / view.s; ctx.setLineDash([8 / view.s, 8 / view.s]); ctx.strokeStyle = 'rgba(244,244,242,.6)';
+    // v29: the sky outside the circle is dimmed and the line is thick, so the circle cannot be missed.
+    ctx.fillStyle = 'rgba(0,0,0,.55)'; ctx.beginPath(); ctx.rect(view.ox - 20, view.oy - 20, view.w / view.s + 40, view.h / view.s + 40); ctx.arc(hx, hy, hr, 0, 7, true); ctx.fill('evenodd');
+    ctx.lineWidth = 3 / view.s; ctx.setLineDash([10 / view.s, 7 / view.s]); ctx.strokeStyle = 'rgba(244,244,242,.95)';
     ctx.beginPath(); ctx.arc(hx, hy, hr, 0, 7); ctx.stroke(); ctx.setLineDash([]);
   }
   if (round.real && showKnown) {
@@ -1113,6 +1117,7 @@ function inspectSpot(wx, wy) {
   return { kind: 'change', x: x0 + (bi / 4) % w, y: y0 + Math.floor(bi / 4 / w), seenIn: [frame, ...twins].sort(), confirmed: twins.length > 0 };
 }
 function tap(wx, wy, sx, sy) {
+  tutAdvance('tap');
   const tol = Math.max(24, 34 / view.s);
   if (round.explore) { toast('Just looking. Catch it in a hunt to add a card.'); return; }
   if (round.real) {
@@ -1637,7 +1642,14 @@ $('known').onclick = () => {
     toast(seen < n ? `NASA lists ${n} objects here. ${seen} on screen; drag to see the rest (dots on the map).` : `NASA lists ${n} objects here, circled.`);
   } else toast("NASA's list hidden");
 };
-$('hint').onclick = () => { if (!round.hintArea) return; hintOn = true; render(); toast('Look inside the circle'); };
+$('hint').onclick = () => {
+  if (!round.hintArea) return; hintOn = true;
+  // v29: the circle was usually off the screen. Move the view to it and zoom so it fills most of the screen.
+  const [hx, hy, hr] = round.hintArea;
+  view.s = Math.min(view.w, view.h) * .7 / (2 * hr); clampView();
+  view.ox = hx - view.w / 2 / view.s; view.oy = hy - view.h / 2 / view.s; clampView();
+  render(); toast('Look inside the circle. Something in there moves.');
+};
 $('pause').onclick = () => { paused = !paused; $('pause').textContent = paused ? '▶ Play' : '❚❚ Pause'; paused ? clearInterval(timer) : startBlink(); };
 addEventListener('resize', () => { if ($('play').classList.contains('on')) { fit(); clampView(); render(); } });
 
@@ -1649,14 +1661,14 @@ const HAND_SVG = `<i class="trail"></i><svg class="hand" viewBox="0 0 48 48" fil
 function tutShow(step) {
   tutStep = step; clearTimeout(tutTimer);
   const g = $('gest'); if (!step) { g.hidden = true; return; }
-  const touch = matchMedia('(pointer: coarse)').matches, art = step === 1 ? HAND_SVG : touch ? '<i class="gdot a"></i><i class="gdot b"></i>' : '';
+  const touch = matchMedia('(pointer: coarse)').matches, art = step === 1 ? HAND_SVG : step === 3 ? '<i class="gdot tapdot"></i>' : touch ? '<i class="gdot a"></i><i class="gdot b"></i>' : '';
   $('gestArt').innerHTML = art; $('gestArt').hidden = !art;
-  $('gestText').textContent = step === 1 ? 'Drag to look around the sky' : touch ? 'Pinch to zoom in' : 'Scroll to zoom in';
+  $('gestText').textContent = step === 1 ? 'Drag to look around the sky' : step === 3 ? (touch ? 'Then tap a dot that moves' : 'Then click a dot that moves') : touch ? 'Pinch to zoom in' : 'Scroll to zoom in';
   g.hidden = false;
-  tutTimer = setTimeout(() => step === 1 ? tutShow(2) : tutDone(), step === 1 ? 12000 : 6000);
+  tutTimer = setTimeout(() => step === 1 ? tutShow(2) : step === 2 ? tutShow(3) : tutDone(), step === 1 ? 12000 : step === 2 ? 6000 : 9000);
 }
 function tutDone() { tutShow(0); tut = 1; try { localStorage.setItem('blinksky2.tut', '1'); } catch (e) {} }
-function tutAdvance(kind) { if (tutStep === 1 && kind === 'drag') tutShow(2); else if (tutStep === 2 && kind === 'zoom') tutDone(); }
+function tutAdvance(kind) { if (kind === 'tap') { if (tutStep) tutDone(); } else if (tutStep === 1 && kind === 'drag') tutShow(2); else if (tutStep === 2 && kind === 'zoom') tutShow(3); }   // v29: step 3 = tap
 
 let tag = load('blinksky2.tag', '');
 const cleanTag = s => String(s || '').toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 7);
