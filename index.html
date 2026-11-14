@@ -940,10 +940,20 @@ function render() {
   if (hintOn && round.hintArea) {
     // A hint narrows the search to an area. It never marks the mover itself.
     const [hx, hy, hr] = round.hintArea;
-    // v29: the sky outside the circle is dimmed and the line is thick, so the circle cannot be missed.
-    ctx.fillStyle = 'rgba(0,0,0,.55)'; ctx.beginPath(); ctx.rect(view.ox - 20, view.oy - 20, view.w / view.s + 40, view.h / view.s + 40); ctx.arc(hx, hy, hr, 0, 7, true); ctx.fill('evenodd');
-    ctx.lineWidth = 3 / view.s; ctx.setLineDash([10 / view.s, 7 / view.s]); ctx.strokeStyle = 'rgba(244,244,242,.95)';
+    ctx.lineWidth = 3 / view.s; ctx.setLineDash([10 / view.s, 7 / view.s]); ctx.strokeStyle = 'rgba(244,244,242,.9)';
     ctx.beginPath(); ctx.arc(hx, hy, hr, 0, 7); ctx.stroke(); ctx.setLineDash([]);
+    // v31: a hint is a hint. The view does not move; while the circle is off the screen, an arrow at the edge points the way.
+    const tx = (hx - view.ox) * view.s, ty = (hy - view.oy) * view.s;
+    if (tx < 0 || ty < 0 || tx > view.w || ty > view.h) {
+      const cx = view.w / 2, cy = view.h / 2, ang = Math.atan2(ty - cy, tx - cx), co = Math.cos(ang), si = Math.sin(ang);
+      const t = Math.min((cx - 44) / Math.max(1e-6, Math.abs(co)), (cy - 150) / Math.max(1e-6, Math.abs(si)));
+      const k = cv.width / view.w;
+      ctx.save(); ctx.setTransform(k, 0, 0, k, 0, 0); ctx.translate(cx + co * t, cy + si * t); ctx.rotate(ang);
+      ctx.beginPath(); ctx.arc(0, 0, 24, 0, 7); ctx.fillStyle = 'rgba(0,0,0,.7)'; ctx.fill(); ctx.lineWidth = 1.5; ctx.strokeStyle = 'rgba(244,244,242,.9)'; ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(-10, 0); ctx.lineTo(9, 0); ctx.moveTo(2, -8); ctx.lineTo(10, 0); ctx.lineTo(2, 8);
+      ctx.lineWidth = 2.5; ctx.lineCap = 'round'; ctx.lineJoin = 'round'; ctx.strokeStyle = '#f4f4f2'; ctx.stroke();
+      ctx.restore();
+    }
   }
   if (round.real && showKnown) {
     // Real NASA sky only: a data view of where NASA JPL says each known object is. Practice rounds never show this.
@@ -1643,12 +1653,9 @@ $('known').onclick = () => {
   } else toast("NASA's list hidden");
 };
 $('hint').onclick = () => {
-  if (!round.hintArea) return; hintOn = true;
-  // v29: the circle was usually off the screen. Move the view to it and zoom so it fills most of the screen.
-  const [hx, hy, hr] = round.hintArea;
-  view.s = Math.min(view.w, view.h) * .7 / (2 * hr); clampView();
-  view.ox = hx - view.w / 2 / view.s; view.oy = hy - view.h / 2 / view.s; clampView();
-  render(); toast('Look inside the circle. Something in there moves.');
+  if (!round.hintArea) return; hintOn = true; render();
+  const [hx, hy] = round.hintArea, tx = (hx - view.ox) * view.s, ty = (hy - view.oy) * view.s;
+  toast(tx < 0 || ty < 0 || tx > view.w || ty > view.h ? 'Follow the arrow to the circle, then look inside it.' : 'Look inside the circle.');
 };
 $('pause').onclick = () => { paused = !paused; $('pause').textContent = paused ? '▶ Play' : '❚❚ Pause'; paused ? clearInterval(timer) : startBlink(); };
 addEventListener('resize', () => { if ($('play').classList.contains('on')) { fit(); clampView(); render(); } });
