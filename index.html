@@ -1175,7 +1175,7 @@ async function fetchRound(dir) {
 // v25: two hunts. Two photos = any light in one photo and not the other counts (more finds, some are camera errors).
 // Four photos = a light must also be in the photo taken minutes later (camera errors are thrown out, finds are rare).
 const HUNTS = {
-  two: { dir: 'real_round_full/', what: '<b>Two photos, about three hours apart.</b> Any light that is in one photo and not in the other counts as a find. Finds come more often, but some will turn out to be camera errors. Our team checks each one.',
+  two: { dir: 'real_round_full/', what: '<b>Two photos, about three hours apart.</b> Any light that is in one photo and not in the other counts as a find, so finds come more often. Two photos are not enough to tell a real new light from a camera error, so the card says it is not confirmed yet, and our team checks each one you send.',
     toast: 'Two photos, taken hours apart. Tap what moves.' },
   four: { dir: 'real_round_4/', what: '<b>Four photos: two taken minutes apart, then two more about three hours later.</b> A real light shows in both photos of a pair. A camera error shows in only one, so the game throws it out. Finds are rarer, and stronger.',
     toast: 'Four photos. A light in only one photo of a pair is a camera error. Tap what moves.' } };
