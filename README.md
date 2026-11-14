@@ -15,7 +15,7 @@ The photos flip back and forth. The stars stay where they are. You tap whatever 
 ## Status: hackathon build (13–14 November 2026)
 
 - **Explorer (the challenge's required tool):** type any sky coordinates (Right Ascension and declination), or press one of the five test objects, and BlinkSky shows every matching SPHEREx photo of that patch as a little video. Works on the public site, no install.
-- **Real NASA data:** live lookups ask NASA/IPAC IRSA for SPHEREx DR1 + QR3 photos. The game's **Real NASA sky** mode plays real SPHEREx rounds (`real_round/`, `real_round_4/`).
+- **Real NASA data:** live lookups ask NASA/IPAC IRSA for SPHEREx DR1 + QR3 photos. The game's **Real NASA sky** mode plays real SPHEREx rounds: a two-photo hunt (`real_round_full/`) and a four-photo hunt (`real_round_4/`). The player picks one on the "Today's hunt" page.
 - **Sample data:** the practice rounds use **generated sample** sky photos and object facts, and every such card is labelled "Sample data".
 
 Prescreening video (October 2026): https://youtu.be/enedMO1WhUw
@@ -211,7 +211,9 @@ Code and illustrations were written with AI assistance (Claude, by Anthropic), d
 
 ## Update, 13 November 2026 (hackathon day 1)
 
-- **Four-photo hunts.** A real round now uses four SPHEREx photos of one patch: two taken minutes apart, then two more about three hours later (`real_round_4/`, built by `data_access/blinksky_multi_round.py`). A light that shows in only one of two photos taken minutes apart is treated as a camera error.
+- **Two hunts, and the player chooses (updated 14 Nov).** The "Today's hunt" page has a switch, with a short explanation of each choice.
+  - **Two photos** (`real_round_full/`, the default): two SPHEREx photos about three hours apart. Any light that is in one photo and not in the other counts as a find. Finds come more often, but there is no camera-error check here, so some finds will be camera errors. Our team checks each one that is sent.
+  - **Four photos** (`real_round_4/`, built by `data_access/blinksky_multi_round.py`): two photos taken minutes apart, then two more about three hours later. A light that shows in only one of two photos taken minutes apart is treated as a camera error and thrown out. Finds are much rarer.
 - **Send to our team.** A catch that is on no list we check gets a receipt and a draft report, and one tap opens an email to the team with both filled in. Our team checks it again before anything is reported. Nothing has been reported to any official list yet.
 - **What happens to a catch.** The card shows every step a real citizen-science find goes through: spotted, checked by code, sent, checked by the team, reported, seen again on another night, temporary name, number and name.
 - **Certificate and team.** A finder can save a certificate of a candidate find (it says candidate, not discovery) and add a team or school name.

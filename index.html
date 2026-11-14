@@ -144,6 +144,11 @@
   .skycard-body b { display: block; font-size: 18px; font-weight: 600; }
   .skycard-body small { display: block; color: var(--g1); font-size: 12px; margin-top: 3px; }
   .skycard-go { position: absolute; right: 14px; bottom: 16px; background: var(--wh); color: var(--bk); border-radius: 999px; padding: 9px 18px; font-weight: 600; font-size: 14px; }
+  .huntpick { display: flex; gap: 3px; padding: 3px; border: 1px solid #3a3a3a; border-radius: 999px; }
+  .huntpick button { flex: 1; padding: 9px 10px; border-radius: 999px; font-size: 14px; font-weight: 600; color: var(--g1); }
+  .huntpick button.on { background: var(--wh); color: var(--bk); }
+  .huntwhat { margin: 0; font-size: 13px; line-height: 1.5; color: #bdbdb8; min-height: 78px; }
+  .huntwhat b { color: var(--wh); font-weight: 600; }
   .practicelink { align-self: center; font-size: 13px; color: var(--g1); padding: 6px; }
   .modesfoot { margin-top: auto; padding: 0 20px 18px; }
   .modesfoot p { font-size: 11px; line-height: 1.45; color: #6f6f6f; }
@@ -491,7 +496,9 @@
     <div class="loc"><button class="x" data-go="home" aria-label="Back">←</button></div>
     <div class="modes">
       <h1 class="h1">Today's hunt</h1>
-      <p class="intro">Two SPHEREx images of the same patch of sky, taken hours apart, flip back and forth. The stars stay still. Find what moves and tap it. NASA JPL checks every catch.</p>
+      <p class="intro">SPHEREx photos of the same patch of sky, taken hours apart, flip back and forth. The stars stay still. Find what moves and tap it. NASA JPL checks every catch.</p>
+      <div class="huntpick" role="group" aria-label="Choose a hunt"><button data-hunt="two">Two photos</button><button data-hunt="four">Four photos</button></div>
+      <p class="huntwhat" id="huntWhat"></p>
       <button class="skycard" id="startBtn">
         <canvas id="modeThumb" width="560" height="300"></canvas>
         <span class="skycard-body"><b>SPHEREx images</b><small id="realSub">Loading SPHEREx images...</small></span>
@@ -1158,17 +1165,39 @@ function startRound(r, opts = {}) {
   clampView(); render(); startBlink();
   tutShow(!tut && !round.explore ? 1 : 0);
 }
-const REAL_DIRS = ['real_round_full/', 'real_round_4/', 'real_round_wide/', 'real_round/'];   // v24: back to the two-photo round the hunt used before v11
+const REAL_DIRS = ['real_round_full/', 'real_round_4/', 'real_round_wide/', 'real_round/'];   // v24: two-photo round first; v25: the player can switch (HUNTS)
 async function fetchRound(dir) {
   const meta = await fetch(dir + 'round.json').then(r => { if (!r.ok) throw new Error(r.status); return r.json(); });
   const imgs = await Promise.all(meta.frames.map(f => new Promise((ok, bad) => {
     const im = new Image(); im.onload = () => ok(im); im.onerror = bad; im.src = dir + f.src; })));
   return { meta, imgs, dir };
 }
-let realRound = null;
-async function getRealRound() {
-  if (realRound) return realRound;
-  for (const dir of REAL_DIRS) {
+// v25: two hunts. Two photos = any light in one photo and not the other counts (more finds, some are camera errors).
+// Four photos = a light must also be in the photo taken minutes later (camera errors are thrown out, finds are rare).
+const HUNTS = {
+  two: { dir: 'real_round_full/', what: '<b>Two photos, about three hours apart.</b> Any light that is in one photo and not in the other counts as a find. Finds come more often, but some will turn out to be camera errors. Our team checks each one.',
+    toast: 'Two photos, taken hours apart. Tap what moves.' },
+  four: { dir: 'real_round_4/', what: '<b>Four photos: two taken minutes apart, then two more about three hours later.</b> A real light shows in both photos of a pair. A camera error shows in only one, so the game throws it out. Finds are rarer, and stronger.',
+    toast: 'Four photos. A light in only one photo of a pair is a camera error. Tap what moves.' } };
+let huntPick = load('blinksky-hunt', 'two') === 'four' ? 'four' : 'two';
+let realRound = null, roundJob = null;
+function dropRound(r) { if (!r) return; if (round === r) clearInterval(timer); for (const c of r.frames) c.width = c.height = 0; }   // free the big photos (phones)
+function getRealRound() {
+  const want = HUNTS[huntPick].dir;
+  if (realRound && realRound.want === want) return Promise.resolve(realRound);
+  if (roundJob && roundJob.want === want) return roundJob.p;
+  const p = fetchHunt(want).then(got => {
+    if (roundJob && roundJob.p === p) roundJob = null;
+    if (!got) return null;
+    if (HUNTS[huntPick].dir !== want) { dropRound(got); return null; }                    // the player switched while it loaded
+    if (realRound !== got) dropRound(realRound);
+    return realRound = got;
+  });
+  roundJob = { want, p };
+  return p;
+}
+async function fetchHunt(want) {
+  for (const dir of [want, ...REAL_DIRS.filter(d => d !== want)]) {
     try {
       const { meta, imgs } = await fetchRound(dir);
       const pngScale = meta.png_scale || EXPORT_SCALE, up = meta.full_image ? 2 : UP;
@@ -1179,23 +1208,35 @@ async function getRealRound() {
       const stars = st ? st.stars.map(s => ({ x: s[0] * k, y: s[1] * k, id: s[2], g: s[3], ly: s[4], teff: s[5] })) : [];
       const orbits = await fetch(dir + 'horizons.json').then(r => r.ok ? r.json() : {}).catch(() => ({}));
       const prints = await fetch(dir + 'fingerprint.json').then(r => r.ok ? r.json() : {}).catch(() => ({}));
-      return realRound = { real: true, up, k, meta, frames, objects, facts, orbits, prints, stars, w: frames[0].width, h: frames[0].height };
+      return { real: true, dir, want, up, k, meta, frames, objects, facts, orbits, prints, stars, w: frames[0].width, h: frames[0].height };
     } catch (e) { /* try the next folder */ }
   }
   return null;
 }
+function showHuntPick() {
+  for (const b of document.querySelectorAll('.huntpick button')) b.classList.toggle('on', b.dataset.hunt === huntPick);
+  $('huntWhat').innerHTML = HUNTS[huntPick].what;
+}
+for (const b of document.querySelectorAll('.huntpick button')) b.onclick = () => {
+  if (b.dataset.hunt === huntPick) return;
+  huntPick = b.dataset.hunt; try { localStorage.setItem('blinksky-hunt', JSON.stringify(huntPick)); } catch (e) { /* private mode */ }
+  renderModes();
+};
 async function loadReal() {
   const label = $('realSub').textContent;
   $('realSub').textContent = 'Loading SPHEREx images...';
   const r = await getRealRound();
   $('realSub').textContent = r ? label : 'Needs a web server';
   if (!r) { show('home'); return; }
-  startRound(r); toast('SPHEREx images, taken hours apart. Tap what moves.');
+  startRound(r); toast(HUNTS[huntPick].toast);
 }
 // The page after "Hunt now": SPHEREx images are the way to play; practice is a quiet option underneath.
 async function renderModes() {
-  show('modes');
+  show('modes'); showHuntPick();
+  const pick = huntPick;
+  if (!realRound || realRound.want !== HUNTS[pick].dir) $('realSub').textContent = 'Loading SPHEREx images...';
   const r = await getRealRound();
+  if (pick !== huntPick) return;                                  // switched again while loading
   if (!r) { $('realSub').textContent = 'Needs the game to be opened online or through a web server'; return; }
   const t = r.meta.frames[0].time_utc, d = new Date(t.slice(0, 10) + 'T00:00:00Z');
   const gap = Math.round((new Date(r.meta.frames[r.meta.frames.length - 1].time_utc.replace(' UTC', 'Z').replace(' ', 'T')) - new Date(t.replace(' UTC', 'Z').replace(' ', 'T'))) / 36e5 * 10) / 10;
