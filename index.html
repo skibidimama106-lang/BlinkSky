@@ -1139,7 +1139,7 @@ function tap(wx, wy, sx, sy) {
     let best = null, bd = r2;
     for (const s of round.stars) { const d = (s.x - qx) ** 2 + (s.y - qy) ** 2; if (d < bd) { bd = d; best = s; } }
     if (best) { starTip(best); return; }
-    toast("That stays put: a star or a galaxy that isn't in Gaia's star list.");
+    toast(tries < 3 ? "That one stays still, so it isn't a find. Look for a dot that moves." : 'That one stays still. Look for a dot that jumps, or try a hint.');
     return;
   }
   if (spot.kind === 'star') toast(tries < 3 ? "That's a star. It stays in the same place in both images." : 'Stars stay put. Look for a dot that jumps, or try a hint.');
