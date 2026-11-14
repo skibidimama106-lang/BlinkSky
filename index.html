@@ -946,12 +946,13 @@ function render() {
     const tx = (hx - view.ox) * view.s, ty = (hy - view.oy) * view.s;
     if (tx < 0 || ty < 0 || tx > view.w || ty > view.h) {
       const cx = view.w / 2, cy = view.h / 2, ang = Math.atan2(ty - cy, tx - cx), co = Math.cos(ang), si = Math.sin(ang);
-      const t = Math.min((cx - 44) / Math.max(1e-6, Math.abs(co)), (cy - 150) / Math.max(1e-6, Math.abs(si)));
+      const t = Math.min((cx - 58) / Math.max(1e-6, Math.abs(co)), (cy - 150) / Math.max(1e-6, Math.abs(si)));
       const k = cv.width / view.w;
       ctx.save(); ctx.setTransform(k, 0, 0, k, 0, 0); ctx.translate(cx + co * t, cy + si * t); ctx.rotate(ang);
-      ctx.beginPath(); ctx.arc(0, 0, 24, 0, 7); ctx.fillStyle = 'rgba(0,0,0,.7)'; ctx.fill(); ctx.lineWidth = 1.5; ctx.strokeStyle = 'rgba(244,244,242,.9)'; ctx.stroke();
-      ctx.beginPath(); ctx.moveTo(-10, 0); ctx.lineTo(9, 0); ctx.moveTo(2, -8); ctx.lineTo(10, 0); ctx.lineTo(2, 8);
-      ctx.lineWidth = 2.5; ctx.lineCap = 'round'; ctx.lineJoin = 'round'; ctx.strokeStyle = '#f4f4f2'; ctx.stroke();
+      // v32: a bold arrow with no circle round it, in the same look as the pinch "fingers" of the guide (see-through white, solid white edge)
+      ctx.beginPath(); ctx.moveTo(-24, -8); ctx.lineTo(2, -8); ctx.lineTo(2, -20); ctx.lineTo(26, 0); ctx.lineTo(2, 20); ctx.lineTo(2, 8); ctx.lineTo(-24, 8); ctx.closePath();
+      ctx.shadowColor = 'rgba(0,0,0,.8)'; ctx.shadowBlur = 8; ctx.lineJoin = 'round';
+      ctx.fillStyle = 'rgba(244,244,242,.28)'; ctx.fill(); ctx.lineWidth = 2; ctx.strokeStyle = '#f4f4f2'; ctx.stroke();
       ctx.restore();
     }
   }
@@ -1051,9 +1052,9 @@ function zoomAt(px, py, f) {
   view.s *= f; clampView(); view.ox = wx - px / view.s; view.oy = wy - py / view.s;
 }
 let toastTimer = null;
-function toast(text) {
+function toast(text, ms = 2600) {
   const t = $('toast'); t.textContent = text; t.style.opacity = 1;
-  clearTimeout(toastTimer); toastTimer = setTimeout(() => t.style.opacity = 0, 2600);
+  clearTimeout(toastTimer); toastTimer = setTimeout(() => t.style.opacity = 0, ms);
 }
 function lockOn(sx, sy, then) {
   clearInterval(timer);
@@ -1655,7 +1656,7 @@ $('known').onclick = () => {
 $('hint').onclick = () => {
   if (!round.hintArea) return; hintOn = true; render();
   const [hx, hy] = round.hintArea, tx = (hx - view.ox) * view.s, ty = (hy - view.oy) * view.s;
-  toast(tx < 0 || ty < 0 || tx > view.w || ty > view.h ? 'Follow the arrow to the circle, then look inside it.' : 'Look inside the circle.');
+  toast((tx < 0 || ty < 0 || tx > view.w || ty > view.h ? 'Follow the arrow to the circle.' : 'Look inside the circle.') + ' Hints only point to known objects. New finds are found without one.', 6500);
 };
 $('pause').onclick = () => { paused = !paused; $('pause').textContent = paused ? '▶ Play' : '❚❚ Pause'; paused ? clearInterval(timer) : startBlink(); };
 addEventListener('resize', () => { if ($('play').classList.contains('on')) { fit(); clampView(); render(); } });
