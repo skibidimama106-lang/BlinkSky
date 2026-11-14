@@ -144,6 +144,10 @@
   .skycard-body b { display: block; font-size: 18px; font-weight: 600; }
   .skycard-body small { display: block; color: var(--g1); font-size: 12px; margin-top: 3px; }
   .skycard-go { position: absolute; right: 14px; bottom: 16px; background: var(--wh); color: var(--bk); border-radius: 999px; padding: 9px 18px; font-weight: 600; font-size: 14px; }
+  .skycard-go.wait { background: transparent; color: var(--wh); border: 1px solid #4a4a4a; display: flex; align-items: center; gap: 8px; padding: 8px 14px; }
+  .skycard-go.wait::before { content: ''; width: 14px; height: 14px; border-radius: 50%; border: 2px solid #555; border-top-color: var(--wh); animation: spin .8s linear infinite; }
+  .skycard.pressed { border-color: var(--wh); } .skycard.pressed canvas { opacity: .55; }
+  @keyframes spin { to { transform: rotate(360deg); } }
   .huntpick { display: flex; gap: 3px; padding: 3px; border: 1px solid #3a3a3a; border-radius: 999px; }
   .huntpick button { flex: 1; padding: 9px 10px; border-radius: 999px; font-size: 14px; font-weight: 600; color: var(--g1); }
   .huntpick button.on { background: var(--wh); color: var(--bk); }
@@ -1222,21 +1226,33 @@ for (const b of document.querySelectorAll('.huntpick button')) b.onclick = () =>
   huntPick = b.dataset.hunt; try { localStorage.setItem('blinksky-hunt', JSON.stringify(huntPick)); } catch (e) { /* private mode */ }
   renderModes();
 };
+// v27: the photos are several megabytes, so Start can take seconds. Show that the tap was taken and that it is loading.
+function setStart(state) {                       // 'ready' | 'loading' (not tapped yet) | 'starting' (tapped, waiting for the photos)
+  const go = $('startBtn').querySelector('.skycard-go');
+  go.textContent = { ready: 'Start', loading: 'Loading', starting: 'Starting' }[state];
+  go.classList.toggle('wait', state !== 'ready'); $('startBtn').classList.toggle('pressed', state === 'starting');
+}
+let starting = false;
 async function loadReal() {
-  const label = $('realSub').textContent;
-  $('realSub').textContent = 'Loading SPHEREx images...';
+  if (starting) return;
+  const pick = huntPick;
+  if (!(realRound && realRound.want === HUNTS[pick].dir)) { starting = true; setStart('starting'); $('realSub').textContent = 'Got it. Loading the SPHEREx photos...'; }
   const r = await getRealRound();
-  $('realSub').textContent = r ? label : 'Needs a web server';
-  if (!r) { show('home'); return; }
+  starting = false;
+  if (pick !== huntPick) return;                                  // switched hunts while loading
+  setStart('ready');
+  if (!r) { $('realSub').textContent = 'Needs a web server'; show('home'); return; }
   startRound(r); toast(HUNTS[huntPick].toast);
 }
 // The page after "Hunt now": SPHEREx images are the way to play; practice is a quiet option underneath.
 async function renderModes() {
   show('modes'); showHuntPick();
   const pick = huntPick;
-  if (!realRound || realRound.want !== HUNTS[pick].dir) $('realSub').textContent = 'Loading SPHEREx images...';
+  starting = false;
+  if (!realRound || realRound.want !== HUNTS[pick].dir) { $('realSub').textContent = 'Loading SPHEREx images...'; setStart('loading'); } else setStart('ready');
   const r = await getRealRound();
   if (pick !== huntPick) return;                                  // switched again while loading
+  if (!starting) setStart('ready');
   if (!r) { $('realSub').textContent = 'Needs the game to be opened online or through a web server'; return; }
   const t = r.meta.frames[0].time_utc, d = new Date(t.slice(0, 10) + 'T00:00:00Z');
   const gap = Math.round((new Date(r.meta.frames[r.meta.frames.length - 1].time_utc.replace(' UTC', 'Z').replace(' ', 'T')) - new Date(t.replace(' UTC', 'Z').replace(' ', 'T'))) / 36e5 * 10) / 10;
