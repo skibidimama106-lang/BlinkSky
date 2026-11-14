@@ -1158,7 +1158,7 @@ function startRound(r, opts = {}) {
   clampView(); render(); startBlink();
   tutShow(!tut && !round.explore ? 1 : 0);
 }
-const REAL_DIRS = ['real_round_4/', 'real_round_full/', 'real_round_wide/', 'real_round/'];
+const REAL_DIRS = ['real_round_full/', 'real_round_4/', 'real_round_wide/', 'real_round/'];   // v24: back to the two-photo round the hunt used before v11
 async function fetchRound(dir) {
   const meta = await fetch(dir + 'round.json').then(r => { if (!r.ok) throw new Error(r.status); return r.json(); });
   const imgs = await Promise.all(meta.frames.map(f => new Promise((ok, bad) => {
